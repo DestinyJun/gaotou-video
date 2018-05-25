@@ -1,0 +1,132 @@
+/**
+ * Created by wangwenjun on 2018/2/22.
+ * project name ...
+ */
+
+.container-fluid{
+  color: white;
+  background: #151A30;
+  height: 100vh;
+}
+/*头部*/
+.header{
+  height: 8vh;
+  border-bottom: 1px solid #404259;
+  padding-top: 5px;
+}
+.header-title{
+  position: relative;
+  text-align: center;
+}
+.header-title-h4{
+  margin-bottom: 0;
+  border-bottom: 1px solid #ADB9D1;
+  padding-bottom: 5px;
+}
+.header-title-box1{
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: #648ED6;
+}
+.header-title-box2{
+  display: inline-block;
+  margin-left: -7px;
+  width: 0;
+  height: 0;
+  border-top: 16px solid #648ED6;
+  border-right: 16px solid transparent;
+}
+
+/*主体*/
+.main{
+  height: 92vh;
+  padding-top: 1vh;
+}
+
+/*主体左边*/
+.main-left{
+  padding-right: 0;
+}
+.main-left .vehicle{
+  height: 20vh;
+  border:1px solid #3B425C;
+  padding-left: 5px;
+  margin-bottom: 1vh;
+}
+.main-left .vehicle-amount>h3>span{
+  display: inline-block;
+  width: 30px;
+  height: 40px;
+  border: 1px solid #7D8DA7;
+  line-height: 40px;
+  text-align: center;
+  background: -moz-linear-gradient(top, #01071D 0%, #0A4D84 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#01071D), color-stop(100%,#0A4D84));
+  background: -webkit-linear-gradient(top, #01071D 50%,#0A4D84 100%);
+  background: -o-linear-gradient(top, #01071D 0%,#0A4D84 100%);
+  background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
+  background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);
+}
+.main-left .vehicle-number{
+  font-size: 12px;
+}
+.main-left .accumulation{
+  height: 34vh;
+  border:1px solid #3B425C;
+  margin-bottom: 1vh;
+}
+
+/*主体中部*/
+.main-center .top-map{
+  border:1px solid #3B425C;
+  margin-bottom: 1vh;
+  height: 55vh;
+}
+.main-center .bottom-left-echarts{
+  margin-bottom: 1vh;
+  height: 34vh;
+  border:1px solid #3B425C;
+  margin-right: -8px;
+}
+.main-center .bottom-right-echarts{
+  margin-bottom: 1vh;
+  height: 34vh;
+  border:1px solid #3B425C;
+  margin-left: -8px;
+}
+
+/*主体右边*/
+.main-right{
+  padding-left: 0;
+}
+.right-top{
+  height: 20vh;
+  border:1px solid #3B425C;
+  padding-left: 5px;
+  margin-bottom: 1vh;
+}
+.right-center{
+  margin-bottom: 1vh;
+  height: 34vh;
+  border:1px solid #3B425C;
+}
+.right-bottom{
+  margin-bottom: 1vh;
+  height: 34vh;
+  border:1px solid #3B425C;
+}
+
+
+/*微调*/
+.text-warning{
+  margin-right: 10px;
+}
+/*字体图标*/
+.fa-long-arrow-up{
+  color: red;
+}
+
+/*百度地图*/
+.anchorBL{display:none;}
+
