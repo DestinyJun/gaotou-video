@@ -18,17 +18,12 @@ export class FinanceDataComponent implements OnInit {
   constructor(
     public http: HttpClient,
     private es: NgxEchartsService
-  ) {
-    for (let i = 0; i < 11; i++) {
-      console.log(Math.random() * 100);
-    }
-  }
+  ) {}
 
   ngOnInit() {
     // 中部车辆地图
     this.http.get('assets/data/lines-bus.json').subscribe(
       (data: any[]) => {
-        console.log(data);
         const hStep = 300 / (data.length - 1);
         const busLines = [].concat.apply([], data.map((busLine, idx) => {
           let prevPt;
@@ -278,19 +273,20 @@ export class FinanceDataComponent implements OnInit {
               lineStyle: {
                 width: 5, // 折线宽度
               },
-              color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
-                offset: 1,
-                color: '#fbfa96' // 0% 处的颜色
-              }, {
-                offset: 0,
-                color: '#f72806' // 100% 处的颜色
-              }], false),
+             /* color: this.es.graphic.LinearGradient(0, 0, 1, 0, [
+                {
+                  offset: 1,
+                  color: '#fbfa96' // 0% 处的颜色
+               },
+                {
+                  offset: 0,
+                  color: '#f72806' // 100% 处的颜色
+                }
+              ], false),*/
               opacity: 0.4
             }
           },
-
           data: [81, 83, 60, 70, 6, 24, 62, 53, 16, 73, 17, 5]
-
         }
 
       ]
