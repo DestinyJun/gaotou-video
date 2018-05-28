@@ -1,3 +1,71 @@
-<p>
-  finance-data works!
-</p>
+<div class="container-fluid">
+  <div class="header">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="header-title">
+          <h4 class="header-title-h4">
+            <span class="header-title-box1"></span>
+            <span class="header-title-box2"></span>
+            <span>贵州高投高速大数据</span>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="row">
+      <!--左边-->
+      <div class="col-lg-3 col-md-3 col-sm-3 main-left " >
+        <div class="vehicle">
+          <h4>2018-05-24 09:33:35 今日车辆流动数量</h4>
+          <div class="vehicle-amount">
+            <h3>
+              <span>0</span>
+              <span>0</span>
+              <span>0</span>
+              <span>0</span>
+              <span>7</span>
+              <span>8</span>
+              <small style="font-size: 14px;color: white;">辆</small>
+            </h3>
+            <span style="margin-right: 10px">前日时间同比</span>
+            <i class="fa fa-long-arrow-up"></i>
+            <span class="text-warning">3.2%</span>
+          </div>
+        </div>
+        <div class="accumulation" echarts [options]="optionsCar"></div>
+        <div class="accumulation"></div>
+      </div>
+      <!--中间-->
+      <div class="col-lg-6 col-md-6 col-sm-6 main-center">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <!--<div echarts [options]="options" [loading]="!mapLoaded" class="top-map" id="center_map"></div>-->
+            <div class="top-map" id="center_map"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="bottom-left-echarts"></div>
+        </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="bottom-right-echarts"></div>
+          </div>
+      </div>
+      </div>
+      <!--右边-->
+      <div class="col-lg-3 col-md-3 col-sm-3 main-right">
+        <div class="right-top">
+          <h6 class="text-center" style="margin-top: 2vh">高速服务区天气监控</h6>
+          <iframe width="100%" scrolling="no"
+                  height="100%" frameborder="0" allowtransparency="true"
+                  src="http://i.tianqi.com/index.php?c=code&id=2&color=%23FFFFFF&icon=4&num=2&site=12">
+
+          </iframe>
+        </div>
+        <div class="right-center"></div>
+        <div class="right-bottom"></div>
+      </div>
+    </div>
+  </div>
+</div>
