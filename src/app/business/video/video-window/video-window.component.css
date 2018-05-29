@@ -1,0 +1,202 @@
+/**
+ * Created by wangwenjun on 2018/2/22.
+ * project name ...
+ */
+.container-fluid{
+  color: white;
+  background: #151A30;
+  height: 100vh;
+}
+
+/*头部*/
+.header{
+  height: 6vh;
+  border-bottom: 1px solid #ADB9D1;
+}
+.header-title{
+  position: relative;
+  text-align: center;
+}
+.header-title-h4{
+  margin-bottom: 0;
+  padding-bottom: 5px;
+}
+.header-title-box1{
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: #648ED6;
+}
+.header-title-box2{
+  display: inline-block;
+  margin-left: -7px;
+  width: 0;
+  height: 0;
+  border-top: 16px solid #648ED6;
+  border-right: 16px solid transparent;
+}
+.header-icon {
+  float: right;
+  overflow: hidden;
+
+}
+.header-icon-img{
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+/*主体*/
+.main{
+  padding-top: 1vh;
+}
+
+/*主体左边*/
+.main-left{
+  padding-right: 0;
+}
+.main-left .menu{
+  height: 85vh;
+  border:1px solid #3B425C;
+  padding-left: 15px;
+  margin-right: -15px;
+}
+.main-left .menu>.list-group>.list-group-item{
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+}
+
+/*主体中部*/
+.main-center .center-video{
+  border:1px solid #3B425C;
+  height: 85vh;
+}
+
+/*右主体部*/
+.main-right .control{
+  height: 85vh;
+  border:1px solid #3B425C;
+  margin-left: -15px;
+}
+
+/*底部*/
+.footer{
+  margin-top: 1vh;
+  height: 5vh;
+  line-height: 5vh;
+  text-align: center;
+  border:1px solid #3B425C;
+}
+.footer p{
+  margin-bottom: 0;
+}
+
+/*bootstrap改造*/
+.list-group>a{
+  color: white;
+}
+.list-group-item:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.list-group-item.active{
+  color: #87FFFF;
+}
+.dropdown{
+  position: relative;
+  top: 0;
+  left:0;
+  z-index: 100;
+}
+.dropdown>.btn{
+  padding: 0;
+  background: none;
+  color: #87FFFF;
+  padding-left: 5px;
+  border: none;
+  line-height: 5vh;
+}
+.dropdown-menu{
+  position: relative;
+  background: transparent;
+  border: 1px solid  #87FFFF;
+}
+.list-group .dropdown-item{
+  color: #87FFFF;
+  font-size: 0.8em;
+  padding: 5px 0 0 10px;
+}
+.vide-control-list .dropdown .list-group>.video-item:hover{
+  background-color: #3B425C;
+}
+a.video-item{
+  font-size: 1rem;
+  color: #209E91;
+  text-decoration: none;
+  padding-right: 15px;
+}
+.video-item:hover{
+  text-decoration: none;
+}
+.dropup{
+  position: relative;
+  top: 0;
+  left:0;
+  z-index: 100;
+}
+.dropup>.btn{
+  padding: 0;
+  background: none;
+  color: #87FFFF;
+  padding-left: 5px;
+  border: none;
+  line-height: 5vh;
+}
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color:transparent;
+  border-color: transparent;
+}
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: none;
+}
+
+.video{
+  width: 100%;
+  height: 36vh;
+}
+.text-center{
+  color: #87FFFF;
+  padding-top: 10px;
+}
+h6.text-center{
+  padding: 0 0 0 5px;
+  margin: 0;
+  line-height: 5vh;
+}
+.vide-control-list{
+  height: 88vh;
+  border:1px solid #3B425C;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-right: 15px;
+}
+.vide-control-list>div{
+  margin-bottom: 20px;
+}
+.vide-control-list h6:hover{
+  cursor: pointer;
+}
+
+
+.hidden{
+  display: none;
+}
+.show{
+  display: block;
+}
