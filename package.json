@@ -27,6 +27,8 @@
     "echarts": "^4.1.0",
     "ngx-echarts": "^2.1.0",
     "font-awesome": "^4.7.0",
+    "ng2-tree": "^2.0.0-rc.11",
+    "ng4-validators": "^5.1.0",
     "jquery": "^3.3.1",
     "ngx-bootstrap": "^2.0.2",
     "qrcodejs": "^1.0.0",
