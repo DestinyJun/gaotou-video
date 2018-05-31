@@ -4,7 +4,6 @@
  */
 .container-fluid{
   color: white;
-  background: #151A30;
   height: 100vh;
 }
 
@@ -12,22 +11,34 @@
 .header{
   height: 6vh;
   border-bottom: 1px solid #ADB9D1;
-
+  overflow: hidden;
 }
 .header-title{
+  height: 6vh;
+  line-height: 6vh;
   position: relative;
-  text-align: center;
 }
 .header-title-h4{
-  line-height: 4vh;
+  height: 6vh;
+  line-height: 6vh;
+  font-size: 1.5rem;
 }
-.header-title-box1{
+.header-title-h4 span{
+  margin-left: 36px;
+}
+
+.header-box {
+  position: absolute;
+  top: 4px;
+  left: 0;
+}
+.header-box .header-box-box1{
   display: inline-block;
   width: 16px;
   height: 16px;
   background: #648ED6;
 }
-.header-title-box2{
+.header-box .header-box-box2{
   display: inline-block;
   margin-left: -7px;
   width: 0;
@@ -35,15 +46,17 @@
   border-top: 16px solid #648ED6;
   border-right: 16px solid transparent;
 }
-.header-icon {
-  float: right;
-  overflow: hidden;
 
+.header-manner{
+  font-size: 1.8rem;
+  height: 6vh;
+  line-height: 6vh; ;
+  color:#87FFFF ;
 }
-.header-icon-img{
-  width: 20px;
-  height: 20px;
-  margin-left: 20px;
+.header-manner i{
+  margin-left: 1.2rem;
+}
+.header-manner i:hover{
   cursor: pointer;
 }
 
@@ -67,7 +80,12 @@
   border: none;
   padding: 0.5rem 0.5rem 0.5rem 0;
 }
-
+.main-left .menu>.list-group>.list-group-item i{
+  margin-right: 5px;
+}
+.main-left .menu>.list-group>.list-group-item{
+  cursor: pointer;
+}
 /*主体中部*/
 .main-center .center-video{
   border:1px solid #3B425C;
@@ -106,6 +124,7 @@
   height: 85vh;
   border:1px solid #3B425C;
   margin-left: -15px;
+  overflow: hidden;
 }
 
 /*底部*/
@@ -124,8 +143,9 @@
   padding: 3px 0 3px 0;
 }*/
 tree-internal .tree .node-value {
-  color: white;
+  color: white!important;
 }
+
 
 /*bootstrap改造*/
 .video-left{

@@ -24,7 +24,7 @@ export class VideoWindowComponent implements OnInit {
     this.videoLocation3 = '';
     this.videoLocation4 = '';
     this.tree = {
-      value: '贵州高投大数据视频监控子系统',
+      value: '贵州高投大数据视频监控',
       settings: {
         static: true, // 禁止拖动以及右键删除修改菜单
         isCollapsedOnInit: true, // 设置隐藏与展开
@@ -196,7 +196,7 @@ export class VideoWindowComponent implements OnInit {
       this.videoLocation3 = e.node.node.value;
       this.videoUrl3 = e.node.node.url;
       document.querySelector('#window3').innerHTML = this.addHtmlVideo1(e.node.node.url);
-    } else {
+    } else if (videOPlace === '4')  {
       this.videoLocation4 = e.node.node.value;
       this.videoUrl4 = e.node.node.url;
       document.querySelector('#window4').innerHTML = this.addHtmlVideo1(e.node.node.url);
