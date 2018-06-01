@@ -14,6 +14,10 @@ export class FinanceDataComponent implements OnInit {
   public optionsMap = {};
   // 车辆流量监控
   public optionsCar = {};
+  // 车辆滞留是时间
+  public optionsRetention = {};
+  // 车型日分布分析
+  public optionsCarModel = {};
 
   constructor(
     public http: HttpClient,
@@ -292,6 +296,143 @@ export class FinanceDataComponent implements OnInit {
       ]
     };
 
+    // 车辆滞留时间排名
+    this.optionsRetention = {
+      title: {
+        text: '车辆滞留时间排名',
+        left: 'center',
+        textStyle: {
+          color: 'white',
+          fontWeight: 500,
+          fontSize: 14
+        }
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'none'
+        },
+        formatter: function (params) {
+          console.log(params);
+          return params[0].name + ': ' + params[0].value;
+        }
+      },
+      xAxis: {
+        data: ['第一名', '第二名', '第三名', '第四名', '第五名'],
+        axisTick: {show: false},
+        axisLine: {show: false},
+        axisLabel: {
+          textStyle: {
+            color: '#e54035'
+          }
+        }
+      },
+      yAxis: {
+        splitLine: {show: false},
+        axisTick: {show: false},
+        axisLine: {show: false},
+        axisLabel: {show: false}
+      },
+      color: ['red'],
+      series: [
+        {
+          name: 'hill',
+          type: 'pictorialBar',
+          barCategoryGap: '-130%',
+          // symbol: 'path://M0,10 L10,10 L5,0 L0,10 z',
+          symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
+          itemStyle: {
+            normal: {
+              opacity: 0.5
+            },
+            emphasis: {
+              opacity: 1
+            }
+          },
+          data: [123, 60, 25, 18, 12],
+          z: 10
+        },
+      ]
+    };
+
+    // 车型日分布分析
+    this.optionsCarModel = {
+      title: {
+        text: '当日车型分布分析',
+        top: 5,
+        right: 'center',
+        textStyle: {
+          color: 'white',
+          fontSize: 12,
+          fontWeight: 'normal',
+          align: 'center'
+        }
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b} : {c} ({d}%)'
+      },
+
+      series: [
+        {
+          type: 'pie',
+          radius: '55%',
+          center: ['50%', '50%'],
+          label: {
+            show: true,
+            position: 'outside',
+            formatter: '{b}: {d}%',
+            color: 'white',
+            align: 'center',
+            emphasis: {
+              show: true,
+              textStyle: {
+                fontSize: 12
+              }
+            }
+          },
+          data: [
+            {
+              value: 10,
+              name: '轿车',
+              itemStyle: {color: '#E64018'}
+            },
+            {
+              value: 15,
+              name: '货车',
+              itemStyle: {color: '#FBB034'}
+            },
+            {
+              value: 10,
+              name: '商务车',
+              itemStyle: {color: '#FEEB23'}
+            },
+            {
+              value: 12,
+              name: '大客车',
+              itemStyle: {color: '#E30B40'}
+            },
+            {
+              value: 6,
+              name: '小客车',
+              itemStyle: {color: '#3291DD'}
+            },
+            {
+              value: 4,
+              name: '其他',
+              itemStyle: {color: '#8B489E'}
+            },
+          ],
+          itemStyle: {
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
   }
 
 }
