@@ -112,11 +112,31 @@
   margin-bottom: 1vh;
   height: 55vh;
 }
+
 .main-center .bottom-left-echarts{
   margin-bottom: 1vh;
   height: 34vh;
   border:1px solid #3B425C;
   margin-right: -8px;
+  /*padding: 5px;*/
+  overflow: hidden;
+;
+}
+.main-center .bottom-left-echarts .table-header{
+  height: 5vh;
+  /*border: 1px solid #0593B5;*/
+  background: rgba(7,149,188,0.2);
+  color: #00ECF1;
+}
+.main-center .bottom-left-echarts .table-body{
+  margin-top: 5px;
+}
+.main-center .bottom-left-echarts .table-body .table-tr{
+  border-bottom: 1px solid #0593B5;
+  position: relative;
+  color: #87FFFF;
+  border-collapse:separate;
+  border-spacing:10px;
 }
 .main-center .bottom-right-echarts{
   margin-bottom: 1vh;
@@ -129,12 +149,25 @@
 .main-right{
   padding-left: 0;
 }
+
+
 .right-top{
   height: 20vh;
   border:1px solid #3B425C;
   padding-left: 5px;
   margin-bottom: 1vh;
 }
+
+.right-top .right-top-income>h3>span{
+  display: inline-block;
+  width: 30px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #01D1DB;
+}
+
+
 .right-center{
   margin-bottom: 1vh;
   height: 34vh;
@@ -145,6 +178,7 @@
   height: 34vh;
   border:1px solid #3B425C;
 }
+
 
 
 /*微调*/
@@ -158,4 +192,9 @@
 
 /*百度地图*/
 .anchorBL{display:none;}
+
+/*去掉默认样式 */
+table tr td{
+  border: none;
+}
 
