@@ -17,7 +17,10 @@ import {LoginGuard} from './guard/login.guard';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [LoginService, LocalStorageService, LoginGuard,
+  providers: [
+    LoginService,
+    LocalStorageService,
+    LoginGuard,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
   bootstrap: [AppComponent]

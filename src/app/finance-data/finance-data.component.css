@@ -114,6 +114,7 @@
 }
 
 .main-center .bottom-left-echarts{
+  padding-top: 1px;
   margin-bottom: 1vh;
   height: 34vh;
   border:1px solid #3B425C;
@@ -191,7 +192,9 @@
 }
 
 /*百度地图*/
-.anchorBL{display:none;}
+.anchorBL{
+  display:none;
+}
 
 /*去掉默认样式 */
 table tr td{

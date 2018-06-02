@@ -59,7 +59,9 @@
 .header-manner i:hover{
   cursor: pointer;
 }
-
+.header-manner .header-clock{
+  font-size: 1.3rem;
+}
 
 /*主体*/
 .main{

@@ -54,8 +54,7 @@
       <div class="col-lg-6 col-md-6 col-sm-6 main-center">
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12">
-            <!--<div echarts [options]="options" [loading]="!mapLoaded" class="top-map" id="center_map"></div>-->
-            <div class="top-map" id="center_map"></div>
+            <div echarts [options]="optionsMap" [loading]="!mapLoaded" class="top-map" id="center_map"></div>
           </div>
         </div>
         <div class="row">
@@ -97,6 +96,16 @@
                       <td>贵B﹒SB114</td>
                       <td>轿车</td>
                     </tr>
+                    <tr class="table-tr" style="color: #1ED1D8">
+                      <td>40分钟之前</td>
+                      <td>贵B﹒SB114</td>
+                      <td>轿车</td>
+                    </tr>
+                    <tr class="table-tr" style="color: #13BC82">
+                      <td>1小时之前</td>
+                      <td>贵B﹒SB114</td>
+                      <td>轿车</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -131,8 +140,8 @@
 
           </iframe>-->
         </div>
-        <div class="right-center"></div>
-        <div class="right-bottom"></div>
+        <div class="right-center" echarts [options]="optionsMonth"></div>
+        <div class="right-bottom" echarts [options]="optionsIncome"></div>
       </div>
     </div>
   </div>
