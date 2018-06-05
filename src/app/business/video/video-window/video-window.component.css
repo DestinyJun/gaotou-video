@@ -22,10 +22,11 @@
 .header-title-h4{
   height: 6vh;
   line-height: 6vh;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  margin-left: 36px;
 }
 .header-title-h4 span{
-  margin-left: 36px;
+  color: #87FFFF;
 }
 
 .header-box {
@@ -54,15 +55,16 @@
   line-height: 6vh; ;
   color:#87FFFF ;
 }
+.header-manner .header-clock{
+  font-size: 1.6rem;
+}
 .header-manner i{
-  margin-left: 1.2rem;
+  margin-left: 1.6rem;
 }
 .header-manner i:hover{
   cursor: pointer;
 }
-.header-manner .header-clock{
-  font-size: 1.3rem;
-}
+
 
 /*主体*/
 .main{
@@ -95,7 +97,6 @@
   border:1px solid #3B425C;
   height: 85vh;
 }
-
 .main-center .center-bottom-left{
   border:1px solid #3B425C;
   font-weight: normal;
@@ -122,15 +123,6 @@
   font-size: 0.8em;
 }
 
-
-/*右主体部*/
-.main-right .control{
-  height: 85vh;
-  border:1px solid #3B425C;
-  margin-left: -15px;
-  overflow: hidden;
-}
-
 /*底部*/
 .footer{
   margin-top: 1vh;
@@ -142,24 +134,16 @@
 .footer p{
   margin-bottom: 0;
 }
+
 /*ng2改造*/
-/*tree-internal ul {
-  padding: 3px 0 3px 0;
-}*/
 tree-internal .tree .node-value {
   color: white!important;
 }
 
 
 /*bootstrap改造*/
-.video-left{
-  margin-right: -7px;
-}
-.video-right{
-  margin-left: -7px;
-}
 .list-group>a{
-  color: white;
+  color: #87FFFF;
 }
 .list-group-item:first-child {
   border-top-left-radius: 0;
@@ -167,100 +151,4 @@ tree-internal .tree .node-value {
 }
 .list-group-item.active{
   color: #87FFFF;
-}
-.dropdown{
-  position: relative;
-  top: 0;
-  left:0;
-  z-index: 100;
-}
-.dropdown>.btn{
-  padding: 0;
-  background: none;
-  color: #87FFFF;
-  padding-left: 5px;
-  border: none;
-  line-height: 5vh;
-}
-.dropdown-menu{
-  position: relative;
-  background: transparent;
-  border: 1px solid  #87FFFF;
-}
-.list-group .dropdown-item{
-  color: #87FFFF;
-  font-size: 0.8em;
-  padding: 5px 0 0 10px;
-}
-.vide-control-list .dropdown .list-group>.video-item:hover{
-  background-color: #3B425C;
-}
-a.video-item{
-  font-size: 1rem;
-  color: #209E91;
-  text-decoration: none;
-  padding-right: 15px;
-}
-.video-item:hover{
-  text-decoration: none;
-}
-.dropup{
-  position: relative;
-  top: 0;
-  left:0;
-  z-index: 100;
-}
-.dropup>.btn{
-  padding: 0;
-  background: none;
-  color: #87FFFF;
-  padding-left: 5px;
-  border: none;
-  line-height: 5vh;
-}
-.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
-  color: #fff;
-  background-color:transparent;
-  border-color: transparent;
-}
-.show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: none;
-}
-.btn-primary:focus, .btn-primary.focus {
-  box-shadow: none;
-}
-
-.video{
-  width: 100%;
-  height: 36vh;
-}
-.text-center{
-  color: #87FFFF;
-  padding-top: 10px;
-}
-h6.text-center{
-  padding: 0 0 0 5px;
-  margin: 0;
-  line-height: 5vh;
-}
-.vide-control-list{
-  height: 88vh;
-  border:1px solid #3B425C;
-  padding-left: 15px;
-  padding-top: 10px;
-  padding-right: 15px;
-}
-.vide-control-list>div{
-  margin-bottom: 20px;
-}
-.vide-control-list h6:hover{
-  cursor: pointer;
-}
-
-
-.hidden{
-  display: none;
-}
-.show{
-  display: block;
 }

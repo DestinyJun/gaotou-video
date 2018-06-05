@@ -23,15 +23,13 @@
 .header-title-h4{
   height: 6vh;
   line-height: 6vh;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-left: 36px;
 }
 .header-title-h4 span{
+  color: #87FFFF;
+}
 
-}
-.header-manner .header-clock{
-  font-size: 1.3rem;
-}
 
 .header-box {
   position: absolute;
@@ -58,6 +56,9 @@
   height: 6vh;
   line-height: 6vh; ;
   color:#87FFFF ;
+}
+.header-manner .header-clock{
+  font-size: 1.6rem;
 }
 .header-manner i{
   margin-left: 1.2rem;
