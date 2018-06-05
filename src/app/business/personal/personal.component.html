@@ -21,6 +21,7 @@
           </div>
           <i class="fa fa-video-camera" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频监控" [routerLink]="['/video']"></i>
           <i class="fa fa-bar-chart" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="液态大数据" [routerLink]="['/finance']"></i>
+          <i class="fa fa-sign-out" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="退出系统" [routerLink]="['/login']"></i>
         </div>
       </div>
     </div>
@@ -36,14 +37,61 @@
     <div class="content-information">
       <form class="form-horizontal">
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
-          <div class="col-sm-4">
-            <input type="email" class="form-control" id="inputEmail3">
+          <label for="name" class="col-sm-1 control-label">姓名</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="name" name="name">
           </div>
-          <label for="inputPassword3" class="col-sm-2 control-label">职务</label>
-          <div class="col-sm-4">
-            <input type="password" class="form-control" id="inputPassword3">
+          <label for="duty" class="col-sm-1 control-label">职务</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="duty" name="duty">
           </div>
+        </div>
+        <div class="form-group">
+          <label for="phone" class="col-sm-1 control-label">电话</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="phone" name="remark">
+          </div>
+          <label for="email" class="col-sm-1 control-label">邮箱</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="email" name="remark">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="adress" class="col-sm-1 control-label">地址</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="adress" name="remark">
+          </div>
+          <label for="remark" class="col-sm-1 control-label">备注</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="remark" name="remark">
+          </div>
+        </div>
+        <div class="form-group text-center style-border">
+          <button class="btn btn-lg btn-danger" type="button" (click)="updataProfile()">{{btnProfileTxt? '修改个人资料': '提交'}}</button>
+        </div>
+      </form>
+    </div>
+    <!--密码分割线-->
+    <div class="content-header">
+      <h4 class="text-center">
+        密码修改
+        <small>Change Password</small>
+      </h4>
+    </div>
+    <div class="content-information">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="password" class="col-sm-1 control-label">密码</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="password" name="name">
+          </div>
+          <label for="confirmPassword" class="col-sm-1 control-label">确认密码</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="confirmPassword" name="duty">
+          </div>
+        </div>
+        <div class="form-group text-center style-border">
+          <button class="btn btn-lg btn-danger" type="button" (click)="updataPaaword()">{{btnPasswordTxt? '修改密码': '确认修改'}}</button>
         </div>
       </form>
     </div>

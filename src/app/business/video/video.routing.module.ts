@@ -1,8 +1,9 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 const routes: Routes = [
-  {path: '', redirectTo: 'videow', pathMatch: 'full'},
-  {path: 'videow', loadChildren: 'app/business/video/video-window/video-window.module#VideoWindowModule'}
+  {path: '', redirectTo: 'videom', pathMatch: 'full'},
+  {path: 'videow', loadChildren: 'app/business/video/video-window/video-window.module#VideoWindowModule'},
+  {path: 'videom', loadChildren: 'app/business/video/video-manage/video-manage.module#VideoManageModule'}
 ];
 @NgModule({
   imports: [

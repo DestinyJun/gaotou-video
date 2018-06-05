@@ -5,7 +5,7 @@ import {VideoRoutingModule} from './video.routing.module';
 @NgModule({
   imports: [
     CommonModule,
-    VideoRoutingModule
+    VideoRoutingModule,
   ],
   declarations: []
 })
