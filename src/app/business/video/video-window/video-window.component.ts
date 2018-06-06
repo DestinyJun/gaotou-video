@@ -16,6 +16,7 @@ export class VideoWindowComponent implements OnInit {
   public videoLocation4: any;
   /**************  ng2-tree ************/
   public tree: TreeModel;
+  public tree1: TreeModel;
   constructor() { }
 
   ngOnInit() {
@@ -24,7 +25,7 @@ export class VideoWindowComponent implements OnInit {
     this.videoLocation3 = '';
     this.videoLocation4 = '';
     this.tree = {
-      value: '贵州高投大数据视频监控',
+      value: '贵州高速服务区监控',
       settings: {
         static: true, // 禁止拖动以及右键删除修改菜单
         isCollapsedOnInit: true, // 设置隐藏与展开
@@ -47,29 +48,23 @@ export class VideoWindowComponent implements OnInit {
       },
       children: [
         {
-          value: '总公司1',
+          value: '遵义市',
           children: [
-            { value: '分公司1',   children: [
-                {value: '生产线1', children: [
+            { value: '乌江高速服务区',   children: [
+                {value: '高速上行', children: [
                     {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '转弯楼道', id: 2, place: '2', url: 'rtsp://admin:12345a@222.85.147.216:554/Streaming/Channels/102?transportmode-unicast'},
                     {value: '厕所旁边', id: 3, place: '3', url: 'rtsp://admin:12345a@222.85.147.216:554/Streaming/Channels/202?transportmode-unicast'},
                     {value: '马路口', id: 4, place: '4', url: 'rtsp://admin:12345a@222.85.147.216:554/Streaming/Channels/302?transportmode-unicast'}
                   ]},
-                {value: '生产线2', children: [
+                {value: '高速下行', children: [
                     {value: '二楼餐厅', id: 1, place: '1', url: 'rtsp://admin:12345a@222.85.147.216:554/Streaming/Channels/102?transportmode-unicast'},
                     {value: '办公室', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
                   ]},
-                {value: '生产线2', children: [
-                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
-                  ]}
               ] },
-            { value: '分公司2',   children: [
+            { value: '仁怀高速服务区',   children: [
                 {value: '生产线1', children: [
                     {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
@@ -89,35 +84,87 @@ export class VideoWindowComponent implements OnInit {
                     {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
                   ]}
               ] },
-            { value: '分公司3',   children: [
-                {value: '生产线1', children: [
-                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
-                  ]},
-                {value: '生产线2', children: [
-                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
-                  ]},
-                {value: '生产线2', children: [
-                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
-                  ]}
-              ] }
           ]
         },
         {
-          value: '总公司2',
+          value: '贵阳市',
           settings: {
             static: true,
           },
           children: [
-            { value: '分公司1',   children: [
+            { value: '三桥高速服务区',   children: [
+                {value: '高速上行', children: [
+                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
+                  ]},
+                {value: '高速下行', children: [
+                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
+                  ]},
+              ] },
+            { value: '龙洞堡高速服务区',   children: [
+                {value: '高速上行', children: [
+                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
+                  ]},
+                {value: '高速下行', children: [
+                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
+                  ]}
+              ] },
+          ]
+        }
+      ]
+    };
+    this.tree1 = {
+      value: '云南高速服务区监控',
+      settings: {
+        static: true, // 禁止拖动以及右键删除修改菜单
+        isCollapsedOnInit: true, // 设置隐藏与展开
+        leftMenu: false, // 左菜单栏
+        cssClasses: {
+          expanded: 'fa fa-caret-down',
+          collapsed: 'fa fa-caret-right',
+          leaf: 'fa',
+          empty: 'fa fa-caret-right disabled'
+        },
+        templates: {
+          leaf: '<i class="fa fa-file-o"></i>',
+          leftMenu: '<i class="fa fa-navicon"></i>'
+        },
+        menuItems: [
+          { action: NodeMenuItemAction.Custom, name: 'Foo', cssClass: 'fa fa-arrow-right' },
+          { action: NodeMenuItemAction.Custom, name: 'Bar', cssClass: 'fa fa-arrow-right' },
+          { action: NodeMenuItemAction.Custom, name: 'Baz', cssClass: 'fa fa-arrow-right'}
+        ]
+      },
+      children: [
+        {
+          value: '昆明市',
+          children: [
+            { value: '乌江高速服务区',   children: [
+                {value: '高速上行', children: [
+                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '转弯楼道', id: 2, place: '2', url: 'rtsp://admin:12345a@222.85.147.216:554/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '厕所旁边', id: 3, place: '3', url: 'rtsp://admin:12345a@222.85.147.216:554/Streaming/Channels/202?transportmode-unicast'},
+                    {value: '马路口', id: 4, place: '4', url: 'rtsp://admin:12345a@222.85.147.216:554/Streaming/Channels/302?transportmode-unicast'}
+                  ]},
+                {value: '高速下行', children: [
+                    {value: '二楼餐厅', id: 1, place: '1', url: 'rtsp://admin:12345a@222.85.147.216:554/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '办公室', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
+                  ]},
+              ] },
+            { value: '仁怀高速服务区',   children: [
                 {value: '生产线1', children: [
                     {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
@@ -137,46 +184,42 @@ export class VideoWindowComponent implements OnInit {
                     {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
                   ]}
               ] },
-            { value: '分公司2',   children: [
-                {value: '生产线1', children: [
+          ]
+        },
+        {
+          value: '大理市',
+          settings: {
+            static: true,
+          },
+          children: [
+            { value: '三桥高速服务区',   children: [
+                {value: '高速上行', children: [
                     {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
                   ]},
-                {value: '生产线2', children: [
+                {value: '高速下行', children: [
                     {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
                   ]},
-                {value: '生产线2', children: [
+              ] },
+            { value: '龙洞堡高速服务区',   children: [
+                {value: '高速上行', children: [
+                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
+                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
+                  ]},
+                {value: '高速下行', children: [
                     {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
                     {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
                   ]}
               ] },
-            { value: '分公司3',   children: [
-                {value: '生产线1', children: [
-                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
-                  ]},
-                {value: '生产线2', children: [
-                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
-                  ]},
-                {value: '生产线2', children: [
-                    {value: '1楼楼梯口', id: 1, place: '1', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '2楼楼梯口', id: 2, place: '2', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '3楼楼梯口', id: 3, place: '3', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'},
-                    {value: '4楼楼梯口', id: 4, place: '4', url: 'rtsp://admin:12345@58.42.229.135:33335/Streaming/Channels/102?transportmode-unicast'}
-                  ]}
-              ] }
           ]
         }
       ]

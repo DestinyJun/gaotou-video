@@ -18,8 +18,9 @@
             <span>周六</span>
             <span>14:01</span>
           </div>
-          <i class="fa fa-server" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频管理" [routerLink]="['/video/videom']"></i>
           <i class="fa fa-bar-chart" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="液态大数据" [routerLink]="['/finance']"></i>
+          <i class="fa fa-server" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频管理" [routerLink]="['/video/videom']"></i>
+          <i class="fa fa-video-camera" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频监控" [routerLink]="['/video/videow']" style="color: orangered"></i>
           <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="个人信息" [routerLink]="['/personal']"></i>
           <i class="fa fa-sign-out" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="退出系统" [routerLink]="['/login']"></i>
         </div>
@@ -33,14 +34,14 @@
           <div class="menu">
             <div class="list-group">
               <a class="list-group-item">
-                <i class="fa fa-video-camera" aria-hidden="true"></i>
+                <i class="fa fa-video-camera" aria-hidden="true" [routerLink]="['/video/videow']"></i>
                 监控窗口
               </a>
-              <a class="list-group-item">
+              <a class="list-group-item" [routerLink]="['/video/videom']">
                 <i class="fa fa-briefcase" aria-hidden="true"></i>
                 摄像头管理
               </a>
-              <a class="list-group-item">
+              <a class="list-group-item" href="http://downloads.videolan.org/vlc/2.0.6/win64/vlc-2.0.6-win64.exe">
                 <i class="fa fa-download" aria-hidden="true"></i>
                 插件下载
               </a>
@@ -114,6 +115,9 @@
         <div class="col-lg-2 col-md-2 col-sm-2 ">
           <div class="control">
             <tree [tree]="tree" (nodeSelected)="logEvent($event)"></tree>
+          </div>
+          <div class="control">
+            <tree [tree]="tree1" (nodeSelected)="logEvent($event)"></tree>
           </div>
         </div>
       </div>

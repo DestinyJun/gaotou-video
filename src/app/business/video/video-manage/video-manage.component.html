@@ -19,8 +19,9 @@
             <span>周六</span>
             <span>14:01</span>
           </div>
-          <i class="fa fa-video-camera" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频监控" [routerLink]="['/video/videow']"></i>
           <i class="fa fa-bar-chart" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="液态大数据" [routerLink]="['/finance']"></i>
+          <i class="fa fa-server" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频管理" [routerLink]="['/video/videom']" style="color: orangered"></i>
+          <i class="fa fa-video-camera" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频监控" [routerLink]="['/video/videow']"></i>
           <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="个人信息" [routerLink]="['/personal']"></i>
           <i class="fa fa-sign-out" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="退出系统" [routerLink]="['/login']"></i>
         </div>
@@ -34,15 +35,15 @@
         <div class="col-lg-2 col-md-2 col-sm-2">
           <div class="menu">
             <div class="list-group">
-              <a class="list-group-item">
+              <a class="list-group-item" [routerLink]="['/video/videow']">
                 <i class="fa fa-video-camera" aria-hidden="true"></i>
                 监控窗口
               </a>
               <a class="list-group-item">
-                <i class="fa fa-briefcase" aria-hidden="true"></i>
+                <i class="fa fa-briefcase" aria-hidden="true" [routerLink]="['/video/videom']"></i>
                 摄像头管理
               </a>
-              <a class="list-group-item">
+              <a class="list-group-item" href="http://downloads.videolan.org/vlc/2.0.6/win64/vlc-2.0.6-win64.exe">
                 <i class="fa fa-download" aria-hidden="true"></i>
                 插件下载
               </a>
@@ -52,69 +53,71 @@
       </div>
       <div class="main-center">
         <div class="col-lg-10 col-md-10 col-sm-10">
-          <div class="">
-            <button type="button" class="btn btn-default">
-              <span class="glyphicon glyphicon-plus"></span>增加
-            </button>
-            <button type="button" class="btn btn-default" >
-              <span class="glyphicon glyphicon-pencil"></span>修改
-            </button>
-            <button type="button" class="btn btn-default">
-              <span class="glyphicon glyphicon-trash"></span>删除
-            </button>
-          </div>
-          <div class="">
-            <table class="table table-responsive table-bordered" id="mytable">
-              <thead>
-              <tr>
-                <th class="checkboxoption">
-                  <input type="checkbox">选中/未选中
-                </th>
-                <th>编号</th>
-                <th>姓名</th>
-                <th>电话</th>
-                <th>报名人次</th>
-                <th>身份证号</th>
-                <th>扫描时间</th>
-                <th>备注</th>
-                <th>生成二维码</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="">
-            <ul class="pagination">
-              <li><a>首页</a></li>
-              <li><a>上一页</a></li>
-              <li><a>下一页</a></li>
-              <li><a>尾页</a></li>
-              <li><a></a></li>
-              <li><a>跳转到: &nbsp;<input type="number" name="skpPage"  class="skip-input">页</a></li>
-            </ul>
+          <div class="main-center-table">
+            <div class="top-button">
+              <button type="button" class="btn btn-lg btn-primary">
+                <span class="glyphicon glyphicon-plus"></span>增加
+              </button>
+              <button type="button" class="btn btn-lg btn-info" >
+                <span class="glyphicon glyphicon-pencil"></span>修改
+              </button>
+              <button type="button" class="btn btn-lg btn-danger">
+                <span class="glyphicon glyphicon-trash"></span>删除
+              </button>
+              <div class="search pull-right" >
+                <label for="searchInput"></label>
+                <input type="text" id="searchInput" placeholder="请输入关键字">
+                <button type="button" class="btn btn-lg btn-success">
+                  <span class="glyphicon glyphicon-search"></span>查找
+                </button>
+              </div>
+            </div>
+            <div class="center-table">
+              <table class="table table-responsive table-bordered" id="mytable">
+                <thead>
+                <tr>
+                  <th class="checkboxoption">
+                    <input type="checkbox">选中/未选中
+                  </th>
+                  <th>摄像头编号</th>
+                  <th>监视器位置</th>
+                  <th>摄像头位置</th>
+                  <th colspan="2">视频源地址</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td>0001</td>
+                  <td>1</td>
+                  <td>3楼楼梯</td>
+                  <td>www.baidu.com</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="bottom-pagination text-center">
+              <ul class="pagination">
+                <li><a>首页</a></li>
+                <li><a>上一页</a></li>
+                <li><a>下一页</a></li>
+                <li><a>尾页</a></li>
+                <li><a>共5页/第3页</a></li>
+                <li><a style="padding: 3px 12px;">跳转到: <input type="number"><span style="margin-left: 10px">页</span></a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="footer">
+  <!--<div class="footer">
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <span>贵阳红鸟智能服务有限公司</span>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
 <!--增加人员模态框-->
 <!--<ng-template #add>

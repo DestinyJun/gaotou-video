@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit {
 //  登陆
   public onSubmit() {
     this.route.navigate(['/finance']);
-    if (this.myFromModule.valid) {
+    /*if (this.myFromModule.valid) {
       console.log(this.myFromModule.value);
-     /* this.loginService.getLogin(this.myFromModule.value).subscribe((data) => {
+     /!* this.loginService.getLogin(this.myFromModule.value).subscribe((data) => {
         if (data.success) {
           // 本地存储信息
           for ( const i in data.obj) {
@@ -45,9 +45,9 @@ export class LoginComponent implements OnInit {
           this.loginMsg = data.msg;
           window.alert(this.loginMsg);
         }
-      });*/
+      });*!/
     } else {
       window.alert('请输入合法的用户名和密码');
-    }
+    }*/
   }
 }
