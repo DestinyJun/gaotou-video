@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  weixin: '产品上架'
+  weixin: '这是我们的新产品'
 };
