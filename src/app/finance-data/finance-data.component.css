@@ -124,6 +124,9 @@
   overflow: hidden;
 ;
 }
+.main-center .bottom-left-echarts .table-title{
+  padding: 5px 0 10px 5px;
+}
 .main-center .bottom-left-echarts .table-header{
   height: 5vh;
   /*border: 1px solid #0593B5;*/
@@ -140,6 +143,14 @@
   border-collapse:separate;
   border-spacing:10px;
 }
+.main-center .bottom-left-echarts .table-body .table-tr span{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+}
+
+
 .main-center .bottom-right-echarts{
   margin-bottom: 1vh;
   height: 34vh;

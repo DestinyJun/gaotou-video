@@ -297,7 +297,7 @@ export class FinanceDataComponent implements OnInit {
     };
 
     // 当日服务区停车量排名
-    this.optionsRetention = this.packOption1();
+    this.optionsRetention = this.packOption();
 
     // 车型日分布分析
     this.optionsCarModel = {
@@ -436,16 +436,17 @@ export class FinanceDataComponent implements OnInit {
     };
 
     //  服务区当日收入前五名排名
-    this.optionsIncome = this.packOption();
+    this.optionsIncome = this.packOption1();
   }
 
+  // 当日服务区停车量排名
   public packOption(): any {
     let yAxisMonth = [
-      '第一名',
-      '第二名',
-      '第三名',
-      '第四名',
-      '第五名',
+      '瓮安东服务区',
+      '桐子服务区',
+      '六枝服务区',
+      '红果服务区',
+      '水城服务区',
 
     ];
     let barData = [
@@ -470,7 +471,7 @@ export class FinanceDataComponent implements OnInit {
     let option = {
       title: [
         {
-          text: '月度收入前五名收入对比(万元）',
+          text: '服务区当日驻车量（辆）',
           left: '1%',
           top: '1%',
           textStyle: {
@@ -488,7 +489,7 @@ export class FinanceDataComponent implements OnInit {
           type: 'none'
         },
         formatter: function (params) {
-          return params[0].name + '<br/>' + '今日总收入: ' + params[0].value + '元';
+          return params[0].name + '<br/>' + '今日驻车量: ' + params[0].value + '辆';
         }
       },
       grid: {
@@ -511,7 +512,7 @@ export class FinanceDataComponent implements OnInit {
           margin: 10,
           textStyle: {
             fontSize: 12,
-            color: '#42a5c2',
+            color: '#1ED1D8',
           },
           formatter: function (value) {
             return '{Sunny|' + value + '}';
@@ -589,7 +590,7 @@ export class FinanceDataComponent implements OnInit {
             position: 'inside',
             textStyle: {
               fontSize: 12,
-              color: '#00ffff'
+              color: '#002240'
             }
           }
         },
@@ -600,15 +601,15 @@ export class FinanceDataComponent implements OnInit {
           normal: {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
               offset: 0,
-              color: '#083e6d',
+              color: '#13BF84',
             },
               {
                 offset: 0.5,
-                color: '#0272f2',
+                color: '#1ED1D8',
                 opacity: 0.7
               }, {
                 offset: 1,
-                color: '#083e6d',
+                color: '#08A8AE',
                 opacity: 0.5
               }
             ], false),
@@ -691,6 +692,7 @@ export class FinanceDataComponent implements OnInit {
     return option;
   }
 
+  //  服务区当日收入前五名排名
   public packOption1(): any {
     let yAxisMonth = [
       '第一名',
@@ -722,7 +724,7 @@ export class FinanceDataComponent implements OnInit {
     let option = {
       title: [
         {
-          text: '月度收入前五名收入对比(万元）',
+          text: '服务区当日收入前五名排名(元）',
           left: '1%',
           top: '1%',
           textStyle: {
@@ -943,6 +945,7 @@ export class FinanceDataComponent implements OnInit {
     return option;
   }
 
+  // 中部服务区分布图
   public packOption2(): any {
     let myChart = echarts.init(document.getElementById('center_map'));
     let geoCoordMap = {

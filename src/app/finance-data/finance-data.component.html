@@ -62,62 +62,73 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="bottom-left-echarts">
+              <div class="table-title text-center">
+                <span style="font-size: 1.5rem;letter-spacing: 3px">服务区事件监控</span>
+              </div>
               <div class="table-responsive">
                 <table class="table" cellspacing="5px">
                   <thead class="table-header">
                     <tr>
+                      <td>级别</td>
                       <td>时间</td>
-                      <td>车牌号</td>
-                      <td>车型</td>
+                      <td>事件类型</td>
+                      <td>事件描述</td>
                     </tr>
                   </thead>
                   <tbody class="table-body">
                     <tr class="table-tr" style="color: #BB32F4">
+                      <td><span style="background: #BB32F4;"></span></td>
                       <td>1分钟之前</td>
-                      <td>贵B﹒QC110</td>
-                      <td>轿车</td>
+                      <td>缺水</td>
+                      <td>一号水库水位低</td>
                     </tr>
                     <tr></tr>
                     <tr class="table-tr" style="color: #F432AD">
+                      <td><span style="background: #F432AD;"></span></td>
                       <td>3分钟之前</td>
-                      <td>贵B﹒DG111</td>
-                      <td>轿车</td>
+                      <td>卫生</td>
+                      <td>东停车场卫生出问题</td>
                     </tr>
                     <tr class="table-tr" style="color: #E57D0D">
+                      <td><span style="background: #E57D0D;"></span></td>
                       <td>5分钟之前</td>
-                      <td>贵B﹒LK112</td>
-                      <td>大车</td>
+                      <td>缺电</td>
+                      <td>2楼电路故障</td>
                     </tr>
                     <tr class="table-tr" style="color: #1ED1D8">
+                      <td><span style="background: #1ED1D8;"></span></td>
                       <td>15分钟之前</td>
-                      <td>贵B﹒VW113</td>
-                      <td>轿车</td>
+                      <td>机器故障</td>
+                      <td>西面出口摄像头故障</td>
                     </tr>
                     <tr class="table-tr" style="color: #3BF49F">
+                      <td><span style="background: #3BF49F;"></span></td>
                       <td>30分钟之前</td>
-                      <td>贵B﹒CD114</td>
-                      <td>大车</td>
+                      <td>系统故障</td>
+                      <td>系统流量过大</td>
                     </tr>
                     <tr class="table-tr" style="color: #1ED1D8">
+                      <td><span style="background: #1ED1D8;"></span></td>
                       <td>40分钟之前</td>
-                      <td>贵B﹒FG114</td>
-                      <td>轿车</td>
+                      <td>事故</td>
+                      <td>出口位置轿车互挂</td>
                     </tr>
-                    <tr class="table-tr" style="color: #13BC82">
+                    <tr class="table-tr" style="color: #1ED1D8">
+                      <td><span style="background: #1ED1D8;"></span></td>
                       <td>1小时之前</td>
-                      <td>贵B﹒KS114</td>
-                      <td>大车</td>
+                      <td>提醒类</td>
+                      <td>系统收入计算中....</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
+          <!--<div class="col-lg-6 col-md-6 col-sm-6">
             <div class="bottom-right-echarts" echarts [options]="optionsCarModel"></div>
-          </div>
+          </div>-->
       </div>
       </div>
       <!--右边-->
