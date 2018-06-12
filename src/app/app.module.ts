@@ -7,6 +7,7 @@ import {LoginService} from './shared/login.service';
 import {LocalStorageService} from './shared/local-storage.service';
 import {AppComponent} from './app.component';
 import {LoginGuard} from './guard/login.guard';
+import {EventsService} from './shared/events.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {LoginGuard} from './guard/login.guard';
     LoginService,
     LocalStorageService,
     LoginGuard,
+    EventsService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
   bootstrap: [AppComponent]

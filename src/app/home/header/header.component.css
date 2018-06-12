@@ -1,0 +1,56 @@
+/******************************头部****************************/
+.header{
+  height: 6vh;
+  border-bottom: 1px solid #ADB9D1;
+  overflow: hidden;
+}
+.header-title{
+  height: 6vh;
+  line-height: 6vh;
+  position: relative;
+}
+.header-title-h4{
+  height: 6vh;
+  line-height: 6vh;
+  font-size: 1.8rem;
+  margin-left: 36px;
+}
+.header-title-h4 span{
+  color: #87FFFF;
+}
+
+.header-box {
+  position: absolute;
+  top: 4px;
+  left: 0;
+}
+.header-box .header-box-box1{
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: #648ED6;
+}
+.header-box .header-box-box2{
+  display: inline-block;
+  margin-left: -7px;
+  width: 0;
+  height: 0;
+  border-top: 16px solid #648ED6;
+  border-right: 16px solid transparent;
+}
+
+.header-manner{
+  font-size: 1.8rem;
+  height: 6vh;
+  line-height: 6vh; ;
+  color:#87FFFF ;
+}
+.header-manner .header-clock{
+  font-size: 1.6rem;
+}
+.header-manner i{
+  margin-left: 1.6rem;
+}
+.header-manner i:hover{
+  cursor: pointer;
+}

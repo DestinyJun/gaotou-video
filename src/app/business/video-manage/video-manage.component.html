@@ -1,58 +1,8 @@
-<div class="container-fluid">
-  <!--顶部-->
-  <div class="header">
+<!--摄像头管理-->
+<div class="main">
     <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="line-height: 6vh">
-        <div class="header-title pull-left">
-          <div class="header-title-h4">
-            <span>贵州高速服务区云端数据策略智能分析系统</span>
-          </div>
-          <div class="header-box">
-            <span class="header-box-box1"></span>
-            <span class="header-box-box2"></span>
-          </div>
-        </div>
-        <div class="header-manner pull-right">
-          <div class="header-clock pull-left">
-            <span>北京时间</span>
-            <span>2018年6月1号</span>
-            <span>周六</span>
-            <span>14:01</span>
-          </div>
-          <i class="fa fa-bar-chart" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="液态大数据" [routerLink]="['/finance']"></i>
-          <i class="fa fa-server" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频管理" [routerLink]="['/video/videom']" style="color: orangered"></i>
-          <i class="fa fa-video-camera" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频监控" [routerLink]="['/video/videow']"></i>
-          <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="个人信息" [routerLink]="['/personal']"></i>
-          <i class="fa fa-sign-out" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="退出系统" [routerLink]="['/login']"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--摄像头管理-->
-  <div class="main">
-    <div class="row">
-      <div class="main-left ">
-        <div class="col-lg-2 col-md-2 col-sm-2">
-          <div class="menu">
-            <div class="list-group">
-              <a class="list-group-item" [routerLink]="['/video/videow']">
-                <i class="fa fa-video-camera" aria-hidden="true"></i>
-                监控窗口
-              </a>
-              <a class="list-group-item">
-                <i class="fa fa-briefcase" aria-hidden="true" [routerLink]="['/video/videom']"></i>
-                摄像头管理
-              </a>
-              <a class="list-group-item" href="http://downloads.videolan.org/vlc/2.0.6/win64/vlc-2.0.6-win64.exe">
-                <i class="fa fa-download" aria-hidden="true"></i>
-                插件下载
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="main-center">
-        <div class="col-lg-10 col-md-10 col-sm-10">
+        <div class="col-lg-12 col-md-12 col-sm-12">
           <div class="main-center-table">
             <div class="top-button">
               <button type="button" class="btn btn-lg btn-primary">
@@ -110,15 +60,14 @@
         </div>
       </div>
     </div>
-  </div>
-  <!--<div class="footer">
+</div>
+<!--<div class="footer">
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
         <span>贵阳红鸟智能服务有限公司</span>
       </div>
     </div>
   </div>-->
-</div>
 <!--增加人员模态框-->
 <!--<ng-template #add>
   <div class="modal-header">

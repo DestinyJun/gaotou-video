@@ -1,0 +1,76 @@
+<div class="main">
+<div class="row">
+  <div class="main-center">
+    <div class="col-lg-10 col-md-10 col-sm-10">
+      <div class="center-video">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="center-bottom-left video-left">
+              <div class="center-bottom-left-title ">
+                <div class="pull-left">
+                  <span>一号监视窗</span>
+                </div>
+                <div class="pull-right">
+                  <span>{{videoLocation1}}</span>
+                </div>
+              </div>
+              <div class="center-bottom-left-video"  id="window1"></div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="center-bottom-left video-right">
+              <div class="center-bottom-left-title ">
+                <div class="pull-left">
+                  <span>二号监视窗</span>
+                </div>
+                <div class="pull-right">
+                  <span>{{videoLocation2}}</span>
+                </div>
+              </div>
+              <div class="center-bottom-left-video"  id="window2"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="center-bottom-left video-left">
+              <div class="center-bottom-left-title ">
+                <div class="pull-left">
+                  <span>三号监视窗</span>
+                </div>
+                <div class="pull-right">
+                  <span>{{videoLocation3}}</span>
+                </div>
+              </div>
+              <div class="center-bottom-left-video"  id="window3"></div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="center-bottom-left video-right">
+              <div class="center-bottom-left-title ">
+                <div class="pull-left">
+                  <span>四监视窗</span>
+                </div>
+                <div class="pull-right">
+                  <span>{{videoLocation4}}</span>
+                </div>
+              </div>
+              <div class="center-bottom-left-video"  id="window4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-right">
+    <div class="col-lg-2 col-md-2 col-sm-2 ">
+      <div class="control">
+        <tree [tree]="tree" (nodeSelected)="logEvent($event)"></tree>
+      </div>
+      <div class="control">
+        <tree [tree]="tree1" (nodeSelected)="logEvent($event)"></tree>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

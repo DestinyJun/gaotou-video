@@ -1,0 +1,8 @@
+/*************************主体侧边导航栏*************************/
+.nav{
+  margin-top: 1vh;
+  position: absolute;
+  height: 92vh;
+  border:1px solid #3B425C;
+  width: 200px;
+}

@@ -1,0 +1,53 @@
+/**
+ * Created by wangwenjun on 2018/2/22.
+ * project name ...
+ */
+
+/***********************************主体中部*****************************/
+.main-center .center-video{
+  border:1px solid #3B425C;
+  height: 92vh;
+}
+.main-center .center-bottom-left{
+  border:1px solid #3B425C;
+  font-weight: normal;
+}
+.main-center .center-bottom-left-title{
+  height: 5vh;
+  border-bottom: 1px solid #3B425C;
+  position: relative;
+  font-size: 1.6rem;
+  padding: 0 1.6rem;
+}
+.main-center .center-bottom-left-video{
+  background: #000;
+  height: 40.5vh;
+}
+.main-center .center-bottom-left-title>.pull-right{
+  color: #87FFFF;
+  line-height:5vh ;
+  font-size: 0.8em;
+}
+.main-center .center-bottom-left-title>.pull-left{
+  color: #87FFFF;
+  line-height:5vh ;
+  font-size: 0.8em;
+}
+
+
+/***********************************ng2改造*****************************/
+tree-internal .tree .node-value {
+  color: white!important;
+}
+
+/***********************************bootstrap改造*****************************/
+.list-group>a{
+  color: #87FFFF;
+}
+.list-group-item:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.list-group-item.active{
+  color: #87FFFF;
+}

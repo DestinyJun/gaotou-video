@@ -1,0 +1,169 @@
+<!--
+<div class="container-fluid">
+  &lt;!&ndash;顶部&ndash;&gt;
+  <div class="header">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="line-height: 6vh">
+        <div class="header-title pull-left">
+          <div class="header-title-h4">
+            <span>贵州高投高速交通大数据</span>
+          </div>
+          <div class="header-box">
+            <span class="header-box-box1"></span>
+            <span class="header-box-box2"></span>
+          </div>
+        </div>
+        <div class="header-manner pull-right">
+          <div class="header-clock pull-left">
+            <span style="color:#87FFFF;">北京时间</span>
+            <span style="color:#87FFFF;">2018年6月1号</span>
+            <span style="color:#87FFFF;">周六</span>
+            <span style="color:#87FFFF;">14:01</span>
+          </div>
+          <i class="fa fa-bar-chart" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="液态大数据" [routerLink]="['/finance']" style="color: orangered"></i>
+          <i class="fa fa-server " aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频管理" [routerLink]="['/video/videom']"></i>
+          <i class="fa fa-video-camera" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频监控" [routerLink]="['/video']"></i>
+          <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="个人信息" [routerLink]="['/personal']"></i>
+          <i class="fa fa-sign-out" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="退出系统" [routerLink]="['/login']"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+<!--大数据可视化-->
+<div class="main">
+  <div class="main-top">
+    <div class="row">
+      <!--3d柱状图-->
+      <div class="col-lg-4 col-md-4 col-sm-4 main-left " >
+        <div class="accumulation3d" echarts [options]="options3d" (chartInit)="onChartInit($event)"></div>
+      </div>
+      <!--离散地图分布图-->
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="top-map" id="center_map"></div>
+      </div>
+    </div>
+  </div>
+  <div class="main-bottom">
+    <div class="row">
+      <!--服务区当日驻车量排名-->
+      <div class="col-lg-3 col-md-3 col-sm-3 " >
+        <div class="accumulation" echarts [options]="optionsRetention"></div>
+      </div>
+      <!--事件监控列表-->
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="event-table">
+          <div class="table-title text-center">
+            <span>服务区事件监控</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table" cellspacing="5px">
+              <thead class="table-header">
+              <tr>
+                <td>级别</td>
+                <td>时间</td>
+                <td>事件类型</td>
+                <td>事件描述</td>
+              </tr>
+              </thead>
+              <tbody class="table-body">
+              <tr class="table-tr" style="color: #BB32F4">
+                <td><span style="background: #BB32F4;"></span></td>
+                <td>1分钟之前</td>
+                <td>缺水</td>
+                <td>一号水库水位低</td>
+              </tr>
+              <tr></tr>
+              <tr class="table-tr" style="color: #F432AD">
+                <td><span style="background: #F432AD;"></span></td>
+                <td>3分钟之前</td>
+                <td>卫生</td>
+                <td>东停车场卫生出问题</td>
+              </tr>
+              <tr class="table-tr" style="color: #E57D0D">
+                <td><span style="background: #E57D0D;"></span></td>
+                <td>5分钟之前</td>
+                <td>缺电</td>
+                <td>2楼电路故障</td>
+              </tr>
+              <tr class="table-tr" style="color: #1ED1D8">
+                <td><span style="background: #1ED1D8;"></span></td>
+                <td>15分钟之前</td>
+                <td>机器故障</td>
+                <td>西面出口摄像头故障</td>
+              </tr>
+              <tr class="table-tr" style="color: #3BF49F">
+                <td><span style="background: #3BF49F;"></span></td>
+                <td>30分钟之前</td>
+                <td>系统故障</td>
+                <td>系统流量过大</td>
+              </tr>
+              <tr class="table-tr" style="color: #1ED1D8">
+                <td><span style="background: #1ED1D8;"></span></td>
+                <td>40分钟之前</td>
+                <td>事故</td>
+                <td>出口位置轿车互挂</td>
+              </tr>
+              <tr class="table-tr" style="color: #1ED1D8">
+                <td><span style="background: #1ED1D8;"></span></td>
+                <td>1小时之前</td>
+                <td>提醒类</td>
+                <td>系统收入计算中....</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--实时车流收入数据监控-->
+      <div class="col-lg-3 col-md-3 col-sm-3" >
+        <div class="number">
+          <div class="vehicle">
+            <h4>2018-05-24 09:33:35 今日车辆流动数量</h4>
+            <div class="vehicle-amount">
+              <h3>
+                <span>0</span>
+                <span>0</span>
+                <span>0</span>
+                <span>0</span>
+                <span>7</span>
+                <span>8</span>
+                <small style="font-size: 14px;color: white;">辆</small>
+              </h3>
+              <p>
+                <span style="margin-right: 10px">前日时间同比</span>
+                <i class="fa fa-long-arrow-up"></i>
+                <span class="">3.2%</span>
+              </p>
+            </div>
+          </div>
+          <div class="income">
+            <h4>2018-05-24 09:33:35 高速服务区实时收入</h4>
+            <div class="income-amount">
+              <h3>
+                <span>0</span>
+                <span>0</span>
+                <span>8</span>
+                <span>1</span>
+                <span>7</span>
+                <span>8</span>
+                <small style="font-size: 14px;color: white;">元</small>
+              </h3>
+              <p>
+                <span style="margin-right: 10px">前日时间同比</span>
+                <i class="fa fa-long-arrow-up" style="color: #03D095"></i>
+                <span class="">15%</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--服务区当日收入排名-->
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="today-income" echarts [options]="optionsIncome"></div>
+      </div>
+    </div>
+  </div>
+</div>

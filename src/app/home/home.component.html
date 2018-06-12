@@ -1,3 +1,49 @@
-<p>
-  home works!
-</p>
+<div class="container-fluid">
+  <!--顶部-->
+  <div class="header">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="line-height: 6vh">
+        <div class="header-title pull-left" (click)="navShowClick()">
+          <div class="header-title-h4">
+            <span>贵州高投高速交通大数据</span>
+          </div>
+          <div class="header-box">
+            <span class="header-box-box1"></span>
+            <span class="header-box-box2"></span>
+          </div>
+        </div>
+        <div class="header-manner pull-right">
+          <div class="header-clock pull-left">
+            <span style="color:#87FFFF;">北京时间</span>
+            <span style="color:#87FFFF;">2018年6月1号</span>
+            <span style="color:#87FFFF;">周六</span>
+            <span style="color:#87FFFF;">14:01</span>
+          </div>
+          <img src="/assets/images/timg.jpg" class="img-circle" alt="头像" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="个人信息" [routerLink]="['./personal']">
+          <i class="fa fa-sign-out" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="退出系统" [routerLink]="['/login']"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--左侧导航-->
+  <div class="nav" *ngIf="navShow">
+    <ul class="list-group">
+      <li class="list-group-item active" [routerLink]="['./finance']">
+        <i class="fa fa-bar-chart" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="液态大数据"></i>
+        液态大数据
+      </li>
+      <li class="list-group-item" [routerLink]="['./videom']">
+        <i class="fa fa-server " aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频管理"></i>
+        视频管理
+      </li>
+      <li class="list-group-item" [routerLink]="['./videow']">
+        <i class="fa fa-video-camera" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频监控"></i>
+        视频监控
+      </li>
+    </ul>
+  </div>
+  <!--主内容-->
+  <div class="main" [ngStyle]="{'margin-left': navShow?'215px':''}">
+    <router-outlet></router-outlet>
+  </div>
+</div>
