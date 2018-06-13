@@ -1,43 +1,16 @@
-<!--
-<div class="container-fluid">
-  &lt;!&ndash;顶部&ndash;&gt;
-  <div class="header">
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="line-height: 6vh">
-        <div class="header-title pull-left">
-          <div class="header-title-h4">
-            <span>贵州高投高速交通大数据</span>
-          </div>
-          <div class="header-box">
-            <span class="header-box-box1"></span>
-            <span class="header-box-box2"></span>
-          </div>
-        </div>
-        <div class="header-manner pull-right">
-          <div class="header-clock pull-left">
-            <span style="color:#87FFFF;">北京时间</span>
-            <span style="color:#87FFFF;">2018年6月1号</span>
-            <span style="color:#87FFFF;">周六</span>
-            <span style="color:#87FFFF;">14:01</span>
-          </div>
-          <i class="fa fa-bar-chart" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="液态大数据" [routerLink]="['/finance']" style="color: orangered"></i>
-          <i class="fa fa-server " aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频管理" [routerLink]="['/video/videom']"></i>
-          <i class="fa fa-video-camera" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频监控" [routerLink]="['/video']"></i>
-          <i class="fa fa-user" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="个人信息" [routerLink]="['/personal']"></i>
-          <i class="fa fa-sign-out" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="退出系统" [routerLink]="['/login']"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
--->
-
 <!--大数据可视化-->
 <div class="main">
-  <div class="alert-box">
+  <!--弹窗-->
+  <div class="alert-box" [hidden]="alertBoxShow">
+    <div class="alert-box-header">
+      <span>{{alertTitle}}</span>
+      <div class="pull-right" (click)="destoryChild()">
+        <i class="fa fa-window-close " aria-hidden="true"></i>
+      </div>
+    </div>
     <div #alertBox></div>
-    <!--<app-child-data-map [title]=""></app-child-data-map>-->
   </div>
+  <!--上部分-->
   <div class="main-top">
     <div class="row">
       <!--3d柱状图-->
@@ -50,6 +23,7 @@
       </div>
     </div>
   </div>
+  <!--下部分-->
   <div class="main-bottom">
     <div class="row">
       <!--服务区当日驻车量排名-->

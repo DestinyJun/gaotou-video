@@ -10,6 +10,7 @@ import { NavComponent } from './nav/nav.component';
     CommonModule,
     HomeRoutingModule
   ],
-  declarations: [HomeComponent, HeaderComponent, NavComponent]
+  declarations: [HomeComponent, HeaderComponent, NavComponent],
+  entryComponents: [NavComponent]
 })
 export class HomeModule { }

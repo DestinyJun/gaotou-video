@@ -1,14 +1,3 @@
-.header{
-  height: 5vh;
-  line-height: 5vh;
-  background: rgba(240,43,43,0.8);
-}
-.header span{
-  margin-left: 10px;
-}
-.header div{
-  padding-right: 10px;
-}
 
 .content .monthly-income{
   height: 40vh;

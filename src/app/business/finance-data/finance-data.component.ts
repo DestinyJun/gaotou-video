@@ -1,9 +1,17 @@
-import {AfterContentInit, Component, ComponentFactoryResolver, ComponentRef, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {
+  AfterContentInit, AfterViewInit,
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  OnChanges,
+  OnInit, SimpleChanges,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NgxEchartsService} from 'ngx-echarts';
 import {EventsService} from '../../shared/events.service';
 import {ChildDataMapComponent} from './child-data-map/child-data-map.component';
-
 declare let echarts;
 
 // declare let echarts;
@@ -12,11 +20,13 @@ declare let echarts;
   templateUrl: './finance-data.component.html',
   styleUrls: ['./finance-data.component.css']
 })
-export class FinanceDataComponent implements OnInit, AfterContentInit {
-  // 加载动画状态:
+export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit, AfterViewInit {
+
+  // 弹出框的标题及显影控制
+  public alertTitle: string;
+  public alertBoxShow = true;
+  // 图表加载状态状态:
   public echartsIntance: any;
-  public mapLoaded = false;
-  public alertBoxShow = false;
   // 车月度所有服务区车辆流量柱状图统计
   public optionsCar = {};
   // 当日服务区停车量排名
@@ -30,10 +40,6 @@ export class FinanceDataComponent implements OnInit, AfterContentInit {
   //  高速服务区分布统计
   public options3d = {};
 
-  // 传给子元素的值
-  // public mapTitle: string;
-
-
   // 动态创建组件
   @ViewChild('alertBox', {read: ViewContainerRef})
   alertBox: ViewContainerRef;
@@ -44,19 +50,19 @@ export class FinanceDataComponent implements OnInit, AfterContentInit {
     private es: NgxEchartsService,
     private eventsService: EventsService,
     private resolver: ComponentFactoryResolver
-  ) {
-  }
+  ) {}
 
+  ngOnChanges(changes: SimpleChanges): void {}
   ngOnInit() {
     this.updataEcharts();
-    this.eventsService.eventBus.subscribe((value) => {
-      this.getWidth();
-    });
   }
 
-  ngAfterContentInit(): void {
+  ngAfterContentInit(): void {}
+
+  ngAfterViewInit(): void {
 
   }
+
 
   // 中部服务区分布图
   public packOption2(): any {
@@ -637,11 +643,18 @@ export class FinanceDataComponent implements OnInit, AfterContentInit {
     myChart.setOption(option);
     myChart.on('brushselected', renderBrushed);
     myChart.on('click', function (params) {
-      console.log(params.name);
-      if (params.componentType === 'series') {
-        that.alertBoxShow = true;
-        that.comp1 = that.alertBox.createComponent(childComp1);
-        that.comp1.instance.title = params.name;
+      console.log(params);
+      if (params.componentSubType === 'effectScatter' || params.componentSubType === 'bar') {
+        if (that.alertBoxShow) {
+          that.alertBoxShow = false;
+          that.comp1 = that.alertBox.createComponent(childComp1);
+          that.alertTitle = params.name;
+        } else {
+          that.destoryChild();
+          that.alertBoxShow = false;
+          that.comp1 = that.alertBox.createComponent(childComp1);
+          that.alertTitle = params.name;
+        }
       }
     });
     setTimeout(function () {
@@ -704,8 +717,10 @@ export class FinanceDataComponent implements OnInit, AfterContentInit {
         }
       });
     }
-
-    /*  window.addEventListener('resize', function() {
+    this.eventsService.eventBus.subscribe((value) => {
+      myChart.resize();
+    });
+     /* window.addEventListener('resize', function() {
         myChart.resize();
       });*/
   }
@@ -1533,45 +1548,15 @@ export class FinanceDataComponent implements OnInit, AfterContentInit {
     };
   }
 
+  // 销毁已创建的组建
+  public destoryChild(): void {
+    this.comp1.destroy();
+    this.alertBoxShow = true;
+  }
+
+  // 图表初始化后运行
   public onChartInit(ec) {
-    // console.log(ec);
+    console.log(ec);
     this.echartsIntance = ec;
-  }
-
-  public resizeChart() {
-    if (this.echartsIntance) {
-      this.echartsIntance.resize();
-    }
-  }
-
-  getWidth() {
-    if (this.echartsIntance) {
-      console.log('getWidth():', this.echartsIntance.getWidth());
-    }
-  }
-
-  getHeight() {
-    if (this.echartsIntance) {
-      console.log('getHeight():', this.echartsIntance.getHeight());
-    }
-  }
-
-  getDom() {
-    if (this.echartsIntance) {
-      console.log('getDom():', this.echartsIntance.getDom());
-    }
-  }
-
-  getOption() {
-    if (this.echartsIntance) {
-      console.log('getOption():', this.echartsIntance.getOption());
-    }
-  }
-
-  clear() {
-    if (this.echartsIntance) {
-      this.echartsIntance.clear();
-      console.log('clear() called');
-    }
   }
 }

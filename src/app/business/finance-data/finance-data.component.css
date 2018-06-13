@@ -134,13 +134,24 @@
   position: absolute;
   width: 50vw;
   height: 50vh;
-  background: rgba(255,255,255,0.3);
+  background: rgba(5,101,214,0.9);
   z-index: 9999;
   left: 50%;
   margin-left: -25vw;
   top:40%;
   margin-top: -25vh;
   overflow: auto;
+}
+.alert-box-header{
+  height: 5vh;
+  line-height: 5vh;
+  background: rgba(240,43,43,0.8);
+}
+.alert-box-header span{
+  margin-left: 10px;
+}
+.alert-box-header div{
+  padding-right: 10px;
 }
 
 /********************************分割线******************************

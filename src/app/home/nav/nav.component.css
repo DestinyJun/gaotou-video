@@ -5,4 +5,20 @@
   height: 92vh;
   border:1px solid #3B425C;
   width: 200px;
+  color: #87FFFF;
+}
+.nav>.list-group>.list-group-item{
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+.nav>.list-group>.list-group-item>i{
+  margin-right: 15px;
+}
+.nav>.list-group>.list-group-item:hover{
+  cursor: pointer;
+  color: orangered
+}
+/*****************************bootstrap改造******************************/
+.active{
+  color: orangered
 }
