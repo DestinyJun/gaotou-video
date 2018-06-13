@@ -32,6 +32,8 @@
     "ng4-validators": "^5.1.0",
     "ngx-bootstrap": "^2.0.2",
     "ngx-echarts": "^2.1.0",
+    "primeicons": "^1.0.0-beta.7",
+    "primeng": "^6.0.0-beta.1",
     "qrcodejs": "^1.0.0",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"

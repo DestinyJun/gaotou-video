@@ -2,13 +2,19 @@
  * Created by wangwenjun on 2018/2/22.
  * project name ...
  */
-
+.main{
+  position: relative;
+}
 /****************************主体上部分****************************/
+
+/*3D柱状图*/
 .main-top .accumulation3d{
   height: 55vh;
   border:1px solid #3B425C;
   margin-bottom: 1vh;
+  margin-right: -15px;
 }
+/*离散地图分布图*/
 .main-top .top-map{
   border:1px solid #3B425C;
   margin-bottom: 1vh;
@@ -16,12 +22,14 @@
 }
 
 /****************************主体下部分****************************/
+
+/*服务区当日驻车量排名*/
 .main-bottom .accumulation{
   height: 36vh;
   border:1px solid #3B425C;
   margin-right: -8px;
 }
-
+/*事件监控列表*/
 .main-bottom .event-table{
   padding-top: 1px;
   height: 36vh;
@@ -29,11 +37,12 @@
   overflow: hidden;
   margin-left: -8px;
   margin-right: -8px;
+  font-size: 12px;
 }
 .main-bottom .event-table .table-title{
   padding: 5px 0 10px 5px;
   font-weight: bolder;
-  font-size: 18px;
+  font-size: 14px;
 }
 .main-bottom .event-table .table-header{
   height: 5vh;
@@ -57,18 +66,22 @@
   height: 15px;
   border-radius: 100%;
 }
-
+/*实时车流收入数据监控*/
 .main-bottom .number{
   margin-bottom: 1vh;
   height: 36vh;
   margin-left: -8px;
   margin-right: -8px;
+  overflow: hidden;
 }
 .main-bottom .number .vehicle{
   height: 17.5vh;
   border:1px solid #3B425C;
   padding-left: 5px;
   margin-bottom: 1vh;
+}
+.main-bottom .number .vehicle>span{
+ font-size: 1.5rem;
 }
 .main-bottom .number .vehicle-amount>h3>span{
   display: inline-block;
@@ -85,13 +98,16 @@
   background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);
 }
 .main-bottom .number .vehicle .vehicle-amount>p{
-  margin-top: 20px;
-  font-size: 16px;
+  margin-top: 1vh;
+  font-size: 1.5rem;
 }
 .main-bottom .number .income{
   height: 17.5vh;
   border:1px solid #3B425C;
   padding-left: 5px;
+}
+.main-bottom .number .income>span{
+  font-size: 1.5rem;
 }
 .main-bottom .number .income .income-amount>h3>span{
   display: inline-block;
@@ -102,10 +118,10 @@
   background: #01D1DB;
 }
 .main-bottom .number .income .income-amount>p{
-  margin-top: 20px;
-  font-size: 16px;
+  margin-top: 1vh;
+  font-size: 1.5rem;
 }
-
+/*服务区当日收入排名*/
 .main-bottom .today-income {
   margin-bottom: 1vh;
   height: 36vh;
@@ -113,7 +129,23 @@
   margin-left: -8px;
 }
 
+/****************************弹窗部分****************************/
+.alert-box{
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  background: rgba(255,255,255,0.3);
+  z-index: 9999;
+  left: 50%;
+  margin-left: -25vw;
+  top:40%;
+  margin-top: -25vh;
+  overflow: auto;
+}
+
 /********************************分割线******************************
+
+ */
 /*微调*/
 .text-warning{
   margin-right: 10px;

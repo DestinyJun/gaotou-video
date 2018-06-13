@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, ComponentFactoryResolver, ComponentRef, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NgxEchartsService} from 'ngx-echarts';
 import {EventsService} from '../../shared/events.service';
+import {ChildDataMapComponent} from './child-data-map/child-data-map.component';
 
 declare let echarts;
 
@@ -11,10 +12,11 @@ declare let echarts;
   templateUrl: './finance-data.component.html',
   styleUrls: ['./finance-data.component.css']
 })
-export class FinanceDataComponent implements OnInit {
+export class FinanceDataComponent implements OnInit, AfterContentInit {
   // 加载动画状态:
   public echartsIntance: any;
   public mapLoaded = false;
+  public alertBoxShow = false;
   // 车月度所有服务区车辆流量柱状图统计
   public optionsCar = {};
   // 当日服务区停车量排名
@@ -28,10 +30,20 @@ export class FinanceDataComponent implements OnInit {
   //  高速服务区分布统计
   public options3d = {};
 
+  // 传给子元素的值
+  // public mapTitle: string;
+
+
+  // 动态创建组件
+  @ViewChild('alertBox', {read: ViewContainerRef})
+  alertBox: ViewContainerRef;
+  comp1: ComponentRef<ChildDataMapComponent>;
+
   constructor(
     public http: HttpClient,
     private es: NgxEchartsService,
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private resolver: ComponentFactoryResolver
   ) {
   }
 
@@ -42,8 +54,14 @@ export class FinanceDataComponent implements OnInit {
     });
   }
 
+  ngAfterContentInit(): void {
+
+  }
+
   // 中部服务区分布图
   public packOption2(): any {
+    const childComp1 = this.resolver.resolveComponentFactory(ChildDataMapComponent);
+    let that = this;
     let myChart = echarts.init(document.getElementById('center_map'));
     let geoCoordMap = {
       '海门': [121.15, 31.89],
@@ -459,7 +477,8 @@ export class FinanceDataComponent implements OnInit {
           text: '全国主要高速服务区分布及流量统计',
           left: 'center',
           textStyle: {
-            color: '#fff'
+            color: '#fff',
+            fontSize: 14
           }
         },
         {
@@ -617,6 +636,14 @@ export class FinanceDataComponent implements OnInit {
     };
     myChart.setOption(option);
     myChart.on('brushselected', renderBrushed);
+    myChart.on('click', function (params) {
+      console.log(params.name);
+      if (params.componentType === 'series') {
+        that.alertBoxShow = true;
+        that.comp1 = that.alertBox.createComponent(childComp1);
+        that.comp1.instance.title = params.name;
+      }
+    });
     setTimeout(function () {
       myChart.dispatchAction({
         type: 'brush',
@@ -698,19 +725,10 @@ export class FinanceDataComponent implements OnInit {
           text: '液态数据分析统计',
           left: 'center',
           textStyle: {
-            color: '#fff'
-          }
-        },
-        {
-          id: 'statistic',
-          right: 120,
-          top: 40,
-          width: 100,
-          textStyle: {
             color: '#fff',
             fontSize: 14
           }
-        }
+        },
       ],
       tooltip: {},
       visualMap: {
@@ -814,7 +832,6 @@ export class FinanceDataComponent implements OnInit {
       '六枝服务区',
       '红果服务区',
       '水城服务区',
-
     ];
     let barData = [
       913,
@@ -841,19 +858,10 @@ export class FinanceDataComponent implements OnInit {
           text: '当日服务区驻车量排名',
           left: 'center',
           textStyle: {
-            color: '#fff'
-          }
-        },
-        {
-          id: 'statistic',
-          right: 120,
-          top: 40,
-          width: 100,
-          textStyle: {
             color: '#fff',
             fontSize: 14
           }
-        }
+        },
       ],
       legend: null,
       tooltip: {
@@ -1068,12 +1076,11 @@ export class FinanceDataComponent implements OnInit {
   // 当日服务区收入排名
   public packOption1(): any {
     let yAxisMonth = [
-      '第一名',
-      '第二名',
-      '第三名',
-      '第四名',
-      '第五名',
-
+      '红果服务区',
+      '水城服务区',
+      '桐子服务区',
+      '六枝服务区',
+      '瓮安东服务区',
     ];
     let barData = [
       913,
@@ -1100,19 +1107,10 @@ export class FinanceDataComponent implements OnInit {
           text: '当日服务区收入排名',
           left: 'center',
           textStyle: {
-            color: '#fff'
-          }
-        },
-        {
-          id: 'statistic',
-          right: 120,
-          top: 40,
-          width: 100,
-          textStyle: {
             color: '#fff',
             fontSize: 14
           }
-        }
+        },
       ],
       legend: null,
       tooltip: {
@@ -1125,7 +1123,7 @@ export class FinanceDataComponent implements OnInit {
         }
       },
       grid: {
-        left: '19%',
+        left: '10%',
         top: '10%',
         bottom: '3%',
         right: '5%',
@@ -1326,6 +1324,7 @@ export class FinanceDataComponent implements OnInit {
 
   // 图表更新
   public updataEcharts(): void {
+
     //  高速服务区分布散点统计
     this.packOption2();
 
@@ -1535,7 +1534,7 @@ export class FinanceDataComponent implements OnInit {
   }
 
   public onChartInit(ec) {
-    console.log(ec);
+    // console.log(ec);
     this.echartsIntance = ec;
   }
 

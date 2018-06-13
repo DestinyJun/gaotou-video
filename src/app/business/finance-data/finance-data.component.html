@@ -34,6 +34,10 @@
 
 <!--大数据可视化-->
 <div class="main">
+  <div class="alert-box">
+    <div #alertBox></div>
+    <!--<app-child-data-map [title]=""></app-child-data-map>-->
+  </div>
   <div class="main-top">
     <div class="row">
       <!--3d柱状图-->
@@ -121,7 +125,7 @@
       <div class="col-lg-3 col-md-3 col-sm-3" >
         <div class="number">
           <div class="vehicle">
-            <h4>2018-05-24 09:33:35 今日车辆流动数量</h4>
+            <span>2018-05-24 09:33:35 今日车辆流动数量</span>
             <div class="vehicle-amount">
               <h3>
                 <span>0</span>
@@ -140,7 +144,7 @@
             </div>
           </div>
           <div class="income">
-            <h4>2018-05-24 09:33:35 高速服务区实时收入</h4>
+            <span>2018-05-24 09:33:35 高速服务区实时收入</span>
             <div class="income-amount">
               <h3>
                 <span>0</span>
@@ -167,3 +171,4 @@
     </div>
   </div>
 </div>
+
