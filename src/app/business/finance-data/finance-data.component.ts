@@ -35,9 +35,9 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   public optionsCarModel = {};
   // 月度收入分析
   public optionsMonth = {};
-  //  阅读收入前五名排名对比
+  // 服务区当日收入排名
   public optionsIncome = {};
-  //  高速服务区分布统计
+  //  高速服液态数据3d统计
   public options3d = {};
 
   // 动态创建组件
@@ -737,7 +737,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     let option = {
       title: [
         {
-          text: '液态数据分析统计',
+          text: '业态数据分析统计',
           left: 'center',
           textStyle: {
             color: '#fff',

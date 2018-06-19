@@ -1,4 +1,149 @@
 <div class="content">
-  <div class="monthly-income" echarts [options]="optionsMonth" (chartInit)="onChartInitMonth($event)"></div>
-  <div class="monthly-income" echarts [options]="optionsCarModel" (chartInit)="onChartInitCarModel($event)"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="monthly-income" echarts [options]="options3d" (chartInit)="onChartInitMonth($event)"></div>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="monthly-income" id="baiduMap"></div>
+      </div>
+    </div>
+    <div style="height: 2vh"></div>
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="monthly-income" echarts [options]="optionsCarModel" (chartInit)="onChartInitCarModel($event)"></div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="monthly-income">
+          <div class="event-table">
+            <div class="table-title text-center">
+              <span>服务区事件监控</span>
+            </div>
+            <div class="table-responsive">
+              <table class="table" cellspacing="5px">
+                <thead class="table-header">
+                <tr>
+                  <td>级别</td>
+                  <td>时间</td>
+                  <td>事件类型</td>
+                  <td>事件描述</td>
+                </tr>
+                </thead>
+                <tbody class="table-body">
+                <tr class="table-tr" style="color: #BB32F4">
+                  <td><span style="background: #BB32F4;"></span></td>
+                  <td>1分钟之前</td>
+                  <td>缺水</td>
+                  <td>一号水库水位低</td>
+                </tr>
+                <tr></tr>
+                <tr class="table-tr" style="color: #F432AD">
+                  <td><span style="background: #F432AD;"></span></td>
+                  <td>3分钟之前</td>
+                  <td>卫生</td>
+                  <td>东停车场卫生出问题</td>
+                </tr>
+                <tr class="table-tr" style="color: #E57D0D">
+                  <td><span style="background: #E57D0D;"></span></td>
+                  <td>5分钟之前</td>
+                  <td>缺电</td>
+                  <td>2楼电路故障</td>
+                </tr>
+                <tr class="table-tr" style="color: #1ED1D8">
+                  <td><span style="background: #1ED1D8;"></span></td>
+                  <td>15分钟之前</td>
+                  <td>机器故障</td>
+                  <td>西面出口摄像头故障</td>
+                </tr>
+                <tr class="table-tr" style="color: #3BF49F">
+                  <td><span style="background: #3BF49F;"></span></td>
+                  <td>30分钟之前</td>
+                  <td>系统故障</td>
+                  <td>系统流量过大</td>
+                </tr>
+                <tr class="table-tr" style="color: #1ED1D8">
+                  <td><span style="background: #1ED1D8;"></span></td>
+                  <td>40分钟之前</td>
+                  <td>事故</td>
+                  <td>出口位置轿车互挂</td>
+                </tr>
+                <tr class="table-tr" style="color: #1ED1D8">
+                  <td><span style="background: #1ED1D8;"></span></td>
+                  <td>1小时之前</td>
+                  <td>提醒类</td>
+                  <td>系统收入计算中....</td>
+                </tr>
+                <tr class="table-tr" style="color: #1ED1D8">
+                  <td><span style="background: #1ED1D8;"></span></td>
+                  <td>1小时之前</td>
+                  <td>提醒类</td>
+                  <td>系统收入计算中....</td>
+                </tr>
+                <tr class="table-tr" style="color: #1ED1D8">
+                  <td><span style="background: #1ED1D8;"></span></td>
+                  <td>1小时之前</td>
+                  <td>提醒类</td>
+                  <td>系统收入计算中....</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="monthly-income">
+          <div class="number">
+            <div class="vehicle">
+              <span>2018-05-24 09:33:35 今日车辆流动数量</span>
+              <div class="vehicle-amount">
+                <h3>
+                  <span>0</span>
+                  <span>0</span>
+                  <span>0</span>
+                  <span>0</span>
+                  <span>7</span>
+                  <span>8</span>
+                  <small style="font-size: 14px;color: white;">辆</small>
+                </h3>
+                <p>
+                  <span style="margin-right: 10px">上行车辆：</span>
+                  <span style="color: #1ED1D8;">998辆</span>
+                </p>
+                <p>
+                  <span style="margin-right: 10px">下行车辆：</span>
+                  <span style="color: #1ED1D8;">438辆</span>
+                </p>
+              </div>
+            </div>
+            <div class="income">
+              <span>2018-05-24 09:33:35 高速服务区实时收入</span>
+              <div class="income-amount">
+                <h3>
+                  <span>0</span>
+                  <span>0</span>
+                  <span>8</span>
+                  <span>1</span>
+                  <span>7</span>
+                  <span>8</span>
+                  <small style="font-size: 14px;color: white;">元</small>
+                </h3>
+                <p>
+                  <span style="margin-right: 10px">上行收入：</span>
+                  <span style="color: #1ED1D8;">15487元</span>
+                </p>
+                <p>
+                  <span style="margin-right: 10px">下行收入：</span>
+                  <span style="color: #1ED1D8;">7524元</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="monthly-income" echarts [options]="optionsIncome" (chartInit)="onChartInitCarModel($event)"></div>
+      </div>
+    </div>
+  </div>
 </div>
