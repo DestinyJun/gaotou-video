@@ -14,6 +14,7 @@ import {EventsService} from '../../shared/events.service';
 import {ChildDataMapComponent} from './child-data-map/child-data-map.component';
 declare let echarts;
 
+
 // declare let echarts;
 @Component({
   selector: 'app-finance-data',
@@ -39,6 +40,9 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   public optionsIncome = {};
   //  高速服液态数据3d统计
   public options3d = {};
+  // 省市联动
+  public province: any;
+  public city: any;
 
   // 动态创建组件
   @ViewChild('alertBox', {read: ViewContainerRef})
@@ -55,6 +59,17 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   ngOnChanges(changes: SimpleChanges): void {}
   ngOnInit() {
     this.updataEcharts();
+    this.http.get('/assets/data/province.json').subscribe(
+      (res) => {
+        this.province = res;
+      }
+    );
+    this.http.get('/assets/data/city.json').subscribe(
+      (res) => {
+        this.city = res[0].children;
+        console.log(this.city);
+      }
+    );
   }
 
   ngAfterContentInit(): void {}
@@ -748,6 +763,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       tooltip: {},
       visualMap: {
         max: 20,
+        show: false,
         inRange: {
           color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
         }
@@ -800,6 +816,9 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
           ambient: {
             intensity: 0.3
           }
+        },
+        viewControl: {
+          distance: 250,
         }
       },
       series: [{
@@ -1559,4 +1578,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     console.log(ec);
     this.echartsIntance = ec;
   }
+
+  // 省市联动
+
 }

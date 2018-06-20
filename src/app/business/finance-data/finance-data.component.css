@@ -15,10 +15,44 @@
   margin-right: -15px;
 }
 /*离散地图分布图*/
+.main-top .tab-map{
+  height: 5vh;
+  border:1px solid #3B425C;
+  line-height: 5vh;
+  padding-left: 5px;
+  font-weight: bolder;
+  position: relative;
+}
+.main-top .tab-map .location{
+  display: inline-block;
+}
+.main-top .tab-map .select{
+  display: inline-block;
+  margin-left: 15px;
+  color: white;
+}
+.main-top .select-list-province{
+  background: rgba(18,51,76,0.8);
+  padding-right: 40px;
+  color: #87FFFF;
+  position: absolute;
+  top: 32px;
+  left: 154px;
+  z-index: 999;
+}
+.main-top .select-list-city{
+  background: rgba(18,51,76,0.8);
+  padding-right: 40px;
+  color: #87FFFF;
+  position: absolute;
+  top: 56px;
+  left: 262px;
+  z-index: 999;
+}
 .main-top .top-map{
   border:1px solid #3B425C;
   margin-bottom: 1vh;
-  height: 55vh;
+  height: 50vh;
 }
 
 /****************************主体下部分****************************/
@@ -170,5 +204,11 @@
 /*去掉默认样式 */
 table tr td{
   border: none;
+}
+
+.btn {
+  padding: 0;
+  border-radius: 0;
+  background: none;
 }
 
