@@ -10,8 +10,8 @@ import {
 } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NgxEchartsService} from 'ngx-echarts';
-import {EventsService} from '../../shared/events.service';
 import {ChildDataMapComponent} from './child-data-map/child-data-map.component';
+import {EventsService} from '../../common/services/events.service';
 declare let echarts;
 
 

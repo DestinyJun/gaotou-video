@@ -1,30 +1,32 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {AppRoutingModule} from './app.routing.module';
-import {LoginService} from './shared/login.service';
-import {LocalStorageService} from './shared/local-storage.service';
+import {SharedModule} from './common/shared.module';
+
+import {LoginGuard} from './common/guard/login.guard';
 import {AppComponent} from './app.component';
-import {LoginGuard} from './guard/login.guard';
-import {EventsService} from './shared/events.service';
+import {LocalStorageService} from './common/services/local-storage.service';
+import {LoginService} from './common/services/login.service';
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
+    SharedModule
   ],
   providers: [
     LoginService,
     LocalStorageService,
     LoginGuard,
-    EventsService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
