@@ -2,19 +2,19 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-4">
-        <div class="monthly-income" echarts [options]="options3d" (chartInit)="onChartInitMonth($event)"></div>
+        <div class="top-box" echarts [options]="options3d" (chartInit)="onChartInitMonth($event)"></div>
       </div>
       <div class="col-lg-8 col-md-8 col-sm-8">
-        <div class="monthly-income" id="baiduMap"></div>
+        <div class="top-box" id="baiduMap"></div>
       </div>
     </div>
     <div style="height: 2vh"></div>
     <div class="row">
       <div class="col-lg-3 col-md-3 col-sm-3">
-        <div class="monthly-income" echarts [options]="optionsCarModel" (chartInit)="onChartInitCarModel($event)"></div>
+        <div class="bottom-box" echarts [options]="optionsCarModel" (chartInit)="onChartInitCarModel($event)"></div>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3">
-        <div class="monthly-income">
+        <div class="bottom-box">
           <div class="event-table">
             <div class="table-title text-center">
               <span>服务区事件监控</span>
@@ -92,7 +92,7 @@
         </div>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3">
-        <div class="monthly-income">
+        <div class="bottom-box">
           <div class="number">
             <div class="vehicle">
               <span>2018-05-24 09:33:35 今日车辆流动数量</span>
@@ -106,14 +106,16 @@
                   <span>8</span>
                   <small style="font-size: 14px;color: white;">辆</small>
                 </h3>
-                <p>
-                  <span style="margin-right: 10px">上行车辆：</span>
-                  <span style="color: #1ED1D8;">998辆</span>
-                </p>
-                <p>
-                  <span style="margin-right: 10px">下行车辆：</span>
-                  <span style="color: #1ED1D8;">438辆</span>
-                </p>
+                <div>
+                  <p class="pull-left">
+                    <span>上行车辆：</span>
+                    <span style="color: #1ED1D8;">998辆</span>
+                  </p>
+                  <p class="pull-right">
+                    <span>下行车辆：</span>
+                    <span style="color: #1ED1D8;">438辆</span>
+                  </p>
+                </div>
               </div>
             </div>
             <div class="income">
@@ -128,21 +130,23 @@
                   <span>8</span>
                   <small style="font-size: 14px;color: white;">元</small>
                 </h3>
-                <p>
-                  <span style="margin-right: 10px">上行收入：</span>
-                  <span style="color: #1ED1D8;">15487元</span>
-                </p>
-                <p>
-                  <span style="margin-right: 10px">下行收入：</span>
-                  <span style="color: #1ED1D8;">7524元</span>
-                </p>
+                <div>
+                  <p class="pull-left">
+                    <span style="margin-right: 10px">上行收入：</span>
+                    <span style="color: #1ED1D8;">15487元</span>
+                  </p>
+                  <p class="pull-right">
+                    <span style="margin-right: 10px">下行收入：</span>
+                    <span style="color: #1ED1D8;">7524元</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3">
-        <div class="monthly-income" echarts [options]="optionsIncome" (chartInit)="onChartInitCarModel($event)"></div>
+        <div class="bottom-box" echarts [options]="optionsIncome" (chartInit)="onChartInitCarModel($event)"></div>
       </div>
     </div>
   </div>

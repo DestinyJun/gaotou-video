@@ -9,14 +9,13 @@
       </div>
     </div>
     <div #alertBox></div>
-    <!--<app-child-data-map></app-child-data-map>-->
   </div>
   <!--上部分-->
   <div class="main-top">
     <div class="row">
       <!--3d柱状图-->
       <div class="col-lg-4 col-md-4 col-sm-4 main-left " >
-        <div class="accumulation3d" echarts [options]="options3d" (chartInit)="onChartInit($event)"></div>
+        <div class="accumulation3d" echarts [options]="options3d" (chartInit)="onChartInit($event)" (chartClick)="barClick($event)"></div>
       </div>
       <!--离散地图分布图-->
       <div class="col-lg-8 col-md-8 col-sm-8">
@@ -111,7 +110,6 @@
             </table>
           </div>
         </div>
-      </div>
       <!--实时车流收入数据监控-->
       <div class="col-lg-3 col-md-3 col-sm-3" >
         <div class="number">

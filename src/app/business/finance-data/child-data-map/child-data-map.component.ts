@@ -507,6 +507,9 @@ export class ChildDataMapComponent implements OnInit, AfterViewInit {
           ambient: {
             intensity: 0.3
           }
+        },
+        viewControl: {
+          distance: 250,
         }
       },
       series: [{
@@ -548,10 +551,9 @@ export class ChildDataMapComponent implements OnInit, AfterViewInit {
 
   /************************百度地图***************************/
   public ionViewWillEnter() {
-    console.log(document.querySelector('#baiduMap'));
     let that;
     that = this;
-    let map = new BMap.Map(document.querySelector('#baiduMap'));
+    let map = new BMap.Map('baiduMap');
     let point = new BMap.Point(106.681659, 26.627171);
     map.centerAndZoom(point, 12);
     /*let mapStyle = {

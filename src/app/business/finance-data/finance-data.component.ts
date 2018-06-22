@@ -14,8 +14,6 @@ import {EventsService} from '../../shared/events.service';
 import {ChildDataMapComponent} from './child-data-map/child-data-map.component';
 declare let echarts;
 
-
-// declare let echarts;
 @Component({
   selector: 'app-finance-data',
   templateUrl: './finance-data.component.html',
@@ -1578,7 +1576,10 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     console.log(ec);
     this.echartsIntance = ec;
   }
-
+  //  3D柱状图的点击事件
+  public barClick(e): void  {
+    console.log(e);
+}
   // 省市联动
 
 }
