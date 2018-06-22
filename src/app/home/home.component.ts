@@ -9,8 +9,8 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {EventsService} from '../shared/events.service';
 import {NavComponent} from './nav/nav.component';
+import {EventsService} from '../common/services/events.service';
 
 @Component({
   selector: 'app-home',
