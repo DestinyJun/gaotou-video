@@ -5,13 +5,15 @@ import {FinanceDataRoutingModule} from './finance-data.routing.module';
 
 import { FinanceDataComponent } from './finance-data.component';
 import { ChildDataMapComponent } from './child-data-map/child-data-map.component';
+import {ScrollPanelModule} from 'primeng/primeng';
 
 
 @NgModule({
   imports: [
     CommonModule,
     FinanceDataRoutingModule,
-    SharedModule
+    SharedModule,
+    ScrollPanelModule
   ],
   declarations: [FinanceDataComponent, ChildDataMapComponent],
   entryComponents: [ChildDataMapComponent]

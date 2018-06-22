@@ -48,7 +48,14 @@
       </div>
       <!--事件监控列表-->
       <div class="col-lg-3 col-md-3 col-sm-3">
-        <div class="event-table">
+        <p-scrollPanel  [style]="{
+         paddingTop: '1px',
+         height: '36vh',
+         border:'1px solid #3B425C',
+         marginLeft: '-8px',
+         marginRight: '-8px',
+         fontSize: '12px'
+        }" styleClass="custom">
           <div class="table-title text-center">
             <span>服务区事件监控</span>
           </div>
@@ -109,7 +116,9 @@
               </tbody>
             </table>
           </div>
-        </div>
+          <!--<div class="event-table"></div>-->
+        </p-scrollPanel>
+      </div>
       <!--实时车流收入数据监控-->
       <div class="col-lg-3 col-md-3 col-sm-3" >
         <div class="number">

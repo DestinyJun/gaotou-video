@@ -73,28 +73,43 @@
   margin-right: -8px;
   font-size: 12px;
 }
-.main-bottom .event-table .table-title{
+.custom>.ui-scrollpanel-wrapper {
+  border-right: 9px solid #f4f4f4;
+}
+
+.custom .ui-scrollpanel-bar.ui-scrollpanel-bar-y.ui-scrollpanel-bar {
+  background-color: #1976d2;
+  opacity: 1;
+  transition: background-color .3s;
+}
+
+.custom>.ui-scrollpanel-bar:hover {
+  background-color: #135ba1;
+}
+
+
+.main-bottom .table-title{
   padding: 5px 0 10px 5px;
   font-weight: bolder;
   font-size: 14px;
 }
-.main-bottom .event-table .table-header{
+.main-bottom .table-header{
   height: 5vh;
   /*border: 1px solid #0593B5;*/
   background: rgba(7,149,188,0.2);
   color: #00ECF1;
 }
-.main-bottom .event-table .table-body{
+.main-bottom .table-body{
   margin-top: 5px;
 }
-.main-bottom .event-table .table-body .table-tr{
+.main-bottom .table-body .table-tr{
   border-bottom: 1px solid #0593B5;
   position: relative;
   color: #87FFFF;
   border-collapse:separate;
   border-spacing:10px;
 }
-.main-bottom .event-table .table-body .table-tr span{
+.main-bottom .table-body .table-tr span{
   display: inline-block;
   width: 15px;
   height: 15px;
@@ -212,3 +227,17 @@ table tr td{
   background: none;
 }
 
+/*test*/
+.custombar1 .ui-scrollpanel-wrapper {
+  border-right: 9px solid #f4f4f4;
+}
+
+.custombar1 .ui-scrollpanel-bar {
+  background-color: #1976d2;
+  opacity: 1;
+  transition: background-color .3s;
+}
+
+.custombar1 .ui-scrollpanel-bar:hover {
+  background-color: #135ba1;
+}
