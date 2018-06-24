@@ -86,7 +86,10 @@
 .custom>.ui-scrollpanel-bar:hover {
   background-color: #135ba1;
 }
-
+.custom .ui-scrollpanel-content {
+  height: calc(100% + 18px);
+  width: calc(100% + 22px);
+}
 
 .main-bottom .table-title{
   padding: 5px 0 10px 5px;
