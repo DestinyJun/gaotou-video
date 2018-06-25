@@ -3,7 +3,7 @@
   <div class="header">
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 text-center" style="line-height: 6vh">
-        <div class="header-title pull-left" (click)="navShowClick()">
+        <div class="header-title pull-left">
           <div class="header-title-h4">
             <span>贵州高投高速交通大数据</span>
           </div>
@@ -26,7 +26,7 @@
     </div>
   </div>
   <!--左侧导航-->
-  <div #navFlag></div>
+  <app-nav></app-nav>
   <!--主内容-->
   <div class="main" [ngStyle]="{'margin-left': navShow?'215px':''}">
     <router-outlet></router-outlet>

@@ -23,6 +23,7 @@
   font-weight: bolder;
   position: relative;
 }
+/*地图部分的位置演示*/
 .main-top .tab-map .location{
   display: inline-block;
 }
@@ -31,24 +32,41 @@
   margin-left: 15px;
   color: white;
 }
+.main-top .tab-map .select:hover{
+  cursor: pointer;
+}
 .main-top .select-list-province{
   background: rgba(18,51,76,0.8);
-  padding-right: 40px;
+  padding-left: 0;
+  /*padding-right: 40px;*/
   color: #87FFFF;
   position: absolute;
   top: 32px;
   left: 154px;
-  z-index: 999;
+  z-index: 1;
 }
+
 .main-top .select-list-city{
   background: rgba(18,51,76,0.8);
-  padding-right: 40px;
+  padding-left: 0;
+  border-left: 1px solid rgba(135,255,255,0.6);
+  /*padding-right: 40px;*/
   color: #87FFFF;
   position: absolute;
   top: 56px;
-  left: 262px;
-  z-index: 999;
+  left: 276px;
+  z-index: 1;
 }
+.main-top .select-list-province>li,.main-top .select-list-city>li{
+  list-style: none;
+  padding: 0 40px;
+  text-align: center;
+}
+.main-top .select-list-province>li:hover,.main-top .select-list-city>li:hover{
+  cursor: pointer;
+  background: rgba(244,50,173,0.5);
+}
+
 .main-top .top-map{
   border:1px solid #3B425C;
   margin-bottom: 1vh;
@@ -182,6 +200,16 @@
 }
 
 /****************************弹窗部分****************************/
+.bg-box{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(149,161,154,0.6);
+  z-index: 999;
+}
+
 .alert-box{
   position: absolute;
   width: 100%;
@@ -201,7 +229,39 @@
 .alert-box-header div{
   padding-right: 10px;
 }
+.alert-box-header i:hover{
+  cursor: pointer;
+}
 
+.alert-3D-bar{
+  position: absolute;
+  width: 60vw;
+  height:60vh;
+  left: 50%;
+  margin-left: -30vw;
+  top: 50%;
+  margin-top: -30vh;
+  background: rgba(10,10,72,0.9);
+  z-index: 1;
+  /*overflow: auto;*/
+}
+.alert-3D-bar-header{
+  height: 5vh;
+  line-height: 5vh;
+  background: rgba(240,43,43,0.8);
+}
+.alert-3D-bar-header span{
+  margin-left: 10px;
+}
+.alert-3D-bar-header div{
+  padding-right: 10px;
+}
+.alert-3D-bar-header i:hover{
+  cursor: pointer;
+}
+.alert-3D-bar-chart{
+  height: 55vh;
+}
 /********************************分割线******************************
 
  */

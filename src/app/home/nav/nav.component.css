@@ -1,18 +1,28 @@
 /*************************主体侧边导航栏*************************/
 .nav{
   margin-top: 1vh;
-  position: absolute;
-  height: 92vh;
+  position: fixed;
+  right: 0;
+  top: 20%;
   border:1px solid #3B425C;
-  width: 200px;
+  width: 50px;
+  overflow: hidden;
   color: #87FFFF;
+  background: #026FEC;
+  z-index: 2;
+  font-size: 2rem;
+  transition: all 1s;
+}
+.nav>.list-group{
+  margin-bottom: 0;
 }
 .nav>.list-group>.list-group-item{
+  text-align: center;
+  padding: 10px 0;
   background-color: transparent;
   border: 1px solid transparent;
 }
 .nav>.list-group>.list-group-item>i{
-  margin-right: 15px;
 }
 .nav>.list-group>.list-group-item:hover{
   cursor: pointer;

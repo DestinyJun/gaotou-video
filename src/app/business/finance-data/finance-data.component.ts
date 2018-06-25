@@ -2,7 +2,7 @@ import {
   AfterContentInit, AfterViewInit,
   Component,
   ComponentFactoryResolver,
-  ComponentRef,
+  ComponentRef, HostListener,
   OnChanges,
   OnInit, SimpleChanges,
   ViewChild,
@@ -12,6 +12,7 @@ import {HttpClient} from '@angular/common/http';
 import {NgxEchartsService} from 'ngx-echarts';
 import {ChildDataMapComponent} from './child-data-map/child-data-map.component';
 import {EventsService} from '../../common/services/events.service';
+
 declare let echarts;
 
 @Component({
@@ -20,10 +21,13 @@ declare let echarts;
   styleUrls: ['./finance-data.component.css']
 })
 export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit, AfterViewInit {
-
   // 弹出框的标题及显影控制
-  public alertTitle: string;
-  public alertBoxShow = true;
+  public alertMapBoxShow = true;
+  public alertMapTitle: string;
+
+  public alertBarShow = false;
+  public alertBarTitle: string;
+
   // 图表加载状态状态:
   public echartsIntance: any;
   // 车月度所有服务区车辆流量柱状图统计
@@ -38,43 +42,46 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   public optionsIncome = {};
   //  高速服液态数据3d统计
   public options3d = {};
-  // 省市联动
+  // 弹窗横向对比数值柱状图
+  public optionsLateral = {};
+  // 省市联动数据及状态
+  public selectDate = '全国';
   public province: any;
   public city: any;
+  public citeDate: string;
+  public provinceShow = false;
+  public cityShow = false;
 
   // 动态创建组件
   @ViewChild('alertBox', {read: ViewContainerRef})
   alertBox: ViewContainerRef;
   comp1: ComponentRef<ChildDataMapComponent>;
 
+/*  // 监听组件点击事件
+  @HostListener('click') onComponentClick() {
+    if (this.provinceShow === true || this.cityShow === true) {
+      this.provinceShow = false;
+      this.cityShow = false;
+    }
+  }*/
   constructor(
     public http: HttpClient,
     private es: NgxEchartsService,
     private eventsService: EventsService,
     private resolver: ComponentFactoryResolver
-  ) {}
+  ) {
+  }
 
   ngOnChanges(changes: SimpleChanges): void {}
+
   ngOnInit() {
     this.updataEcharts();
-    this.http.get('/assets/data/province.json').subscribe(
-      (res) => {
-        this.province = res;
-      }
-    );
-    this.http.get('/assets/data/city.json').subscribe(
-      (res) => {
-        this.city = res[0].children;
-        console.log(this.city);
-      }
-    );
   }
 
   ngAfterContentInit(): void {}
 
   ngAfterViewInit(): void {
-
-  }
+    }
 
 
   // 中部服务区分布图
@@ -537,10 +544,10 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       },
       geo: {
         map: 'china',
-        left: '10',
-        right: '35%',
+        left: '5%',
+        right: '15%',
         center: [117.98561551896913, 31.205000490896193],
-        zoom: 1,
+        zoom: 0.8,
         label: {
           emphasis: {
             show: false
@@ -658,15 +665,15 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     myChart.on('click', function (params) {
       console.log(params);
       if (params.componentSubType === 'effectScatter' || params.componentSubType === 'bar') {
-        if (that.alertBoxShow) {
-          that.alertBoxShow = false;
+        if (that.alertMapBoxShow) {
+          that.alertMapBoxShow = false;
           that.comp1 = that.alertBox.createComponent(childComp1);
-          that.alertTitle = params.name;
+          that.alertMapTitle = params.name;
         } else {
           that.destoryChild();
-          that.alertBoxShow = false;
+          that.alertMapBoxShow = true;
           that.comp1 = that.alertBox.createComponent(childComp1);
-          that.alertTitle = params.name;
+          that.alertMapTitle = params.name;
         }
       }
     });
@@ -730,12 +737,13 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         }
       });
     }
+
     this.eventsService.eventBus.subscribe((value) => {
       myChart.resize();
     });
-     /* window.addEventListener('resize', function() {
-        myChart.resize();
-      });*/
+    /* window.addEventListener('resize', function() {
+       myChart.resize();
+     });*/
   }
 
   // 3D柱状图
@@ -1568,7 +1576,67 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   // 销毁已创建的组建
   public destoryChild(): void {
     this.comp1.destroy();
-    this.alertBoxShow = true;
+    this.alertMapBoxShow = true;
+  }
+
+  // 横向对比
+  public lateralCorrelation(): void {
+    this.alertBarShow = true;
+    this.optionsLateral = {
+      title: [
+        {
+          text: '当日服务区收入排名',
+          left: 'center',
+          textStyle: {
+            color: '#fff',
+            fontSize: 14
+          }
+        },
+      ],
+      tooltip : {
+        trigger: 'axis',
+        axisPointer : {
+          type : 'shadow'
+        }
+      },
+      grid: {
+        left: '5%',
+        right: '3%',
+        bottom: '10%'
+      },
+      xAxis: {
+        type: 'category',
+        data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月'],
+        splitLine: {show: false},
+        nameTextStyle: {
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      yAxis: {
+        type: 'value',
+        splitLine: {show: false},
+        name: '万元',
+        nameTextStyle: {
+          align: 'left',
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      series: [{
+        data: [120, 200, 150, 80, 70, 110, 130],
+        type: 'bar',
+        color: '#01D1DB',
+      }]
+    };
   }
 
   // 图表初始化后运行
@@ -1576,10 +1644,44 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     console.log(ec);
     this.echartsIntance = ec;
   }
-  //  3D柱状图的点击事件
-  public barClick(e): void  {
-    console.log(e);
-}
-  // 省市联动
 
+  //  3D柱状图的点击事件
+  public barClick(e): void {
+    this.lateralCorrelation();
+  }
+
+  // 关闭3D柱状图弹窗
+  public closeBarShow() {
+    this.alertBarShow = false;
+  }
+
+  // 省市联动
+  public provinceClick() {
+    this.provinceShow = true;
+    this.http.get('/assets/data/province.json').subscribe(
+      (res) => {
+        this.province = res;
+      }
+    );
+  }
+  public provinceMouseEnter() {
+    this.cityShow = true;
+    this.http.get('/assets/data/city.json').subscribe(
+      (res) => {
+        this.city = res[0].children;
+        this.citeDate = res[0].province;
+      }
+    );
+  }
+  public provinceDataClick(province) {
+    this.selectDate = province;
+    this.provinceShow = false;
+    this.cityShow = false;
+  }
+  public cityDataClick(city) {
+    this.selectDate =  this.citeDate + city;
+    this.provinceShow = false;
+    this.cityShow = false;
+  }
+  public provinceMouseLeave() {}
 }
