@@ -51,6 +51,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   public citeDate: string;
   public provinceShow = false;
   public cityShow = false;
+  public flag: string;
 
   // 动态创建组件
   @ViewChild('alertBox', {read: ViewContainerRef})
@@ -76,6 +77,13 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
 
   ngOnInit() {
     this.updataEcharts();
+    window.document.addEventListener('click', (e) => {
+      this.flag = e.srcElement.parentElement.className;
+      if ((this.provinceShow || this.cityShow) && !(this.flag === 'select')) {
+        this.provinceShow = false;
+        this.cityShow = false;
+      }
+    });
   }
 
   ngAfterContentInit(): void {}
@@ -663,7 +671,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     myChart.setOption(option);
     myChart.on('brushselected', renderBrushed);
     myChart.on('click', function (params) {
-      console.log(params);
       if (params.componentSubType === 'effectScatter' || params.componentSubType === 'bar') {
         if (that.alertMapBoxShow) {
           that.alertMapBoxShow = false;
@@ -1641,7 +1648,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
 
   // 图表初始化后运行
   public onChartInit(ec) {
-    console.log(ec);
     this.echartsIntance = ec;
   }
 
@@ -1658,7 +1664,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   // 省市联动
   public provinceClick() {
     this.provinceShow = true;
-    this.http.get('/assets/data/province.json').subscribe(
+    this.http.get('assets/data/province.json').subscribe(
       (res) => {
         this.province = res;
       }
@@ -1666,7 +1672,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   }
   public provinceMouseEnter() {
     this.cityShow = true;
-    this.http.get('/assets/data/city.json').subscribe(
+    this.http.get('assets/data/city.json').subscribe(
       (res) => {
         this.city = res[0].children;
         this.citeDate = res[0].province;
