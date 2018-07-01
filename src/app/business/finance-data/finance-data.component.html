@@ -40,7 +40,7 @@
     <div class="row">
       <!--3d柱状图-->
       <div class="col-lg-4 col-md-4 col-sm-4 main-left " >
-        <div class="accumulation3d" echarts [options]="options3d" (chartInit)="onChartInit($event)" (chartClick)="barClick($event)"></div>
+        <div class="accumulation3d" echarts [options]="options3d" (chartClick)="barClick()"></div>
       </div>
       <!--离散地图分布图-->
       <div class="col-lg-8 col-md-8 col-sm-8">
@@ -60,14 +60,14 @@
                   (mouseleave)="provinceMouseLeave()"
                   (click)="provinceDataClick(item)"
               >
-                {{item.province}}
+                {{item?.province}}
               </li>
             </ul>
             <ul class="select-list-city" *ngIf="cityShow">
               <li *ngFor="let item of city"
                   (click)="cityDataClick(item)"
               >
-                {{item.city}}
+                {{item?.city}}
               </li>
             </ul>
           </div>

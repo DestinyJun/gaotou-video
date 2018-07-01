@@ -23,7 +23,6 @@ export class ChildDataListComponent implements OnInit {
       this.tableThead = ['排名', '服务区名称', '数值', '服务区行车方向', '数据区域'];
       this.http.get('assets/data/park.json').subscribe(
         (res) => {
-          console.log(res);
           this.datas = res;
         }
       );
@@ -33,7 +32,6 @@ export class ChildDataListComponent implements OnInit {
       this.tableThead = ['排名', '服务区名称', '数值', '服务区行车方向', '数据区域'];
       this.http.get('assets/data/income.json').subscribe(
         (res) => {
-          console.log(res);
           this.datas = res;
         }
       );
@@ -43,7 +41,6 @@ export class ChildDataListComponent implements OnInit {
       this.tableThead = ['服务区名称', '事件发生时间', '事件类型', '服务区行车方向', '事件区域'];
       this.http.get('assets/data/event.json').subscribe(
         (res) => {
-          console.log(res);
           this.datas = res;
         }
       );
