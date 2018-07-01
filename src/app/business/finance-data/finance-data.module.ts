@@ -17,6 +17,6 @@ import { ChildDataListComponent } from './child-data-list/child-data-list.compon
     ScrollPanelModule
   ],
   declarations: [FinanceDataComponent, ChildDataMapComponent, ChildDataListComponent],
-  entryComponents: [ChildDataMapComponent]
+  entryComponents: [ChildDataMapComponent, ChildDataListComponent]
 })
 export class FinanceDataModule { }

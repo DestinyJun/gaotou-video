@@ -9,7 +9,7 @@
   overflow: hidden;
   color: #87FFFF;
   background: #026FEC;
-  z-index: 2;
+  z-index: 9999;
   font-size: 2rem;
   transition: all 1s;
 }
