@@ -34,25 +34,32 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
 
   // 服务区地图分布
   public mapName = 'china';
-  public mapCenter = [117.98561551896913, 31.205000490896193];
+  public mapCenter = [101.74, 36.56];
   public mapZoom = 0.8;
-  public mapLeft = '5%';
-  public mapRight = '15%';
+  public mapLeft = '';
+  public mapRight = '';
 
   // 图表加载状态状态:
   public echartsIntance: any;
+  //  全国高速服务区业态数据3d统计
+  public options3d = {};
+  public data3d: any;
+  // 全国高速服务区分布图
+  public optionsMap = {};
+  //  业态经营数据前十排名
+  public crosswiseBar = {};
+  // 全国当日车型日分布分析
+  public optionsCarModel = {};
+  // 全国当日收入类型占比分析
+  public optionsIncomeModel = {};
   // 车月度所有服务区车辆流量柱状图统计
   public optionsCar = {};
   // 当日服务区停车量排名
   public optionsRetention = {};
-  // 车型日分布分析
-  public optionsCarModel = {};
   // 月度收入分析
   public optionsMonth = {};
   // 服务区当日收入排名
   public optionsIncome = {};
-  //  高速服液态数据3d统计
-  public options3d = {};
   // 弹窗横向对比数值柱状图
   public optionsLateral = {};
   // 省市联动数据及状态
@@ -110,127 +117,151 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
 
   /**********************************数据*****************************/
 
-  // 3D柱状图
+  // 全国高速服务区业态数据3d统计
   public packOption3(): any {
-    const hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
-      '7a', '8a', '9a', '10a', '11a',
-      '12p', '1p', '2p', '3p', '4p', '5p',
-      '6p', '7p', '8p', '9p', '10p', '11p'];
-    const days = ['Saturday', 'Friday', 'Thursday', 'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
-    const data = [[0, 0, 5], [0, 1, 1], [0, 2, 0], [0, 3, 0], [0, 4, 0], [0, 5, 0], [0, 6, 0], [0, 7, 0], [0, 8, 0], [0, 9, 0], [0, 10, 0], [0, 11, 2], [0, 12, 4], [0, 13, 1], [0, 14, 1], [0, 15, 3], [0, 16, 4], [0, 17, 6], [0, 18, 4], [0, 19, 4], [0, 20, 3], [0, 21, 3], [0, 22, 2], [0, 23, 5], [1, 0, 7], [1, 1, 0], [1, 2, 0], [1, 3, 0], [1, 4, 0], [1, 5, 0], [1, 6, 0], [1, 7, 0], [1, 8, 0], [1, 9, 0], [1, 10, 5], [1, 11, 2], [1, 12, 2], [1, 13, 6], [1, 14, 9], [1, 15, 11], [1, 16, 6], [1, 17, 7], [1, 18, 8], [1, 19, 12], [1, 20, 5], [1, 21, 5], [1, 22, 7], [1, 23, 2], [2, 0, 1], [2, 1, 1], [2, 2, 0], [2, 3, 0], [2, 4, 0], [2, 5, 0], [2, 6, 0], [2, 7, 0], [2, 8, 0], [2, 9, 0], [2, 10, 3], [2, 11, 2], [2, 12, 1], [2, 13, 9], [2, 14, 8], [2, 15, 10], [2, 16, 6], [2, 17, 5], [2, 18, 5], [2, 19, 5], [2, 20, 7], [2, 21, 4], [2, 22, 2], [2, 23, 4], [3, 0, 7], [3, 1, 3], [3, 2, 0], [3, 3, 0], [3, 4, 0], [3, 5, 0], [3, 6, 0], [3, 7, 0], [3, 8, 1], [3, 9, 0], [3, 10, 5], [3, 11, 4], [3, 12, 7], [3, 13, 14], [3, 14, 13], [3, 15, 12], [3, 16, 9], [3, 17, 5], [3, 18, 5], [3, 19, 10], [3, 20, 6], [3, 21, 4], [3, 22, 4], [3, 23, 1], [4, 0, 1], [4, 1, 3], [4, 2, 0], [4, 3, 0], [4, 4, 0], [4, 5, 1], [4, 6, 0], [4, 7, 0], [4, 8, 0], [4, 9, 2], [4, 10, 4], [4, 11, 4], [4, 12, 2], [4, 13, 4], [4, 14, 4], [4, 15, 14], [4, 16, 12], [4, 17, 1], [4, 18, 8], [4, 19, 5], [4, 20, 3], [4, 21, 7], [4, 22, 3], [4, 23, 0], [5, 0, 2], [5, 1, 1], [5, 2, 0], [5, 3, 3], [5, 4, 0], [5, 5, 0], [5, 6, 0], [5, 7, 0], [5, 8, 2], [5, 9, 0], [5, 10, 4], [5, 11, 1], [5, 12, 5], [5, 13, 10], [5, 14, 5], [5, 15, 7], [5, 16, 11], [5, 17, 6], [5, 18, 0], [5, 19, 5], [5, 20, 3], [5, 21, 4], [5, 22, 2], [5, 23, 0], [6, 0, 1], [6, 1, 0], [6, 2, 0], [6, 3, 0], [6, 4, 0], [6, 5, 0], [6, 6, 0], [6, 7, 0], [6, 8, 0], [6, 9, 0], [6, 10, 1], [6, 11, 0], [6, 12, 2], [6, 13, 1], [6, 14, 3], [6, 15, 4], [6, 16, 0], [6, 17, 0], [6, 18, 0], [6, 19, 0], [6, 20, 1], [6, 21, 2], [6, 22, 2], [6, 23, 6]];
-    return  {
-      title: [
-        {
-          text: '业态数据分析统计',
-          left: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: 14
-          }
-        },
-      ],
-      tooltip: {},
-      visualMap: {
-        max: 20,
-        show: false,
-        inRange: {
-          color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+    const hours = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+    const days = ['经营收入', '驻车量', '用电量',  '用水量', '其他'];
+    const colorData = ['#313695', '#E30B40', '#3291DD', '#8B489E', '#FEEB23', '#3BF49F', '#01D1DB', '#fdae61', '#f46d43', '#d73027', '#F432AD'];
+    this.http.get('assets/data/option3d.json').subscribe(
+      (res) => {
+        let dataArray = [];
+        for (let i = 0; i < 40; i++) {
+          dataArray.push([Math.round(Math.random() * 11), Math.round(Math.random() * 4), Math.round(Math.random() * 100)]);
         }
-      },
-      xAxis3D: {
-        type: 'category',
-        data: hours,
-        splitLine: {show: false},
-        nameTextStyle: {
-          color: 'white'
-        },
-        axisLine: {
-          lineStyle: {
-            color: 'white'
-          }
-        },
-      },
-      yAxis3D: {
-        type: 'category',
-        data: days,
-        splitLine: {show: false},
-        nameTextStyle: {
-          color: 'white'
-        },
-        axisLine: {
-          lineStyle: {
-            color: 'white'
-          }
-        },
-      },
-      zAxis3D: {
-        type: 'value',
-        splitLine: {show: false},
-        nameTextStyle: {
-          color: 'white'
-        },
-        axisLine: {
-          lineStyle: {
-            color: 'white'
-          }
-        },
-      },
-      grid3D: {
-        boxWidth: 200,
-        boxDepth: 80,
-        light: {
-          main: {
-            intensity: 1.2
-          },
-          ambient: {
-            intensity: 0.3
-          }
-        },
-        viewControl: {
-          distance: 250,
-        }
-      },
-      series: [{
-        type: 'bar3D',
-        data: data.map(function (item) {
-          return {
-            value: [item[1], item[0], item[2]]
-          };
-        }),
-        shading: 'color',
-
-        label: {
-          show: false,
-          textStyle: {
-            fontSize: 16,
-            borderWidth: 1
-          }
-        },
-
-        itemStyle: {
-          opacity: 0.4
-        },
-
-        emphasis: {
-          label: {
-            textStyle: {
-              fontSize: 20,
-              color: '#900'
+        this.data3d = dataArray;
+        this.options3d = {
+          title: [
+            {
+              text: '全国高速服务区业态数据3d统计',
+              left: 'center',
+              textStyle: {
+                color: '#fff',
+                fontSize: 14
+              }
+            },
+          ],
+          tooltip: {
+            show: true,
+            trigger: 'item',
+            axisPointer: {
+              type: 'cross',
+              axis: 'auto',
+            },
+            formatter: function(params) {
+              let res = `<p>${hours[params.value[0]]}:</p>`;
+              res += `<p style="margin-left: 3px">${days[params.value[1]]}:${params.value[2]}%</p>`;
+              return res;
             }
           },
-          itemStyle: {
-            color: '#900'
-          }
-        }
-      }]
-    };
+          visualMap: {
+            max: 100,
+            show: false,
+            inRange: {
+              color: colorData
+            }
+          },
+          xAxis3D: {
+            type: 'category',
+            name: '月份',
+            data: hours,
+            splitLine: {show: false},
+            nameTextStyle: {
+              color: 'white'
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+          },
+          yAxis3D: {
+            type: 'category',
+            data: days,
+            name: '类型',
+            splitLine: {show: false},
+            nameTextStyle: {
+              color: 'white'
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+          },
+          zAxis3D: {
+            type: 'value',
+            name: '%',
+            splitLine: {show: false},
+            nameTextStyle: {
+              top: '3%',
+              left: '5%',
+              show: false,
+              color: 'white'
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+          },
+          grid3D: {
+            boxWidth: 200,
+            boxDepth: 80,
+            light: {
+              main: {
+                intensity: 1.2
+              },
+              ambient: {
+                intensity: 0.3
+              }
+            },
+            viewControl: {
+              distance: 350,
+            }
+          },
+          series: [
+            {
+              type: 'bar3D',
+              barWidth : 30, // 柱图宽度
+              data: this.data3d.map(function (item) {
+                let dada1 = [item[0], item[1], item[2]];
+                return {
+                  value: dada1
+                };
+              }),
+              shading: 'color',
+              label: {
+                show: false,
+                textStyle: {
+                  fontSize: 16,
+                  borderWidth: 1
+                }
+              },
+              itemStyle: {
+                opacity: 0.4
+              },
+              emphasis: {
+                label: {
+                  textStyle: {
+                    fontSize: 20,
+                    color: '#900'
+                  }
+                },
+                itemStyle: {
+                  color: '#900'
+                }
+              }
+            }
+          ]
+        };
+      }
+    );
   }
 
   // 中部服务区分布图
   public china(): any {
-    const childComp1 = this.resolver.resolveComponentFactory(ChildDataMapComponent);
-    let that = this;
-    let myChart = echarts.init(document.getElementById('center_map'));
+    // let that = this;
+    // let myChart = echarts.init(document.getElementById('center_map'));
     let geoCoordMap = {
       '海门': [121.15, 31.89],
       '鄂尔多斯': [109.781327, 39.608266],
@@ -670,26 +701,12 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
           }
         }
       },
-      brush: {
-        outOfBrush: {
-          color: '#abc'
-        },
-        brushStyle: {
-          borderWidth: 2,
-          color: 'rgba(0,0,0,0.2)',
-          borderColor: 'rgba(0,0,0,0.5)',
-        },
-        seriesIndex: [0, 1],
-        throttleType: 'debounce',
-        throttleDelay: 300,
-        geoIndex: 0
-      },
       geo: {
         map: this.mapName,
-        left: this.mapLeft,
-        right: this.mapRight,
-        center: this.mapCenter,
-        zoom: this.mapZoom,
+        left: 'center',
+        // right: 'center',
+        center: [101.74, 36.56],
+        zoom: 1.3,
         label: {
           emphasis: {
             show: false
@@ -709,7 +726,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       tooltip: {
         trigger: 'item'
       },
-      grid: {
+      /*grid: {
         right: 40,
         top: 100,
         bottom: 40,
@@ -733,10 +750,10 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         axisTick: {show: false, lineStyle: {color: '#ddd'}},
         axisLabel: {interval: 0, textStyle: {color: '#ddd'}},
         data: []
-      },
+      },*/
       series: [
         {
-          name: 'pm2.5',
+          name: '车辆驻车量',
           type: 'scatter',
           coordinateSystem: 'geo',
           data: convertedData[0],
@@ -759,132 +776,81 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
             }
           }
         },
-        {
-          name: 'Top 5',
-          type: 'effectScatter',
-          coordinateSystem: 'geo',
-          data: convertedData[1],
-          symbolSize: function (val) {
-            return Math.max(val[2] / 10, 8);
-          },
-          showEffectOn: 'emphasis',
-          rippleEffect: {
-            brushType: 'stroke'
-          },
-          hoverAnimation: true,
-          label: {
-            normal: {
-              formatter: '{b}',
-              position: 'right',
-              show: true
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: '#f4e925',
-              shadowBlur: 10,
-              shadowColor: '#333'
-            }
-          },
-          zlevel: 1
-        },
-        {
-          id: 'bar',
-          zlevel: 2,
-          type: 'bar',
-          symbol: 'none',
-          itemStyle: {
-            normal: {
-              color: '#ddb926'
-            }
-          },
-          data: []
-        }
       ]
     };
-    myChart.setOption(option);
-    myChart.on('brushselected', renderBrushed);
-    myChart.on('click', function (params) {
-      if (params.componentSubType === 'effectScatter' || params.componentSubType === 'bar') {
-        if (that.alertMapBoxShow) {
-          that.alertMapBoxShow = false;
-          that.comp1 = that.alertBox.createComponent(childComp1);
-          that.alertMapTitle = params.name;
-        } else {
-          that.destoryChild1();
-          that.alertMapBoxShow = true;
-         /* that.comp1 = that.alertBox.createComponent(childComp1);
-          that.alertMapTitle = params.name;*/
-        }
-      }
-    });
-    setTimeout(function () {
-      myChart.dispatchAction({
-        type: 'brush',
-        areas: [
-          {
-            geoIndex: 0,
-            brushType: 'polygon',
-            coordRange: [[119.72, 34.85], [119.68, 34.85], [119.5, 34.84], [119.19, 34.77], [118.76, 34.63], [118.6, 34.6], [118.46, 34.6], [118.33, 34.57], [118.05, 34.56], [117.6, 34.56], [117.41, 34.56], [117.25, 34.56], [117.11, 34.56], [117.02, 34.56], [117, 34.56], [116.94, 34.56], [116.94, 34.55], [116.9, 34.5], [116.88, 34.44], [116.88, 34.37], [116.88, 34.33], [116.88, 34.24], [116.92, 34.15], [116.98, 34.09], [117.05, 34.06], [117.19, 33.96], [117.29, 33.9], [117.43, 33.8], [117.49, 33.75], [117.54, 33.68], [117.6, 33.65], [117.62, 33.61], [117.64, 33.59], [117.68, 33.58], [117.7, 33.52], [117.74, 33.5], [117.74, 33.46], [117.8, 33.44], [117.82, 33.41], [117.86, 33.37], [117.9, 33.3], [117.9, 33.28], [117.9, 33.27], [118.09, 32.97], [118.21, 32.7], [118.29, 32.56], [118.31, 32.5], [118.35, 32.46], [118.35, 32.42], [118.35, 32.36], [118.35, 32.34], [118.37, 32.24], [118.37, 32.14], [118.37, 32.09], [118.44, 32.05], [118.46, 32.01], [118.54, 31.98], [118.6, 31.93], [118.68, 31.86], [118.72, 31.8], [118.74, 31.78], [118.76, 31.74], [118.78, 31.7], [118.82, 31.64], [118.82, 31.62], [118.86, 31.58], [118.86, 31.55], [118.88, 31.54], [118.88, 31.52], [118.9, 31.51], [118.91, 31.48], [118.93, 31.43], [118.95, 31.4], [118.97, 31.39], [118.97, 31.37], [118.97, 31.34], [118.97, 31.27], [118.97, 31.21], [118.97, 31.17], [118.97, 31.12], [118.97, 31.02], [118.97, 30.93], [118.97, 30.87], [118.97, 30.85], [118.95, 30.8], [118.95, 30.77], [118.95, 30.76], [118.93, 30.7], [118.91, 30.63], [118.91, 30.61], [118.91, 30.6], [118.9, 30.6], [118.88, 30.54], [118.88, 30.51], [118.86, 30.51], [118.86, 30.46], [118.72, 30.18], [118.68, 30.1], [118.66, 30.07], [118.62, 29.91], [118.56, 29.73], [118.52, 29.63], [118.48, 29.51], [118.44, 29.42], [118.44, 29.32], [118.43, 29.19], [118.43, 29.14], [118.43, 29.08], [118.44, 29.05], [118.46, 29.05], [118.6, 28.95], [118.64, 28.94], [119.07, 28.51], [119.25, 28.41], [119.36, 28.28], [119.46, 28.19], [119.54, 28.13], [119.66, 28.03], [119.78, 28], [119.87, 27.94], [120.03, 27.86], [120.17, 27.79], [120.23, 27.76], [120.3, 27.72], [120.42, 27.66], [120.52, 27.64], [120.58, 27.63], [120.64, 27.63], [120.77, 27.63], [120.89, 27.61], [120.97, 27.6], [121.07, 27.59], [121.15, 27.59], [121.28, 27.59], [121.38, 27.61], [121.56, 27.73], [121.73, 27.89], [122.03, 28.2], [122.3, 28.5], [122.46, 28.72], [122.5, 28.77], [122.54, 28.82], [122.56, 28.82], [122.58, 28.85], [122.6, 28.86], [122.61, 28.91], [122.71, 29.02], [122.73, 29.08], [122.93, 29.44], [122.99, 29.54], [123.03, 29.66], [123.05, 29.73], [123.16, 29.92], [123.24, 30.02], [123.28, 30.13], [123.32, 30.29], [123.36, 30.36], [123.36, 30.55], [123.36, 30.74], [123.36, 31.05], [123.36, 31.14], [123.36, 31.26], [123.38, 31.42], [123.46, 31.74], [123.48, 31.83], [123.48, 31.95], [123.46, 32.09], [123.34, 32.25], [123.22, 32.39], [123.12, 32.46], [123.07, 32.48], [123.05, 32.49], [122.97, 32.53], [122.91, 32.59], [122.83, 32.81], [122.77, 32.87], [122.71, 32.9], [122.56, 32.97], [122.38, 33.05], [122.3, 33.12], [122.26, 33.15], [122.22, 33.21], [122.22, 33.3], [122.22, 33.39], [122.18, 33.44], [122.07, 33.56], [121.99, 33.69], [121.89, 33.78], [121.69, 34.02], [121.66, 34.05], [121.64, 34.08]]
-          }
-        ]
-      });
-    }, 0);
-
-    function renderBrushed(params) {
-      var mainSeries = params.batch[0].selected[0];
-
-      var selectedItems = [];
-      var categoryData = [];
-      var barData = [];
-      var maxBar = 30;
-      var sum = 0;
-      var count = 0;
-
-      for (var i = 0; i < mainSeries.dataIndex.length; i++) {
-        var rawIndex = mainSeries.dataIndex[i];
-        var dataItem = convertedData[0][rawIndex];
-        var pmValue = dataItem.value[2];
-
-        sum += pmValue;
-        count++;
-
-        selectedItems.push(dataItem);
-      }
-
-      selectedItems.sort(function (a, b) {
-        return a.value[2] - b.value[2];
-      });
-
-      for (var i = 0; i < Math.min(selectedItems.length, maxBar); i++) {
-        categoryData.push(selectedItems[i].name);
-        barData.push(selectedItems[i].value[2]);
-      }
-
-      this.setOption({
-        yAxis: {
-          data: categoryData
-        },
-        xAxis: {
-          axisLabel: {show: !!count}
-        },
-        title: {
-          id: 'statistic',
-          text: count ? '平均: ' + (sum / count).toFixed(4) : ''
-        },
-        series: {
-          id: 'bar',
-          data: barData
-        }
-      });
-    }
-
-    this.eventsService.eventBus.subscribe((value) => {
-      myChart.resize();
-    });
+    return option;
+    // myChart.setOption(option);
+    // this.eventsService.eventBus.subscribe((value) => {
+    //   myChart.resize();
+    // });
     /* window.addEventListener('resize', function() {
        myChart.resize();
      });*/
+  }
+
+  // 全国业态经营数据前十排名
+  public backCrosswiseBar(): any {
+    return {
+      title: [
+        {
+          text: '全国业态经营数据前十排名',
+          left: 'center',
+          textStyle: {
+            color: '#fff',
+            fontSize: 14
+          }
+        },
+      ],
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        top: '15%',
+        bottom: '5%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        splitLine: {show: false},
+        nameTextStyle: {
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      yAxis: {
+        type: 'category',
+        name: '万元',
+        data: ['第十名', '第九名', '第八名', '第七名', '第六名', '第五名', '第四名', '第三名', '第二名', '第一名'],
+        splitLine: {show: false},
+        nameTextStyle: {
+          align: 'left',
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      series: [
+        {
+          name: '2018年',
+          type: 'bar',
+          data: [120, 140, 160, 180, 200, 220, 240, 260, 280, 300],
+          color: '#FBB034',
+        }
+      ]
+    };
   }
 
   // 当日服务区驻车量排名
@@ -1392,90 +1358,27 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   // 图表更新
   public updataEcharts(): void {
 
-    //  高速服务区分布散点统计
-    this.china();
-
     // 3D柱状图
-    this.options3d = this.packOption3();
+    this.packOption3();
 
-    // 服务区当日停车量排名
-    this.optionsRetention = this.packOption();
+    //  高速服务区分布散点统计
+    this.optionsMap = this.china();
 
-    // 服务区当日收入排名
-    this.optionsIncome = this.packOption1();
+    // 业态经营数据前十排名
+    this.crosswiseBar = this.backCrosswiseBar();
 
-    // 月度所有服务区车辆流量柱状图统计
-    this.optionsCar = {
-      title: {
-        text: '月度车流量实时监控（辆）',
-        left: 'center',
-        textStyle: {
-          color: 'white',
-          fontWeight: 500,
-          fontSize: 14
-        }
-      },
-      tooltip: {
-        trigger: 'axis'
-      },
-      dataZoom: [
-        {
-          type: 'inside'
-        }
-      ],
-      grid: {
-        left: '5%',
-        top: '15%',
-        bottom: '3%',
-        right: '5%',
-        containLabel: true
-      },
-      xAxis: {
-        type: 'category',
-        axisLine: {
-          lineStyle: {
-            color: 'white'
-          }
-        },
-        data: ['1月', '2月', '3月', '4月', '5月', '6月']
-      },
-      yAxis: {
-        name: '车辆数量',
-        type: 'value',
-        splitLine: {show: false},
-        nameTextStyle: {
-          color: 'white'
-        },
-        axisLine: {
-          lineStyle: {
-            color: 'white'
-          }
-        },
-      },
-      series: [
-        {
-          type: 'bar',
-          name: '车辆数量',
-          color: ['#d82c26'],
-          smooth: true,
-          data: [120, 200, 150, 80, 70, 110],
-        }
-      ]
-    };
-
-    // 车型日分布分析
+    // 全国当日车型日分布类型占比分析
     this.optionsCarModel = {
-      title: {
-        text: '当日车型分布分析',
-        top: 5,
-        right: 'center',
-        textStyle: {
-          color: 'white',
-          fontSize: 12,
-          fontWeight: 'normal',
-          align: 'center'
-        }
-      },
+      title: [
+        {
+          text: '全国当日车型日分布类型占比分析',
+          left: 'center',
+          textStyle: {
+            color: '#fff',
+            fontSize: 14
+          }
+        },
+      ],
       tooltip: {
         trigger: 'item',
         formatter: '{b} : {c} ({d}%)'
@@ -1538,6 +1441,149 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
               shadowColor: 'rgba(0, 0, 0, 0.5)'
             }
           }
+        }
+      ]
+    };
+
+    // 全国当日收入类型占比分析
+    this.optionsIncomeModel = {
+      title: [
+        {
+          text: '全国当日收入类型占比分析',
+          left: 'center',
+          textStyle: {
+            color: '#fff',
+            fontSize: 14
+          }
+        },
+      ],
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b} : {c} ({d}%)'
+      },
+
+      series: [
+        {
+          type: 'pie',
+          radius: '55%',
+          center: ['50%', '50%'],
+          label: {
+            show: true,
+            position: 'outside',
+            formatter: '{b}: {d}%',
+            color: 'white',
+            align: 'center',
+            emphasis: {
+              show: true,
+              textStyle: {
+                fontSize: 12
+              }
+            }
+          },
+          data: [
+            {
+              value: 10,
+              name: '轿车',
+              itemStyle: {color: '#E64018'}
+            },
+            {
+              value: 15,
+              name: '货车',
+              itemStyle: {color: '#FBB034'}
+            },
+            {
+              value: 10,
+              name: '商务车',
+              itemStyle: {color: '#FEEB23'}
+            },
+            {
+              value: 12,
+              name: '大客车',
+              itemStyle: {color: '#E30B40'}
+            },
+            {
+              value: 6,
+              name: '小客车',
+              itemStyle: {color: '#3291DD'}
+            },
+            {
+              value: 4,
+              name: '其他',
+              itemStyle: {color: '#8B489E'}
+            },
+          ],
+          itemStyle: {
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
+
+    // 服务区当日停车量排名
+    this.optionsRetention = this.packOption();
+
+    // 服务区当日收入排名
+    this.optionsIncome = this.packOption1();
+
+    // 月度所有服务区车辆流量柱状图统计
+    this.optionsCar = {
+      title: {
+        text: '月度车流量实时监控（辆）',
+        left: 'center',
+        textStyle: {
+          color: 'white',
+          fontWeight: 500,
+          fontSize: 14
+        }
+      },
+      tooltip: {
+        trigger: 'axis'
+      },
+      dataZoom: [
+        {
+          type: 'inside'
+        }
+      ],
+      grid: {
+        left: '5%',
+        top: '15%',
+        bottom: '3%',
+        right: '5%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+        data: ['1月', '2月', '3月', '4月', '5月', '6月']
+      },
+      yAxis: {
+        name: '车辆数量',
+        type: 'value',
+        splitLine: {show: false},
+        nameTextStyle: {
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      series: [
+        {
+          type: 'bar',
+          name: '车辆数量',
+          color: ['#d82c26'],
+          smooth: true,
+          data: [120, 200, 150, 80, 70, 110],
         }
       ]
     };
@@ -1641,8 +1687,8 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       },
       yAxis: {
         type: 'value',
-        splitLine: {show: false},
         name: '万元',
+        splitLine: {show: false},
         nameTextStyle: {
           align: 'left',
           color: 'white'
@@ -1663,6 +1709,24 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
 
   public closeBarShow() {
     this.alertBarShow = false;
+  }
+
+  // 全国服务区分布点击事件
+  public mapClick(params): void {
+    const childComp1 = this.resolver.resolveComponentFactory(ChildDataMapComponent);
+    console.log(params);
+    if (params.componentSubType === 'scatter') {
+      if (this.alertMapBoxShow) {
+        this.alertMapBoxShow = false;
+        this.comp1 = this.alertBox.createComponent(childComp1);
+        this.alertMapTitle = params.name;
+      } else {
+        this.destoryChild1();
+        this.alertMapBoxShow = true;
+        /* that.comp1 = that.alertBox.createComponent(childComp1);
+         that.alertMapTitle = params.name;*/
+      }
+    }
   }
 
   // 驻车量排名相关操作

@@ -39,55 +39,62 @@
   <div class="main-top">
     <div class="row">
       <!--3d柱状图-->
-      <div class="col-lg-4 col-md-4 col-sm-4 main-left " >
+      <div class="col-lg-3 col-md-3">
         <div class="accumulation3d" echarts [options]="options3d" (chartClick)="barClick()"></div>
       </div>
       <!--离散地图分布图-->
-      <div class="col-lg-8 col-md-8 col-sm-8">
-        <div class="tab-map">
-          <div class="location">
-            <span>当前的位置是：</span>
-            <span>{{selectDate}}</span>
+      <div class="col-lg-6 col-md-6">
+        <div class="map">
+          <div class="tab-map">
+            <div class="location">
+              <span>当前的位置是：</span>
+              <span>{{selectDate}}</span>
+            </div>
+            <div class="select" (click)="provinceClick()">
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+              <span>选择地图...</span>
+            </div>
+            <div class="province-city">
+              <ul class="select-list-province" *ngIf="provinceShow">
+                <li *ngFor="let item of province"
+                    (mouseenter)="provinceMouseEnter()"
+                    (mouseleave)="provinceMouseLeave()"
+                    (click)="provinceDataClick(item)"
+                >
+                  {{item?.province}}
+                </li>
+              </ul>
+              <ul class="select-list-city" *ngIf="cityShow">
+                <li *ngFor="let item of city"
+                    (click)="cityDataClick(item)"
+                >
+                  {{item?.city}}
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="select" (click)="provinceClick()">
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
-            <span>选择地图...</span>
-          </div>
-          <div class="province-city">
-            <ul class="select-list-province" *ngIf="provinceShow">
-              <li *ngFor="let item of province"
-                  (mouseenter)="provinceMouseEnter()"
-                  (mouseleave)="provinceMouseLeave()"
-                  (click)="provinceDataClick(item)"
-              >
-                {{item?.province}}
-              </li>
-            </ul>
-            <ul class="select-list-city" *ngIf="cityShow">
-              <li *ngFor="let item of city"
-                  (click)="cityDataClick(item)"
-              >
-                {{item?.city}}
-              </li>
-            </ul>
-          </div>
+          <div class="top-map" id="center_map" echarts [options]="optionsMap" (chartClick)="mapClick($event)"></div>
         </div>
-        <div class="top-map" id="center_map"></div>
+      </div>
+      <!--横向柱状图-->
+      <div class="col-lg-3 col-md-3">
+        <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartClick)="barClick()"></div>
       </div>
     </div>
+    <!--横向柱状图统计-->
   </div>
   <!--下部分-->
   <div class="main-bottom">
     <div class="row">
-      <!--服务区当日驻车量排名-->
-      <div class="col-lg-3 col-md-3 col-sm-3 " >
-        <div class="accumulation" echarts [options]="optionsRetention" (chartClick)="parkClick($event)"></div>
+      <!--服务区当日车型分析-->
+      <div class="col-lg-3 col-md-3" >
+        <div class="accumulation" echarts [options]="optionsCarModel" (chartClick)="parkClick($event)"></div>
       </div>
       <!--事件监控列表-->
-      <div class="col-lg-3 col-md-3 col-sm-3" >
+      <div class="col-lg-3 col-md-3" >
         <p-scrollPanel  [style]="{
          paddingTop: '1px',
-         height: '36vh',
+         height: '32vh',
          border:'1px solid #3B425C',
          marginLeft: '-8px',
          marginRight: '-8px',
@@ -243,7 +250,7 @@
         </div>-->
       </div>
       <!--实时车流收入数据监控-->
-      <div class="col-lg-3 col-md-3 col-sm-3" >
+      <div class="col-lg-3 col-md-3" >
         <div class="number">
           <div class="vehicle">
             <span>2018-05-24 09:33:35 今日车辆流动数量</span>
@@ -285,9 +292,9 @@
           </div>
         </div>
       </div>
-      <!--服务区当日收入排名-->
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <div class="today-income" echarts [options]="optionsIncome" (chartClick)="incomeClick($event)"></div>
+      <!--服务区当日收入类型比重占比-->
+      <div class="col-lg-3 col-md-3">
+        <div class="today-income" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
       </div>
     </div>
   </div>
