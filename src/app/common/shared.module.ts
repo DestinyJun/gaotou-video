@@ -5,6 +5,9 @@ import {NgxEchartsModule} from 'ngx-echarts';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TreeModule} from 'ng2-tree';
 import {EventsService} from './services/events.service';
+import {Data3dService} from './services/data3d.service';
+import {CentermapService} from './services/centermap.service';
+import {DiagramService} from './services/diagram.service';
 
 @NgModule({
   declarations: [],
@@ -22,6 +25,11 @@ import {EventsService} from './services/events.service';
     ReactiveFormsModule,
     TreeModule
   ],
-  providers: [EventsService]
+  providers: [
+    EventsService,
+    Data3dService,
+    CentermapService,
+    DiagramService
+  ]
 })
 export class SharedModule { }
