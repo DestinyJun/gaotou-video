@@ -12,9 +12,9 @@ export class DiagramService {
     return this.http.get('assets/data/Incomeranked.json');
   }
   public getCarTypes(): Observable<any> {
-    return this.http.get('assets/data/Incomeranked.json');
+    return this.http.get('assets/data/cartypes.json');
   }
   public getIncomeTypes(): Observable<any> {
-    return this.http.get('assets/data/Incomeranked.json');
+    return this.http.get('assets/data/incometypes.json');
   }
 }

@@ -458,8 +458,76 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
             {
               name: '2018年',
               type: 'bar',
-              data: value.data,
+              data: value.data1,
               color: '#FBB034',
+            }
+          ]
+        };
+        let optionTest =
+          {
+          title: {
+            text: 'Wheater Statistics'
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow'
+            }
+          },
+          legend: {
+            data: ['业态收入', '车流量', '人流量']
+          },
+          grid: {
+            left: 100
+          },
+          xAxis: {
+            type: 'value',
+            name: 'Days',
+            axisLabel: {
+              formatter: '{value}'
+            }
+          },
+          yAxis: {
+            type: 'category',
+            inverse: true,
+            data: ['第一名', '第二名', '第三名'],
+            axisLabel: {
+              margin: 20,
+            }
+          },
+          series: [
+            {
+              name: '业态收入',
+              type: 'bar',
+              data: [165, 170, 30],
+              label: {
+                show: true,
+                formatter: '{a}: {c}',
+                textBorderColor: '#333',
+                textBorderWidth: 2,
+              },
+            },
+            {
+              name: '车流量',
+              type: 'bar',
+              label: {
+                show: true,
+                formatter: '{a}: {c}',
+                textBorderColor: '#333',
+                textBorderWidth: 2,
+              },
+              data: [150, 105, 110]
+            },
+            {
+              name: '人流量',
+              type: 'bar',
+              label: {
+                show: true,
+                formatter: '{a}: {c}',
+                textBorderColor: '#333',
+                textBorderWidth: 2,
+              },
+              data: [220, 82, 63]
             }
           ]
         };
@@ -471,10 +539,11 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   public CarTypes() {
     this.diagrams.getCarTypes().subscribe(
       (value) => {
+        console.log(value);
         this.optionsCarModel = {
           title: [
             {
-              text: '全国当日车型日分布类型占比分析',
+              text: value.title,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -486,7 +555,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
             trigger: 'item',
             formatter: '{b} : {c} ({d}%)'
           },
-
           series: [
             {
               type: 'pie',
@@ -505,38 +573,8 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
                   }
                 }
               },
-              data: [
-                {
-                  value: 10,
-                  name: '轿车',
-                  itemStyle: {color: '#E64018'}
-                },
-                {
-                  value: 15,
-                  name: '货车',
-                  itemStyle: {color: '#FBB034'}
-                },
-                {
-                  value: 10,
-                  name: '商务车',
-                  itemStyle: {color: '#FEEB23'}
-                },
-                {
-                  value: 12,
-                  name: '大客车',
-                  itemStyle: {color: '#E30B40'}
-                },
-                {
-                  value: 6,
-                  name: '小客车',
-                  itemStyle: {color: '#3291DD'}
-                },
-                {
-                  value: 4,
-                  name: '其他',
-                  itemStyle: {color: '#8B489E'}
-                },
-              ],
+              color: ['#E64018', '#FBB034', '#FEEB23', '#E30B40', '#3291DD', '#8B489E'],
+              data: value.data,
               itemStyle: {
                 emphasis: {
                   shadowBlur: 10,
@@ -558,7 +596,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         this.optionsIncomeModel = {
           title: [
             {
-              text: '全国当日收入类型占比分析',
+              text: value.title,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -570,7 +608,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
             trigger: 'item',
             formatter: '{b} : {c} ({d}%)'
           },
-
           series: [
             {
               type: 'pie',
@@ -589,38 +626,8 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
                   }
                 }
               },
-              data: [
-                {
-                  value: 10,
-                  name: '轿车',
-                  itemStyle: {color: '#E64018'}
-                },
-                {
-                  value: 15,
-                  name: '货车',
-                  itemStyle: {color: '#FBB034'}
-                },
-                {
-                  value: 10,
-                  name: '商务车',
-                  itemStyle: {color: '#FEEB23'}
-                },
-                {
-                  value: 12,
-                  name: '大客车',
-                  itemStyle: {color: '#E30B40'}
-                },
-                {
-                  value: 6,
-                  name: '小客车',
-                  itemStyle: {color: '#3291DD'}
-                },
-                {
-                  value: 4,
-                  name: '其他',
-                  itemStyle: {color: '#8B489E'}
-                },
-              ],
+              color: ['#72C096', '#FEC93F', '#2796C4', '#22C3F9', '#B171BF', '#FF8C9D'],
+              data: value.data,
               itemStyle: {
                 emphasis: {
                   shadowBlur: 10,
@@ -1150,160 +1157,10 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     this.backCrosswiseBar();
 
     // 全国当日车型日分布类型占比分析
-    this.optionsCarModel = {
-      title: [
-        {
-          text: '全国当日车型日分布类型占比分析',
-          left: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: 14
-          }
-        },
-      ],
-      tooltip: {
-        trigger: 'item',
-        formatter: '{b} : {c} ({d}%)'
-      },
-
-      series: [
-        {
-          type: 'pie',
-          radius: '55%',
-          center: ['50%', '50%'],
-          label: {
-            show: true,
-            position: 'outside',
-            formatter: '{b}: {d}%',
-            color: 'white',
-            align: 'center',
-            emphasis: {
-              show: true,
-              textStyle: {
-                fontSize: 12
-              }
-            }
-          },
-          data: [
-            {
-              value: 10,
-              name: '轿车',
-              itemStyle: {color: '#E64018'}
-            },
-            {
-              value: 15,
-              name: '货车',
-              itemStyle: {color: '#FBB034'}
-            },
-            {
-              value: 10,
-              name: '商务车',
-              itemStyle: {color: '#FEEB23'}
-            },
-            {
-              value: 12,
-              name: '大客车',
-              itemStyle: {color: '#E30B40'}
-            },
-            {
-              value: 6,
-              name: '小客车',
-              itemStyle: {color: '#3291DD'}
-            },
-            {
-              value: 4,
-              name: '其他',
-              itemStyle: {color: '#8B489E'}
-            },
-          ],
-          itemStyle: {
-            emphasis: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
-        }
-      ]
-    };
+    this.CarTypes();
 
     // 全国当日收入类型占比分析
-    this.optionsIncomeModel = {
-      title: [
-        {
-          text: '全国当日收入类型占比分析',
-          left: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: 14
-          }
-        },
-      ],
-      tooltip: {
-        trigger: 'item',
-        formatter: '{b} : {c} ({d}%)'
-      },
-
-      series: [
-        {
-          type: 'pie',
-          radius: '55%',
-          center: ['50%', '50%'],
-          label: {
-            show: true,
-            position: 'outside',
-            formatter: '{b}: {d}%',
-            color: 'white',
-            align: 'center',
-            emphasis: {
-              show: true,
-              textStyle: {
-                fontSize: 12
-              }
-            }
-          },
-          data: [
-            {
-              value: 10,
-              name: '轿车',
-              itemStyle: {color: '#E64018'}
-            },
-            {
-              value: 15,
-              name: '货车',
-              itemStyle: {color: '#FBB034'}
-            },
-            {
-              value: 10,
-              name: '商务车',
-              itemStyle: {color: '#FEEB23'}
-            },
-            {
-              value: 12,
-              name: '大客车',
-              itemStyle: {color: '#E30B40'}
-            },
-            {
-              value: 6,
-              name: '小客车',
-              itemStyle: {color: '#3291DD'}
-            },
-            {
-              value: 4,
-              name: '其他',
-              itemStyle: {color: '#8B489E'}
-            },
-          ],
-          itemStyle: {
-            emphasis: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
-        }
-      ]
-    };
+    this.IncomeTypes();
 
     // 月度所有服务区车辆流量柱状图统计
     this.optionsCar = {
@@ -1519,7 +1376,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   }
 
   // 事件列表相关操作
-  public eventClick():void {
+  public eventClick(): void {
     const childComp2 = this.resolver.resolveComponentFactory(ChildDataListComponent);
     if (this.alertDateBoxShow) {
       this.alertDateBoxShow = false;
@@ -1582,14 +1439,12 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       this.mapZoom = 0.8;
       this.mapLeft = '5%';
       this.mapRight = '15%';
-      this.china();
     } else {
       this.mapName = '贵州';
       this.mapLeft = '5%';
       this.mapRight = '0%';
       this.mapCenter = [106.682234, 26.626655];
       this.mapZoom = 0.5;
-      this.china();
     }
     this.selectDate = item.province;
     this.provinceShow = false;
@@ -1603,14 +1458,12 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       this.mapZoom = 0.8;
       this.mapLeft = '5%';
       this.mapRight = '15%';
-      this.china();
     } else {
       this.mapName = '贵州';
       this.mapLeft = '5%';
       this.mapRight = '0%';
       this.mapCenter = [106.682234, 26.626655];
       this.mapZoom = 0.5;
-      this.china();
     }
     this.selectDate = this.citeDate + item.city;
     this.provinceShow = false;

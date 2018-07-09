@@ -12,8 +12,8 @@ export class Data3dService {
     return this.http.get('assets/data/option3d.json');
   }
   public data3dFac(): any {
-    let dataArray = [];
-    for (let i = 0; i < 40; i++) {
+    const dataArray = [];
+    for (let i = 0; i < 30; i++) {
       dataArray.push([Math.round(Math.random() * 11), Math.round(Math.random() * 4), Math.round(Math.random() * 100)]);
     }
     return dataArray;
