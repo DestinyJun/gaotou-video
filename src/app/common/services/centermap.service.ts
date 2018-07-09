@@ -11,4 +11,7 @@ export class CentermapService {
   public getCenterMapData(): Observable<any> {
     return this.http.get('assets/data/centermap.json');
   }
+  public getGuiZhouCenterMapData(): Observable<any> {
+    return this.http.get('assets/data/centermapGuizhou.json');
+  }
 }

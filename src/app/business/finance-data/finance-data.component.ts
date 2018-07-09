@@ -289,7 +289,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
           animationEasingUpdate: 'cubicInOut',
           title: [
             {
-              text: '全国主要高速服务区分布及流量统计',
+              text: value.title,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -318,10 +318,10 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
             }
           },
           geo: {
-            map: this.mapName,
+            map: value.address,
             left: 'center',
             // right: 'center',
-            center: [101.74, 36.56],
+            center: value.center,
             zoom: 1.3,
             label: {
               emphasis: {
@@ -402,7 +402,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   public backCrosswiseBar() {
     this.diagrams.getIncomerRanked().subscribe(
       (value) => {
-        this.crosswiseBar = {
+        /*this.crosswiseBar = {
           title: [
             {
               text: value.title,
@@ -462,9 +462,114 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
               color: '#FBB034',
             }
           ]
+        };*/
+        this.crosswiseBar =   {
+          title: [
+            {
+              text: value.title,
+              left: 'center',
+              textStyle: {
+                color: '#fff',
+                fontSize: 14
+              }
+            },
+          ],
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow'
+            }
+          },
+          legend: {
+            top: '5%',
+            data: ['业态收入', '车流量', '人流量'],
+            textStyle: {
+              color: 'white',
+            },
+            selected: {
+              '业态收入': true,
+              '车流量': false,
+              '人流量': false
+            }
+          },
+          grid: {
+            left: '15%',
+            bottom: '5%'
+          },
+          xAxis: {
+            type: 'value',
+            name: '数值',
+            splitLine: {show: false},
+            axisLabel: {
+              formatter: '{value}'
+            },
+            nameTextStyle: {
+              color: 'white'
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+          },
+          yAxis: {
+            type: 'category',
+            name: '万元/辆/人次',
+            inverse: false,
+            splitLine: {show: false},
+            data: value.ranked,
+            axisLabel: {
+              margin: 20,
+            },
+            nameTextStyle: {
+              color: 'white'
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+          },
+          series: [
+            {
+              name: '业态收入',
+              type: 'bar',
+              data: value.data1,
+              color: '#F52C11',
+              label: {
+                show: true,
+                formatter: '{a}: {c}',
+                textBorderColor: '#333',
+                textBorderWidth: 2,
+              },
+            },
+            {
+              name: '车流量',
+              type: 'bar',
+              color: '#F9F409',
+              label: {
+                show: true,
+                formatter: '{a}: {c}',
+                textBorderColor: '#333',
+                textBorderWidth: 2,
+              },
+              data: value.data2
+            },
+            {
+              name: '人流量',
+              type: 'bar',
+              color: '#32D774',
+              label: {
+                show: true,
+                formatter: '{a}: {c}',
+                textBorderColor: '#333',
+                textBorderWidth: 2,
+              },
+              data: value.data3,
+            }
+          ]
         };
-        let optionTest =
-          {
+       /* let optionTest = {
           title: {
             text: 'Wheater Statistics'
           },
@@ -530,7 +635,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
               data: [220, 82, 63]
             }
           ]
-        };
+        };*/
       }
     );
   }
@@ -539,7 +644,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   public CarTypes() {
     this.diagrams.getCarTypes().subscribe(
       (value) => {
-        console.log(value);
         this.optionsCarModel = {
           title: [
             {
@@ -1422,33 +1526,174 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     );
   }
 
-  public provinceMouseEnter() {
-    this.cityShow = true;
-    this.http.get('assets/data/city.json').subscribe(
-      (res) => {
-        this.city = res[0].children;
-        this.citeDate = res[0].province;
-      }
-    );
+  public provinceMouseEnter(item) {
+    if (item === '全国') {
+      this.cityShow = false;
+      return;
+    } else if (item === '贵州省') {
+      this.cityShow = true;
+      this.http.get('assets/data/guizhoucity.json').subscribe(
+        (res) => {
+          this.city = res[0].children;
+          this.citeDate = res[0].province;
+        }
+      );
+    }else if (item === '云南省') {
+      this.cityShow = true;
+      this.http.get('assets/data/yunnancity.json').subscribe(
+        (res) => {
+          this.city = res[0].children;
+          this.citeDate = res[0].province;
+        }
+      );
+    } else {
+      this.cityShow = true;
+      this.city = [{city: '暂未开通'}];
+      this.citeDate = '暂未开通';
+    }
   }
 
   public provinceDataClick(item) {
     if (item.name === 'china') {
-      this.mapName = 'china';
-      this.mapCenter = [117.98561551896913, 31.205000490896193];
-      this.mapZoom = 0.8;
-      this.mapLeft = '5%';
-      this.mapRight = '15%';
-    } else {
-      this.mapName = '贵州';
-      this.mapLeft = '5%';
-      this.mapRight = '0%';
-      this.mapCenter = [106.682234, 26.626655];
-      this.mapZoom = 0.5;
+      this.centerMap();
+    } else if (item.name === '贵州') {
+      this.centerMapS.getGuiZhouCenterMapData().subscribe(
+        (value) => {
+          const convertData = function (datas) {
+            const res = [];
+            for (let i = 0; i < datas.length; i++) {
+              const geoCoord = value.geoCoordMap[datas[i].name];
+              if (geoCoord) {
+                res.push({
+                  name: datas[i].name,
+                  value: geoCoord.concat(datas[i].value)
+                });
+              }
+            }
+            return res;
+          };
+          const convertedData = [
+            convertData(value.data),
+            convertData(value.data.sort(function (a, b) {
+              return b.value - a.value;
+            }).slice(0, 6))
+          ];
+          this.optionsMap =  {
+            animation: true,
+            animationDuration: 1000,
+            animationEasing: 'cubicInOut',
+            animationDurationUpdate: 1000,
+            animationEasingUpdate: 'cubicInOut',
+            title: [
+              {
+                text: value.title,
+                left: 'center',
+                textStyle: {
+                  color: '#fff',
+                  fontSize: 14
+                }
+              },
+              {
+                id: 'statistic',
+                right: 120,
+                top: 40,
+                width: 100,
+                textStyle: {
+                  color: '#fff',
+                  fontSize: 14
+                }
+              }
+            ],
+            toolbox: {
+              iconStyle: {
+                normal: {
+                  borderColor: '#fff'
+                },
+                emphasis: {
+                  borderColor: '#b1e4ff'
+                }
+              }
+            },
+            geo: {
+              map: value.address,
+              left: 'center',
+              // right: 'center',
+              center: value.center,
+              zoom: 1.3,
+              label: {
+                emphasis: {
+                  show: false
+                }
+              },
+              roam: true,
+              itemStyle: {
+                normal: {
+                  areaColor: '#323c48',
+                  borderColor: '#111'
+                },
+                emphasis: {
+                  areaColor: '#2a333d'
+                }
+              }
+            },
+            tooltip: {
+              trigger: 'item'
+            },
+            /*grid: {
+              right: 40,
+              top: 100,
+              bottom: 40,
+              width: '30%'
+            },
+            xAxis: {
+              type: 'value',
+              scale: true,
+              position: 'top',
+              boundaryGap: false,
+              splitLine: {show: false},
+              axisLine: {show: false},
+              axisTick: {show: false},
+              axisLabel: {margin: 2, textStyle: {color: '#aaa'}},
+            },
+            yAxis: {
+              type: 'category',
+              name: 'TOP 20',
+              nameGap: 16,
+              axisLine: {show: false, lineStyle: {color: '#ddd'}},
+              axisTick: {show: false, lineStyle: {color: '#ddd'}},
+              axisLabel: {interval: 0, textStyle: {color: '#ddd'}},
+              data: []
+            },*/
+            series: [
+              {
+                name: '服务区驻车量',
+                type: 'scatter',
+                coordinateSystem: 'geo',
+                data: convertedData[0],
+                symbolSize: function (val) {
+                  return Math.max(val[2] / 10, 8);
+                },
+                label: {
+                  normal: {
+                    formatter: '{b}',
+                    position: 'right',
+                    show: false
+                  },
+                  emphasis: {
+                    show: true
+                  }
+                },
+                itemStyle: {
+                  normal: {
+                    color: '#ddb926'
+                  }
+                }
+              },
+            ]
+          };
+        }
+      );
     }
-    this.selectDate = item.province;
-    this.provinceShow = false;
-    this.cityShow = false;
   }
 
   public cityDataClick(item) {
@@ -1468,8 +1713,5 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     this.selectDate = this.citeDate + item.city;
     this.provinceShow = false;
     this.cityShow = false;
-  }
-
-  public provinceMouseLeave() {
   }
 }
