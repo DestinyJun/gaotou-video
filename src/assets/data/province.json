@@ -1,9 +1,9 @@
 [
-  {"province": "全国", "name": "china"},
+  {"province": "全国", "name": "全国"},
   {"province": "贵州省", "name": "贵州"},
-  {"province": "云南省", "name": "贵州"},
-  {"province": "四川省", "name": "贵州"},
-  {"province": "江西省", "name": "贵州"},
-  {"province": "浙江省", "name": "贵州"},
-  {"province": "陕西省", "name": "贵州"}
+  {"province": "云南省", "name": "云南"},
+  {"province": "四川省", "name": "四川"},
+  {"province": "江西省", "name": "江西"},
+  {"province": "浙江省", "name": "浙江"},
+  {"province": "陕西省", "name": "陕西"}
 ]

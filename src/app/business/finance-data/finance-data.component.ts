@@ -16,6 +16,8 @@ import {ChildDataListComponent} from './child-data-list/child-data-list.componen
 import {Data3dService} from '../../common/services/data3d.service';
 import {CentermapService} from '../../common/services/centermap.service';
 import {DiagramService} from '../../common/services/diagram.service';
+import {LoginService} from '../../common/services/login.service';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 declare let echarts;
 
@@ -53,6 +55,10 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   public crosswiseBar = {};
   // 全国当日车型日分布分析
   public optionsCarModel = {};
+  // 车辆收入数值表现
+  public numberText = ['0', '0', '0'];
+  public vehicleAmount = [];
+  public incomeAmount = [];
   // 全国当日收入类型占比分析
   public optionsIncomeModel = {};
   // 车月度所有服务区车辆流量柱状图统计
@@ -98,7 +104,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     private resolver: ComponentFactoryResolver,
     private data3dS: Data3dService,
     private centerMapS: CentermapService,
-    private diagrams: DiagramService
+    private diagrams: DiagramService,
   ) {
   }
 
@@ -106,6 +112,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   }
 
   ngOnInit() {
+    this.amount();
     this.updataEcharts();
     // 全屏点击事件
     window.document.addEventListener('click', (e) => {
@@ -122,7 +129,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   ngAfterViewInit(): void {}
 
   /**********************************图表配置*****************************/
-
   // 全国高速服务区业态数据3d统计
   public packOption3() {
     this.data3dS.get3dData().subscribe(
@@ -150,7 +156,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
             },
             formatter: function(params) {
               let res = `<p>${hours[params.value[0]]}:</p>`;
-              res += `<p style="margin-left:3px">${days[params.value[1]]}:${params.value[2]}%</p>`;
+              res += `<p style='margin-left:3px'>${days[params.value[1]]}:${params.value[2]}%</p>`;
               return res;
             }
           },
@@ -229,16 +235,19 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
                   value: [item[0], item[1], item[2]]
                 };
               }),
-              shading: 'color',
+              // 柱状图阴影
+              shading: 'lambert',
               label: {
+                // 柱状图的数值是否显示
                 show: false,
                 textStyle: {
                   fontSize: 16,
                   borderWidth: 1
                 }
               },
+              // 柱状图主子的样式
               itemStyle: {
-                opacity: 0.4
+                opacity: 0.9
               },
               emphasis: {
                 label: {
@@ -691,6 +700,19 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         };
       }
     );
+  }
+
+  // 流量收入实时监控
+  public amount(): void {
+    const a = 1000;
+    const b = 2000;
+    setInterval(() => {
+      a += Math.round(Math.random() * 100);
+      b += Math.round(Math.random() * 100);
+      this.vehicleAmount = a.toString().split('');
+      this.incomeAmount = b.toString().split('');
+    }, 3000);
+
   }
 
   // 全国当日收入类型占比分析
@@ -1515,7 +1537,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     this.comp2.destroy();
   }
 
-
   // 省市联动
   public provinceClick() {
     this.provinceShow = true;
@@ -1538,7 +1559,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
           this.citeDate = res[0].province;
         }
       );
-    }else if (item === '云南省') {
+    } else if (item === '云南省') {
       this.cityShow = true;
       this.http.get('assets/data/yunnancity.json').subscribe(
         (res) => {
@@ -1554,7 +1575,8 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   }
 
   public provinceDataClick(item) {
-    if (item.name === 'china') {
+    this.selectDate = item.province;
+    if (item.name === '全国') {
       this.centerMap();
     } else if (item.name === '贵州') {
       this.centerMapS.getGuiZhouCenterMapData().subscribe(
@@ -1693,6 +1715,8 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
           };
         }
       );
+    } else {
+      window.confirm('此地区暂未开通');
     }
   }
 

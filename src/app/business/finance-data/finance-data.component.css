@@ -103,24 +103,9 @@
   margin-right: -8px;
   font-size: 12px;
 }
-.custom>.ui-scrollpanel-wrapper {
-  border-right: 9px solid #f4f4f4;
+.main-bottom .event-table tr:hover{
+  cursor: pointer;
 }
-
-.custom .ui-scrollpanel-bar.ui-scrollpanel-bar-y.ui-scrollpanel-bar {
-  background-color: #1976d2;
-  opacity: 1;
-  transition: background-color .3s;
-}
-
-.custom>.ui-scrollpanel-bar:hover {
-  background-color: #135ba1;
-}
-.custom .ui-scrollpanel-content {
-  height: calc(100% + 18px);
-  width: calc(100% + 22px);
-}
-
 .main-bottom .table-title{
   padding: 5px 0 10px 5px;
   font-weight: bolder;
@@ -148,6 +133,17 @@
   height: 15px;
   border-radius: 100%;
 }
+.main-bottom .table-body .table-tr>.hot{
+  position: relative;
+}
+.main-bottom .table-body .table-tr>.hot>span{
+  color: red;
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: absolute;
+  top: 3px;
+  left: 24px;
+}
 /*实时车流收入数据监控*/
 .main-bottom .number{
   margin-bottom: 1vh;
@@ -162,8 +158,10 @@
   padding-left: 5px;
   margin-bottom: 1vh;
 }
-.main-bottom .number .vehicle>span{
- font-size: 1.5rem;
+.main-bottom .number .vehicle>p{
+  padding-top: 1vh;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 .main-bottom .number .vehicle-amount>h3>span{
   display: inline-block;
@@ -188,8 +186,10 @@
   border:1px solid #3B425C;
   padding-left: 5px;
 }
-.main-bottom .number .income>span{
+.main-bottom .number .income>p{
+  padding-top: 1vh;
   font-size: 1.5rem;
+  font-weight: bold;
 }
 .main-bottom .number .income .income-amount>h3>span{
   display: inline-block;
