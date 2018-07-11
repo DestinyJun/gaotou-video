@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit, OnChanges, AfterContentInit, After
   constructor(
     private eventsService: EventsService,
     private resolver: ComponentFactoryResolver,
-    private logins: LoginService
   ) {
   }
 
@@ -70,7 +69,7 @@ export class HomeComponent implements OnInit, OnChanges, AfterContentInit, After
   }
 
   // 时钟
-  public getTime(): any {
+ /* public getTime(): any {
     let week: string;
     let dateTim: any;
     // 日期
@@ -152,6 +151,5 @@ export class HomeComponent implements OnInit, OnChanges, AfterContentInit, After
             <span style="margin-right: 10px">${week}</span>
             <span>${times}</span>`;
     dateTim = year + '-' + months + '-' + days;
-    return b;
-  }
+  }*/
 }

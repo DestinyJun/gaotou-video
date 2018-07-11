@@ -290,6 +290,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
             return b.value - a.value;
           }).slice(0, 6))
         ];
+        console.log(convertedData);
         this.optionsMap =  {
           animation: true,
           animationDuration: 1000,
@@ -704,8 +705,8 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
 
   // 流量收入实时监控
   public amount(): void {
-    const a = 1000;
-    const b = 2000;
+    let a = 1000;
+    let b = 2000;
     setInterval(() => {
       a += Math.round(Math.random() * 100);
       b += Math.round(Math.random() * 100);
@@ -1270,6 +1271,231 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     return option;
   }*/
 
+  // test
+  public centerMap1() {
+    let data = [
+      {name: '北京航空航天大学', value: [3887, 3035, 852], radius: ['63.2%', '48.5%'],},
+      {name: '北京大学', value: [2819, 1692, 1127], radius: ['28%', '30%'],},
+      {name: '清华大学', value: [3800, 2533, 1267], radius: ['43.5%', '12%'],},
+      {name: '北京理工大学', value: [3760, 2507, 1253], radius: ['32%', '84%'],},
+      {name: '中国人民大学', value: [2824, 1130, 1694], radius: ['30%', '65%'],},
+      {name: '中国政法大学', value: [2141, 777, 1364], radius: ['66.6%', '76.5%'],},
+      {name: '中国地质大学', value: [2050, 1397, 653], radius: ['64%', '33%'],},
+      {name: '北京师范大学', value: [2026, 608, 1418], radius: ['82.7%', '82.5%'],},
+      {name: '中央财经大学', value: [2467, 953, 1514], radius: ['58.7%', '86.5%'],},
+      {name: '北京邮电大学', value: [3180, 1993, 1187], radius: ['73%', '81.5%'],},
+    ];
+    let series = [];
+    for (let i = 0; i < data.length; i++) {
+      series.push(
+        {
+          name: data[i].name,
+          type: 'pie',
+          center: data[i].radius,
+          roseType: 'radius',
+          radius: [0, data[i].value[0] / 100],
+          itemStyle: {
+            normal: {
+              opacity: 0.5,
+            }
+          },
+          label: {
+            normal: {
+              show: false,
+              formatter: '{d}%'
+            }
+          },
+          data: [{
+            name: '女',
+            value: data[i].value[2]
+          },
+            {
+              name: '男',
+              value: data[i].value[1]
+            }]
+        },
+      );
+    }
+    this.optionsMap = {
+      title: [
+        {
+          text: '贵州省高速服务区分布',
+          left: 'center',
+          textStyle: {
+            color: '#fff',
+            fontSize: 14
+          }
+        },
+      ],
+      tooltip: {
+        formatter: '{a}<br/>{b}: {c}人 ({d}%)'
+      },
+      legend: {
+        data: ['男', '女'],
+        left: '38%',
+        top: '30%'
+      },
+      bmap: {
+        center: [116.40, 40.04],
+        zoom: 10,
+        roam: true,
+        mapStyle: {
+          'styleJson': [
+            {
+              'featureType': 'water',
+              'elementType': 'all',
+              'stylers': {
+                'color': '#031628'
+              }
+            },
+            {
+              'featureType': 'land',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#000102'
+              }
+            },
+            {
+              'featureType': 'highway',
+              'elementType': 'all',
+              'stylers': {
+                'visibility': 'off'
+              }
+            },
+            {
+              'featureType': 'arterial',
+              'elementType': 'geometry.fill',
+              'stylers': {
+                'color': '#000000'
+              }
+            },
+            {
+              'featureType': 'arterial',
+              'elementType': 'geometry.stroke',
+              'stylers': {
+                'color': '#0b3d51'
+              }
+            },
+            {
+              'featureType': 'local',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#000000'
+              }
+            },
+            {
+              'featureType': 'railway',
+              'elementType': 'geometry.fill',
+              'stylers': {
+                'color': '#000000'
+              }
+            },
+            {
+              'featureType': 'railway',
+              'elementType': 'geometry.stroke',
+              'stylers': {
+                'color': '#08304b'
+              }
+            },
+            {
+              'featureType': 'subway',
+              'elementType': 'geometry',
+              'stylers': {
+                'lightness': -70
+              }
+            },
+            {
+              'featureType': 'building',
+              'elementType': 'geometry.fill',
+              'stylers': {
+                'color': '#000000'
+              }
+            },
+            {
+              'featureType': 'all',
+              'elementType': 'labels.text.fill',
+              'stylers': {
+                'color': '#857f7f'
+              }
+            },
+            {
+              'featureType': 'all',
+              'elementType': 'labels.text.stroke',
+              'stylers': {
+                'color': '#000000'
+              }
+            },
+            {
+              'featureType': 'building',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#022338'
+              }
+            },
+            {
+              'featureType': 'green',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#062032'
+              }
+            },
+            {
+              'featureType': 'boundary',
+              'elementType': 'all',
+              'stylers': {
+                'color': '#465b6c'
+              }
+            },
+            {
+              'featureType': 'manmade',
+              'elementType': 'all',
+              'stylers': {
+                'color': '#022338'
+              }
+            },
+            {
+              'featureType': 'label',
+              'elementType': 'all',
+              'stylers': {
+                'visibility': 'on'
+              }
+            }
+          ]
+        }
+      },
+      series: series,
+     /* series: [
+        {
+          name: '服务区驻车量',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          data: [
+            {name: '贵阳服务区', value: [106.710405, 26.56256, 10]},
+            /!* {name: '六盘水服务区', value: []},*!/
+            {}],
+          symbolSize: function (val) {
+            return Math.max(val[2] / 10, 8);
+          },
+          label: {
+            normal: {
+              formatter: '{b}',
+              position: 'right',
+              show: false
+            },
+            emphasis: {
+              show: true
+            }
+          },
+          itemStyle: {
+            normal: {
+              color: '#ddb926'
+            }
+          }
+        },
+      ]*/
+    };
+  }
+
   // 图表更新
   public updataEcharts(): void {
 
@@ -1277,8 +1503,8 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     this.packOption3();
 
     //  高速服务区分布散点统计
-    this.centerMap();
-
+    // this.centerMap();
+    this.centerMap1();
     // 业态经营数据前十排名
     this.backCrosswiseBar();
 

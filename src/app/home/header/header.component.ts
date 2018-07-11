@@ -7,13 +7,8 @@ import {LoginService} from '../../common/services/login.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public dataTime: string;
-  constructor(
-    private logins: LoginService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    const a = this.logins.getTime();
-    this.dataTime = a.time1;
   }
 }

@@ -700,8 +700,7 @@ export class ChildDataMapComponent implements OnInit, AfterViewInit {
             }
           }
         ]
-      }
-    );
+      });
     let geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(function (r) {
       const geoc = new BMap.Geocoder();
