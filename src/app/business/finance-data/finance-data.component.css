@@ -137,12 +137,13 @@
   position: relative;
 }
 .main-bottom .table-body .table-tr>.hot>span{
-  color: red;
-  font-size: 1.1rem;
-  font-weight: bold;
   position: absolute;
   top: 3px;
   left: 24px;
+  width: 10px;
+  height: 10px;
+  background: red;
+  display: inline-block;
 }
 /*实时车流收入数据监控*/
 .main-bottom .number{

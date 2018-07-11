@@ -11,6 +11,9 @@ export class Data3dService {
   public get3dData(): Observable<any> {
     return this.http.get('assets/data/option3d.json');
   }
+  public get3dDataGuiYang(): Observable<any> {
+    return this.http.get('assets/data/guiyangoption3d.json');
+  }
   public data3dFac(): any {
     const dataArray = [];
     for (let i = 0; i < 30; i++) {

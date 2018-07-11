@@ -45,6 +45,17 @@
   height: 15px;
   border-radius: 100%;
 }
+.event-table .table-body .table-tr>.hot{
+  position: relative;
+}
+.event-table .table-body .table-tr>.hot>span{
+  color: red;
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: absolute;
+  top: 3px;
+  left: 24px;
+}
 
 /*实时车流收入数据监控*/
 .number{}

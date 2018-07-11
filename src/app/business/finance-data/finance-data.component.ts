@@ -27,6 +27,8 @@ declare let echarts;
   styleUrls: ['./finance-data.component.css']
 })
 export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit, AfterViewInit {
+  // 全国、省级数据切换
+  public dataToggle = '全国';
   // 弹出框的标题及显影控制
   public alertMapBoxShow = true;
   public alertMapTitle: string;
@@ -51,7 +53,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   public options3dArray: any;
   // 全国高速服务区分布图
   public optionsMap = {};
-  //  业态经营数据前十排名
+  //  全国业态经营数据前十排名
   public crosswiseBar = {};
   // 全国当日车型日分布分析
   public optionsCarModel = {};
@@ -139,7 +141,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         this.options3d = {
           title: [
             {
-              text: this.options3dArray.data3dTitle,
+              text: this.dataToggle + this.options3dArray.data3dTitle,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -290,16 +292,16 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
             return b.value - a.value;
           }).slice(0, 6))
         ];
-        console.log(convertedData);
         this.optionsMap =  {
           animation: true,
           animationDuration: 1000,
           animationEasing: 'cubicInOut',
           animationDurationUpdate: 1000,
           animationEasingUpdate: 'cubicInOut',
+          backgroundColor: '#04243E',
           title: [
             {
-              text: value.title,
+              text: this.dataToggle + value.title,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -380,7 +382,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
           series: [
             {
               name: '服务区驻车量',
-              type: 'scatter',
+              type: 'effectScatter',
               coordinateSystem: 'geo',
               data: convertedData[0],
               symbolSize: function (val) {
@@ -476,7 +478,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         this.crosswiseBar =   {
           title: [
             {
-              text: value.title,
+              text: this.dataToggle + value.title,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -657,7 +659,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         this.optionsCarModel = {
           title: [
             {
-              text: value.title,
+              text: this.dataToggle + value.title,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -723,7 +725,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         this.optionsIncomeModel = {
           title: [
             {
-              text: value.title,
+              text: this.dataToggle + value.title,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -1271,51 +1273,43 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     return option;
   }*/
 
-  // test
+  // 省级服务区切换
   public centerMap1() {
-    let data = [
-      {name: '北京航空航天大学', value: [3887, 3035, 852], radius: ['63.2%', '48.5%'],},
-      {name: '北京大学', value: [2819, 1692, 1127], radius: ['28%', '30%'],},
-      {name: '清华大学', value: [3800, 2533, 1267], radius: ['43.5%', '12%'],},
-      {name: '北京理工大学', value: [3760, 2507, 1253], radius: ['32%', '84%'],},
-      {name: '中国人民大学', value: [2824, 1130, 1694], radius: ['30%', '65%'],},
-      {name: '中国政法大学', value: [2141, 777, 1364], radius: ['66.6%', '76.5%'],},
-      {name: '中国地质大学', value: [2050, 1397, 653], radius: ['64%', '33%'],},
-      {name: '北京师范大学', value: [2026, 608, 1418], radius: ['82.7%', '82.5%'],},
-      {name: '中央财经大学', value: [2467, 953, 1514], radius: ['58.7%', '86.5%'],},
-      {name: '北京邮电大学', value: [3180, 1993, 1187], radius: ['73%', '81.5%'],},
+    const geoCoordMap = {
+      '贵阳': [106.645382, 26.655177],
+      '遵义': [106.924791, 27.73378],
+      '铜仁': [109.194557, 27.752195],
+      '毕节': [105.29893, 27.305249],
+      '六盘水': [104.834398, 26.612807],
+      '安顺': [105.956633, 26.269129],
+      '凯里': [107.994134, 26.579727],
+      '都匀': [107.529602, 26.256688],
+      '兴义': [105.206943, 25.457651],
+    };
+    const geoValue =   [
+      {name: '贵阳', value: 150},
+      {name: '遵义', value: 130},
+      {name: '铜仁', value: 100},
+      {name: '毕节', value: 98},
+      {name: '六盘水', value: 155},
+      {name: '安顺', value: 103},
+      {name: '凯里', value: 60},
+      {name: '都匀', value: 55},
+      {name: '兴义', value: 156},
     ];
-    let series = [];
-    for (let i = 0; i < data.length; i++) {
-      series.push(
-        {
-          name: data[i].name,
-          type: 'pie',
-          center: data[i].radius,
-          roseType: 'radius',
-          radius: [0, data[i].value[0] / 100],
-          itemStyle: {
-            normal: {
-              opacity: 0.5,
-            }
-          },
-          label: {
-            normal: {
-              show: false,
-              formatter: '{d}%'
-            }
-          },
-          data: [{
-            name: '女',
-            value: data[i].value[2]
-          },
-            {
-              name: '男',
-              value: data[i].value[1]
-            }]
-        },
-      );
-    }
+    const convertData = function (data) {
+      const res = [];
+      for (let i = 0; i < data.length; i++) {
+        const geoCoord = geoCoordMap[data[i].name];
+        if (geoCoord) {
+          res.push({
+            name: data[i].name,
+            value: geoCoord.concat(data[i].value)
+          });
+        }
+      }
+      return res;
+    };
     this.optionsMap = {
       title: [
         {
@@ -1328,16 +1322,35 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         },
       ],
       tooltip: {
-        formatter: '{a}<br/>{b}: {c}人 ({d}%)'
+        trigger: 'item',
+        formatter: function (params) {
+          return  `<div><p>${params.name}高速服务区</p><p>驻车量：${params.value[2]}</p></div>`;
+        }
       },
       legend: {
-        data: ['男', '女'],
-        left: '38%',
-        top: '30%'
+        orient: 'vertical',
+        y: 'bottom',
+        x: 'right',
+        data: ['pm2.5'],
+        textStyle: {
+          color: '#fff'
+        }
+      },
+      visualMap: {
+        min: 0,
+        max: 200,
+        calculable: true,
+        show: false,
+        inRange: {
+          color: ['#FEC93F', '#2796C4', '#B171BF', '#F52C11']
+        },
+        textStyle: {
+          color: '#fff'
+        }
       },
       bmap: {
-        center: [116.40, 40.04],
-        zoom: 10,
+        center: [106.648831, 26.652078],
+        zoom: 8,
         roam: true,
         mapStyle: {
           'styleJson': [
@@ -1352,14 +1365,14 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
               'featureType': 'land',
               'elementType': 'geometry',
               'stylers': {
-                'color': '#000102'
+                'color': '#2A333D'
               }
             },
             {
               'featureType': 'highway',
               'elementType': 'all',
               'stylers': {
-                'visibility': 'off'
+                'visibility': 'on'
               }
             },
             {
@@ -1415,7 +1428,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
               'featureType': 'all',
               'elementType': 'labels.text.fill',
               'stylers': {
-                'color': '#857f7f'
+                'color': '#01D1DB'
               }
             },
             {
@@ -1463,18 +1476,15 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
           ]
         }
       },
-      series: series,
-     /* series: [
+      series: [
         {
           name: '服务区驻车量',
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          data: [
-            {name: '贵阳服务区', value: [106.710405, 26.56256, 10]},
-            /!* {name: '六盘水服务区', value: []},*!/
-            {}],
+          type: 'effectScatter',
+          effectType: 'ripple',
+          coordinateSystem: 'bmap',
+          data:  convertData(geoValue),
           symbolSize: function (val) {
-            return Math.max(val[2] / 10, 8);
+            return Math.max(val[2] / 5, 8);
           },
           label: {
             normal: {
@@ -1492,7 +1502,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
             }
           }
         },
-      ]*/
+      ]
     };
   }
 
@@ -1503,8 +1513,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     this.packOption3();
 
     //  高速服务区分布散点统计
-    // this.centerMap();
-    this.centerMap1();
+    this.centerMap();
     // 业态经营数据前十排名
     this.backCrosswiseBar();
 
@@ -1699,8 +1708,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   // 全国服务区分布点击事件
   public mapClick(params): void {
     const childComp1 = this.resolver.resolveComponentFactory(ChildDataMapComponent);
-    console.log(params);
-    if (params.componentSubType === 'scatter') {
+    if (params.componentSubType === 'effectScatter') {
       if (this.alertMapBoxShow) {
         this.alertMapBoxShow = false;
         this.comp1 = this.alertBox.createComponent(childComp1);
@@ -1803,144 +1811,13 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   public provinceDataClick(item) {
     this.selectDate = item.province;
     if (item.name === '全国') {
+      this.dataToggle = '全国';
+      console.log(this.dataToggle);
       this.centerMap();
     } else if (item.name === '贵州') {
-      this.centerMapS.getGuiZhouCenterMapData().subscribe(
-        (value) => {
-          const convertData = function (datas) {
-            const res = [];
-            for (let i = 0; i < datas.length; i++) {
-              const geoCoord = value.geoCoordMap[datas[i].name];
-              if (geoCoord) {
-                res.push({
-                  name: datas[i].name,
-                  value: geoCoord.concat(datas[i].value)
-                });
-              }
-            }
-            return res;
-          };
-          const convertedData = [
-            convertData(value.data),
-            convertData(value.data.sort(function (a, b) {
-              return b.value - a.value;
-            }).slice(0, 6))
-          ];
-          this.optionsMap =  {
-            animation: true,
-            animationDuration: 1000,
-            animationEasing: 'cubicInOut',
-            animationDurationUpdate: 1000,
-            animationEasingUpdate: 'cubicInOut',
-            title: [
-              {
-                text: value.title,
-                left: 'center',
-                textStyle: {
-                  color: '#fff',
-                  fontSize: 14
-                }
-              },
-              {
-                id: 'statistic',
-                right: 120,
-                top: 40,
-                width: 100,
-                textStyle: {
-                  color: '#fff',
-                  fontSize: 14
-                }
-              }
-            ],
-            toolbox: {
-              iconStyle: {
-                normal: {
-                  borderColor: '#fff'
-                },
-                emphasis: {
-                  borderColor: '#b1e4ff'
-                }
-              }
-            },
-            geo: {
-              map: value.address,
-              left: 'center',
-              // right: 'center',
-              center: value.center,
-              zoom: 1.3,
-              label: {
-                emphasis: {
-                  show: false
-                }
-              },
-              roam: true,
-              itemStyle: {
-                normal: {
-                  areaColor: '#323c48',
-                  borderColor: '#111'
-                },
-                emphasis: {
-                  areaColor: '#2a333d'
-                }
-              }
-            },
-            tooltip: {
-              trigger: 'item'
-            },
-            /*grid: {
-              right: 40,
-              top: 100,
-              bottom: 40,
-              width: '30%'
-            },
-            xAxis: {
-              type: 'value',
-              scale: true,
-              position: 'top',
-              boundaryGap: false,
-              splitLine: {show: false},
-              axisLine: {show: false},
-              axisTick: {show: false},
-              axisLabel: {margin: 2, textStyle: {color: '#aaa'}},
-            },
-            yAxis: {
-              type: 'category',
-              name: 'TOP 20',
-              nameGap: 16,
-              axisLine: {show: false, lineStyle: {color: '#ddd'}},
-              axisTick: {show: false, lineStyle: {color: '#ddd'}},
-              axisLabel: {interval: 0, textStyle: {color: '#ddd'}},
-              data: []
-            },*/
-            series: [
-              {
-                name: '服务区驻车量',
-                type: 'scatter',
-                coordinateSystem: 'geo',
-                data: convertedData[0],
-                symbolSize: function (val) {
-                  return Math.max(val[2] / 10, 8);
-                },
-                label: {
-                  normal: {
-                    formatter: '{b}',
-                    position: 'right',
-                    show: false
-                  },
-                  emphasis: {
-                    show: true
-                  }
-                },
-                itemStyle: {
-                  normal: {
-                    color: '#ddb926'
-                  }
-                }
-              },
-            ]
-          };
-        }
-      );
+      this.dataToggle = '贵州';
+      console.log(this.dataToggle);
+      this.centerMap1();
     } else {
       window.confirm('此地区暂未开通');
     }

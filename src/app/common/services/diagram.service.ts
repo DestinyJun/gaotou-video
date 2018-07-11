@@ -11,10 +11,19 @@ export class DiagramService {
   public getIncomerRanked(): Observable<any> {
     return this.http.get('assets/data/Incomeranked.json');
   }
+  public getIncomerRankedGuiYang(): Observable<any> {
+    return this.http.get('assets/data/IncomerankedGuiYang.json');
+  }
   public getCarTypes(): Observable<any> {
     return this.http.get('assets/data/cartypes.json');
   }
+  public getCarTypesGuiYang(): Observable<any> {
+    return this.http.get('assets/data/cartypesGuiYang.json');
+  }
   public getIncomeTypes(): Observable<any> {
     return this.http.get('assets/data/incometypes.json');
+  }
+  public getIncomeTypesGuiYang(): Observable<any> {
+    return this.http.get('assets/data/incometypesGuiYang.json');
   }
 }
