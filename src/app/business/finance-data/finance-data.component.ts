@@ -405,6 +405,230 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     );
   }
 
+  // 省级服务区切换
+  public centerMap1() {
+    const geoCoordMap = {
+      '贵阳': [106.645382, 26.655177],
+      '遵义': [106.924791, 27.73378],
+      '铜仁': [109.194557, 27.752195],
+      '毕节': [105.29893, 27.305249],
+      '六盘水': [104.834398, 26.612807],
+      '安顺': [105.956633, 26.269129],
+      '凯里': [107.994134, 26.579727],
+      '都匀': [107.529602, 26.256688],
+      '兴义': [105.206943, 25.457651],
+    };
+    const geoValue =   [
+      {name: '贵阳', value: 150},
+      {name: '遵义', value: 130},
+      {name: '铜仁', value: 100},
+      {name: '毕节', value: 98},
+      {name: '六盘水', value: 155},
+      {name: '安顺', value: 103},
+      {name: '凯里', value: 60},
+      {name: '都匀', value: 55},
+      {name: '兴义', value: 156},
+    ];
+    const convertData = function (data) {
+      const res = [];
+      for (let i = 0; i < data.length; i++) {
+        const geoCoord = geoCoordMap[data[i].name];
+        if (geoCoord) {
+          res.push({
+            name: data[i].name,
+            value: geoCoord.concat(data[i].value)
+          });
+        }
+      }
+      return res;
+    };
+    let series = [
+      {
+        name: '服务区驻车量',
+        type: 'effectScatter',
+        effectType: 'ripple',
+        coordinateSystem: 'bmap',
+        data:  convertData(geoValue),
+        symbolSize: function (val) {
+          return Math.max(val[2] / 5, 8);
+        },
+        label: {
+          normal: {
+            formatter: '{b}',
+            position: 'right',
+            show: false
+          },
+          emphasis: {
+            show: true
+          }
+        },
+        itemStyle: {
+          normal: {
+            color: '#ddb926'
+          }
+        }
+      },
+    ];
+    this.optionsMap = {
+      tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+          return  `<div><p>${params.name}高速服务区</p><p>驻车量：${params.value[2]}</p></div>`;
+        }
+      },
+      legend: {
+        orient: 'vertical',
+        y: 'bottom',
+        x: 'right',
+        data: ['pm2.5'],
+        textStyle: {
+          color: '#fff'
+        }
+      },
+      visualMap: {
+        min: 0,
+        max: 200,
+        calculable: true,
+        show: false,
+        inRange: {
+          color: ['#FEC93F', '#2796C4', '#B171BF', '#F52C11']
+        },
+        textStyle: {
+          color: '#fff'
+        }
+      },
+      bmap: {
+        center: [106.648831, 26.652078],
+        zoom: 8,
+        roam: true,
+        mapStyle: {
+          'styleJson': [
+            {
+              'featureType': 'water',
+              'elementType': 'all',
+              'stylers': {
+                'color': '#031628'
+              }
+            },
+            {
+              'featureType': 'land',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#2A333D'
+              }
+            },
+            {
+              'featureType': 'highway',
+              'elementType': 'all',
+              'stylers': {
+                'visibility': 'on'
+              }
+            },
+            {
+              'featureType': 'arterial',
+              'elementType': 'geometry.fill',
+              'stylers': {
+                'color': '#000000'
+              }
+            },
+            {
+              'featureType': 'arterial',
+              'elementType': 'geometry.stroke',
+              'stylers': {
+                'color': '#0b3d51'
+              }
+            },
+            {
+              'featureType': 'local',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#000000'
+              }
+            },
+            {
+              'featureType': 'railway',
+              'elementType': 'geometry.fill',
+              'stylers': {
+                'color': '#000000'
+              }
+            },
+            {
+              'featureType': 'railway',
+              'elementType': 'geometry.stroke',
+              'stylers': {
+                'color': '#08304b'
+              }
+            },
+            {
+              'featureType': 'subway',
+              'elementType': 'geometry',
+              'stylers': {
+                'lightness': -70
+              }
+            },
+            {
+              'featureType': 'building',
+              'elementType': 'geometry.fill',
+              'stylers': {
+                'color': '#000000'
+              }
+            },
+            {
+              'featureType': 'all',
+              'elementType': 'labels.text.fill',
+              'stylers': {
+                'color': '#01D1DB'
+              }
+            },
+            {
+              'featureType': 'all',
+              'elementType': 'labels.text.stroke',
+              'stylers': {
+                'color': '#000000'
+              }
+            },
+            {
+              'featureType': 'building',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#022338'
+              }
+            },
+            {
+              'featureType': 'green',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#062032'
+              }
+            },
+            {
+              'featureType': 'boundary',
+              'elementType': 'all',
+              'stylers': {
+                'color': '#465b6c'
+              }
+            },
+            {
+              'featureType': 'manmade',
+              'elementType': 'all',
+              'stylers': {
+                'color': '#022338'
+              }
+            },
+            {
+              'featureType': 'label',
+              'elementType': 'all',
+              'stylers': {
+                'visibility': 'on'
+              }
+            }
+          ]
+        }
+      },
+      series: series
+    };
+  }
+
   // 全国业态经营数据前十排名
   public backCrosswiseBar() {
     this.diagrams.getIncomerRanked().subscribe(
@@ -1268,228 +1492,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     return option;
   }*/
 
-  // 省级服务区切换
-  public centerMap1() {
-    const geoCoordMap = {
-      '贵阳': [106.645382, 26.655177],
-      '遵义': [106.924791, 27.73378],
-      '铜仁': [109.194557, 27.752195],
-      '毕节': [105.29893, 27.305249],
-      '六盘水': [104.834398, 26.612807],
-      '安顺': [105.956633, 26.269129],
-      '凯里': [107.994134, 26.579727],
-      '都匀': [107.529602, 26.256688],
-      '兴义': [105.206943, 25.457651],
-    };
-    const geoValue =   [
-      {name: '贵阳', value: 150},
-      {name: '遵义', value: 130},
-      {name: '铜仁', value: 100},
-      {name: '毕节', value: 98},
-      {name: '六盘水', value: 155},
-      {name: '安顺', value: 103},
-      {name: '凯里', value: 60},
-      {name: '都匀', value: 55},
-      {name: '兴义', value: 156},
-    ];
-    const convertData = function (data) {
-      const res = [];
-      for (let i = 0; i < data.length; i++) {
-        const geoCoord = geoCoordMap[data[i].name];
-        if (geoCoord) {
-          res.push({
-            name: data[i].name,
-            value: geoCoord.concat(data[i].value)
-          });
-        }
-      }
-      return res;
-    };
-    this.optionsMap = {
-      tooltip: {
-        trigger: 'item',
-        formatter: function (params) {
-          return  `<div><p>${params.name}高速服务区</p><p>驻车量：${params.value[2]}</p></div>`;
-        }
-      },
-      legend: {
-        orient: 'vertical',
-        y: 'bottom',
-        x: 'right',
-        data: ['pm2.5'],
-        textStyle: {
-          color: '#fff'
-        }
-      },
-      visualMap: {
-        min: 0,
-        max: 200,
-        calculable: true,
-        show: false,
-        inRange: {
-          color: ['#FEC93F', '#2796C4', '#B171BF', '#F52C11']
-        },
-        textStyle: {
-          color: '#fff'
-        }
-      },
-      bmap: {
-        center: [106.648831, 26.652078],
-        zoom: 8,
-        roam: true,
-        mapStyle: {
-          'styleJson': [
-            {
-              'featureType': 'water',
-              'elementType': 'all',
-              'stylers': {
-                'color': '#031628'
-              }
-            },
-            {
-              'featureType': 'land',
-              'elementType': 'geometry',
-              'stylers': {
-                'color': '#2A333D'
-              }
-            },
-            {
-              'featureType': 'highway',
-              'elementType': 'all',
-              'stylers': {
-                'visibility': 'on'
-              }
-            },
-            {
-              'featureType': 'arterial',
-              'elementType': 'geometry.fill',
-              'stylers': {
-                'color': '#000000'
-              }
-            },
-            {
-              'featureType': 'arterial',
-              'elementType': 'geometry.stroke',
-              'stylers': {
-                'color': '#0b3d51'
-              }
-            },
-            {
-              'featureType': 'local',
-              'elementType': 'geometry',
-              'stylers': {
-                'color': '#000000'
-              }
-            },
-            {
-              'featureType': 'railway',
-              'elementType': 'geometry.fill',
-              'stylers': {
-                'color': '#000000'
-              }
-            },
-            {
-              'featureType': 'railway',
-              'elementType': 'geometry.stroke',
-              'stylers': {
-                'color': '#08304b'
-              }
-            },
-            {
-              'featureType': 'subway',
-              'elementType': 'geometry',
-              'stylers': {
-                'lightness': -70
-              }
-            },
-            {
-              'featureType': 'building',
-              'elementType': 'geometry.fill',
-              'stylers': {
-                'color': '#000000'
-              }
-            },
-            {
-              'featureType': 'all',
-              'elementType': 'labels.text.fill',
-              'stylers': {
-                'color': '#01D1DB'
-              }
-            },
-            {
-              'featureType': 'all',
-              'elementType': 'labels.text.stroke',
-              'stylers': {
-                'color': '#000000'
-              }
-            },
-            {
-              'featureType': 'building',
-              'elementType': 'geometry',
-              'stylers': {
-                'color': '#022338'
-              }
-            },
-            {
-              'featureType': 'green',
-              'elementType': 'geometry',
-              'stylers': {
-                'color': '#062032'
-              }
-            },
-            {
-              'featureType': 'boundary',
-              'elementType': 'all',
-              'stylers': {
-                'color': '#465b6c'
-              }
-            },
-            {
-              'featureType': 'manmade',
-              'elementType': 'all',
-              'stylers': {
-                'color': '#022338'
-              }
-            },
-            {
-              'featureType': 'label',
-              'elementType': 'all',
-              'stylers': {
-                'visibility': 'on'
-              }
-            }
-          ]
-        }
-      },
-      series: [
-        {
-          name: '服务区驻车量',
-          type: 'effectScatter',
-          effectType: 'ripple',
-          coordinateSystem: 'bmap',
-          data:  convertData(geoValue),
-          symbolSize: function (val) {
-            return Math.max(val[2] / 5, 8);
-          },
-          label: {
-            normal: {
-              formatter: '{b}',
-              position: 'right',
-              show: false
-            },
-            emphasis: {
-              show: true
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: '#ddb926'
-            }
-          }
-        },
-      ]
-    };
-  }
 
   // 图表更新
   public updataEcharts(): void {
