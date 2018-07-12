@@ -16,11 +16,6 @@ import {ChildDataListComponent} from './child-data-list/child-data-list.componen
 import {Data3dService} from '../../common/services/data3d.service';
 import {CentermapService} from '../../common/services/centermap.service';
 import {DiagramService} from '../../common/services/diagram.service';
-import {LoginService} from '../../common/services/login.service';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
-
-declare let echarts;
-
 @Component({
   selector: 'app-finance-data',
   templateUrl: './finance-data.component.html',
@@ -28,7 +23,7 @@ declare let echarts;
 })
 export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit, AfterViewInit {
   // 全国、省级数据切换
-  public dataToggle = '全国';
+  public dataToggle = '贵州省';
   // 弹出框的标题及显影控制
   public alertMapBoxShow = true;
   public alertMapTitle: string;
@@ -1311,16 +1306,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       return res;
     };
     this.optionsMap = {
-      title: [
-        {
-          text: '贵州省高速服务区分布',
-          left: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: 14
-          }
-        },
-      ],
       tooltip: {
         trigger: 'item',
         formatter: function (params) {
@@ -1511,9 +1496,9 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
 
     // 3D柱状图
     this.packOption3();
-
     //  高速服务区分布散点统计
-    this.centerMap();
+    // this.centerMap();
+    this.centerMap1();
     // 业态经营数据前十排名
     this.backCrosswiseBar();
 
