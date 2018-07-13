@@ -48,6 +48,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   public options3dArray: any;
   // 全国高速服务区分布图
   public optionsMap = {};
+  public guizhzhouMao: any;
   //  全国业态经营数据前十排名
   public crosswiseBar = {};
   // 全国当日车型日分布分析
@@ -1489,6 +1490,9 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         },
       ]
     };
+  }
+  public getGuiZhou(): any {
+
   }
 
   // 图表更新
