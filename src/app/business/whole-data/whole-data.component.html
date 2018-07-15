@@ -1,7 +1,7 @@
 <!--大数据可视化-->
-<div class="main">
+<!--<div class="main">-->
   <!--弹窗-->
-  <div class="alert-box" [hidden]="alertMapBoxShow">
+ <!-- <div class="alert-box" [hidden]="alertMapBoxShow">
     <div class="alert-box-header">
       <span>{{alertMapTitle}}</span>
       <div class="pull-right" (click)="destoryChild1()">
@@ -10,7 +10,7 @@
     </div>
     <div class="alert-box-content">
       <div #alertBox></div>
-      <!--<app-child-data-map></app-child-data-map>-->
+      &lt;!&ndash;<app-child-data-map></app-child-data-map>&ndash;&gt;
     </div>
   </div>
   <div class="alert-box" [hidden]="alertDateBoxShow">
@@ -34,16 +34,21 @@
       </div>
       <div class="alert-3D-bar-chart" echarts [options]="optionsLateral"></div>
     </div>
-  </div>
+  </div>-->
 
-  <!--上部分-->
-  <div class="main-top">
+
+  <div class="main">
     <div class="row">
-      <!--3d柱状图-->
+      <!--3d柱状图-->  <!--左部分-->
       <div class="col-lg-3 col-md-3">
-        <div class="accumulation3d" echarts [options]="options3d" (chartClick)="barClick()"></div>
+        <div class="accumulation3d">
+          <h3 class="text-center" style="color: #87FFFF;line-height: 40vh;">暂无全国数据，敬请期待...</h3>
+        </div>
+        <div class="accumulation">
+          <h3 class="text-center" style="color: #87FFFF;line-height: 40vh">暂无全国数据，敬请期待...</h3>
+        </div>
       </div>
-      <!--离散地图分布图-->
+      <!--离散地图分布图--> <!--中部分-->
       <div class="col-lg-6 col-md-6">
         <div class="map">
           <div class="tab-map">
@@ -73,26 +78,30 @@
               </ul>
             </div>
           </div>
-          <div class="top-map" id="center_map"></div>
-          <!--<div class="top-map" id="center_map" echarts [options]="optionsMap" (chartClick)="mapClick($event)"></div>-->
+          <div class="top-map" id="center_map" echarts [options]="optionsMap" (chartClick)="mapClick($event)"></div>
+          <!--<div class="top-map" id="center_map"></div>-->
         </div>
       </div>
-      <!--横向柱状图-->
+      <!--横向柱状图--> <!--下部分-->
       <div class="col-lg-3 col-md-3">
-        <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartClick)="barClick()"></div>
+        <div class="crosswise-bar">
+          <h3 class="text-center" style="color: #87FFFF;line-height: 40vh;">暂无全国数据，敬请期待...</h3>
+        </div>
+        <div class="today-income">
+          <h3 class="text-center" style="color: #87FFFF;line-height: 40vh;">暂无全国数据，敬请期待...</h3>
+        </div>
       </div>
     </div>
     <!--横向柱状图统计-->
   </div>
-  <!--下部分-->
-  <div class="main-bottom">
+  <!--中部分-->
+<!--  <div class="main-bottom">
     <div class="row">
-      <!--服务区当日车型分析-->
+      &lt;!&ndash;服务区当日车型分析&ndash;&gt;
       <div class="col-lg-3 col-md-3" >
-        <div class="accumulation" echarts [options]="optionsCarModel" (chartClick)="parkClick($event)"></div>
       </div>
-      <!--事件监控列表-->
-      <div class="col-lg-3 col-md-3" >
+      &lt;!&ndash;事件监控列表&ndash;&gt;
+     &lt;!&ndash; <div class="col-lg-3 col-md-3" >
         <div class="event-table">
           <div class="table-title text-center">
             <span>{{this.dataToggle}}服务区事件监控</span>
@@ -155,9 +164,9 @@
             </table>
           </div>
         </div>
-      </div>
-      <!--实时车流收入数据监控-->
-      <div class="col-lg-3 col-md-3" >
+      </div>&ndash;&gt;
+      &lt;!&ndash;实时车流收入数据监控&ndash;&gt;
+    &lt;!&ndash;  <div class="col-lg-3 col-md-3" >
         <div class="number">
           <div class="vehicle">
             <p class="text-center">{{this.dataToggle}}今日车辆流动数量</p>
@@ -194,12 +203,12 @@
             </div>
           </div>
         </div>
-      </div>
-      <!--服务区当日收入类型比重占比-->
+      </div>&ndash;&gt;
+      &lt;!&ndash;服务区当日收入类型比重占比&ndash;&gt;
       <div class="col-lg-3 col-md-3">
-        <div class="today-income" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
+
       </div>
     </div>
-  </div>
-</div>
+  </div>-->
+<!--</div>-->
 

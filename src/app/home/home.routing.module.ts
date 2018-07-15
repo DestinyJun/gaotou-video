@@ -7,6 +7,7 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'finance', pathMatch: 'full'},
       {path: 'finance', loadChildren: 'app/business/finance-data/finance-data.module#FinanceDataModule'},
+      {path: 'whole', loadChildren: 'app/business/whole-data/whole-data.module#WholeDataModule'},
       {path: 'videom', loadChildren: 'app/business/video-manage/video-manage.module#VideoManageModule'},
       {path: 'videow', loadChildren: 'app/business/video-window/video-window.module#VideoWindowModule'},
       {path: 'personal', loadChildren: 'app/business/personal/personal.module#PersonalModule'},

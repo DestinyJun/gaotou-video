@@ -16,6 +16,8 @@ import {ChildDataListComponent} from './child-data-list/child-data-list.componen
 import {Data3dService} from '../../common/services/data3d.service';
 import {CentermapService} from '../../common/services/centermap.service';
 import {DiagramService} from '../../common/services/diagram.service';
+declare let BMap;
+declare let BMapLib;
 @Component({
   selector: 'app-finance-data',
   templateUrl: './finance-data.component.html',
@@ -264,6 +266,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     );
   }
 
+
   // 中部服务区分布图
   public centerMap() {
     this.centerMapS.getCenterMapData().subscribe(
@@ -404,7 +407,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       }
     );
   }
-
   // 省级服务区切换
   public centerMap1() {
     const geoCoordMap = {
@@ -627,6 +629,178 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       },
       series: series
     };
+  }
+  // 百度地图画省边界外
+  public centerMap2() {
+    const map = new BMap.Map('center_map');
+    map.setMapStyle({
+      styleJson: [
+        // 城市名字的颜色
+        /*{
+            "featureType": "city",
+            "elementType": "labels.text.fill",
+            "stylers": {
+                "color": "#aedce2ff",
+                "visibility": "on"
+            }
+        },*/
+        // 地图背景颜色
+        {
+          'featureType': 'background',
+          'elementType': 'all',
+          'stylers': {
+            'color': '#002240'
+          }
+        },
+        // 高速配置
+        {
+          'featureType': 'highway',
+          'elementType': 'all',
+          'stylers': {
+            'color': '#0045C4',
+            'visibility': 'on'
+          }
+        },
+        {
+          'featureType': 'highway',
+          'elementType': 'geometry',
+          'stylers': {
+            'color': '#0045C4',
+            'weight': '0.1',
+            'visibility': 'on'
+          }
+        },
+        {
+          'featureType': 'local',
+          'elementType': 'all',
+          'stylers': {
+            'visibility': 'on'
+          }
+        },
+        {
+          'featureType': 'railway',
+          'elementType': 'all',
+          'stylers': {
+            'visibility': 'off'
+          }
+        },
+        // 配置区县不显示
+        {
+          'featureType': 'district',
+          'elementType': 'all',
+          'stylers': {
+            'visibility': 'off'
+          }
+        }
+      ]
+    });
+    map.centerAndZoom(new BMap.Point(106.640265, 26.653005), 8);
+    map.enableScrollWheelZoom(true);
+    map.disableDoubleClickZoom(false);
+    // 创建一个右键菜单
+    const menu = new BMap.ContextMenu();
+    // 定义右键菜单的内容
+    const txtMenuItem = [
+      {
+        text: '放大',
+        callback: function () {
+          console.log('地图放大');
+        }
+      },
+      {
+        text: '缩小',
+        callback: function () {
+          console.log('地图缩小');
+        }
+      }
+    ];
+    // 给右键菜单里面添加东西
+    for (let i = 0; i < txtMenuItem.length; i++) {
+      // 右键菜单里面添加的内容格式是一个MenuItem类
+      menu.addItem(new BMap.MenuItem(txtMenuItem[i].text, txtMenuItem[i].callback, 100));
+    }
+
+    // 控制地图显示范围
+    const b = new BMap.Bounds(new BMap.Point(105.75777, 24.618423), new BMap.Point(109.400435, 30.469081));
+    try {
+      BMapLib.AreaRestriction.setBounds(map, b);
+    } catch (e) {
+      alert(e);
+    }
+
+    // 编写自定义函数,创建标注
+    const pointsMarket = [
+      [106.626806, 26.683542, '贵阳服务区', 80],
+      [104.842269, 26.625681, '遵义服务区', 150],
+      [105.293002, 27.301609, '六盘水服务区', 300],
+      [106.93956, 27.760846, '毕节服务区', 781],
+      [106.994752, 26.0953, '安顺服务区', 198]
+    ];
+
+    function addMarker(point, name, num) {
+      var myIcon = new BMap.Icon('http://lbsyun.baidu.com/jsdemo/img/fox.gif', new BMap.Size(200, 130));
+      var marker = new BMap.Marker(point);
+      map.addOverlay(marker);
+      //跳动的动画
+      marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+      // market事件
+      marker.addEventListener('mouseover', function () {
+        var sContent =
+          `<div style="">
+                    <h5>${name}</h5> 
+                    <p>驻车量：${num}辆</p> 
+                </div>`;
+        // 创建信息窗口对象
+        var infoWindow = new BMap.InfoWindow(sContent, {enableCloseOnClick: true});
+        this.openInfoWindow(infoWindow);
+      });
+    }
+
+    // 添加5标注
+    for (let i = 0; i < pointsMarket.length; i++) {
+      const points = new BMap.Point(pointsMarket[i][0], pointsMarket[i][1]);
+      addMarker(points, pointsMarket[i][2], pointsMarket[i][3]);
+    }
+
+    // 绘制边线轮廓
+    function getBoundary(name, color) {
+      var bdary = new BMap.Boundary();
+      bdary.get(name, function (rs) {       //获取行政区域
+        for (var i = 0; i < rs.boundaries.length; i++) {
+          var ply = new BMap.Polygon(rs.boundaries[i], {
+            strokeWeight: 2,
+            strokeColor: color,
+            fillColor: '',
+            // fillOpacity: 0.05
+          }); //建立多边形覆盖物
+          map.addOverlay(ply);  //添加覆盖物
+          // map.setViewport(ply.getPath());    //调整视野
+        }
+      });
+    }
+
+    getBoundary('贵州省', '#00FF00');
+    // getBoundary('贵阳',"#F9EB08");
+    // getBoundary('遵义',"#00FF00");
+    // getBoundary('毕节',"#00FF00");
+    /* getBoundary('安顺市',"#01D867");
+     getBoundary('铜仁地区',"#00FF00");
+
+     getBoundary('六盘市',"#00FF00");
+
+     getBoundary('黔西南布依族苗族自治州',"#00FF00");
+     getBoundary('黔东南苗族侗族自治州',"#00FF00");
+     getBoundary('黔南布依族苗族自治州',"#00FF00");*/
+
+    // 地图事件，逆地址解析
+    const geoc = new BMap.Geocoder();
+    map.addEventListener('click', function (e) {
+      const pt = e.point;
+      geoc.getLocation(pt, function (rs) {
+        /*var addComp = rs.addressComponents;
+        alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);*/
+      });
+    });
   }
 
   // 全国业态经营数据前十排名
@@ -1499,7 +1673,8 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     this.packOption3();
     //  高速服务区分布散点统计
     // this.centerMap();
-    this.centerMap1();
+    // this.centerMap1();
+    this.centerMap2();
     // 业态经营数据前十排名
     this.backCrosswiseBar();
 
