@@ -632,7 +632,8 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   }
   // 百度地图画省边界外
   public centerMap2() {
-    const map = new BMap.Map('center_map');
+    const that = this;
+    const map = new BMap.Map('center_map', {minZoom: 5, maxZoom: 9});
     map.setMapStyle({
       styleJson: [
         // 城市名字的颜色
@@ -721,12 +722,12 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     }
 
     // 控制地图显示范围
-    const b = new BMap.Bounds(new BMap.Point(105.75777, 24.618423), new BMap.Point(109.400435, 30.469081));
+  /*  const b = new BMap.Bounds(new BMap.Point(105.75777, 24.618423), new BMap.Point(109.400435, 30.469081));
     try {
       BMapLib.AreaRestriction.setBounds(map, b);
     } catch (e) {
       alert(e);
-    }
+    }*/
 
     // 编写自定义函数,创建标注
     const pointsMarket = [
@@ -745,14 +746,17 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       // marker.setAnimation(BMAP_ANIMATION_BOUNCE);
       // market事件
       marker.addEventListener('mouseover', function () {
-        var sContent =
+        let sContent =
           `<div style="">
-                    <h5>${name}</h5> 
+              <h5>${name}</h5> 
                     <p>驻车量：${num}辆</p> 
                 </div>`;
         // 创建信息窗口对象
         var infoWindow = new BMap.InfoWindow(sContent, {enableCloseOnClick: true});
         this.openInfoWindow(infoWindow);
+      });
+      marker.addEventListener('click', function () {
+        that.mapClick();
       });
     }
 
@@ -763,23 +767,43 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     }
 
     // 绘制边线轮廓
-    function getBoundary(name, color) {
-      var bdary = new BMap.Boundary();
-      bdary.get(name, function (rs) {       //获取行政区域
-        for (var i = 0; i < rs.boundaries.length; i++) {
-          var ply = new BMap.Polygon(rs.boundaries[i], {
-            strokeWeight: 2,
-            strokeColor: color,
-            fillColor: '',
-            // fillOpacity: 0.05
-          }); //建立多边形覆盖物
-          map.addOverlay(ply);  //添加覆盖物
-          // map.setViewport(ply.getPath());    //调整视野
+    let citys = [
+      '贵阳市',
+      '遵义市',
+      '毕节市',
+      '铜仁市',
+      '安顺市',
+      '六盘水市',
+      '贵阳市',
+      '黔西南布依族苗族自治州',
+      '黔东南苗族侗族自治州',
+      '黔南布依族苗族自治州',
+    ];
+    function getBoundary(name) {
+      const bdary = new BMap.Boundary();
+      function randomRgbColor() { // 随机生成RGB颜色
+        const r = Math.floor(Math.random() * 256); // 随机生成256以内r值
+        const g = Math.floor(Math.random() * 256); // 随机生成256以内g值
+        const b = Math.floor(Math.random() * 256); // 随机生成256以内b值
+        return `rgb(${r},${g},${b})`; // 返回rgb(r,g,b)格式颜色
+      }
+      const colors = randomRgbColor();
+      bdary.get(name, function (rs) {       // 获取行政区域
+        for (let i = 0; i < rs.boundaries.length; i++) {
+          const ply = new BMap.Polygon(rs.boundaries[i], {
+            strokeWeight: 1,
+            strokeColor: colors,
+            fillColor: colors,
+            fillOpacity: 0.5
+          }); // 建立多边形覆盖物
+          map.addOverlay(ply);  // 添加覆盖物
+          // map.setViewport(ply.getPath());    // 调整视野
         }
       });
     }
-
-    getBoundary('贵州省', '#00FF00');
+    for (let i = 0; i <= citys.length; i++) {
+      getBoundary(citys[i]);
+    }
     // getBoundary('贵阳',"#F9EB08");
     // getBoundary('遵义',"#00FF00");
     // getBoundary('毕节',"#00FF00");
@@ -1867,8 +1891,18 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   }
 
   // 全国服务区分布点击事件
-  public mapClick(params): void {
+  public mapClick(): void {
     const childComp1 = this.resolver.resolveComponentFactory(ChildDataMapComponent);
+    this.alertMapBoxShow = false;
+    this.comp1 = this.alertBox.createComponent(childComp1);
+    // this.alertMapTitle = params.name;
+    /*if (params.componentSubType === 'effectScatter') {
+      if (this.alertMapBoxShow) {
+
+      } else {
+        this.destoryChild1();
+        this.alertMapBoxShow = true;
+    /!*const childComp1 = this.resolver.resolveComponentFactory(ChildDataMapComponent);
     if (params.componentSubType === 'effectScatter') {
       if (this.alertMapBoxShow) {
         this.alertMapBoxShow = false;
@@ -1876,11 +1910,11 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         this.alertMapTitle = params.name;
       } else {
         this.destoryChild1();
-        this.alertMapBoxShow = true;
-        /* that.comp1 = that.alertBox.createComponent(childComp1);
-         that.alertMapTitle = params.name;*/
+        this.alertMapBoxShow = true;*!/
+        /!* that.comp1 = that.alertBox.createComponent(childComp1);
+         that.alertMapTitle = params.name;*!/
       }
-    }
+    }*/
   }
 
   // 驻车量排名相关操作
