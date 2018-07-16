@@ -314,6 +314,134 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
               color: ['#313695', '#E30B40', '#3291DD', '#35DD7B', '#8B489E', '#FEEB23', '#3BF49F', '#01D1DB', '#fdae61', '#f46d43', '#d73027', '#F432AD'],
             }
           },
+          bmap: {
+            center: [108.903921, 34.459004],
+            zoom: 6,
+            roam: false,
+            mapStyle: {
+              'styleJson': [
+                {
+                  'featureType': 'water',
+                  'elementType': 'all',
+                  'stylers': {
+                    'color': '#031628'
+                  }
+                },
+                {
+                  'featureType': 'land',
+                  'elementType': 'geometry',
+                  'stylers': {
+                    'color': '#2A333D'
+                  }
+                },
+                {
+                  'featureType': 'highway',
+                  'elementType': 'all',
+                  'stylers': {
+                    'visibility': 'on'
+                  }
+                },
+                {
+                  'featureType': 'arterial',
+                  'elementType': 'geometry.fill',
+                  'stylers': {
+                    'color': '#000000'
+                  }
+                },
+                {
+                  'featureType': 'arterial',
+                  'elementType': 'geometry.stroke',
+                  'stylers': {
+                    'color': '#0b3d51'
+                  }
+                },
+                {
+                  'featureType': 'local',
+                  'elementType': 'geometry',
+                  'stylers': {
+                    'color': '#000000'
+                  }
+                },
+                {
+                  'featureType': 'railway',
+                  'elementType': 'geometry.fill',
+                  'stylers': {
+                    'color': '#000000'
+                  }
+                },
+                {
+                  'featureType': 'railway',
+                  'elementType': 'geometry.stroke',
+                  'stylers': {
+                    'color': '#08304b'
+                  }
+                },
+                {
+                  'featureType': 'subway',
+                  'elementType': 'geometry',
+                  'stylers': {
+                    'lightness': -70
+                  }
+                },
+                {
+                  'featureType': 'building',
+                  'elementType': 'geometry.fill',
+                  'stylers': {
+                    'color': '#000000'
+                  }
+                },
+                {
+                  'featureType': 'all',
+                  'elementType': 'labels.text.fill',
+                  'stylers': {
+                    'color': '#01D1DB'
+                  }
+                },
+                {
+                  'featureType': 'all',
+                  'elementType': 'labels.text.stroke',
+                  'stylers': {
+                    'color': '#000000'
+                  }
+                },
+                {
+                  'featureType': 'building',
+                  'elementType': 'geometry',
+                  'stylers': {
+                    'color': '#022338'
+                  }
+                },
+                {
+                  'featureType': 'green',
+                  'elementType': 'geometry',
+                  'stylers': {
+                    'color': '#062032'
+                  }
+                },
+                {
+                  'featureType': 'boundary',
+                  'elementType': 'all',
+                  'stylers': {
+                    'color': '#465b6c'
+                  }
+                },
+                {
+                  'featureType': 'manmade',
+                  'elementType': 'all',
+                  'stylers': {
+                    'color': '#022338'
+                  }
+                },
+                {
+                  'featureType': 'label',
+                  'elementType': 'all',
+                  'stylers': {
+                    'visibility': 'on'
+                  }
+                }
+              ]
+            }
+          },
        /*   geo: {
             map: 'china',
             // left: 'center',
@@ -345,7 +473,7 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
               }
             }]
           },*/
-          series: [
+         /* series: [
             {
               name: '省份',
               type: 'map',
@@ -396,7 +524,7 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
                 {name: '澳门', value: Math.round(Math.random() * 1000)}
               ]
             },
-          ]
+          ]*/
           /* tooltip: {
              trigger: 'item'
            },*/

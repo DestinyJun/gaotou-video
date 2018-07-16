@@ -742,7 +742,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       var marker = new BMap.Marker(point);
       map.addOverlay(marker);
       //跳动的动画
-      marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+      // marker.setAnimation(BMAP_ANIMATION_BOUNCE);
       // market事件
       marker.addEventListener('mouseover', function () {
         var sContent =
