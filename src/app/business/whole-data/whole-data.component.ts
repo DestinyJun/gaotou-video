@@ -101,7 +101,7 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
     // 全屏点击事件
     window.document.addEventListener('click', (e) => {
       this.flag = e.srcElement.parentElement.className;
-      if ((this.provinceShow || this.cityShow) && !(this.flag === 'select')) {
+      if ((this.provinceShow || this.cityShow) && !(this.flag === 'location')) {
         this.provinceShow = false;
         this.cityShow = false;
       }
@@ -568,7 +568,7 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
   // 百度地图画省边界外
   public centerMap2() {
     const that = this;
-    const map = new BMap.Map('center_map', {minZoom: 5});
+    const map = new BMap.Map('center_map');
     map.setMapStyle({
       styleJson: [
         // 城市名字的颜色
@@ -1330,11 +1330,10 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
     this.selectDate = item.province;
     if (item.name === '全国') {
       this.dataToggle = '全国';
-      console.log(this.dataToggle);
       this.centerMap();
     } else if (item.name === '贵州') {
       this.dataToggle = '贵州';
-      console.log(this.dataToggle);
+      this.router.navigate(['/home/finance']);
       // this.centerMap1();
     } else {
       window.confirm('此地区暂未开通');

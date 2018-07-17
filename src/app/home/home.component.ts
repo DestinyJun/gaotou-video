@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit, OnChanges, AfterContentInit, After
   // 时间
   public dataTime = new Date();
   public navShow = false;
+  // 客流量
+  public person: any;
   // 动态创建组件
   @ViewChild('navFlag', {read: ViewContainerRef})
   navFlag: ViewContainerRef;
@@ -33,11 +35,10 @@ export class HomeComponent implements OnInit, OnChanges, AfterContentInit, After
   ) {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
 
   ngOnInit() {
+    this.amount();
     setInterval(() => {
       this.dataTime = new Date();
     });
@@ -66,6 +67,17 @@ export class HomeComponent implements OnInit, OnChanges, AfterContentInit, After
   // 销毁已创建的组建
   public destoryChild(): void {
     this.compNav1.destroy();
+  }
+
+  // 客流量实时监控
+  public amount(): void {
+    let a = 1;
+    setInterval(() => {
+      a += Math.round(Math.random() * 10);
+      a.toString().split('').map((value, index) => {
+
+     });
+    }, 3000);
   }
 
   // 时钟

@@ -19,6 +19,7 @@
   cursor: pointer;
 }
 .header-title-h4{
+  display: inline-block;
   height: 6vh;
   line-height: 6vh;
   font-size: 1.5rem;
@@ -27,7 +28,6 @@
 .header-title-h4 span{
   color: #87FFFF;
 }
-
 .header-box {
   position: absolute;
   top: 4px;
@@ -47,7 +47,14 @@
   border-top: 16px solid #648ED6;
   border-right: 16px solid transparent;
 }
-
+.header .header-person{
+  display: inline-block;
+  border-radius: 50%;
+  height: 3vh;
+  width: 3vh;
+  line-height: 3vh;
+  background: linear-gradient(#F8280D, #881301); /* 标准的语法 */
+}
 .header-manner{
   font-size: 1.8rem;
   height: 6vh;

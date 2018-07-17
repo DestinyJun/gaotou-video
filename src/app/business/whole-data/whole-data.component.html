@@ -52,13 +52,10 @@
       <div class="col-lg-6 col-md-6">
         <div class="map">
           <div class="tab-map">
-            <div class="location">
+            <div class="location" (click)="provinceClick()">
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
               <span>当前的位置是：</span>
               <span>{{selectDate}}</span>
-            </div>
-            <div class="select" (click)="provinceClick()">
-              <i class="fa fa-caret-down" aria-hidden="true"></i>
-              <span>选择地图...</span>
             </div>
             <div class="province-city">
               <ul class="select-list-province" *ngIf="provinceShow">

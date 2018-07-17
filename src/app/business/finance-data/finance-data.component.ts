@@ -2,7 +2,7 @@ import {
   AfterContentInit, AfterViewInit,
   Component,
   ComponentFactoryResolver,
-  ComponentRef, HostListener,
+  ComponentRef,
   OnChanges,
   OnInit, SimpleChanges,
   ViewChild,
@@ -16,6 +16,7 @@ import {ChildDataListComponent} from './child-data-list/child-data-list.componen
 import {Data3dService} from '../../common/services/data3d.service';
 import {CentermapService} from '../../common/services/centermap.service';
 import {DiagramService} from '../../common/services/diagram.service';
+import {Router} from '@angular/router';
 declare let BMap;
 declare let BMapLib;
 @Component({
@@ -71,7 +72,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   // 弹窗横向对比数值柱状图
   public optionsLateral = {};
   // 省市联动数据及状态
-  public selectDate = '全国';
+  public selectDate = '贵州省';
   public province: any;
   public city: any;
   public citeDate: string;
@@ -104,6 +105,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     private data3dS: Data3dService,
     private centerMapS: CentermapService,
     private diagrams: DiagramService,
+    public router: Router
   ) {
   }
 
@@ -116,7 +118,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     // 全屏点击事件
     window.document.addEventListener('click', (e) => {
       this.flag = e.srcElement.parentElement.className;
-      if ((this.provinceShow || this.cityShow) && !(this.flag === 'select')) {
+      if ((this.provinceShow || this.cityShow) && !(this.flag === 'location')) {
         this.provinceShow = false;
         this.cityShow = false;
       }
@@ -666,8 +668,8 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
           'featureType': 'highway',
           'elementType': 'geometry',
           'stylers': {
-            'color': '#0045C4',
-            'weight': '0.1',
+            'color': '#29D819',
+            'weight': '0.6',
             'visibility': 'on'
           }
         },
@@ -768,6 +770,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
 
     // 绘制边线轮廓
     let citys = [
+      '贵州省',
       '贵阳市',
       '遵义市',
       '毕节市',
@@ -788,6 +791,20 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         return `rgb(${r},${g},${b})`; // 返回rgb(r,g,b)格式颜色
       }
       const colors = randomRgbColor();
+      if (name === '贵州省') {
+        bdary.get(name, function (rs) {       // 获取行政区域
+          for (let i = 0; i < rs.boundaries.length; i++) {
+            const ply = new BMap.Polygon(rs.boundaries[i], {
+              strokeWeight: 3,
+              strokeColor: 'white',
+              fillColor: '',
+              fillOpacity: 0
+            }); // 建立多边形覆盖物
+            map.addOverlay(ply);  // 添加覆盖物
+            // map.setViewport(ply.getPath());    // 调整视野
+          }
+        });
+      }
       bdary.get(name, function (rs) {       // 获取行政区域
         for (let i = 0; i < rs.boundaries.length; i++) {
           const ply = new BMap.Polygon(rs.boundaries[i], {
@@ -922,7 +939,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
             }
           },
           grid: {
-            left: '15%',
+            left: '19%',
             bottom: '5%'
           },
           xAxis: {
@@ -1968,6 +1985,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
 
   // 省市联动
   public provinceClick() {
+    console.log('111');
     this.provinceShow = true;
     this.http.get('assets/data/province.json').subscribe(
       (res) => {
@@ -2007,12 +2025,9 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     this.selectDate = item.province;
     if (item.name === '全国') {
       this.dataToggle = '全国';
-      console.log(this.dataToggle);
-      this.centerMap();
+      this.router.navigate(['/home/whole']);
     } else if (item.name === '贵州') {
       this.dataToggle = '贵州';
-      console.log(this.dataToggle);
-      this.centerMap1();
     } else {
       window.confirm('此地区暂未开通');
     }

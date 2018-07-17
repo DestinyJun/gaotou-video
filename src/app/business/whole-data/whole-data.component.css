@@ -36,6 +36,9 @@
 .main .tab-map .location{
   display: inline-block;
 }
+.main .tab-map .location{
+  cursor: pointer;
+}
 .main .tab-map .select{
   display: inline-block;
   margin-left: 15px;
@@ -50,8 +53,8 @@
   /*padding-right: 45px;*/
   color: #87FFFF;
   position: absolute;
-  top: 32px;
-  left: 154px;
+  top: 45px;
+  left: 0px;
   z-index: 1;
 }
 
@@ -62,8 +65,8 @@
   /*padding-right: 45px;*/
   color: #87FFFF;
   position: absolute;
-  top: 56px;
-  left: 276px;
+  top: 91px;
+  left: 131px;
   z-index: 1;
 }
 .main .select-list-province>li,.main .select-list-city>li{
