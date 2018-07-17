@@ -2,11 +2,8 @@ import {
   AfterContentInit, AfterViewInit,
   Component,
   ComponentFactoryResolver,
-  ComponentRef,
   OnChanges,
   OnInit, SimpleChanges,
-  ViewChild,
-  ViewContainerRef
 } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NgxEchartsService} from 'ngx-echarts';
@@ -15,7 +12,6 @@ import {Data3dService} from '../../common/services/data3d.service';
 import {CentermapService} from '../../common/services/centermap.service';
 import {DiagramService} from '../../common/services/diagram.service';
 import {Router} from '@angular/router';
-
 declare let BMap;
 declare let BMapLib;
 
@@ -108,11 +104,9 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
     });
   }
 
-  ngAfterContentInit(): void {
-  }
+  ngAfterContentInit(): void {}
 
-  ngAfterViewInit(): void {
-  }
+  ngAfterViewInit(): void {}
 
   /**********************************图表配置*****************************/
   // 全国高速服务区业态数据3d统计
@@ -253,7 +247,6 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
     );
   }
 
-  // 配色
   // 中部服务区分布图
   public centerMap() {
     this.centerMapS.getCenterMapData().subscribe(
@@ -665,32 +658,14 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
      }*/
 
     // 编写自定义函数,创建标注
-    const pointsMarket = [
+   /* const pointsMarket = [
       [106.626806, 26.683542, '贵阳服务区', 80],
       [104.842269, 26.625681, '遵义服务区', 150],
       [105.293002, 27.301609, '六盘水服务区', 300],
       [106.93956, 27.760846, '毕节服务区', 781],
       [106.994752, 26.0953, '安顺服务区', 198]
-    ];
+    ];*/
 
-    function addMarker(point, name, num) {
-      var myIcon = new BMap.Icon('http://lbsyun.baidu.com/jsdemo/img/fox.gif', new BMap.Size(200, 130));
-      var marker = new BMap.Marker(point);
-      map.addOverlay(marker);
-      //跳动的动画
-      // marker.setAnimation(BMAP_ANIMATION_BOUNCE);
-      // market事件
-      marker.addEventListener('mouseover', function () {
-        var sContent =
-          `<div style="">
-                    <h5>${name}</h5> 
-                    <p>驻车量：${num}辆</p> 
-                </div>`;
-        // 创建信息窗口对象
-        var infoWindow = new BMap.InfoWindow(sContent, {enableCloseOnClick: true});
-        this.openInfoWindow(infoWindow);
-      });
-    }
 
     // 添加5标注
     /* for (let i = 0; i < pointsMarket.length; i++) {
@@ -699,7 +674,7 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
      }*/
 
     // 绘制边线轮廓
-    let provinces = [
+    const provinces = [
       '北京市',
       '上海市',
       '天津市',
@@ -742,10 +717,10 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
         let b = Math.floor(Math.random() * 256); // 随机生成256以内b值
         return `rgb(${r},${g},${b})`; // 返回rgb(r,g,b)格式颜色
       }
-       let colors = randomRgbColor();
+       const colors = randomRgbColor();
       bdary.get(name, function (rs) {       // 获取行政区域
-        for (var i = 0; i < rs.boundaries.length; i++) {
-          var ply = new BMap.Polygon(rs.boundaries[i], {
+        for (let i = 0; i < rs.boundaries.length; i++) {
+          const ply = new BMap.Polygon(rs.boundaries[i], {
             strokeWeight: 1,
             strokeColor: colors,
             fillColor: colors,
@@ -790,7 +765,7 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
   }
 
   // 全国业态经营数据前十排名
-  public backCrosswiseBar() {
+  /*public backCrosswiseBar() {
     this.diagrams.getIncomerRanked().subscribe(
       (value) => {
         this.crosswiseBar = {
@@ -901,7 +876,7 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
         };
       }
     );
-  }
+  }*/
 
   // 全国当日车型日分布类型占比分析
   public CarTypes() {
@@ -1033,7 +1008,7 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
     this.centerMap2();
 
     // 业态经营数据前十排名
-    this.backCrosswiseBar();
+    // this.backCrosswiseBar();
 
     // 全国当日车型日分布类型占比分析
     this.CarTypes();
