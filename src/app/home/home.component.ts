@@ -12,6 +12,7 @@ import {
 import {NavComponent} from './nav/nav.component';
 import {EventsService} from '../common/services/events.service';
 import {LoginService} from '../common/services/login.service';
+import {ToolsService} from '../common/services/tools.service';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,8 @@ export class HomeComponent implements OnInit, OnChanges, AfterContentInit, After
   public dataTime = new Date();
   public navShow = false;
   // 客流量
-  public person: any;
+  public personNum = 1832;
+  public persons = [];
   // 动态创建组件
   @ViewChild('navFlag', {read: ViewContainerRef})
   navFlag: ViewContainerRef;
@@ -32,6 +34,7 @@ export class HomeComponent implements OnInit, OnChanges, AfterContentInit, After
   constructor(
     private eventsService: EventsService,
     private resolver: ComponentFactoryResolver,
+    private tools: ToolsService
   ) {
   }
 
@@ -39,18 +42,17 @@ export class HomeComponent implements OnInit, OnChanges, AfterContentInit, After
 
   ngOnInit() {
     this.amount();
+    this.personNum.toString().split('').map((value, index) => {
+      this.persons.push({number: value, colors: `linear-gradient(${this.tools.randomRgbColor(0)[0]},${this.tools.randomRgbColor(0)[0]})`});
+    });
     setInterval(() => {
       this.dataTime = new Date();
     });
   }
 
-  ngAfterContentInit(): void {
+  ngAfterContentInit(): void {}
 
-  }
-
-  ngAfterViewInit(): void {
-
-  }
+  ngAfterViewInit(): void {}
 
   // 控制侧边导航栏显示隐藏
   public navShowClick(): void {
@@ -73,9 +75,11 @@ export class HomeComponent implements OnInit, OnChanges, AfterContentInit, After
   public amount(): void {
     let a = 1;
     setInterval(() => {
-      a += Math.round(Math.random() * 10);
-      a.toString().split('').map((value, index) => {
-
+      const b = [];
+      this.personNum += Math.round(Math.random() * 10);
+      this.personNum.toString().split('').map((value, index) => {
+        b.push({number: value, colors: `linear-gradient(${this.tools.randomRgbColor(0)[0]},${this.tools.randomRgbColor(0)[0]})`});
+        this.persons = b;
      });
     }, 3000);
   }

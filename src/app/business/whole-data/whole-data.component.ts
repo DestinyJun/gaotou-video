@@ -568,7 +568,7 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
   // 百度地图画省边界外
   public centerMap2() {
     const that = this;
-    const map = new BMap.Map('center_map');
+    const map = new BMap.Map('center_map', {minZoom: 5});
     map.setMapStyle({
       styleJson: [
         // 城市名字的颜色

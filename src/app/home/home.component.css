@@ -2,7 +2,7 @@
 .container-fluid{
   color: white;
   background: #151A30;
-  height: 100vh;
+  min-height: 100vh;
 }
 /******************************头部****************************/
 .header{
@@ -47,13 +47,23 @@
   border-top: 16px solid #648ED6;
   border-right: 16px solid transparent;
 }
+.header .header-per-title{
+  font-size: 1.6rem;
+  color: #F432AD;
+  margin-left: 15px;
+}
 .header .header-person{
   display: inline-block;
   border-radius: 50%;
   height: 3vh;
   width: 3vh;
   line-height: 3vh;
-  background: linear-gradient(#F8280D, #881301); /* 标准的语法 */
+  margin-right: 10px;
+  /*background: linear-gradient(#F8280D, #881301); !* 标准的语法 *!*/
+}
+.header .header-per-unit{
+  font-size: 1.6rem;
+  color: #F432AD;
 }
 .header-manner{
   font-size: 1.8rem;
@@ -80,7 +90,7 @@
 
 /*****************************主体******************************/
 .main{
-  height: 92vh;
+  min-height: 92vh;
   padding-top: 1vh;
   position: relative;
 }

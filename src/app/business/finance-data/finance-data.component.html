@@ -32,7 +32,15 @@
           <i class="fa fa-window-close " aria-hidden="true"></i>
         </div>
       </div>
-      <div class="alert-3D-bar-chart" echarts [options]="optionsLateral"></div>
+      <div class="row">
+        <div class="col-ld-6 col-md-6">
+          <div class="alert-3D-bar-bar" echarts [options]="optionsLateral"></div>
+        </div>
+        <div class="col-ld-6 col-md-6">
+          <div class="alert-3D-bar-pie" echarts [options]="optionsMonth"></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -42,6 +50,24 @@
       <!--3d柱状图-->
       <div class="col-lg-3 col-md-3">
         <div class="accumulation3d" echarts [options]="options3d" (chartClick)="barClick()"></div>
+        <div class="vehicle">
+          <p class="text-center">{{this.dataToggle}}今日车辆流动数量</p>
+          <div class="vehicle-amount">
+            <h3 class="text-center">
+              <span>0</span>
+              <span>0</span>
+              <span>0</span>
+              <span style="margin-right: 10px" *ngFor="let i of vehicleAmount">{{i}}</span>
+              <small style="font-size: 14px;color: white;">辆</small>
+            </h3>
+            <!--<p class="text-center">
+              <span style="margin-right: 10px">前日时间同比</span>
+              <i class="fa fa-long-arrow-up"></i>
+              <span class="">3.2%</span>
+            </p>-->
+          </div>
+        </div>
+        <div class="accumulation" echarts [options]="optionsCarModel" (chartClick)="parkClick($event)"></div>
       </div>
       <!--离散地图分布图-->
       <div class="col-lg-6 col-md-6">
@@ -74,22 +100,126 @@
           <div class="top-map" id="center_map"></div>
           <!--<div class="top-map" id="center_map" echarts [options]="optionsMap" (chartClick)="mapClick($event)"></div>-->
         </div>
+        <div class="event-table">
+          <div class="table-title text-center">
+            <span>{{this.dataToggle}}服务区事件监控</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table" cellspacing="5px">
+              <thead class="table-header">
+              <tr>
+                <td>标记</td>
+                <td>时间</td>
+                <td>事件类型</td>
+                <td>事件描述</td>
+                <td>最新动态</td>
+              </tr>
+              </thead>
+              <tbody class="table-body">
+              <tr class="table-tr" style="color: #BB32F4">
+                <td><span style="background: #BB32F4;"></span></td>
+                <td>1分钟之前</td>
+                <td>工程类</td>
+                <td>一号水库水位低</td>
+                <td class="hot">03<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #F432AD">
+                <td><span style="background: #F432AD;"></span></td>
+                <td>3分钟之前</td>
+                <td>经营类</td>
+                <td>妹妹小吃账户异常</td>
+                <td class="hot">04<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #E57D0D">
+                <td><span style="background: #E57D0D;"></span></td>
+                <td>5分钟之前</td>
+                <td>卫生类</td>
+                <td>乌江服务区卫生差</td>
+                <td class="hot">07<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #1ED1D8">
+                <td><span style="background: #1ED1D8;"></span></td>
+                <td>15分钟之前</td>
+                <td>监控类</td>
+                <td>一号门监控设备出问题</td>
+                <td class="hot">02<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #3BF49F">
+                <td><span style="background: #3BF49F;"></span></td>
+                <td>30分钟之前</td>
+                <td>系统故障</td>
+                <td>服务器异常</td>
+                <td class="hot">10<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #1ED1D8">
+                <td><span style="background: #1ED1D8;"></span></td>
+                <td>40分钟之前</td>
+                <td>其他</td>
+                <td>出口位置轿车刮伤</td>
+                <td class="hot">04<span></span></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
       <!--横向柱状图-->
       <div class="col-lg-3 col-md-3">
-        <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartClick)="barClick()"></div>
+        <div class="crosswise">
+          <div class="crosswise-btn text-center" (click)="clickBtn($event)">
+            <button  class="btn " [ngClass]="{'btn-danger': barStatus1}"  >业态收入</button>
+            <button  class="btn" [ngClass]="{'btn-success': barStatus2}">车流量</button>
+            <button  class="btn" [ngClass]="{'btn-info': barStatus3}">客流量</button>
+          </div>
+          <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartClick)="barClick()"></div>
+        </div>
+        <div class="income">
+          <p class="text-center">全国高速服务区实时收入</p>
+          <div class="income-amount">
+            <h3 class="text-center">
+              <span>0</span>
+              <span>0</span>
+              <span>0</span>
+              <span style="margin-right: 10px" *ngFor="let i of incomeAmount">{{i}}</span>
+              <small style="font-size: 14px;color: white;">元</small>
+            </h3>
+          <!--  <p class="text-center">
+              <span style="margin-right: 10px">前日时间同比</span>
+              <i class="fa fa-long-arrow-up" style="color: #03D095"></i>
+              <span class="">15%</span>
+            </p>-->
+          </div>
+        </div>
+        <div class="today-income" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
       </div>
     </div>
     <!--横向柱状图统计-->
   </div>
-  <!--下部分-->
+<!--  &lt;!&ndash;下部分&ndash;&gt;
   <div class="main-bottom">
     <div class="row">
-      <!--服务区当日车型分析-->
+      &lt;!&ndash;服务区当日车型分析&ndash;&gt;
       <div class="col-lg-3 col-md-3" >
+        <div class="vehicle">
+            <p class="text-center">{{this.dataToggle}}今日车辆流动数量</p>
+            <div class="vehicle-amount">
+              <h3 class="text-center">
+                <span>0</span>
+                <span>0</span>
+                <span>0</span>
+                <span style="margin-right: 10px" *ngFor="let i of vehicleAmount">{{i}}</span>
+                <small style="font-size: 14px;color: white;">辆</small>
+              </h3>
+              &lt;!&ndash;<p class="text-center">
+                <span style="margin-right: 10px">前日时间同比</span>
+                <i class="fa fa-long-arrow-up"></i>
+                <span class="">3.2%</span>
+              </p>&ndash;&gt;
+            </div>
+          </div>
         <div class="accumulation" echarts [options]="optionsCarModel" (chartClick)="parkClick($event)"></div>
       </div>
-      <!--事件监控列表-->
+      &lt;!&ndash;事件监控列表&ndash;&gt;
       <div class="col-lg-3 col-md-3" >
         <div class="event-table">
           <div class="table-title text-center">
@@ -154,7 +284,7 @@
           </div>
         </div>
       </div>
-      <!--实时车流收入数据监控-->
+      &lt;!&ndash;实时车流收入数据监控&ndash;&gt;
       <div class="col-lg-3 col-md-3" >
         <div class="number">
           <div class="vehicle">
@@ -193,11 +323,11 @@
           </div>
         </div>
       </div>
-      <!--服务区当日收入类型比重占比-->
+      &lt;!&ndash;服务区当日收入类型比重占比&ndash;&gt;
       <div class="col-lg-3 col-md-3">
         <div class="today-income" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
 

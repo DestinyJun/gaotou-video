@@ -8,8 +8,14 @@ export class DiagramService {
   constructor(
     private http: HttpClient
   ) { }
-  public getIncomerRanked(): Observable<any> {
-    return this.http.get('assets/data/Incomeranked.json');
+  public getIncomerRanked(status): Observable<any> {
+    if (status === '业态收入') {
+      return this.http.get('assets/data/Incomeranked.json');
+    } else if (status === '车流量') {
+      return this.http.get('assets/data/IncomerankedCar.json');
+    } else {
+      return this.http.get('assets/data/IncomerankedPerson.json');
+    }
   }
   public getIncomerRankedGuiYang(): Observable<any> {
     return this.http.get('assets/data/IncomerankedGuiYang.json');

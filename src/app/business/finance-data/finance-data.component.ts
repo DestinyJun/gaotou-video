@@ -53,6 +53,10 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   public optionsMap = {};
   //  全国业态经营数据前十排名
   public crosswiseBar = {};
+  public barStatus1 = true;
+  public barStatus2 = false;
+  public barStatus3 = false;
+  public dataStatus = '业态收入';
   // 全国当日车型日分布分析
   public optionsCarModel = {};
   // 车辆收入数值表现
@@ -268,7 +272,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     );
   }
 
-
   // 中部服务区分布图
   public centerMap() {
     this.centerMapS.getCenterMapData().subscribe(
@@ -409,6 +412,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       }
     );
   }
+
   // 省级服务区切换
   public centerMap1() {
     const geoCoordMap = {
@@ -632,10 +636,11 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       series: series
     };
   }
+
   // 百度地图画省边界外
   public centerMap2() {
     const that = this;
-    const map = new BMap.Map('center_map', {minZoom: 5, maxZoom: 9});
+    const map = new BMap.Map('center_map', {minZoom: 7, maxZoom: 9});
     map.setMapStyle({
       styleJson: [
         // 城市名字的颜色
@@ -846,7 +851,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
 
   // 全国业态经营数据前十排名
   public backCrosswiseBar() {
-    this.diagrams.getIncomerRanked().subscribe(
+    this.diagrams.getIncomerRanked(this.dataStatus).subscribe(
       (value) => {
         /*this.crosswiseBar = {
           title: [
@@ -926,20 +931,9 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
               type: 'shadow'
             }
           },
-          legend: {
-            top: '5%',
-            data: ['业态收入', '车流量', '人流量'],
-            textStyle: {
-              color: 'white',
-            },
-            selected: {
-              '业态收入': true,
-              '车流量': false,
-              '人流量': false
-            }
-          },
           grid: {
             left: '19%',
+            // top: '20%',
             bottom: '5%'
           },
           xAxis: {
@@ -978,10 +972,10 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
           },
           series: [
             {
-              name: '业态收入',
+              name: value.name,
               type: 'bar',
-              data: value.data1,
-              color: '#F52C11',
+              data: value.data,
+              color: value.color,
               label: {
                 show: true,
                 formatter: '{a}: {c}',
@@ -989,7 +983,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
                 textBorderWidth: 2,
               },
             },
-            {
+           /* {
               name: '车流量',
               type: 'bar',
               color: '#F9F409',
@@ -1012,7 +1006,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
                 textBorderWidth: 2,
               },
               data: value.data3,
-            }
+            }*/
           ]
         };
        /* let optionTest = {
@@ -1123,7 +1117,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
                   }
                 }
               },
-              color: ['#E64018', '#FBB034', '#FEEB23', '#E30B40', '#3291DD', '#8B489E'],
+              color: ['#FBB034', '#E30B40', '#3291DD', '#8B489E'],
               data: value.data,
               itemStyle: {
                 emphasis: {
@@ -1787,58 +1781,47 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     // 月度总收入统计
     this.optionsMonth = {
       title: {
-        text: '月度总收入统计',
-        left: 'center',
+        text: '某站点用户访问来源',
+        subtext: '纯属虚构',
+        x: 'center',
         textStyle: {
-          color: 'white',
-          fontWeight: 500,
-          fontSize: 14
+          color: 'white'
         }
       },
       tooltip: {
-        trigger: 'axis'
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
       },
-      dataZoom: [
-        {
-          type: 'inside'
-        }
-      ],
-      grid: {
-        left: '5%',
-        top: '15%',
-        bottom: '3%',
-        right: '5%',
-        containLabel: true
-      },
-      xAxis: {
-        type: 'category',
-        axisLine: {
-          lineStyle: {
-            color: 'white'
-          }
-        },
-        data: ['1月', '2月', '3月', '4月', '5月', '6月']
-      },
-      yAxis: {
-        name: '万元',
-        type: 'value',
-        splitLine: {show: false},
-        nameTextStyle: {
+      legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
+        textStyle: {
           color: 'white'
-        },
-        axisLine: {
-          lineStyle: {
-            color: 'white'
-          }
-        },
+        }
       },
-      series: [{
-        name: '总收入：',
-        color: ['#FE17F1'],
-        smooth: true,
-        data: [580, 790, 142, 968, 1200, 350],
-        type: 'bar'
-      }]
+      series: [
+        {
+          name: '访问来源',
+          type: 'pie',
+          radius: '55%',
+          center: ['50%', '60%'],
+          data: [
+            {value: 335, name: '直接访问'},
+            {value: 310, name: '邮件营销'},
+            {value: 234, name: '联盟广告'},
+            {value: 135, name: '视频广告'},
+            {value: 1548, name: '搜索引擎'}
+          ],
+          itemStyle: {
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
     };
   }
 
@@ -1856,6 +1839,11 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
             fontSize: 14
           }
         },
+      ],
+      dataZoom: [
+        {
+          type: 'inside'
+        }
       ],
       tooltip: {
         trigger: 'axis',
@@ -1932,6 +1920,29 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
          that.alertMapTitle = params.name;*!/
       }
     }*/
+  }
+
+  // 业态数据排名相关操作
+  public clickBtn(e): void {
+    if (e.srcElement.innerText === '业态收入') {
+      this.dataStatus = '业态收入';
+      this.barStatus1 = true;
+      this.barStatus2 = false;
+      this.barStatus3 = false;
+      this.backCrosswiseBar();
+    } else if (e.srcElement.innerText === '车流量') {
+      this.dataStatus = '车流量';
+      this.barStatus1 = false;
+      this.barStatus2 = true;
+      this.barStatus3 = false;
+      this.backCrosswiseBar();
+    } else {
+      this.dataStatus = '客流量';
+      this.barStatus1 = false;
+      this.barStatus2 = false;
+      this.barStatus3 = true;
+      this.backCrosswiseBar();
+    }
   }
 
   // 驻车量排名相关操作
