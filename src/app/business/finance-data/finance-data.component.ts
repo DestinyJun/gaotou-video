@@ -1778,7 +1778,89 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       ]
     };
 
-    // 月度总收入统计
+
+  }
+
+  /*********************************函数操作*****************************/
+  //  3D柱状图的相关点击事件、3D图横向对比
+  public barClick(e): void {
+    // const colorList = ['#C33531', '#EFE42A', '#64BD3D', '#EE9201', '#29AAE3', '#B74AE5', '#0AAF9F', '#E89589', '#16A085', '#4A235A', '#C39BD3 ', '#F9E79F'];
+    console.log(e.data.value[0]);
+    const colorList = [
+      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
+      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+    ];
+    const yType = ['经营收入', '驻车量', '用电量', '用水量', '客流量'];
+    colorList[e.data.value[0]] = 'red';
+    this.alertBarTitle = yType[e.data.value[1]];
+    // console.log(colorList);
+    this.alertBarShow = true;
+    this.optionsLateral = {
+      title: [
+        {
+          text: '当日服务区收入排名',
+          left: 'center',
+          textStyle: {
+            color: '#fff',
+            fontSize: 14
+          }
+        },
+      ],
+      dataZoom: [
+        {
+          type: 'inside'
+        }
+      ],
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      grid: {
+        left: '5%',
+        right: '3%',
+        bottom: '10%'
+      },
+      xAxis: {
+        type: 'category',
+        data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+        splitLine: {show: false},
+        nameTextStyle: {
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      yAxis: {
+        type: 'value',
+        name: '万元',
+        splitLine: {show: false},
+        nameTextStyle: {
+          align: 'left',
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      series: [{
+        data: [120, 200, 150, 80, 70, 110, 130, 89, 213, 144, 99,128],
+        type: 'bar',
+        color: '#29AAE3',
+        itemStyle: {
+          color: function (params) {
+            return colorList[params.dataIndex];
+          },
+        }
+      }]
+    };
+    // 类型占比统计
     this.optionsMonth = {
       title: {
         text: '某站点用户访问来源',
@@ -1822,72 +1904,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
           }
         }
       ]
-    };
-  }
-
-  /*********************************函数操作*****************************/
-  //  3D柱状图的相关点击事件、3D图横向对比
-  public barClick(): void {
-    this.alertBarShow = true;
-    this.optionsLateral = {
-      title: [
-        {
-          text: '当日服务区收入排名',
-          left: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: 14
-          }
-        },
-      ],
-      dataZoom: [
-        {
-          type: 'inside'
-        }
-      ],
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow'
-        }
-      },
-      grid: {
-        left: '5%',
-        right: '3%',
-        bottom: '10%'
-      },
-      xAxis: {
-        type: 'category',
-        data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月'],
-        splitLine: {show: false},
-        nameTextStyle: {
-          color: 'white'
-        },
-        axisLine: {
-          lineStyle: {
-            color: 'white'
-          }
-        },
-      },
-      yAxis: {
-        type: 'value',
-        name: '万元',
-        splitLine: {show: false},
-        nameTextStyle: {
-          align: 'left',
-          color: 'white'
-        },
-        axisLine: {
-          lineStyle: {
-            color: 'white'
-          }
-        },
-      },
-      series: [{
-        data: [120, 200, 150, 80, 70, 110, 130],
-        type: 'bar',
-        color: '#01D1DB',
-      }]
     };
   }
 

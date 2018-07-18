@@ -43,13 +43,12 @@
 
     </div>
   </div>
-
   <!--上部分-->
   <div class="main-top">
     <div class="row">
       <!--3d柱状图-->
       <div class="col-lg-3 col-md-3">
-        <div class="accumulation3d" echarts [options]="options3d" (chartClick)="barClick()"></div>
+        <div class="accumulation3d" echarts [options]="options3d" (chartClick)="barClick($event)"></div>
         <div class="vehicle">
           <p class="text-center">{{this.dataToggle}}今日车辆流动数量</p>
           <div class="vehicle-amount">
