@@ -1784,21 +1784,40 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   /*********************************函数操作*****************************/
   //  3D柱状图的相关点击事件、3D图横向对比
   public barClick(e): void {
-    // const colorList = ['#C33531', '#EFE42A', '#64BD3D', '#EE9201', '#29AAE3', '#B74AE5', '#0AAF9F', '#E89589', '#16A085', '#4A235A', '#C39BD3 ', '#F9E79F'];
-    console.log(e.data.value[0]);
     const colorList = [
       '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
       '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
     ];
     const yType = ['经营收入', '驻车量', '用电量', '用水量', '客流量'];
     colorList[e.data.value[0]] = 'red';
-    this.alertBarTitle = yType[e.data.value[1]];
-    // console.log(colorList);
+    const yAxis = e.data.value[1];
+    this.alertBarTitle = yType[yAxis];
+    function types(value): string {
+      let typeValue = '';
+      switch (value) {
+        case 0:
+          typeValue = yType[0];
+          break;
+        case 1:
+          typeValue = yType[1];
+          break;
+        case 2:
+          typeValue = yType[2];
+          break;
+        case 3:
+          typeValue = yType[3];
+          break;
+        case 4:
+          typeValue = yType[4];
+          break;
+      }
+      return typeValue;
+    }
     this.alertBarShow = true;
     this.optionsLateral = {
       title: [
         {
-          text: '当日服务区收入排名',
+          text: `贵州省所有服务区年度${types(yAxis)}统计`,
           left: 'center',
           textStyle: {
             color: '#fff',
@@ -1837,7 +1856,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       },
       yAxis: {
         type: 'value',
-        name: '万元',
+        name: '数值',
         splitLine: {show: false},
         nameTextStyle: {
           align: 'left',
@@ -1850,7 +1869,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         },
       },
       series: [{
-        data: [120, 200, 150, 80, 70, 110, 130, 89, 213, 144, 99,128],
+        data: [120, 200, 150, 80, 70, 110, 130, 89, 213, 144, 99, 128],
         type: 'bar',
         color: '#29AAE3',
         itemStyle: {
@@ -1863,39 +1882,46 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     // 类型占比统计
     this.optionsMonth = {
       title: {
-        text: '某站点用户访问来源',
-        subtext: '纯属虚构',
+        text: `贵州省各市所有服务区年度${types(yAxis)}类型占比统计`,
         x: 'center',
         textStyle: {
-          color: 'white'
+          color: '#fff',
+          fontSize: 14
         }
       },
       tooltip: {
         trigger: 'item',
         formatter: '{a} <br/>{b} : {c} ({d}%)'
       },
-      legend: {
+      /*legend: {
         orient: 'vertical',
         left: 'left',
-        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
+        data: ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州','黔西南布依族苗族自治州'],
         textStyle: {
           color: 'white'
         }
-      },
+      },*/
       series: [
         {
-          name: '访问来源',
+          name: `${types(yAxis)}`,
           type: 'pie',
           radius: '55%',
           center: ['50%', '60%'],
           data: [
-            {value: 335, name: '直接访问'},
-            {value: 310, name: '邮件营销'},
-            {value: 234, name: '联盟广告'},
-            {value: 135, name: '视频广告'},
-            {value: 1548, name: '搜索引擎'}
+            {value: 17, name: '贵阳市'},
+            {value: 15, name: '遵义市'},
+            {value: 5, name: '六盘水市'},
+            {value: 13, name: '安顺市'},
+            {value: 16, name: '毕节市'},
+            {value: 11, name: '铜仁市'},
+            {value: 8, name: '黔东南苗族侗族自治州'},
+            {value: 12, name: '黔南布依族苗族自治州'},
+            {value: 3, name: '黔西南布依族苗族自治州'},
           ],
           itemStyle: {
+            color: function (params) {
+              return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
+            },
             emphasis: {
               shadowBlur: 10,
               shadowOffsetX: 0,
@@ -1913,10 +1939,10 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
 
   // 全国服务区分布点击事件
   public mapClick(): void {
+    this.createComponent('贵阳');
     const childComp1 = this.resolver.resolveComponentFactory(ChildDataMapComponent);
     this.alertMapBoxShow = false;
     this.comp1 = this.alertBox.createComponent(childComp1);
-    // this.alertMapTitle = params.name;
     /*if (params.componentSubType === 'effectScatter') {
       if (this.alertMapBoxShow) {
 
@@ -1960,6 +1986,10 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       this.backCrosswiseBar();
     }
   }
+  public rankingClick(e) {
+    console.log(e);
+    this.createComponent(e.name);
+  }
 
   // 驻车量排名相关操作
   public parkClick(e): void {
@@ -1998,6 +2028,14 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     } else {
       this.destoryChild2();
     }
+  }
+
+  // 创建组件
+  public createComponent(name) {
+    const childComp1 = this.resolver.resolveComponentFactory(ChildDataMapComponent);
+    this.alertMapBoxShow = false;
+    this.comp1 = this.alertBox.createComponent(childComp1);
+    this.alertMapTitle = name;
   }
 
   // 组建创建相关操作

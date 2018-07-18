@@ -94,9 +94,12 @@
   left: 30%;
   margin-left: -23px;*/
   height: 5vh;
+
 }
 .main-top .crosswise .crosswise-btn .btn{
-  margin-right: 10px;
+  margin-right: 30px;
+  /*background: linear-gradient(red,blue);*/
+  box-shadow:2px 3px 10px #01D1DB ;
 }
 .main-top .crosswise .crosswise-bar{
   height: 48vh;

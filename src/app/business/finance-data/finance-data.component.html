@@ -170,7 +170,7 @@
             <button  class="btn" [ngClass]="{'btn-success': barStatus2}">车流量</button>
             <button  class="btn" [ngClass]="{'btn-info': barStatus3}">客流量</button>
           </div>
-          <div class="crosswise-bar" echarts [options]="crosswiseBar"></div>
+          <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartClick)="rankingClick($event)"></div>
         </div>
         <div class="income">
           <p class="text-center">全国高速服务区实时收入</p>
