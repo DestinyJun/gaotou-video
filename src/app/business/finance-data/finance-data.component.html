@@ -43,12 +43,13 @@
 
     </div>
   </div>
-  <!--上部分-->
   <div class="main-top">
     <div class="row">
-      <!--3d柱状图-->
+      <!--左边-->
       <div class="col-lg-3 col-md-3">
+        <!--3d柱状图-->
         <div class="accumulation3d" echarts [options]="options3d" (chartClick)="barClick($event)"></div>
+        <!--日车流量实时统计-->
         <div class="vehicle">
           <p class="text-center">{{this.dataToggle}}今日车辆流动数量</p>
           <div class="vehicle-amount">
@@ -66,10 +67,12 @@
             </p>-->
           </div>
         </div>
+        <!--车型日分布占比-->
         <div class="accumulation" echarts [options]="optionsCarModel" (chartClick)="parkClick($event)"></div>
       </div>
-      <!--离散地图分布图-->
+      <!--中间-->
       <div class="col-lg-6 col-md-6">
+        <!--百度地图-->
         <div class="map">
           <div class="tab-map">
             <div class="location" (click)="provinceClick()">
@@ -99,6 +102,7 @@
           <div class="top-map" id="center_map"></div>
           <!--<div class="top-map" id="center_map" echarts [options]="optionsMap" (chartClick)="mapClick($event)"></div>-->
         </div>
+        <!--事件监控-->
         <div class="event-table">
           <div class="table-title text-center">
             <span>{{this.dataToggle}}服务区事件监控</span>
@@ -162,7 +166,7 @@
           </div>
         </div>
       </div>
-      <!--横向柱状图-->
+      <!--右边-->
       <div class="col-lg-3 col-md-3">
         <div class="crosswise">
           <div class="crosswise-btn text-center" (click)="clickBtn($event)">
@@ -192,7 +196,6 @@
         <div class="today-income" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
       </div>
     </div>
-    <!--横向柱状图统计-->
   </div>
 <!--  &lt;!&ndash;下部分&ndash;&gt;
   <div class="main-bottom">

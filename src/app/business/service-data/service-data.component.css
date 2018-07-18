@@ -1,0 +1,147 @@
+.content .top-box{
+  height: 51vh;
+  margin-left: -15px;
+  margin-right: -15px;
+  border: 1px solid #ADB9D1;
+  overflow: hidden;
+}
+.content .bottom-box{
+  height: 34vh;
+  margin-left: -15px;
+  margin-right: -15px;
+  border: 1px solid #ADB9D1;
+  overflow: hidden;
+}
+
+/*事件监控列表*/
+.event-table{
+  padding-top: 1px;
+  font-size: 14px;
+}
+.event-table .table-title{
+  padding: 5px 0 10px 5px;
+  font-weight: bolder;
+  font-size: 14px;
+}
+.event-table .table-header{
+  height: 5vh;
+  /*border: 1px solid #0593B5;*/
+  background: rgba(7,149,188,0.2);
+  color: #00ECF1;
+}
+.event-table .table-body{
+  margin-top: 5px;
+}
+.event-table .table-body .table-tr{
+  border-bottom: 1px solid #0593B5;
+  position: relative;
+  color: #87FFFF;
+  border-collapse:separate;
+  border-spacing:10px;
+}
+.event-table .table-body .table-tr span{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+}
+.event-table .table-body .table-tr>.hot{
+  position: relative;
+}
+.event-table .table-body .table-tr>.hot>span{
+  color: red;
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: absolute;
+  top: 3px;
+  left: 24px;
+}
+
+/*实时车流收入数据监控*/
+.number{}
+.number .vehicle{
+  height: 16.5vh;
+  border:1px solid #3B425C;
+  padding-left: 5px;
+  margin-bottom: 1vh;
+}
+.number .vehicle>span{
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+.number .vehicle-amount>h3>span{
+  display: inline-block;
+  width: 30px;
+  height: 5vh;
+  border: 1px solid #7D8DA7;
+  line-height: 5vh;
+  text-align: center;
+  background: -moz-linear-gradient(top, #01071D 0%, #0A4D84 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#01071D), color-stop(100%,#0A4D84));
+  background: -webkit-linear-gradient(top, #01071D 50%,#0A4D84 100%);
+  background: -o-linear-gradient(top, #01071D 0%,#0A4D84 100%);
+  background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
+  background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);
+}
+.number .vehicle .vehicle-amount>p{
+  margin-top: 1vh;
+  font-size: 1.5rem;
+}
+.number .vehicle .vehicle-amount>div{
+  overflow: hidden;
+  padding-right: 5px;
+}
+
+.number .income{
+  height: 16.5vh;
+  border:1px solid #3B425C;
+  padding-left: 5px;
+}
+.number .income>span{
+  font-size: 1.5rem;
+}
+.number .income .income-amount>h3>span{
+  display: inline-block;
+  width: 30px;
+  height: 5vh;
+  line-height: 5vh;
+  text-align: center;
+  background: #01D1DB;
+}
+.number .income .income-amount>p{
+  margin-top: 1vh;
+  font-size: 1.5rem;
+}
+.number .income .income-amount>div{
+  overflow: hidden;
+  padding-right: 5px;
+}
+
+/*模仿弹窗*/
+.alert-box{
+  position: absolute;
+  width: 100%;
+  height: 92vh;
+  background: rgba(10,10,72,0.9);
+  z-index: 2;
+  overflow: hidden;
+}
+.alert-box-header{
+  height: 5vh;
+  line-height: 5vh;
+  background: rgba(240,43,43,0.8);
+}
+.alert-box-content{
+  height: 86vh;
+  overflow: auto;
+}
+.alert-box-header span{
+  font-size: 1.8rem;
+  margin-left: 10px;
+}
+.alert-box-header div{
+  padding-right: 10px;
+}
+.alert-box-header i:hover{
+  cursor: pointer;
+}

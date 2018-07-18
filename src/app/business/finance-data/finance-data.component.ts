@@ -1,9 +1,7 @@
 import {
-  AfterContentInit, AfterViewInit,
   Component,
   ComponentFactoryResolver,
   ComponentRef,
-  OnChanges,
   OnInit, SimpleChanges,
   ViewChild,
   ViewContainerRef
@@ -24,7 +22,7 @@ declare let BMapLib;
   templateUrl: './finance-data.component.html',
   styleUrls: ['./finance-data.component.css']
 })
-export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit, AfterViewInit {
+export class FinanceDataComponent implements OnInit {
   // 全国、省级数据切换
   public dataToggle = '贵州省';
   // 弹出框的标题及显影控制
@@ -94,13 +92,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
   alertDate: ViewContainerRef;
   comp2: ComponentRef<ChildDataListComponent>;
 
-  /*  // 监听组件点击事件
-    @HostListener('click') onComponentClick() {
-      if (this.provinceShow === true || this.cityShow === true) {
-        this.provinceShow = false;
-        this.cityShow = false;
-      }
-    }*/
   constructor(
     public http: HttpClient,
     private es: NgxEchartsService,
@@ -110,11 +101,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     private centerMapS: CentermapService,
     private diagrams: DiagramService,
     public router: Router
-  ) {
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-  }
+  ) {}
 
   ngOnInit() {
     this.amount();
@@ -128,10 +115,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       }
     });
   }
-
-  ngAfterContentInit(): void {}
-
-  ngAfterViewInit(): void {}
 
   /**********************************图表配置*****************************/
   // 全国高速服务区业态数据3d统计
@@ -263,6 +246,58 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
                 },
                 itemStyle: {
                   color: '#900'
+                }
+              }
+            }
+          ]
+        };
+      }
+    );
+  }
+  // 全国当日车型日分布类型占比分析
+  public CarTypes() {
+    this.diagrams.getCarTypes().subscribe(
+      (value) => {
+        this.optionsCarModel = {
+          title: [
+            {
+              text: this.dataToggle + value.title,
+              left: 'center',
+              textStyle: {
+                color: '#fff',
+                fontSize: 14
+              }
+            },
+          ],
+          tooltip: {
+            trigger: 'item',
+            formatter: '{b} : {c} ({d}%)'
+          },
+          series: [
+            {
+              type: 'pie',
+              radius: '55%',
+              center: ['50%', '50%'],
+              label: {
+                show: true,
+                position: 'outside',
+                formatter: '{b}: {d}%',
+                color: 'white',
+                align: 'center',
+                emphasis: {
+                  show: true,
+                  textStyle: {
+                    fontSize: 12
+                  }
+                }
+              },
+              color: ['#FBB034', '#E30B40', '#3291DD', '#8B489E'],
+              data: value.data,
+              itemStyle: {
+                emphasis: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
                 }
               }
             }
@@ -412,7 +447,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       }
     );
   }
-
   // 省级服务区切换
   public centerMap1() {
     const geoCoordMap = {
@@ -636,7 +670,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       series: series
     };
   }
-
   // 百度地图画省边界外
   public centerMap2() {
     const that = this;
@@ -742,34 +775,39 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       [104.842269, 26.625681, '遵义服务区', 150],
       [105.293002, 27.301609, '六盘水服务区', 300],
       [106.93956, 27.760846, '毕节服务区', 781],
-      [106.994752, 26.0953, '安顺服务区', 198]
+      [106.994752, 26.0953, '安顺服务区', 198],
+      [106.706049, 26.901505, '贵州久长高速服务区', 230],
     ];
 
     function addMarker(point, name, num) {
-      var myIcon = new BMap.Icon('http://lbsyun.baidu.com/jsdemo/img/fox.gif', new BMap.Size(200, 130));
-      var marker = new BMap.Marker(point);
+      const myIcon = new BMap.Icon('http://lbsyun.baidu.com/jsdemo/img/fox.gif', new BMap.Size(200, 130));
+      const points = new BMap.Point(point[0], point[1]);
+      const marker = new BMap.Marker(points);
       map.addOverlay(marker);
-      //跳动的动画
+
+      // 跳动的动画
       // marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+
       // market事件
       marker.addEventListener('mouseover', function () {
-        let sContent =
-          `<div style="">
-              <h5>${name}</h5> 
-                    <p>驻车量：${num}辆</p> 
-                </div>`;
-        // 创建信息窗口对象
-        var infoWindow = new BMap.InfoWindow(sContent, {enableCloseOnClick: true});
+        // 信息窗口
+        const sContent = `<div><h5>${name}</h5><p>驻车量：${num}辆</p></div>`;
+        const infoWindow = new BMap.InfoWindow(sContent, {enableCloseOnClick: true});
         this.openInfoWindow(infoWindow);
       });
       marker.addEventListener('click', function () {
-        that.mapClick();
+      /*  if (name === '贵州久长高速服务区') {
+          that.router.navigate(['/home/serzone', {name: name, point: point}]);
+        } else {
+          window.alert('此服务区暂无数据');
+        }*/
+        that.router.navigate(['/home/serzone', {name: name, point: point}]);
       });
     }
 
     // 添加5标注
     for (let i = 0; i < pointsMarket.length; i++) {
-      const points = new BMap.Point(pointsMarket[i][0], pointsMarket[i][1]);
+      const points = [pointsMarket[i][0], pointsMarket[i][1]];
       addMarker(points, pointsMarket[i][2], pointsMarket[i][3]);
     }
 
@@ -1079,60 +1117,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
       }
     );
   }
-
-  // 全国当日车型日分布类型占比分析
-  public CarTypes() {
-    this.diagrams.getCarTypes().subscribe(
-      (value) => {
-        this.optionsCarModel = {
-          title: [
-            {
-              text: this.dataToggle + value.title,
-              left: 'center',
-              textStyle: {
-                color: '#fff',
-                fontSize: 14
-              }
-            },
-          ],
-          tooltip: {
-            trigger: 'item',
-            formatter: '{b} : {c} ({d}%)'
-          },
-          series: [
-            {
-              type: 'pie',
-              radius: '55%',
-              center: ['50%', '50%'],
-              label: {
-                show: true,
-                position: 'outside',
-                formatter: '{b}: {d}%',
-                color: 'white',
-                align: 'center',
-                emphasis: {
-                  show: true,
-                  textStyle: {
-                    fontSize: 12
-                  }
-                }
-              },
-              color: ['#FBB034', '#E30B40', '#3291DD', '#8B489E'],
-              data: value.data,
-              itemStyle: {
-                emphasis: {
-                  shadowBlur: 10,
-                  shadowOffsetX: 0,
-                  shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
-              }
-            }
-          ]
-        };
-      }
-    );
-  }
-
   // 流量收入实时监控
   public amount(): void {
     let a = 1000;
@@ -1145,7 +1129,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     }, 3000);
 
   }
-
   // 全国当日收入类型占比分析
   public IncomeTypes() {
     this.diagrams.getIncomeTypes().subscribe(
@@ -1197,6 +1180,86 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
         };
       }
     );
+  }
+
+  // 图表更新
+  public updataEcharts(): void {
+
+    // 3D柱状图
+    this.packOption3();
+    //  高速服务区分布散点统计
+    // this.centerMap();
+    // this.centerMap1();
+    this.centerMap2();
+    // 业态经营数据前十排名
+    this.backCrosswiseBar();
+
+    // 全国当日车型日分布类型占比分析
+    this.CarTypes();
+
+    // 全国当日收入类型占比分析
+    this.IncomeTypes();
+
+    // 月度所有服务区车辆流量柱状图统计
+    this.optionsCar = {
+      title: {
+        text: '月度车流量实时监控（辆）',
+        left: 'center',
+        textStyle: {
+          color: 'white',
+          fontWeight: 500,
+          fontSize: 14
+        }
+      },
+      tooltip: {
+        trigger: 'axis'
+      },
+      dataZoom: [
+        {
+          type: 'inside'
+        }
+      ],
+      grid: {
+        left: '5%',
+        top: '15%',
+        bottom: '3%',
+        right: '5%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+        data: ['1月', '2月', '3月', '4月', '5月', '6月']
+      },
+      yAxis: {
+        name: '车辆数量',
+        type: 'value',
+        splitLine: {show: false},
+        nameTextStyle: {
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      series: [
+        {
+          type: 'bar',
+          name: '车辆数量',
+          color: ['#d82c26'],
+          smooth: true,
+          data: [120, 200, 150, 80, 70, 110],
+        }
+      ]
+    };
+
+
   }
 
   // 当日服务区驻车量排名
@@ -1451,7 +1514,6 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     };
     return option;
   }*/
-
   // 当日服务区收入排名
   /*public packOption1(): any {
     let yAxisMonth = [
@@ -1701,85 +1763,7 @@ export class FinanceDataComponent implements OnInit, OnChanges, AfterContentInit
     return option;
   }*/
 
-  // 图表更新
-  public updataEcharts(): void {
 
-    // 3D柱状图
-    this.packOption3();
-    //  高速服务区分布散点统计
-    // this.centerMap();
-    // this.centerMap1();
-    this.centerMap2();
-    // 业态经营数据前十排名
-    this.backCrosswiseBar();
-
-    // 全国当日车型日分布类型占比分析
-    this.CarTypes();
-
-    // 全国当日收入类型占比分析
-    this.IncomeTypes();
-
-    // 月度所有服务区车辆流量柱状图统计
-    this.optionsCar = {
-      title: {
-        text: '月度车流量实时监控（辆）',
-        left: 'center',
-        textStyle: {
-          color: 'white',
-          fontWeight: 500,
-          fontSize: 14
-        }
-      },
-      tooltip: {
-        trigger: 'axis'
-      },
-      dataZoom: [
-        {
-          type: 'inside'
-        }
-      ],
-      grid: {
-        left: '5%',
-        top: '15%',
-        bottom: '3%',
-        right: '5%',
-        containLabel: true
-      },
-      xAxis: {
-        type: 'category',
-        axisLine: {
-          lineStyle: {
-            color: 'white'
-          }
-        },
-        data: ['1月', '2月', '3月', '4月', '5月', '6月']
-      },
-      yAxis: {
-        name: '车辆数量',
-        type: 'value',
-        splitLine: {show: false},
-        nameTextStyle: {
-          color: 'white'
-        },
-        axisLine: {
-          lineStyle: {
-            color: 'white'
-          }
-        },
-      },
-      series: [
-        {
-          type: 'bar',
-          name: '车辆数量',
-          color: ['#d82c26'],
-          smooth: true,
-          data: [120, 200, 150, 80, 70, 110],
-        }
-      ]
-    };
-
-
-  }
 
   /*********************************函数操作*****************************/
   //  3D柱状图的相关点击事件、3D图横向对比
