@@ -1,7 +1,7 @@
 <div class="alert-box">
   <div class="alert-box-header">
     <span>{{serviceZoneTitle}}</span>
-    <div class="pull-right">
+    <div class="pull-right text-center" (click)="goBack()">
       <i class="fa fa-window-close " aria-hidden="true"></i>
     </div>
   </div>
@@ -28,7 +28,7 @@
             <div class="bottom-box">
               <div class="event-table">
                 <div class="table-title text-center">
-                  <span>贵阳高速服务区事件监控</span>
+                  <span>{{serviceZoneTitle}}事件监控</span>
                 </div>
                 <div class="table-responsive">
                   <table class="table" cellspacing="5px">
@@ -94,7 +94,7 @@
             <div class="bottom-box">
               <div class="number">
                 <div class="vehicle">
-                  <p class="text-center">贵阳高速服务区今日车流量</p>
+                  <p class="text-center">{{serviceZoneTitle}}今日车流量</p>
                   <div class="vehicle-amount">
                     <h3 class="text-center">
                       <span>0</span>
@@ -111,7 +111,7 @@
                   </div>
                 </div>
                 <div class="income">
-                  <p class="text-center">贵阳高速服务区今日实时收入</p>
+                  <p class="text-center">{{serviceZoneTitle}}今日实时收入</p>
                   <div class="income-amount">
                     <h3 class="text-center">
                       <span>0</span>

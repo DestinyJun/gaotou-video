@@ -43,7 +43,7 @@ export class ServiceDataComponent implements OnInit {
       (params) => {
         this.serviceZoneTitle = params.name;
         this.serviceZonePoint = params.point.split(',');
-        console.log(this.serviceZonePoint);
+        // console.log(this.serviceZonePoint);
       }
     );
     // 百度地图
@@ -70,7 +70,7 @@ export class ServiceDataComponent implements OnInit {
         this.options3d = {
           title: [
             {
-              text: this.options3dArray.data3dTitle,
+              text:  this.serviceZoneTitle,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -202,27 +202,21 @@ export class ServiceDataComponent implements OnInit {
     this.diagrams.getIncomerRankedGuiYang().subscribe(
       (value) => {
         const nums = [];
-        const types = [];
-        const nums2 = [];
-        const types2 = [];
-        const nums3 = [];
-        const types3 = [];
-        value.data1.map((v, i) => {
+        const merchants = [];
+        function test(params, merchant): any {
+          // console.log(params);
+          return `<p>${params.name}：<span>${merchant[params.dataIndex]}</p></span>
+                  <p>收入：<span>${params.value}元</p></span>
+`;
+        }
+        value.data.map((v, i) => {
           nums.push(v.num);
-          types.push(v.name);
-        });
-        value.data2.map((v, i) => {
-          nums2.push(v.num);
-          types2.push(v.name);
-        });
-        value.data3.map((v, i) => {
-          nums3.push(v.num);
-          types3.push(v.name);
+          merchants.push(v.merchant);
         });
         this.crosswiseBar =   {
           title: [
             {
-              text: value.title,
+              text: this.serviceZoneTitle,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -231,22 +225,12 @@ export class ServiceDataComponent implements OnInit {
             },
           ],
           tooltip: {
-            trigger: 'axis',
+            trigger: 'item',
             axisPointer: {
               type: 'shadow'
-            }
-          },
-          legend: {
-            top: '5%',
-            bottom: '2%',
-            data: ['业态收入', '车流量', '人流量'],
-            textStyle: {
-              color: 'white',
             },
-            selected: {
-              '业态收入': true,
-              '车流量': false,
-              '人流量': false
+            formatter: function (params) {
+              return test(params, merchants);
             }
           },
           grid: {
@@ -289,7 +273,7 @@ export class ServiceDataComponent implements OnInit {
           },
           series: [
             {
-              name: '业态收入',
+              name: '经营收入',
               type: 'bar',
               data: nums,
               color: '#F52C11',
@@ -302,30 +286,6 @@ export class ServiceDataComponent implements OnInit {
                 textBorderWidth: 2,
               },
             },
-            {
-              name: '车流量',
-              type: 'bar',
-              color: '#F9F409',
-              label: {
-                show: true,
-                formatter: '{a}: {c}',
-                textBorderColor: '#333',
-                textBorderWidth: 2,
-              },
-              data: nums2
-            },
-            {
-              name: '人流量',
-              type: 'bar',
-              color: '#32D774',
-              label: {
-                show: true,
-                formatter: '{a}: {c}',
-                textBorderColor: '#333',
-                textBorderWidth: 2,
-              },
-              data: nums3,
-            }
           ]
         };
         /* let optionTest = {
@@ -405,7 +365,7 @@ export class ServiceDataComponent implements OnInit {
         this.optionsCarModel = {
           title: [
             {
-              text: value.title,
+              text: this.serviceZoneTitle,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -469,7 +429,7 @@ export class ServiceDataComponent implements OnInit {
         this.optionsIncomeModel = {
           title: [
             {
-              text: value.title,
+              text: this.serviceZoneTitle,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -668,6 +628,11 @@ export class ServiceDataComponent implements OnInit {
         that.locationState = true;
       });
     }, {enableHighAccuracy: true});
+  }
+
+  /****************************函数操作*************************/
+  public goBack(): void {
+    history.back();
   }
 
 }

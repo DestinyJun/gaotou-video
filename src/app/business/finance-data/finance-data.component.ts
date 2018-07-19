@@ -811,7 +811,7 @@ export class FinanceDataComponent implements OnInit {
       addMarker(points, pointsMarket[i][2], pointsMarket[i][3]);
     }
 
-    // 绘制边线轮廓
+    // 绘制边线轮廓rankingClick
     let citys = [
       '贵州省',
       '贵阳市',
@@ -1970,9 +1970,9 @@ export class FinanceDataComponent implements OnInit {
       this.backCrosswiseBar();
     }
   }
+  // 业态数据排名点击进入服务区数据
   public rankingClick(e) {
-    console.log(e);
-    this.createComponent(e.name);
+    this.router.navigate(['/home/serzone', {name: e.name, point: [116.39737,39.935076]}]);
   }
 
   // 驻车量排名相关操作
