@@ -2,7 +2,7 @@ import {
   Component,
   ComponentFactoryResolver,
   ComponentRef,
-  OnInit, SimpleChanges,
+  OnInit,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
@@ -62,17 +62,20 @@ export class FinanceDataComponent implements OnInit {
   public vehicleAmount = [];
   public incomeAmount = [];
   // 全国当日收入类型占比分析
+  public alertIncomeTitle: string;
   public optionsIncomeModel = {};
+  public alertIncomeShow = false;
+  public optionsIncomeTypes = {};
   // 车月度所有服务区车辆流量柱状图统计
   public optionsCar = {};
   // 当日服务区停车量排名
   public optionsRetention = {};
   // 月度收入分析
-  public optionsMonth = {};
+  public options3dPie = {};
   // 服务区当日收入排名
   public optionsIncome = {};
   // 弹窗横向对比数值柱状图
-  public optionsLateral = {};
+  public options3dBar = {};
   // 省市联动数据及状态
   public selectDate = '贵州省';
   public province: any;
@@ -1798,14 +1801,14 @@ export class FinanceDataComponent implements OnInit {
       return typeValue;
     }
     this.alertBarShow = true;
-    this.optionsLateral = {
+    this.options3dBar = {
       title: [
         {
           text: `贵州省所有服务区年度${types(yAxis)}统计`,
           left: 'center',
           textStyle: {
             color: '#fff',
-            fontSize: 14
+            fontSize: 16
           }
         },
       ],
@@ -1856,6 +1859,14 @@ export class FinanceDataComponent implements OnInit {
         data: [120, 200, 150, 80, 70, 110, 130, 89, 213, 144, 99, 128],
         type: 'bar',
         color: '#29AAE3',
+        label: {
+          // 柱状图的数值是否显示
+          show: true,
+          textStyle: {
+            fontSize: 16,
+            borderWidth: 1
+          }
+        },
         itemStyle: {
           color: function (params) {
             return colorList[params.dataIndex];
@@ -1864,13 +1875,13 @@ export class FinanceDataComponent implements OnInit {
       }]
     };
     // 类型占比统计
-    this.optionsMonth = {
+    this.options3dPie = {
       title: {
         text: `贵州省各市所有服务区年度${types(yAxis)}类型占比统计`,
         x: 'center',
         textStyle: {
           color: '#fff',
-          fontSize: 14
+          fontSize: 16
         }
       },
       tooltip: {
@@ -1889,8 +1900,8 @@ export class FinanceDataComponent implements OnInit {
         {
           name: `${types(yAxis)}`,
           type: 'pie',
-          radius: '55%',
-          center: ['50%', '60%'],
+          radius: '60%',
+          center: ['50%', '50%'],
           data: [
             {value: 17, name: '贵阳市'},
             {value: 15, name: '遵义市'},
@@ -2003,15 +2014,62 @@ export class FinanceDataComponent implements OnInit {
 
   // 驻车量排名相关操作
   public incomeClick(e): void {
-    const childComp2 = this.resolver.resolveComponentFactory(ChildDataListComponent);
-    if (this.alertDateBoxShow) {
-      this.alertDateBoxShow = false;
-      this.comp2 = this.alertDate.createComponent(childComp2);
-      this.comp2.instance.typeTitle = e.seriesName;
-      this.alertDateTitle = e.seriesName;
-    } else {
-      this.destoryChild2();
-    }
+    this.alertIncomeTitle = e.name;
+    this.alertIncomeShow = true;
+    this.optionsIncomeTypes = {
+      title: {
+        text: `贵州省各市所有服务区当日${e.name}类型占比统计`,
+        x: 'center',
+        textStyle: {
+          color: '#fff',
+          fontSize: 16
+        }
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+      },
+      /*legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州','黔西南布依族苗族自治州'],
+        textStyle: {
+          color: 'white'
+        }
+      },*/
+      series: [
+        {
+          name: `${e.name}`,
+          type: 'pie',
+          radius: '50%',
+          center: ['50%', '50%'],
+          data: [
+            {value: 17, name: '贵阳市'},
+            {value: 15, name: '遵义市'},
+            {value: 5, name: '六盘水市'},
+            {value: 13, name: '安顺市'},
+            {value: 16, name: '毕节市'},
+            {value: 11, name: '铜仁市'},
+            {value: 8, name: '黔东南苗族侗族自治州'},
+            {value: 12, name: '黔南布依族苗族自治州'},
+            {value: 3, name: '黔西南布依族苗族自治州'},
+          ],
+          itemStyle: {
+            color: function (params) {
+              return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
+            },
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
+  }
+  public closeIncomeShow(): void {
+    this.alertIncomeShow = false;
   }
 
   // 创建组件

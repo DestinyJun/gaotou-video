@@ -123,6 +123,13 @@
   margin-right: -8px;
   font-size: 12px;
 }
+.main-top .event-table tr{
+  cursor: pointer;
+
+}
+.main-top .event-table tr td{
+  border: none;
+}
 .main-top .event-table tr:hover{
   cursor: pointer;
 }
@@ -366,16 +373,6 @@
 
 
 /****************************弹窗部分****************************/
-.bg-box{
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(149,161,154,0.6);
-  z-index: 2;
-}
-
 .alert-box{
   position: absolute;
   width: 100%;
@@ -404,12 +401,21 @@
   cursor: pointer;
 }
 
+.bg-box{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(149,161,154,0.6);
+  z-index: 2;
+}
 .alert-3D-bar{
   position: absolute;
-  width: 60vw;
+  width: 70vw;
   height:60vh;
   left: 50%;
-  margin-left: -30vw;
+  margin-left: -35vw;
   top: 50%;
   margin-top: -30vh;
   background: rgba(10,10,72,0.9);
@@ -425,24 +431,63 @@
   margin-left: 10px;
   font-size: 1.8rem;
 }
-.alert-3D-bar-header div{
-  padding-right: 10px;
-}
-.alert-3D-bar-header i:hover{
+.alert-3D-bar-header .pull-right{
+  height: 5vh;
+  width: 5vh;
   cursor: pointer;
+  background: red;
+  text-align: center;
 }
 .alert-3D-bar-bar{
   height: 55vh;
-  border:1px solid #3B425C;
-  margin-right: -10px;
 }
 .alert-3D-bar-pie{
   height: 55vh;
-  margin-left: -8px;
+}
+
+
+
+.alert-window{
+  position: absolute;
+  width: 70vw;
+  height:60vh;
+  left: 50%;
+  margin-left: -35vw;
+  top: 50%;
+  margin-top: -30vh;
+  background: rgba(10,10,72,0.9);
+  z-index: 1;
+  /*overflow: auto;*/
+}
+.alert-window-header{
+  height: 5vh;
+  line-height: 5vh;
+  background: rgba(240,43,43,0.8);
+}
+.alert-window-header span{
+  margin-left: 10px;
+  font-size: 1.8rem;
+}
+.alert-window-header .pull-right{
+  height: 5vh;
+  width: 5vh;
+  cursor: pointer;
+  background: red;
+  text-align: center;
+}
+.alert-window-content{
+  height: 55vh;
+
+}
+.alert-window-content .alert-3D-bar-bar{
+  border-right: 1px solid #87FFFF;
+}
+.alert-window-content .alert-3D-bar-pie{
+  border-left: 1px solid #87FFFF;
+  margin-left: -15px;
 }
 /********************************分割线******************************
 
- */
 /*微调*/
 .text-warning{
   margin-right: 10px;
@@ -457,29 +502,38 @@
   display:none;
 }
 
-/*去掉默认样式 */
-table tr td{
-  border: none;
+/********************************数据排名******************************
+/*数据排名*/
+.content-table{
+  height: auto;
+  padding-top: 1vh;
+  color: #87FFFF;
+  font-size: 1.6rem;
+  position: relative;
+}
+.content-table table{
+  padding-right: 5px;
+}
+/*bootstrap改造*/
+.bottom-pagination {
+
+}
+.list-group>a{
+  color: #87FFFF;
+}
+.pagination > li > a {
+  background-color: #d9dcde;
+  margin-right: 1vw;
+  font-size: 1.5rem;
+  color: #333333;
+  cursor: pointer;
+}
+.pagination > li > a:hover{
+  background-color: #31B0D5;
+  border: 1px solid #31B0D5;
+}
+.pagination > li > a > input{
+  width: 5vw;
 }
 
-.btn {
-  /*background: #929292;*/
- /* padding: 0;
-  border-radius: 0;*/
-  /*background: none;*/
-}
 
-/*test*/
-.custombar1 .ui-scrollpanel-wrapper {
-  border-right: 9px solid #f4f4f4;
-}
-
-.custombar1 .ui-scrollpanel-bar {
-  background-color: #1976d2;
-  opacity: 1;
-  transition: background-color .3s;
-}
-
-.custombar1 .ui-scrollpanel-bar:hover {
-  background-color: #135ba1;
-}
