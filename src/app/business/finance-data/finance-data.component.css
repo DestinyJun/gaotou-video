@@ -445,8 +445,58 @@
   height: 55vh;
 }
 
+/*车辆类型监控弹窗样式*/
+.bg-box{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(149,161,154,0.6);
+  z-index: 2;
+}
+.bg-box .alert-3D-bar{
+  position: absolute;
+  width: 60vw;
+  height:60vh;
+  left: 50%;
+  margin-left: -30vw;
+  top: 50%;
+  margin-top: -30vh;
+  background: rgba(10,10,72,0.9);
+  z-index: 1;
+  /*overflow: auto;*/
+}
+.bg-box .alert-3D-bar-header{
+  height: 5vh;
+  line-height: 5vh;
+  background: rgba(240,43,43,0.8);
+}
+.bg-box .alert-3D-bar-header span{
+  margin-left: 10px;
+  font-size: 1.8rem;
+}
+.bg-box .alert-3D-bar-header .pull-right{
+  height: 5vh;
+  width: 5vh;
+  cursor: pointer;
+  background: red;
+  text-align: center;
+}
+.bg-box .alert-3D-bar-bar{
+  height: 55vh;
+  border:1px solid #3B425C;
+  margin-right: -10px;
+}
+.bg-box .alert-3D-bar-pie{
+  height: 55vh;
+  margin-left: -8px;
+}
+.bg-box .alert-3D-bar-content .toggle-btn button{
+  margin-right: 20px;
+}
 
-
+/*收入类型监控弹窗样式*/
 .alert-window{
   position: absolute;
   width: 70vw;

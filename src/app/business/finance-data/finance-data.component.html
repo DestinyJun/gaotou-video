@@ -1,127 +1,4 @@
 <div class="main">
-  <!--弹窗-->
-  <!--<div class="alert-box" [hidden]="alertMapBoxShow">
-    <div class="alert-box-header">
-      <span>{{alertMapTitle}}</span>
-      <div class="pull-right" (click)="destoryChild1()">
-        <i class="fa fa-window-close " aria-hidden="true"></i>
-      </div>
-    </div>
-    <div class="alert-box-content">
-      <div #alertBox></div>
-      &lt;!&ndash;<app-child-data-map></app-child-data-map>&ndash;&gt;
-    </div>
-  </div>
-  <div class="alert-box" [hidden]="false">
-    <div class="alert-box-header">
-      <span>{{alertDateTitle}}</span>
-      <div class="pull-right" (click)="destoryChild2()">
-        <i class="fa fa-window-close " aria-hidden="true"></i>
-      </div>
-    </div>
-    <div class="alert-box-content">
-      <div #alertDate></div>
-      <app-child-data-list></app-child-data-list>
-    </div>
-  </div>-->
-  <div class="bg-box" *ngIf="alertBarShow">
-    <div class="alert-3D-bar">
-      <div class="alert-3D-bar-header">
-        <span>{{alertBarTitle}}</span>
-        <div class="pull-right" (click)="closeBarShow()">
-          <i class="fa fa-window-close " aria-hidden="true"></i>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-ld-6 col-md-6">
-          <div class="alert-3D-bar-bar" echarts [options]="options3dBar"></div>
-        </div>
-        <div class="col-ld-6 col-md-6">
-          <div class="alert-3D-bar-pie" echarts [options]="options3dPie"></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="bg-box" *ngIf="alertIncomeShow">
-    <div class="alert-window">
-      <div class="alert-window-header">
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <span>{{alertIncomeTitle}}</span>
-            <div class="pull-right" (click)="closeIncomeShow()">
-              <i class="fa fa-window-close " aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="alert-window-content">
-        <div class="row">
-          <div class="col-ld-6 col-md-6">
-            <div class="alert-3D-bar-bar" echarts [options]="optionsIncomeTypes"></div>
-          </div>
-          <div class="col-ld-6 col-md-6">
-            <div class="alert-3D-bar-pie">
-              <div class="content-btn text-center">
-                <button class="btn btn-danger">小吃</button>
-                <button class="btn btn-default">中式快餐</button>
-                <button class="btn btn-success">西式快餐</button>
-                <button class="btn btn-info">商超</button>
-                <button class="btn btn-warning">住宿</button>
-                <button class="btn btn-primary">汽修</button>
-              </div>
-              <div class="content-table">
-                <table class="table table-bordered">
-                  <thead>
-                  <tr>
-                    <th>排名</th>
-                    <th>数值</th>
-                    <th>服务区</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>第一名</td>
-                    <td>32484元</td>
-                    <td>龙里服务区</td>
-                  </tr>
-                  <tr>
-                    <td>第一名</td>
-                    <td>32484元</td>
-                    <td>龙里服务区</td>
-                  </tr>
-                  <tr>
-                    <td>第一名</td>
-                    <td>32484元</td>
-                    <td>龙里服务区</td>
-                  </tr>
-                  <tr>
-                    <td>第一名</td>
-                    <td>32484元</td>
-                    <td>龙里服务区</td>
-                  </tr>
-                  <tr>
-                    <td>第一名</td>
-                    <td>32484元</td>
-                    <td>龙里服务区</td>
-                  </tr>
-                  </tbody>
-                </table>
-                <div class="bottom-pagination text-center">
-                  <ul class="pagination">
-                    <li><a>上一页</a></li>
-                    <li><a>共5页/第3页</a></li>
-                    <li><a style="padding: 3px 12px;">跳转到: <input type="number"><span style="margin-left: 10px">页</span></a></li>
-                    <li><a>下一页</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <!--大数据可视化-->
   <div class="main-top">
     <div class="row">
@@ -277,139 +154,136 @@
       </div>
     </div>
   </div>
-<!--  &lt;!&ndash;下部分&ndash;&gt;
-  <div class="main-bottom">
-    <div class="row">
-      &lt;!&ndash;服务区当日车型分析&ndash;&gt;
-      <div class="col-lg-3 col-md-3" >
-        <div class="vehicle">
-            <p class="text-center">{{this.dataToggle}}今日车辆流动数量</p>
-            <div class="vehicle-amount">
-              <h3 class="text-center">
-                <span>0</span>
-                <span>0</span>
-                <span>0</span>
-                <span style="margin-right: 10px" *ngFor="let i of vehicleAmount">{{i}}</span>
-                <small style="font-size: 14px;color: white;">辆</small>
-              </h3>
-              &lt;!&ndash;<p class="text-center">
-                <span style="margin-right: 10px">前日时间同比</span>
-                <i class="fa fa-long-arrow-up"></i>
-                <span class="">3.2%</span>
-              </p>&ndash;&gt;
-            </div>
-          </div>
-        <div class="accumulation" echarts [options]="optionsCarModel" (chartClick)="parkClick($event)"></div>
-      </div>
-      &lt;!&ndash;事件监控列表&ndash;&gt;
-      <div class="col-lg-3 col-md-3" >
-        <div class="event-table">
-          <div class="table-title text-center">
-            <span>{{this.dataToggle}}服务区事件监控</span>
-          </div>
-          <div class="table-responsive">
-            <table class="table" cellspacing="5px">
-              <thead class="table-header">
-                <tr>
-                <td>标记</td>
-                <td>时间</td>
-                <td>事件类型</td>
-                <td>事件描述</td>
-                <td>最新动态</td>
-              </tr>
-              </thead>
-              <tbody class="table-body">
-                <tr class="table-tr" style="color: #BB32F4">
-                  <td><span style="background: #BB32F4;"></span></td>
-                  <td>1分钟之前</td>
-                  <td>工程类</td>
-                  <td>一号水库水位低</td>
-                  <td class="hot">03<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #F432AD">
-                  <td><span style="background: #F432AD;"></span></td>
-                  <td>3分钟之前</td>
-                  <td>经营类</td>
-                  <td>妹妹小吃账户异常</td>
-                  <td class="hot">04<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #E57D0D">
-                  <td><span style="background: #E57D0D;"></span></td>
-                  <td>5分钟之前</td>
-                  <td>卫生类</td>
-                  <td>乌江服务区卫生差</td>
-                  <td class="hot">07<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #1ED1D8">
-                  <td><span style="background: #1ED1D8;"></span></td>
-                  <td>15分钟之前</td>
-                  <td>监控类</td>
-                  <td>一号门监控设备出问题</td>
-                  <td class="hot">02<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #3BF49F">
-                  <td><span style="background: #3BF49F;"></span></td>
-                  <td>30分钟之前</td>
-                  <td>系统故障</td>
-                  <td>服务器异常</td>
-                  <td class="hot">10<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #1ED1D8">
-                  <td><span style="background: #1ED1D8;"></span></td>
-                  <td>40分钟之前</td>
-                  <td>其他</td>
-                  <td>出口位置轿车刮伤</td>
-                  <td class="hot">04<span></span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+  <!--弹窗-->
+  <!--3D柱状图弹窗-->
+  <div class="bg-box" *ngIf="alertBarShow">
+    <div class="alert-3D-bar">
+      <div class="alert-3D-bar-header">
+        <span>{{alertBarTitle}}</span>
+        <div class="pull-right" (click)="closeBarShow()">
+          <i class="fa fa-window-close " aria-hidden="true"></i>
         </div>
       </div>
-      &lt;!&ndash;实时车流收入数据监控&ndash;&gt;
-      <div class="col-lg-3 col-md-3" >
-        <div class="number">
-          <div class="vehicle">
-            <p class="text-center">{{this.dataToggle}}今日车辆流动数量</p>
-            <div class="vehicle-amount">
-              <h3 class="text-center">
-                <span>0</span>
-                <span>0</span>
-                <span>0</span>
-                <span style="margin-right: 10px" *ngFor="let i of vehicleAmount">{{i}}</span>
-                <small style="font-size: 14px;color: white;">辆</small>
-              </h3>
-              <p class="text-center">
-                <span style="margin-right: 10px">前日时间同比</span>
-                <i class="fa fa-long-arrow-up"></i>
-                <span class="">3.2%</span>
-              </p>
-            </div>
-          </div>
-          <div class="income">
-            <p class="text-center">全国高速服务区实时收入</p>
-            <div class="income-amount">
-              <h3 class="text-center">
-                <span>0</span>
-                <span>0</span>
-                <span>0</span>
-                <span style="margin-right: 10px" *ngFor="let i of incomeAmount">{{i}}</span>
-                <small style="font-size: 14px;color: white;">元</small>
-              </h3>
-              <p class="text-center">
-                <span style="margin-right: 10px">前日时间同比</span>
-                <i class="fa fa-long-arrow-up" style="color: #03D095"></i>
-                <span class="">15%</span>
-              </p>
+      <div class="row">
+        <div class="col-ld-6 col-md-6">
+          <div class="alert-3D-bar-bar" echarts [options]="options3dBar"></div>
+        </div>
+        <div class="col-ld-6 col-md-6">
+          <div class="alert-3D-bar-pie" echarts [options]="options3dPie"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!--车辆类型弹窗-->
+  <div class="bg-box" *ngIf="alertCarShow">
+    <div class="alert-window">
+      <div class="alert-window-header">
+        <div class="row">
+          <div class="col-ld-12 col-md-12">
+            <span>{{alertCarTitle}}</span>
+            <div class="pull-right" (click)="closeCarShow()">
+              <i class="fa fa-window-close " aria-hidden="true"></i>
             </div>
           </div>
         </div>
       </div>
-      &lt;!&ndash;服务区当日收入类型比重占比&ndash;&gt;
-      <div class="col-lg-3 col-md-3">
-        <div class="today-income" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
+      <div class="alert-window-content">
+        <div class="row">
+          <div class="col-ld-6 col-md-6">
+            <div class="alert-3D-bar-bar" echarts [options]="optionsCarType"></div>
+          </div>
+          <div class="col-ld-6 col-md-6">
+            <div class="toggle-btn text-center">
+              <button class="btn btn-info">小车</button>
+              <button class="btn btn-primary">客车</button>
+              <button class="btn btn-danger">货车</button>
+            </div>
+            <div class="alert-3D-bar-pie" echarts [options]="optionsCarRanking"></div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>-->
+  </div>
+  <!--收入类型弹窗-->
+  <div class="bg-box" *ngIf="alertIncomeShow">
+    <div class="alert-window">
+      <div class="alert-window-header">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <span>{{alertIncomeTitle}}</span>
+            <div class="pull-right" (click)="closeIncomeShow()">
+              <i class="fa fa-window-close " aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert-window-content">
+        <div class="row">
+          <div class="col-ld-6 col-md-6">
+            <div class="alert-3D-bar-bar" echarts [options]="optionsIncomeTypes"></div>
+          </div>
+          <div class="col-ld-6 col-md-6">
+            <div class="alert-3D-bar-pie">
+              <div class="content-btn text-center">
+                <button class="btn btn-danger">小吃</button>
+                <button class="btn btn-default">中式快餐</button>
+                <button class="btn btn-success">西式快餐</button>
+                <button class="btn btn-info">商超</button>
+                <button class="btn btn-warning">住宿</button>
+                <button class="btn btn-primary">汽修</button>
+              </div>
+              <div class="content-table">
+                <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                    <th>排名</th>
+                    <th>数值</th>
+                    <th>服务区</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>第一名</td>
+                    <td>32484元</td>
+                    <td>龙里服务区</td>
+                  </tr>
+                  <tr>
+                    <td>第一名</td>
+                    <td>32484元</td>
+                    <td>龙里服务区</td>
+                  </tr>
+                  <tr>
+                    <td>第一名</td>
+                    <td>32484元</td>
+                    <td>龙里服务区</td>
+                  </tr>
+                  <tr>
+                    <td>第一名</td>
+                    <td>32484元</td>
+                    <td>龙里服务区</td>
+                  </tr>
+                  <tr>
+                    <td>第一名</td>
+                    <td>32484元</td>
+                    <td>龙里服务区</td>
+                  </tr>
+                  </tbody>
+                </table>
+                <div class="bottom-pagination text-center">
+                  <ul class="pagination">
+                    <li><a>上一页</a></li>
+                    <li><a>共5页/第3页</a></li>
+                    <li><a style="padding: 3px 12px;">跳转到: <input type="number"><span style="margin-left: 10px">页</span></a></li>
+                    <li><a>下一页</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 

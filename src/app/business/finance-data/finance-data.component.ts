@@ -23,60 +23,21 @@ declare let BMapLib;
   styleUrls: ['./finance-data.component.css']
 })
 export class FinanceDataComponent implements OnInit {
-  // 全国、省级数据切换
-  public dataToggle = '贵州省';
-  // 弹出框的标题及显影控制
-  public alertMapBoxShow = true;
-  public alertMapTitle: string;
-
-  public alertDateBoxShow = true;
-  public alertDateTitle: string;
-
-  public alertBarShow = false;
-  public alertBarTitle: string;
-
-  // 服务区地图分布
-  public mapName = 'china';
-  public mapCenter = [101.74, 36.56];
-  public mapZoom = 0.8;
-  public mapLeft = '';
-  public mapRight = '';
-
-  // 图表加载状态状态:
-  public echartsIntance: any;
-  //  全国高速服务区业态数据3d统计
+  /****************************左边***************************/
+    // 3d图
   public options3d = {};
   public options3dArray: any;
-  // 全国高速服务区分布图
-  public optionsMap = {};
-  //  全国业态经营数据前十排名
-  public crosswiseBar = {};
-  public barStatus1 = true;
-  public barStatus2 = false;
-  public barStatus3 = false;
-  public dataStatus = '业态收入';
-  // 全国当日车型日分布分析
-  public optionsCarModel = {};
-  // 车辆收入数值表现
-  public numberText = ['0', '0', '0'];
+
+  // 车流量实时数值
   public vehicleAmount = [];
   public incomeAmount = [];
-  // 全国当日收入类型占比分析
-  public alertIncomeTitle: string;
-  public optionsIncomeModel = {};
-  public alertIncomeShow = false;
-  public optionsIncomeTypes = {};
-  // 车月度所有服务区车辆流量柱状图统计
-  public optionsCar = {};
-  // 当日服务区停车量排名
-  public optionsRetention = {};
-  // 月度收入分析
-  public options3dPie = {};
-  // 服务区当日收入排名
-  public optionsIncome = {};
-  // 弹窗横向对比数值柱状图
-  public options3dBar = {};
-  // 省市联动数据及状态
+
+  // 车型分布
+  public optionsCarModel = {};
+
+  /*****************************中部**************************/
+    // 省市联动
+  public dataToggle = '贵州省';
   public selectDate = '贵州省';
   public province: any;
   public city: any;
@@ -84,6 +45,60 @@ export class FinanceDataComponent implements OnInit {
   public provinceShow = false;
   public cityShow = false;
   public flag: string;
+
+  // 弹出框的标题及显影控制
+  public alertMapBoxShow = true;
+  public alertMapTitle: string;
+  public alertDateBoxShow = true;
+  public alertDateTitle: string;
+
+  // 全国高速服务区分布图
+  public optionsMap = {};
+
+  /*****************************右边***************************/
+    // 全国业态经营数据前十排名
+  public crosswiseBar = {};
+  // 柱状图类型切换
+  public barStatus1 = true;
+  public barStatus2 = false;
+  public barStatus3 = false;
+  public dataStatus = '业态收入';
+
+  // 全国当日收入类型占比分析
+  public optionsIncomeModel = {};
+
+  /**********************弹窗部分**********************/
+    // 3D柱状图弹窗
+  public alertBarShow = false;
+  public alertBarTitle: string;
+  public options3dBar = {};
+  public options3dPie = {};
+  // 车辆类型弹窗
+  public alertCarShow = false;
+  public alertCarTitle: string;
+  public optionsCarType = {};
+  public optionsCarRanking = {};
+  // 收入类型弹窗
+  public alertIncomeShow = false;
+  public alertIncomeTitle: string;
+  public optionsIncomeTypes = {};
+
+
+  /**********************暂时不知道的分布**********************/
+  // 当日服务区停车量排名
+  public optionsRetention = {};
+  // 服务区当日收入排名
+  public optionsIncome = {};
+  // 服务区地图分布
+  public mapName = 'china';
+  public mapCenter = [101.74, 36.56];
+  public mapZoom = 0.8;
+  public mapLeft = '';
+  public mapRight = '';
+  // 图表加载状态状态:
+  public echartsIntance: any;
+  // 车月度所有服务区车辆流量柱状图统计
+  public optionsCar = {};
 
   // 动态创建组件
   @ViewChild('alertBox', {read: ViewContainerRef})
@@ -96,7 +111,7 @@ export class FinanceDataComponent implements OnInit {
   comp2: ComponentRef<ChildDataListComponent>;
 
   constructor(
-    public http: HttpClient,
+    private http: HttpClient,
     private es: NgxEchartsService,
     private eventsService: EventsService,
     private resolver: ComponentFactoryResolver,
@@ -107,7 +122,9 @@ export class FinanceDataComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // 模拟收入车辆实时数据
     this.amount();
+    // 图表更行
     this.updataEcharts();
     // 全屏点击事件
     window.document.addEventListener('click', (e) => {
@@ -1769,7 +1786,7 @@ export class FinanceDataComponent implements OnInit {
 
 
   /*********************************函数操作*****************************/
-  //  3D柱状图的相关点击事件、3D图横向对比
+  //  3D柱状图的相关点击事件
   public barClick(e): void {
     const colorList = [
       '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
@@ -1932,6 +1949,67 @@ export class FinanceDataComponent implements OnInit {
     this.alertBarShow = false;
   }
 
+  // 车型分布相关点击事件
+  public parkClick(e): void {
+    console.log(e);
+    this.alertCarShow = true;
+    this.alertCarTitle = e.name;
+    this.optionsCarType = {
+      title: {
+        text: `贵州省各市所有服务区年度类型占比统计`,
+        x: 'center',
+        textStyle: {
+          color: '#fff',
+          fontSize: 14
+        }
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+      },
+      /*legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州','黔西南布依族苗族自治州'],
+        textStyle: {
+          color: 'white'
+        }
+      },*/
+      series: [
+        {
+          name: `dfgdgdfgdg`,
+          type: 'pie',
+          radius: '55%',
+          center: ['50%', '60%'],
+          data: [
+            {value: 17, name: '贵阳市'},
+            {value: 15, name: '遵义市'},
+            {value: 5, name: '六盘水市'},
+            {value: 13, name: '安顺市'},
+            {value: 16, name: '毕节市'},
+            {value: 11, name: '铜仁市'},
+            {value: 8, name: '黔东南苗族侗族自治州'},
+            {value: 12, name: '黔南布依族苗族自治州'},
+            {value: 3, name: '黔西南布依族苗族自治州'},
+          ],
+          itemStyle: {
+            color: function (params) {
+              return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
+            },
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
+  }
+  public closeCarShow(): void {
+    this.alertCarShow = false;
+  }
+
   // 全国服务区分布点击事件
   public mapClick(): void {
     this.createComponent('贵阳');
@@ -1983,20 +2061,7 @@ export class FinanceDataComponent implements OnInit {
   }
   // 业态数据排名点击进入服务区数据
   public rankingClick(e) {
-    this.router.navigate(['/home/serzone', {name: e.name, point: [116.39737,39.935076]}]);
-  }
-
-  // 驻车量排名相关操作
-  public parkClick(e): void {
-    const childComp2 = this.resolver.resolveComponentFactory(ChildDataListComponent);
-    if (this.alertDateBoxShow) {
-      this.alertDateBoxShow = false;
-      this.comp2 = this.alertDate.createComponent(childComp2);
-      this.comp2.instance.typeTitle = e.seriesName;
-      this.alertDateTitle = e.seriesName;
-    } else {
-      this.destoryChild2();
-    }
+    this.router.navigate(['/home/serzone', {name: e.name, point: [116.39737, 39.935076]}]);
   }
 
   // 事件列表相关操作
