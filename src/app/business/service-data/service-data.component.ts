@@ -5,6 +5,7 @@ import {
 import {Data3dService} from '../../common/services/data3d.service';
 import {DiagramService} from '../../common/services/diagram.service';
 import {ActivatedRoute} from '@angular/router';
+import {DataService} from '../../common/services/data.service';
 declare let BMap;
 
 @Component({
@@ -13,15 +14,26 @@ declare let BMap;
   styleUrls: ['./service-data.component.css']
 })
 export class ServiceDataComponent implements OnInit {
+  /***********************头部************************/
   // 服务区名称
   public serviceZoneTitle: string;
-  // 服务区名称
-  public serviceZonePoint: string;
-  //  高速服液态数据3d统计
+
+  /***********************左边************************/
+    //  高速服液态数据3d统计
   public options3d = {};
   public options3dArray: any;
-  //  服务区业态经营数据前十排名
+
+  /***********************右边************************/
+  // 全国业态经营数据前十排名
   public crosswiseBar = {};
+  public barStatus1 = true;
+  public barStatus2 = false;
+  public barStatus3 = false;
+  public dataStatus = '业态收入';
+
+  /***********************其他************************/
+  // 服务区名称
+  public serviceZonePoint: string;
   // 服务区车型日分布分析
   public optionsCarModel = {};
   // 车辆收入数值表现
@@ -30,11 +42,29 @@ export class ServiceDataComponent implements OnInit {
   // 全国当日收入类型占比分析
   public optionsIncomeModel = {};
 
+  /**********************弹窗部分**********************/
+    // 3D柱状图弹窗
+  public alertBarShow = false;
+  public alertBarTitle: string;
+  public options3dBar = {};
+  public options3dBarInstance: any;
+  public options3dPie = {};
+  public options3dPieInstance: any;
+  public colorList = [
+    '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
+    '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+  ];
+  public arryPie = [];
+
+  /**********************基础数据部分**********************/
+  public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
+
   constructor(
     private el: ElementRef,
     private data3dS: Data3dService,
     private diagrams: DiagramService,
-    public routerInfo: ActivatedRoute
+    private routerInfo: ActivatedRoute,
+    private dataService: DataService
   ) {}
 
   ngOnInit() {
@@ -59,10 +89,10 @@ export class ServiceDataComponent implements OnInit {
     // 贵阳当日收入类型占比分析
     this.IncomeTypes();
   }
-  /************************统计图***************************/
-  // 贵阳高速服务区业态数据3d统计
+  /************************图表配置***************************/
+  // 高速服务区业态数据3d统计
   public packOption3() {
-    this.data3dS.get3dDataGuiYang().subscribe(
+    this.data3dS.get3dData().subscribe(
       (value) => {
         this.options3dArray = value;
         const hours = this.options3dArray.hours;
@@ -70,7 +100,7 @@ export class ServiceDataComponent implements OnInit {
         this.options3d = {
           title: [
             {
-              text:  this.serviceZoneTitle,
+              text: this.serviceZoneTitle + this.options3dArray.data3dTitle,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -85,7 +115,7 @@ export class ServiceDataComponent implements OnInit {
               type: 'cross',
               axis: 'auto',
             },
-            formatter: function(params) {
+            formatter: function (params) {
               let res = `<p>${hours[params.value[0]]}:</p>`;
               res += `<p style='margin-left:3px'>${days[params.value[1]]}:${params.value[2]}%</p>`;
               return res;
@@ -160,7 +190,7 @@ export class ServiceDataComponent implements OnInit {
           series: [
             {
               type: 'bar3D',
-              barWidth : 30, // 柱图宽度
+              barWidth: 30, // 柱图宽度
               data: this.data3dS.data3dFac().map(function (item) {
                 return {
                   value: [item[0], item[1], item[2]]
@@ -197,14 +227,14 @@ export class ServiceDataComponent implements OnInit {
       }
     );
   }
-  // 贵阳业态经营数据前十排名
+
+  // 业态经营数据前十排名
   public backCrosswiseBar() {
     this.diagrams.getIncomerRankedGuiYang().subscribe(
       (value) => {
         const nums = [];
         const merchants = [];
         function test(params, merchant): any {
-          // console.log(params);
           return `<p>${params.name}：<span>${merchant[params.dataIndex]}</p></span>
                   <p>收入：<span>${params.value}元</p></span>
 `;
@@ -279,85 +309,204 @@ export class ServiceDataComponent implements OnInit {
               color: '#F52C11',
               label: {
                 show: true,
-                formatter: function (params) {
-                  return `${params.value}`;
-                },
+                formatter: '{a}: {c}',
                 textBorderColor: '#333',
                 textBorderWidth: 2,
               },
             },
           ]
         };
-        /* let optionTest = {
-           title: {
-             text: 'Wheater Statistics'
-           },
-           tooltip: {
-             trigger: 'axis',
-             axisPointer: {
-               type: 'shadow'
-             }
-           },
-           legend: {
-             data: ['业态收入', '车流量', '人流量']
-           },
-           grid: {
-             left: 100
-           },
-           xAxis: {
-             type: 'value',
-             name: 'Days',
-             axisLabel: {
-               formatter: '{value}'
-             }
-           },
-           yAxis: {
-             type: 'category',
-             inverse: true,
-             data: ['第一名', '第二名', '第三名'],
-             axisLabel: {
-               margin: 20,
-             }
-           },
-           series: [
-             {
-               name: '业态收入',
-               type: 'bar',
-               data: [165, 170, 30],
-               label: {
-                 show: true,
-                 formatter: '{a}: {c}',
-                 textBorderColor: '#333',
-                 textBorderWidth: 2,
-               },
-             },
-             {
-               name: '车流量',
-               type: 'bar',
-               label: {
-                 show: true,
-                 formatter: '{a}: {c}',
-                 textBorderColor: '#333',
-                 textBorderWidth: 2,
-               },
-               data: [150, 105, 110]
-             },
-             {
-               name: '人流量',
-               type: 'bar',
-               label: {
-                 show: true,
-                 formatter: '{a}: {c}',
-                 textBorderColor: '#333',
-                 textBorderWidth: 2,
-               },
-               data: [220, 82, 63]
-             }
-           ]
-         };*/
       }
     );
   }
+  /*********************************函数操作*****************************/
+  // 返回上级路由
+  public goBack(): void {
+    history.back();
+  }
+  //  3D柱状图的相关点击事件
+  public barClick(e): void {
+    const that = this;
+    this.alertBarShow = true;
+    const yType = ['经营收入', '驻车量', '用电量', '用水量', '客流量'];
+    this.colorList = [
+      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
+      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+    ];
+    this.colorList[e.data.value[0]] = 'red';
+    const yAxis = e.data.value[1];
+    this.alertBarTitle = yType[yAxis];
+    const barData = this.dataService.get3dOption(12);
+    const pieDataName = barData[e.data.value[0]];
+    this.arryPie = [];
+    this.dataService.getrandomPie(9).map((val, index) => {
+      this.arryPie.push({value: val, name: this.citys[index]});
+    });
+
+    function types(value): string {
+      let typeValue = '';
+      switch (value) {
+        case 0:
+          typeValue = yType[0];
+          break;
+        case 1:
+          typeValue = yType[1];
+          break;
+        case 2:
+          typeValue = yType[2];
+          break;
+        case 3:
+          typeValue = yType[3];
+          break;
+        case 4:
+          typeValue = yType[4];
+          break;
+      }
+      return typeValue;
+    }
+
+    this.options3dBar = {
+      title: [
+        {
+          text: `${this.serviceZoneTitle}年度${types(yAxis)}统计`,
+          left: 'center',
+          textStyle: {
+            color: '#fff',
+            fontSize: 16
+          }
+        },
+      ],
+      dataZoom: [
+        {
+          type: 'inside'
+        }
+      ],
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      grid: {
+        left: '5%',
+        right: '3%',
+        bottom: '10%'
+      },
+      xAxis: {
+        type: 'category',
+        data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+        splitLine: {show: false},
+        nameTextStyle: {
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      yAxis: {
+        type: 'value',
+        name: '数值',
+        splitLine: {show: false},
+        nameTextStyle: {
+          align: 'left',
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      series: [
+        {
+          data: barData,
+          type: 'bar',
+          label: {
+            // 柱状图的数值是否显示
+            show: true,
+            textStyle: {
+              fontSize: 16,
+              borderWidth: 1
+            }
+          },
+          itemStyle: {
+            color: function (params) {
+              return that.colorList[params.dataIndex];
+            },
+          }
+        }]
+    };
+    // 类型占比统计
+    this.options3dPie = {
+      title: {
+        text: `${this.serviceZoneTitle}年度${types(yAxis)}类型占比统计`,
+        x: 'center',
+        textStyle: {
+          color: '#fff',
+          fontSize: 16
+        }
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {d}%'
+      },
+      series: [
+        {
+          name: `${types(yAxis)}总计：${pieDataName}`,
+          type: 'pie',
+          radius: '60%',
+          center: ['50%', '50%'],
+          data: this.arryPie,
+          itemStyle: {
+            color: function (params) {
+              return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
+            },
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
+  }
+  public closeBarShow() {
+    this.alertBarShow = false;
+  }
+
+  // 横向柱状图数据排名相关操作
+  public clickBtn(e): void {
+    if (e.srcElement.innerText === '业态收入') {
+      this.dataStatus = '业态收入';
+      this.barStatus1 = true;
+      this.barStatus2 = false;
+      this.barStatus3 = false;
+      this.backCrosswiseBar();
+    } else if (e.srcElement.innerText === '车流量') {
+      this.dataStatus = '车流量';
+      this.barStatus1 = false;
+      this.barStatus2 = true;
+      this.barStatus3 = false;
+      this.backCrosswiseBar();
+    } else {
+      this.dataStatus = '客流量';
+      this.barStatus1 = false;
+      this.barStatus2 = false;
+      this.barStatus3 = true;
+      this.backCrosswiseBar();
+    }
+  }
+  public rankingClick(e) {
+    // this.router.navigate(['/home/serzone', {name: e.name, point: [116.39737, 39.935076]}]);
+  }
+
+
+
+  /********************************其他*********************/
+
   // 贵阳高速服务区日分布类型占比分析
   public CarTypes() {
     this.diagrams.getCarTypesGuiYang().subscribe(
@@ -630,9 +779,67 @@ export class ServiceDataComponent implements OnInit {
     }, {enableHighAccuracy: true});
   }
 
-  /****************************函数操作*************************/
-  public goBack(): void {
-    history.back();
-  }
 
+  /*********************************弹窗部分函数操作*****************************/
+  // 3D柱状图弹窗操作
+  public options3dBarInit(ec) {
+    this.options3dBarInstance = ec;
+  }
+  public options3dPieInit(ec) {
+    this.options3dPieInstance = ec;
+  }
+  public options3dBarClick(e) {
+    this.colorList = [
+      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
+      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+    ];
+    this.colorList[e.dataIndex] = 'red';
+    this.options3dBarInstance.setOption(this.options3dBar);
+    this.arryPie = [];
+    this.dataService.getrandomPie(9).map((val, index) => {
+      this.arryPie.push({value: val, name: this.citys[index]});
+    });
+    console.log(this.arryPie);
+    this.options3dPie = {
+      title: {
+        text: `${this.serviceZoneTitle}年度${e.name}类型占比统计`,
+        x: 'center',
+        textStyle: {
+          color: '#fff',
+          fontSize: 16
+        }
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b} : {d}%'
+      },
+      /*legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州','黔西南布依族苗族自治州'],
+        textStyle: {
+          color: 'white'
+        }
+      },*/
+      series: [
+        {
+          name: `${e.name}总计：${e.value}`,
+          type: 'pie',
+          radius: '60%',
+          center: ['50%', '50%'],
+          data: this.arryPie,
+          itemStyle: {
+            color: function (params) {
+              return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
+            },
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
+  }
 }

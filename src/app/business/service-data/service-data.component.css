@@ -1,41 +1,77 @@
-/*顶部弹窗*/
-.alert-box{
+.main{
   position: absolute;
   width: 100%;
   height: 92vh;
   background: rgba(10,10,72,0.9);
-  z-index: 2;
   overflow: hidden;
 }
-.alert-box-header{
+/*******************************头部*******************************/
+.main-header{
   height: 5vh;
   line-height: 5vh;
   background: rgba(240,43,43,0.8);
 }
-.alert-box-header span{
+.main-header span{
   font-size: 1.8rem;
   margin-left: 10px;
 }
-.alert-box-header .pull-right{
+.main-header .pull-right{
   height: 5vh;
   width: 5vh;
   cursor: pointer;
 }
-.alert-box-content{
+.main-header .pull-right:hover{
+   background: red;
+}
+
+.main-content{
   height: 86vh;
   overflow: auto;
 }
+/******************************左边*******************************/
+/*3D柱状图*/
+.main-content .accumulation3d{
+  height: 51vh;
+  border:1px solid #3B425C;
+  margin-bottom: 1vh;
+  margin-right: -8px;
+}
+
+/******************************右边*******************************/
+/*横向排名柱状图*/
+.main-content .crosswise{
+  height: 51vh;
+  border:1px solid #3B425C;
+  margin-bottom: 1vh;
+  margin-left: -8px;
+  position: relative;
+}
+.main-content .crosswise .crosswise-btn{
+  /* position: absolute;
+   top: 36px;
+   left: 30%;
+   margin-left: -23px;*/
+  height: 5vh;
+
+}
+.main-content .crosswise .crosswise-btn .btn{
+  margin-right: 30px;
+  /*background: linear-gradient(red,blue);*/
+  box-shadow:2px 3px 10px #01D1DB ;
+}
+.main-content .crosswise .crosswise-bar{
+  height: 48vh;
+}
 
 
-
-.content .top-box{
+.top-box{
   height: 51vh;
   margin-left: -15px;
   margin-right: -15px;
   border: 1px solid #ADB9D1;
   overflow: hidden;
 }
-.content .bottom-box{
+.bottom-box{
   height: 34vh;
   margin-left: -15px;
   margin-right: -15px;
@@ -75,6 +111,7 @@
   height: 15px;
   border-radius: 100%;
 }
+
 .event-table .table-body .table-tr>.hot{
   position: relative;
 }
@@ -146,5 +183,107 @@
   overflow: hidden;
   padding-right: 5px;
 }
+
+/****************************弹窗部分****************************/
+/*3D柱状图弹窗*/
+.bg-box{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(149,161,154,0.6);
+  z-index: 2;
+}
+.alert-3D-bar{
+  position: absolute;
+  width: 80vw;
+  height:60vh;
+  left: 50%;
+  margin-left: -40vw;
+  top: 50%;
+  margin-top: -30vh;
+  background: rgba(10,10,72,0.9);
+  z-index: 1;
+  /*overflow: auto;*/
+}
+.alert-3D-bar-header{
+  height: 5vh;
+  line-height: 5vh;
+  background: rgba(240,43,43,0.8);
+}
+.alert-3D-bar-header span{
+  margin-left: 10px;
+  font-size: 1.8rem;
+}
+.alert-3D-bar-header .pull-right{
+  height: 5vh;
+  width: 5vh;
+  cursor: pointer;
+  text-align: center;
+}
+.alert-3D-bar-header .pull-right:hover{
+  background: red;
+}
+.alert-3D-bar-bar{
+  height: 55vh;
+}
+.alert-3D-bar-pie{
+  height: 55vh;
+}
+
+/*收入类型监控弹窗样式、车辆类型监控弹窗样式*/
+.alert-window{
+  position: absolute;
+  width: 80vw;
+  height:60vh;
+  left: 50%;
+  margin-left: -40vw;
+  top: 50%;
+  margin-top: -30vh;
+  background: rgba(10,10,72,0.9);
+  z-index: 1;
+}
+.alert-window-header{
+  height: 5vh;
+  line-height: 5vh;
+  background: rgba(240,43,43,0.8);
+}
+.alert-window-header span{
+  margin-left: 10px;
+  font-size: 1.8rem;
+}
+.alert-window-header .pull-right{
+  height: 5vh;
+  width: 5vh;
+  cursor: pointer;
+  text-align: center;
+}
+.alert-window-header .pull-right:hover{
+  background: red;
+}
+.alert-window-content{
+  height: 55vh;
+}
+.alert-window-content-table{
+  position: relative;
+  height: 55vh;
+}
+.alert-window-content-table .toggle-btn{
+  height: 5vh;
+  line-height: 5vh;
+}
+.alert-window-content-table .toggle-btn>button{
+  margin-right: 10px;
+}
+.alert-window-content-table .toggle-btn .toggle-btn-area{
+  height: 5vh;
+  line-height: 5vh;
+  padding-right: 10px;
+}
+.alert-window-content-table .content-table{
+  height: 50vh;
+}
+
 
 

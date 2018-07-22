@@ -166,10 +166,10 @@
       </div>
       <div class="row">
         <div class="col-ld-6 col-md-6">
-          <div class="alert-3D-bar-bar" echarts [options]="options3dBar"></div>
+          <div class="alert-3D-bar-bar" echarts [options]="options3dBar" (chartInit)="options3dBarInit($event)" (chartClick)="options3dBarClick($event)"></div>
         </div>
         <div class="col-ld-6 col-md-6">
-          <div class="alert-3D-bar-pie" echarts [options]="options3dPie"></div>
+          <div class="alert-3D-bar-pie" echarts [options]="options3dPie" (chartInit)="options3dPieInit($event)" ></div>
         </div>
       </div>
 
@@ -191,15 +191,45 @@
       <div class="alert-window-content">
         <div class="row">
           <div class="col-ld-6 col-md-6">
-            <div class="alert-3D-bar-bar" echarts [options]="optionsCarType"></div>
+            <div class="alert-3D-bar-bar" echarts [options]="optionsCarType" (chartInit)="optionsCarPieInit($event)" (chartClick)="optionsCarPieClick($event)"></div>
           </div>
           <div class="col-ld-6 col-md-6">
-            <div class="toggle-btn text-center">
-              <button class="btn btn-info">小车</button>
-              <button class="btn btn-primary">客车</button>
-              <button class="btn btn-danger">货车</button>
+            <div class="alert-window-content-table">
+              <div class="toggle-btn" (click)="carBtnClick($event)">
+                <button class="btn btn-info" [ngStyle]="{'background':alertCarTitle === '小车'?'black': ''}">小车</button>
+                <button class="btn btn-primary" [ngStyle]="{'background':alertCarTitle === '客车'?'black': ''}">客车</button>
+                <button class="btn btn-danger" [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">货车</button>
+                <div class="toggle-btn-area pull-right" style="">
+                  <button class="btn btn-success">{{carAreaName}}</button>
+                </div>
+              </div>
+              <div class="content-table">
+                <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                    <th>{{alertCarTitle}}排名</th>
+                    <th>{{alertCarTitle}}数值(辆）</th>
+                    <th>服务区</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of carTableData">
+                    <td>{{item.num}}</td>
+                    <td>{{item.value}}</td>
+                    <td>{{item.zone}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="bottom-pagination text-center">
+                <ul class="pagination">
+                    <li><a class="btn btn-info">上一页</a></li>
+                    <li><a>共5页/第3页</a></li>
+                    <li><a style="padding: 3px 12px;">跳转到: <input type="number"><span style="margin-left: 10px">页</span></a></li>
+                    <li><a class="btn btn-warning">下一页</a></li>
+                  </ul>
+              </div>
             </div>
-            <div class="alert-3D-bar-pie" echarts [options]="optionsCarRanking"></div>
           </div>
         </div>
       </div>
@@ -221,63 +251,46 @@
       <div class="alert-window-content">
         <div class="row">
           <div class="col-ld-6 col-md-6">
-            <div class="alert-3D-bar-bar" echarts [options]="optionsIncomeTypes"></div>
+            <div class="alert-3D-bar-bar" echarts [options]="optionsIncomeTypes" (chartInit)="optionsIncomePieInit($event)" (chartClick)="optionsIncomePieClick($event)"></div>
           </div>
           <div class="col-ld-6 col-md-6">
-            <div class="alert-3D-bar-pie">
-              <div class="content-btn text-center">
-                <button class="btn btn-danger">小吃</button>
-                <button class="btn btn-default">中式快餐</button>
-                <button class="btn btn-success">西式快餐</button>
-                <button class="btn btn-info">商超</button>
-                <button class="btn btn-warning">住宿</button>
-                <button class="btn btn-primary">汽修</button>
+            <div class="alert-window-content-table">
+              <div class="toggle-btn" (click)="IncomeBtnClick($event)">
+                <button class="btn btn-danger" [ngStyle]="{'background':alertIncomeTitle === '小吃'?'black': ''}">小吃</button>
+                <button class="btn btn-default" [ngStyle]="{'background':alertIncomeTitle === '中式快餐'?'black': ''}">中式快餐</button>
+                <button class="btn btn-success" [ngStyle]="{'background':alertIncomeTitle === '西式快餐'?'black': ''}">西式快餐</button>
+                <button class="btn btn-info" [ngStyle]="{'background':alertIncomeTitle === '商超'?'black': ''}">商超</button>
+                <button class="btn btn-warning" [ngStyle]="{'background':alertIncomeTitle === '住宿'?'black': ''}">住宿</button>
+                <button class="btn btn-primary" [ngStyle]="{'background':alertIncomeTitle === '汽修'?'black': ''}">汽修</button>
+                <div class="toggle-btn-area pull-right" style="">
+                  <button class="btn btn-success">{{IncomeAreaName}}</button>
+                </div>
               </div>
               <div class="content-table">
                 <table class="table table-bordered">
                   <thead>
                   <tr>
-                    <th>排名</th>
-                    <th>数值</th>
+                    <th>{{alertIncomeTitle}}排名</th>
+                    <th>{{alertIncomeTitle}}数值(辆）</th>
                     <th>服务区</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>第一名</td>
-                    <td>32484元</td>
-                    <td>龙里服务区</td>
-                  </tr>
-                  <tr>
-                    <td>第一名</td>
-                    <td>32484元</td>
-                    <td>龙里服务区</td>
-                  </tr>
-                  <tr>
-                    <td>第一名</td>
-                    <td>32484元</td>
-                    <td>龙里服务区</td>
-                  </tr>
-                  <tr>
-                    <td>第一名</td>
-                    <td>32484元</td>
-                    <td>龙里服务区</td>
-                  </tr>
-                  <tr>
-                    <td>第一名</td>
-                    <td>32484元</td>
-                    <td>龙里服务区</td>
+                  <tr *ngFor="let item of IncomeTableData">
+                    <td>{{item.num}}</td>
+                    <td>{{item.value}}</td>
+                    <td>{{item.zone}}</td>
                   </tr>
                   </tbody>
                 </table>
-                <div class="bottom-pagination text-center">
-                  <ul class="pagination">
-                    <li><a>上一页</a></li>
-                    <li><a>共5页/第3页</a></li>
-                    <li><a style="padding: 3px 12px;">跳转到: <input type="number"><span style="margin-left: 10px">页</span></a></li>
-                    <li><a>下一页</a></li>
-                  </ul>
-                </div>
+              </div>
+              <div class="bottom-pagination text-center">
+                <ul class="pagination">
+                  <li><a class="btn btn-info">上一页</a></li>
+                  <li><a>共5页/第3页</a></li>
+                  <li><a style="padding: 3px 12px;">跳转到: <input type="number"><span style="margin-left: 10px">页</span></a></li>
+                  <li><a class="btn btn-warning">下一页</a></li>
+                </ul>
               </div>
             </div>
           </div>

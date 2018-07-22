@@ -9,6 +9,7 @@ import {Data3dService} from './services/data3d.service';
 import {CentermapService} from './services/centermap.service';
 import {DiagramService} from './services/diagram.service';
 import {ToolsService} from './services/tools.service';
+import {DataService} from './services/data.service';
 
 @NgModule({
   declarations: [],
@@ -31,7 +32,8 @@ import {ToolsService} from './services/tools.service';
     Data3dService,
     CentermapService,
     DiagramService,
-    ToolsService
+    ToolsService,
+    DataService
   ]
 })
 export class SharedModule { }
