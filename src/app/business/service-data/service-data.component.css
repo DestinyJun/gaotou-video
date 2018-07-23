@@ -1,8 +1,7 @@
 .main{
   position: absolute;
   width: 100%;
-  height: 92vh;
-  background: rgba(10,10,72,0.9);
+  height: 93vh;
   overflow: hidden;
 }
 /*******************************头部*******************************/
@@ -25,22 +24,137 @@
 }
 
 .main-content{
-  height: 86vh;
+  /*height: 86vh;*/
   overflow: auto;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 /******************************左边*******************************/
 /*3D柱状图*/
 .main-content .accumulation3d{
-  height: 51vh;
+  height: 47vh;
   border:1px solid #3B425C;
   margin-bottom: 1vh;
   margin-right: -8px;
 }
 
+/*实时车辆数据*/
+.main-content .vehicle{
+  height: 12.5vh;
+  border:1px solid #3B425C;
+  padding-left: 5px;
+  margin-bottom: 1vh;
+  margin-right: -8px;
+}
+.main-content .vehicle>span{
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+.main-content .vehicle-amount>h3>span{
+  display: inline-block;
+  width: 30px;
+  height: 5vh;
+  border: 1px solid #7D8DA7;
+  line-height: 5vh;
+  text-align: center;
+  background: -moz-linear-gradient(top, #01071D 0%, #0A4D84 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#01071D), color-stop(100%,#0A4D84));
+  background: -webkit-linear-gradient(top, #01071D 50%,#0A4D84 100%);
+  background: -o-linear-gradient(top, #01071D 0%,#0A4D84 100%);
+  background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
+  background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);
+}
+.main-content .vehicle .vehicle-amount>p{
+  margin-top: 1vh;
+  font-size: 1.5rem;
+}
+.main-content .vehicle .vehicle-amount>div{
+  overflow: hidden;
+  padding-right: 5px;
+}
+
+/*车型分布*/
+.main-content .accumulation{
+  height: 24.5vh;
+  border:1px solid #3B425C;
+  margin-bottom: 1vh;
+  margin-right: -8px;
+}
+
+/******************************中间*******************************/
+/*中部服务区地图*/
+.main-content .servicesMap{
+  height: 53vh;
+  border:1px solid #3B425C;
+  margin-bottom: 1vh;
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+/*事件监控列表*/
+.main-content .event-table{
+  padding-top: 1px;
+  height: 32vh;
+  border:1px solid #3B425C;
+  overflow: hidden;
+  margin-left: -8px;
+  margin-right: -8px;
+  font-size: 12px;
+}
+.main-content .event-table tr{
+  cursor: pointer;
+
+}
+.main-content .event-table tr td{
+  border: none;
+}
+.main-content .event-table tr:hover{
+  cursor: pointer;
+}
+.main-content .table-title{
+  padding: 5px 0 10px 5px;
+  font-weight: bolder;
+  font-size: 14px;
+}
+.main-content .table-header{
+  height: 5vh;
+  /*border: 1px solid #0593B5;*/
+  background: rgba(7,149,188,0.2);
+  color: #00ECF1;
+}
+.main-content .table-body{
+  margin-top: 5px;
+}
+.main-content .table-body .table-tr{
+  border-bottom: 1px solid #0593B5;
+  position: relative;
+  color: #87FFFF;
+  border-collapse:separate;
+  border-spacing:10px;
+}
+.main-content .table-body .table-tr span{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+}
+.main-content .table-body .table-tr>.hot{
+  position: relative;
+}
+.main-content .table-body .table-tr>.hot>span{
+  position: absolute;
+  top: 3px;
+  left: 24px;
+  width: 10px;
+  height: 10px;
+  background: red;
+  display: inline-block;
+}
+
 /******************************右边*******************************/
 /*横向排名柱状图*/
 .main-content .crosswise{
-  height: 51vh;
+  height: 47vh;
   border:1px solid #3B425C;
   margin-bottom: 1vh;
   margin-left: -8px;
@@ -63,111 +177,18 @@
   height: 48vh;
 }
 
-
-.top-box{
-  height: 51vh;
-  margin-left: -15px;
-  margin-right: -15px;
-  border: 1px solid #ADB9D1;
-  overflow: hidden;
-}
-.bottom-box{
-  height: 34vh;
-  margin-left: -15px;
-  margin-right: -15px;
-  border: 1px solid #ADB9D1;
-  overflow: hidden;
-}
-
-/*事件监控列表*/
-.event-table{
-  padding-top: 1px;
-  font-size: 14px;
-}
-.event-table .table-title{
-  padding: 5px 0 10px 5px;
-  font-weight: bolder;
-  font-size: 14px;
-}
-.event-table .table-header{
-  height: 5vh;
-  /*border: 1px solid #0593B5;*/
-  background: rgba(7,149,188,0.2);
-  color: #00ECF1;
-}
-.event-table .table-body{
-  margin-top: 5px;
-}
-.event-table .table-body .table-tr{
-  border-bottom: 1px solid #0593B5;
-  position: relative;
-  color: #87FFFF;
-  border-collapse:separate;
-  border-spacing:10px;
-}
-.event-table .table-body .table-tr span{
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  border-radius: 100%;
-}
-
-.event-table .table-body .table-tr>.hot{
-  position: relative;
-}
-.event-table .table-body .table-tr>.hot>span{
-  color: red;
-  font-size: 1.1rem;
-  font-weight: bold;
-  position: absolute;
-  top: 3px;
-  left: 24px;
-}
-
-/*实时车流收入数据监控*/
-.number{}
-.number .vehicle{
-  height: 16.5vh;
+/*实时收入数据监控*/
+.main-content .income{
+  height: 12.5vh;
   border:1px solid #3B425C;
   padding-left: 5px;
   margin-bottom: 1vh;
+  margin-left: -8px;
 }
-.number .vehicle>span{
-  font-weight: 600;
+.main-content .income>span{
   font-size: 1.5rem;
 }
-.number .vehicle-amount>h3>span{
-  display: inline-block;
-  width: 30px;
-  height: 5vh;
-  border: 1px solid #7D8DA7;
-  line-height: 5vh;
-  text-align: center;
-  background: -moz-linear-gradient(top, #01071D 0%, #0A4D84 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#01071D), color-stop(100%,#0A4D84));
-  background: -webkit-linear-gradient(top, #01071D 50%,#0A4D84 100%);
-  background: -o-linear-gradient(top, #01071D 0%,#0A4D84 100%);
-  background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
-  background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);
-}
-.number .vehicle .vehicle-amount>p{
-  margin-top: 1vh;
-  font-size: 1.5rem;
-}
-.number .vehicle .vehicle-amount>div{
-  overflow: hidden;
-  padding-right: 5px;
-}
-
-.number .income{
-  height: 16.5vh;
-  border:1px solid #3B425C;
-  padding-left: 5px;
-}
-.number .income>span{
-  font-size: 1.5rem;
-}
-.number .income .income-amount>h3>span{
+.main-content .income .income-amount>h3>span{
   display: inline-block;
   width: 30px;
   height: 5vh;
@@ -175,14 +196,23 @@
   text-align: center;
   background: #01D1DB;
 }
-.number .income .income-amount>p{
+.main-content .income .income-amount>p{
   margin-top: 1vh;
   font-size: 1.5rem;
 }
-.number .income .income-amount>div{
+.main-content .income .income-amount>div{
   overflow: hidden;
   padding-right: 5px;
 }
+
+/*收入类型占比统计*/
+.main-content .today-income {
+  margin-bottom: 1vh;
+  height: 24.5vh;
+  border:1px solid #3B425C;
+  margin-left: -8px;
+}
+
 
 /****************************弹窗部分****************************/
 /*3D柱状图弹窗*/
