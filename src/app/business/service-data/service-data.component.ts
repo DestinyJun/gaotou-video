@@ -30,6 +30,7 @@ export class ServiceDataComponent implements OnInit {
   public barStatus2 = false;
   public barStatus3 = false;
   public dataStatus = '业态收入';
+  public crosswiseBarInstance: any;
 
   /***********************其他************************/
   // 服务区名称
@@ -230,94 +231,80 @@ export class ServiceDataComponent implements OnInit {
 
   // 业态经营数据前十排名
   public backCrosswiseBar() {
-    this.diagrams.getIncomerRankedGuiYang().subscribe(
-      (value) => {
-        const nums = [];
-        const merchants = [];
-        function test(params, merchant): any {
-          return `<p>${params.name}：<span>${merchant[params.dataIndex]}</p></span>
-                  <p>收入：<span>${params.value}元</p></span>
-`;
+    const value = this.dataService.getIncomerStore(this.dataStatus);
+    console.log(value);
+    this.crosswiseBar = {
+      title: [
+        {
+          text: this.serviceZoneTitle,
+          left: 'center',
+          textStyle: {
+            color: '#fff',
+            fontSize: 14
+          }
+        },
+      ],
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
         }
-        value.data.map((v, i) => {
-          nums.push(v.num);
-          merchants.push(v.merchant);
-        });
-        this.crosswiseBar =   {
-          title: [
-            {
-              text: this.serviceZoneTitle,
-              left: 'center',
-              textStyle: {
-                color: '#fff',
-                fontSize: 14
-              }
-            },
-          ],
-          tooltip: {
-            trigger: 'item',
-            axisPointer: {
-              type: 'shadow'
-            },
-            formatter: function (params) {
-              return test(params, merchants);
-            }
+      },
+      grid: {
+        left: '19%',
+        // top: '20%',
+        bottom: '5%'
+      },
+      xAxis: {
+        type: 'value',
+        name: '数值',
+        splitLine: {show: false},
+        axisLabel: {
+          formatter: '{value}'
+        },
+        nameTextStyle: {
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      yAxis: {
+        type: 'category',
+        name: '万元/辆/人次',
+        inverse: false,
+        splitLine: {show: false},
+        data: value.ranked,
+        axisLabel: {
+          margin: 20,
+        },
+        nameTextStyle: {
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      series: [
+        {
+          name: value.name,
+          type: 'bar',
+          data: value.data,
+          color: value.color,
+          label: {
+            show: true,
+            formatter: '{c}',
+            textBorderColor: '#333',
+            textBorderWidth: 2,
           },
-          grid: {
-            left: '15%',
-            bottom: '5%'
-          },
-          xAxis: {
-            type: 'value',
-            name: '数值',
-            splitLine: {show: false},
-            axisLabel: {
-              formatter: '{value}'
-            },
-            nameTextStyle: {
-              color: 'white'
-            },
-            axisLine: {
-              lineStyle: {
-                color: 'white'
-              }
-            },
-          },
-          yAxis: {
-            type: 'category',
-            name: '万元/辆/人次',
-            inverse: false,
-            splitLine: {show: false},
-            data: value.ranked,
-            axisLabel: {
-              margin: 20,
-            },
-            nameTextStyle: {
-              color: 'white'
-            },
-            axisLine: {
-              lineStyle: {
-                color: 'white'
-              }
-            },
-          },
-          series: [
-            {
-              name: '经营收入',
-              type: 'bar',
-              data: nums,
-              color: '#F52C11',
-              label: {
-                show: true,
-                formatter: '{a}: {c}',
-                textBorderColor: '#333',
-                textBorderWidth: 2,
-              },
-            },
-          ]
-        };
-      }
-    );
+        },
+
+      ]
+    };
   }
   /*********************************函数操作*****************************/
   // 返回上级路由
@@ -478,6 +465,9 @@ export class ServiceDataComponent implements OnInit {
   }
 
   // 横向柱状图数据排名相关操作
+  public crosswiseBarInit(ec) {
+    this.crosswiseBarInstance = ec;
+  }
   public clickBtn(e): void {
     if (e.srcElement.innerText === '业态收入') {
       this.dataStatus = '业态收入';

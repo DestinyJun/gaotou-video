@@ -22,7 +22,7 @@
                 <button  class="btn" [ngClass]="{'btn-success': barStatus2}">车流量</button>
                 <button  class="btn" [ngClass]="{'btn-info': barStatus3}">客流量</button>
               </div>
-              <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartClick)="rankingClick($event)"></div>
+              <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartInit)="crosswiseBarInit($event)" (chartClick)="rankingClick($event)"></div>
             </div>
           </div>
         </div>
