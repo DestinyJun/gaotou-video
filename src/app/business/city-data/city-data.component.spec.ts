@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChildDataMapComponent } from './child-data-map.component';
+import { CityDataComponent } from './city-data.component';
 
-describe('ChildDataMapComponent', () => {
-  let component: ChildDataMapComponent;
-  let fixture: ComponentFixture<ChildDataMapComponent>;
+describe('CityDataComponent', () => {
+  let component: CityDataComponent;
+  let fixture: ComponentFixture<CityDataComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChildDataMapComponent ]
+      declarations: [ CityDataComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChildDataMapComponent);
+    fixture = TestBed.createComponent(CityDataComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

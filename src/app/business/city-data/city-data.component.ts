@@ -19,11 +19,12 @@ declare let BMap;
 declare let BMapLib;
 
 @Component({
-  selector: 'app-finance-data',
-  templateUrl: './finance-data.component.html',
-  styleUrls: ['./finance-data.component.css']
+  selector: 'app-city-data',
+  templateUrl: './city-data.component.html',
+  styleUrls: ['./city-data.component.css']
 })
-export class FinanceDataComponent implements OnInit {
+export class CityDataComponent implements OnInit {
+
   /****************************左边***************************/
     // 3d图
   public options3d = {};
@@ -38,8 +39,8 @@ export class FinanceDataComponent implements OnInit {
 
   /*****************************中部**************************/
     // 省市联动
-  public dataToggle = '贵州省';
-  public selectDate = '贵州省';
+  public dataToggle = '贵州省贵阳市';
+  public selectDate = '贵州省贵阳市';
   public province: any;
   public city: any;
   public citeDate: string;
@@ -702,7 +703,7 @@ export class FinanceDataComponent implements OnInit {
   // 百度地图画省边界外
   public centerMap2() {
     const that = this;
-    const map = new BMap.Map('center_map', {minZoom: 7, maxZoom: 9});
+    const map = new BMap.Map('center_map', {minZoom: 10, maxZoom: 13});
     map.setMapStyle({
       styleJson: [
         // 城市名字的颜色
@@ -764,7 +765,7 @@ export class FinanceDataComponent implements OnInit {
         }
       ]
     });
-    map.centerAndZoom(new BMap.Point(106.640265, 26.653005), 8);
+    map.centerAndZoom(new BMap.Point(106.705336, 26.85979), 8);
     map.enableScrollWheelZoom(true);
     map.disableDoubleClickZoom(false);
     // 创建一个右键菜单
@@ -841,19 +842,7 @@ export class FinanceDataComponent implements OnInit {
     }
 
     // 绘制边线轮廓rankingClick
-    let citys = [
-      '贵州省',
-      '贵阳市',
-      '遵义市',
-      '毕节市',
-      '铜仁市',
-      '安顺市',
-      '六盘水市',
-      '贵阳市',
-      '黔西南布依族苗族自治州',
-      '黔东南苗族侗族自治州',
-      '黔南布依族苗族自治州',
-    ];
+    let citys = ['贵阳市'];
 
     function getBoundary(name) {
       const bdary = new BMap.Boundary();
@@ -914,13 +903,8 @@ export class FinanceDataComponent implements OnInit {
     map.addEventListener('click', function (e) {
       const pt = e.point;
       geoc.getLocation(pt, function (rs) {
-        const addComp = rs.addressComponents;
-        // alert(addComp.city);
-        if (addComp.city === '贵阳市') {
-          that.router.navigate(['/home/city']);
-        } else {
-          window.alert('很抱歉' + addComp.city + '暂无数据');
-        }
+        /*var addComp = rs.addressComponents;
+        alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);*/
       });
     });
   }
@@ -1256,7 +1240,7 @@ export class FinanceDataComponent implements OnInit {
     this.options3dBar = {
       title: [
         {
-          text: `贵州省所有服务区年度${types(yAxis)}统计`,
+          text: `贵州省贵阳市年度${types(yAxis)}统计`,
           left: 'center',
           textStyle: {
             color: '#fff',
@@ -1329,7 +1313,7 @@ export class FinanceDataComponent implements OnInit {
     // 类型占比统计
     this.options3dPie = {
       title: {
-        text: `贵州省各市所有服务区年度${types(yAxis)}类型占比统计`,
+        text: `贵州省贵阳市所有服务区年度${types(yAxis)}类型占比统计`,
         x: 'center',
         textStyle: {
           color: '#fff',
@@ -1383,7 +1367,7 @@ export class FinanceDataComponent implements OnInit {
     });
     this.optionsCarType = {
       title: {
-        text: `贵州省各市所有服务区今日${e.name}占比统计`,
+        text: `贵州省贵阳市所有服务区今日${e.name}占比统计`,
         x: 'center',
         textStyle: {
           color: '#fff',
@@ -1522,7 +1506,7 @@ export class FinanceDataComponent implements OnInit {
     });
     this.optionsIncomeTypes = {
       title: {
-        text: `贵州省各市所有服务区当日${e.name}类型占比统计`,
+        text: `贵州省贵阳市所有服务区当日${e.name}类型占比统计`,
         x: 'center',
         textStyle: {
           color: '#fff',
@@ -1581,7 +1565,7 @@ export class FinanceDataComponent implements OnInit {
     console.log(this.arryPie);
     this.options3dPie = {
       title: {
-        text: `贵州省各市所有服务区年度${e.name}类型占比统计`,
+        text: `贵州省贵阳市所有服务区年度${e.name}类型占比统计`,
         x: 'center',
         textStyle: {
           color: '#fff',
@@ -1641,7 +1625,7 @@ export class FinanceDataComponent implements OnInit {
       });
       this.optionsCarType = {
         title: {
-          text: `贵州省各市所有服务区今日${this.alertCarTitle}占比统计`,
+          text: `贵州省贵阳市所有服务区今日${this.alertCarTitle}占比统计`,
           x: 'center',
           textStyle: {
             color: '#fff',
@@ -1681,7 +1665,7 @@ export class FinanceDataComponent implements OnInit {
       });
       this.optionsCarType = {
         title: {
-          text: `贵州省各市所有服务区今日${this.alertCarTitle}占比统计`,
+          text: `贵州省贵阳市所有服务区今日${this.alertCarTitle}占比统计`,
           x: 'center',
           textStyle: {
             color: '#fff',
@@ -1722,7 +1706,7 @@ export class FinanceDataComponent implements OnInit {
       this.optionsCarPieInstance.setOption(this.optionsCarType);
       this.optionsCarType = {
         title: {
-          text: `贵州省各市所有服务区今日${this.alertCarTitle}占比统计`,
+          text: `贵州省贵阳市所有服务区今日${this.alertCarTitle}占比统计`,
           x: 'center',
           textStyle: {
             color: '#fff',
@@ -1773,7 +1757,7 @@ export class FinanceDataComponent implements OnInit {
       });
       this.optionsIncomeTypes = {
         title: {
-          text: `贵州省各市所有服务区今日${this.alertIncomeTitle}占比统计`,
+          text: `贵州省贵阳市所有服务区今日${this.alertIncomeTitle}占比统计`,
           x: 'center',
           textStyle: {
             color: '#fff',
@@ -1814,7 +1798,7 @@ export class FinanceDataComponent implements OnInit {
       });
       this.optionsIncomeTypes = {
         title: {
-          text: `贵州省各市所有服务区今日${this.alertIncomeTitle}占比统计`,
+          text: `贵州省贵阳市所有服务区今日${this.alertIncomeTitle}占比统计`,
           x: 'center',
           textStyle: {
             color: '#fff',
@@ -1855,7 +1839,7 @@ export class FinanceDataComponent implements OnInit {
       });
       this.optionsIncomeTypes = {
         title: {
-          text: `贵州省各市所有服务区今日${this.alertIncomeTitle}占比统计`,
+          text: `贵州省贵阳市所有服务区今日${this.alertIncomeTitle}占比统计`,
           x: 'center',
           textStyle: {
             color: '#fff',
@@ -1896,7 +1880,7 @@ export class FinanceDataComponent implements OnInit {
       });
       this.optionsIncomeTypes = {
         title: {
-          text: `贵州省各市所有服务区今日${this.alertIncomeTitle}占比统计`,
+          text: `贵州省贵阳市所有服务区今日${this.alertIncomeTitle}占比统计`,
           x: 'center',
           textStyle: {
             color: '#fff',
@@ -1937,7 +1921,7 @@ export class FinanceDataComponent implements OnInit {
       });
       this.optionsIncomeTypes = {
         title: {
-          text: `贵州省各市所有服务区今日${this.alertIncomeTitle}占比统计`,
+          text: `贵州省贵阳市所有服务区今日${this.alertIncomeTitle}占比统计`,
           x: 'center',
           textStyle: {
             color: '#fff',
@@ -1978,7 +1962,7 @@ export class FinanceDataComponent implements OnInit {
       });
       this.optionsIncomeTypes = {
         title: {
-          text: `贵州省各市所有服务区今日${this.alertIncomeTitle}占比统计`,
+          text: `贵州省贵阳市所有服务区今日${this.alertIncomeTitle}占比统计`,
           x: 'center',
           textStyle: {
             color: '#fff',
@@ -2012,4 +1996,5 @@ export class FinanceDataComponent implements OnInit {
       this.IncomeTableData = this.dataService.getJsonObj(8);
     }
   }
+
 }
