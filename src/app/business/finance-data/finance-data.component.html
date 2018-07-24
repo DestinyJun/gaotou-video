@@ -196,11 +196,14 @@
           <div class="col-ld-6 col-md-6">
             <div class="alert-window-content-table">
               <div class="toggle-btn" (click)="carBtnClick($event)">
+                <button class="btn btn-danger" [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">总数</button>
                 <button class="btn btn-info" [ngStyle]="{'background':alertCarTitle === '小车'?'black': ''}">小车</button>
                 <button class="btn btn-primary" [ngStyle]="{'background':alertCarTitle === '客车'?'black': ''}">客车</button>
                 <button class="btn btn-danger" [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">货车</button>
+
                 <div class="toggle-btn-area pull-right" style="">
                   <button class="btn btn-success">{{carAreaName}}</button>
+                  <button class="btn btn-success">表格导出</button>
                 </div>
               </div>
               <div class="content-table">
@@ -208,14 +211,20 @@
                   <thead>
                   <tr>
                     <th>{{alertCarTitle}}排名</th>
-                    <th>{{alertCarTitle}}数值(辆）</th>
+                    <th>车辆总数</th>
+                    <th>小车总数</th>
+                    <th>货车总数</th>
+                    <th>客车总数</th>
                     <th>服务区</th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr *ngFor="let item of carTableData">
                     <td>{{item.num}}</td>
-                    <td>{{item.value}}</td>
+                    <td>115</td>
+                    <td>115</td>
+                    <td>115</td>
+                    <td>115</td>
                     <td>{{item.zone}}</td>
                   </tr>
                   </tbody>

@@ -7,6 +7,8 @@ import {DiagramService} from '../../common/services/diagram.service';
 import {ActivatedRoute} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
 declare let BMap;
+declare let BMapLib;
+declare let BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW;
 
 @Component({
   selector: 'app-service-data',
@@ -59,6 +61,7 @@ export class ServiceDataComponent implements OnInit {
 
   /**********************基础数据部分**********************/
   public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
+  public business = ['住宿', '汽修', '商超', '小吃', '西式快餐', '中式快餐'];
 
   constructor(
     private el: ElementRef,
@@ -91,7 +94,7 @@ export class ServiceDataComponent implements OnInit {
     this.IncomeTypes();
   }
   /************************左边***************************/
-  // 高速服务区业态数据3d统计
+  // 3D柱状图图表配置
   public packOption3() {
     this.data3dS.get3dData().subscribe(
       (value) => {
@@ -243,8 +246,8 @@ export class ServiceDataComponent implements OnInit {
     const barData = this.dataService.get3dOption(12);
     const pieDataName = barData[e.data.value[0]];
     this.arryPie = [];
-    this.dataService.getrandomPie(9).map((val, index) => {
-      this.arryPie.push({value: val, name: this.citys[index]});
+    this.dataService.getrandomPie(6).map((val, index) => {
+      this.arryPie.push({value: val, name: this.business[index]});
     });
 
     function types(value): string {
@@ -396,7 +399,7 @@ export class ServiceDataComponent implements OnInit {
     this.options3dBarInstance.setOption(this.options3dBar);
     this.arryPie = [];
     this.dataService.getrandomPie(9).map((val, index) => {
-      this.arryPie.push({value: val, name: this.citys[index]});
+      this.arryPie.push({value: val, name: this.business[index]});
     });
     console.log(this.arryPie);
     this.options3dPie = {
@@ -455,7 +458,7 @@ export class ServiceDataComponent implements OnInit {
 
   }
 
-  // 贵阳高速服务区日分布类型占比分析
+  // 收入类型占比图表配置
   public CarTypes() {
     this.diagrams.getCarTypesGuiYang().subscribe(
       (value) => {
@@ -517,144 +520,50 @@ export class ServiceDataComponent implements OnInit {
     const map = new BMap.Map('servicesMap');
     const point = new BMap.Point(this.serviceZonePoint[0], this.serviceZonePoint[1]);
     map.centerAndZoom(point, 19);
-    /*map.setMapStyle({
+    map.setMapStyle({
       styleJson: [
+        // 地图背景颜色
         {
-          'featureType': 'water',
+          'featureType': 'background',
           'elementType': 'all',
           'stylers': {
-            'color': '#021019'
+            'color': '#002240'
           }
         },
-        {
-          'featureType': 'highway',
-          'elementType': 'geometry.fill',
-          'stylers': {
-            'color': '#000000'
-          }
-        },
-        {
-          'featureType': 'highway',
-          'elementType': 'geometry.stroke',
-          'stylers': {
-            'color': '#147a92'
-          }
-        },
-        {
-          'featureType': 'arterial',
-          'elementType': 'geometry.fill',
-          'stylers': {
-            'color': '#000000'
-          }
-        },
-        {
-          'featureType': 'arterial',
-          'elementType': 'geometry.stroke',
-          'stylers': {
-            'color': '#0b3d51'
-          }
-        },
-        {
-          'featureType': 'local',
-          'elementType': 'geometry',
-          'stylers': {
-            'color': '#000000'
-          }
-        },
-        {
-          'featureType': 'land',
-          'elementType': 'all',
-          'stylers': {
-            'color': '#08304b'
-          }
-        },
-        {
-          'featureType': 'railway',
-          'elementType': 'geometry.fill',
-          'stylers': {
-            'color': '#000000'
-          }
-        },
-        {
-          'featureType': 'railway',
-          'elementType': 'geometry.stroke',
-          'stylers': {
-            'color': '#08304b'
-          }
-        },
-        {
-          'featureType': 'subway',
-          'elementType': 'geometry',
-          'stylers': {
-            'lightness': -70
-          }
-        },
-        {
-          'featureType': 'building',
-          'elementType': 'geometry.fill',
-          'stylers': {
-            'color': '#000000'
-          }
-        },
-        {
-          'featureType': 'all',
-          'elementType': 'labels.text.fill',
-          'stylers': {
-            'color': '#857f7f'
-          }
-        },
-        {
-          'featureType': 'all',
-          'elementType': 'labels.text.stroke',
-          'stylers': {
-            'color': '#000000'
-          }
-        },
-        {
-          'featureType': 'building',
-          'elementType': 'geometry',
-          'stylers': {
-            'color': '#022338'
-          }
-        },
-        {
-          'featureType': 'green',
-          'elementType': 'geometry',
-          'stylers': {
-            'color': '#062032'
-          }
-        },
-        {
-          'featureType': 'boundary',
-          'elementType': 'all',
-          'stylers': {
-            'color': '#1e1c1c'
-          }
-        },
-        {
-          'featureType': 'manmade',
-          'elementType': 'geometry',
-          'stylers': {
-            'color': '#022338'
-          }
-        },
-        {
-          'featureType': 'all',
-          'elementType': 'labels.icon',
-          'stylers': {
-            'visibility': 'off'
-          }
-        },
-        {
-          'featureType': 'all',
-          'elementType': 'labels.text.fill',
-          'stylers': {
-            'color': '#ffffffff',
-            'visibility': 'on'
-          }
-        }
       ]
-    });*/
+    });
+
+    function addPolyline() {
+      // 设置自定义market图标
+      const myIcon = new BMap.Icon('/assets/images/car.png', new BMap.Size(150, 150));
+      const point1 = new BMap.Point(106.706063, 26.901682);
+      const marker2 = new BMap.Marker(point1, {icon: myIcon});  // 创建标注
+      map.addOverlay(marker2);
+    }
+    setInterval(() => {
+      addPolyline();
+      const timerOut = setTimeout(() => {
+        map.clearOverlays();
+        clearTimeout(timerOut);
+      }, 1000);
+    }, 3000);
+
+
+    /*const polyline = new BMap.Polyline(points, {
+      enableEditing: false, // 是否启用线编辑，默认为false
+      enableClicking: true, // 是否响应点击事件，默认为true
+      icons: [icons],
+      strokeWeight: '8', // 折线的宽度，以像素为单位
+      strokeOpacity: 0.8, // 折线的透明度，取值范围0 - 1
+      strokeColor: '#18a45b' // 折线颜色
+    });
+    map.addOverlay(polyline); // 增加折线*/
+
+    // 添加弧线覆盖物
+   /* const curve = new BMapLib.CurveLine(points, {strokeColor: 'blue', strokeWeight: 3, strokeOpacity: 0.5});
+    map.addOverlay(curve);*/
+
+    // 地址解析器
     const geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(function (r) {
       const geoc = new BMap.Geocoder();
@@ -670,7 +579,6 @@ export class ServiceDataComponent implements OnInit {
   // 业态经营数据前十排名
   public backCrosswiseBar() {
     const value = this.dataService.getIncomerStore(this.dataStatus);
-    console.log(value);
     this.crosswiseBar = {
       title: [
         {
