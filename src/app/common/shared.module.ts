@@ -10,9 +10,10 @@ import {CentermapService} from './services/centermap.service';
 import {DiagramService} from './services/diagram.service';
 import {ToolsService} from './services/tools.service';
 import {DataService} from './services/data.service';
+import { TableMenuComponent } from './components/table-menu/table-menu.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [TableMenuComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -25,7 +26,8 @@ import {DataService} from './services/data.service';
     HttpClientModule,
     NgxEchartsModule,
     ReactiveFormsModule,
-    TreeModule
+    TreeModule,
+    TableMenuComponent
   ],
   providers: [
     EventsService,

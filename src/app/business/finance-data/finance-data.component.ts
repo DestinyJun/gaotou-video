@@ -22,16 +22,36 @@ declare let BMapLib;
 })
 export class FinanceDataComponent implements OnInit {
   /****************************左边***************************/
-    // 3d图
+    // 3D柱状图配置
   public options3d = {};
   public options3dArray: any;
+  // 3D柱状图弹窗
+  public alertBarShow = false;
+  public alertBarTitle: string;
+  public options3dBar = {};
+  public options3dBarInstance: any;
+  public options3dPie = {};
+  public options3dPieInstance: any;
+  public colorList = [
+    '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
+    '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+  ];
+  public arryPie = [];
 
   // 车流量实时数值
   public vehicleAmount = [];
   public incomeAmount = [];
 
-  // 车型分布
+  // 车辆类型分布
   public optionsCarModel = {};
+  // 车辆类型弹窗
+  public alertCarShow = false;
+  public alertCarTitle = '总数';
+  public optionsCarType = {};
+  public arryCarPie = [];
+  public carTableData: any;
+  public carAreaName = '贵州省';
+  public optionsCarPieInstance: any;
 
   /*****************************中部**************************/
     // 省市联动
@@ -65,26 +85,6 @@ export class FinanceDataComponent implements OnInit {
   public optionsIncomeModel = {};
 
   /**********************弹窗部分**********************/
-    // 3D柱状图弹窗
-  public alertBarShow = false;
-  public alertBarTitle: string;
-  public options3dBar = {};
-  public options3dBarInstance: any;
-  public options3dPie = {};
-  public options3dPieInstance: any;
-  public colorList = [
-    '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
-    '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
-  ];
-  public arryPie = [];
-  // 车辆类型弹窗
-  public alertCarShow = false;
-  public alertCarTitle: string;
-  public optionsCarType = {};
-  public arryCarPie = [];
-  public carTableData: any;
-  public carAreaName = '贵州省';
-  public optionsCarPieInstance: any;
   // 收入类型弹窗
   public alertIncomeShow = false;
   public alertIncomeTitle: string;
@@ -292,7 +292,7 @@ export class FinanceDataComponent implements OnInit {
     const barData = this.dataService.get3dOption(12);
     const pieDataName = barData[e.data.value[0]];
     this.arryPie = [];
-    this.dataService.getrandomPie(9).map((val, index) => {
+    this.dataService.getrandomPie(9, 1000, 200).map((val, index) => {
       this.arryPie.push({value: val, name: this.citys[index]});
     });
 
@@ -452,10 +452,9 @@ export class FinanceDataComponent implements OnInit {
     this.colorList[e.dataIndex] = 'red';
     this.options3dBarInstance.setOption(this.options3dBar);
     this.arryPie = [];
-    this.dataService.getrandomPie(9).map((val, index) => {
+    this.dataService.getrandomPie(9, 1000, 200).map((val, index) => {
       this.arryPie.push({value: val, name: this.citys[index]});
     });
-    console.log(this.arryPie);
     this.options3dPie = {
       title: {
         text: `贵州省各市所有服务区年度${e.name}类型占比统计`,
@@ -551,12 +550,12 @@ export class FinanceDataComponent implements OnInit {
       }
     );
   }
+
   // 车型日分布类型占比饼状图相关点击事件
   public parkClick(e): void {
     this.alertCarShow = true;
-    this.alertCarTitle = e.name;
     this.arryCarPie = [];
-    this.dataService.getrandomPie(9).map((val, index) => {
+    this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
       this.arryCarPie.push({value: val, name: this.citys[index]});
     });
     this.optionsCarType = {
@@ -592,7 +591,7 @@ export class FinanceDataComponent implements OnInit {
         }
       ]
     };
-    this.carTableData = this.dataService.getJsonObj(8);
+    this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
   }
   public closeCarShow(): void {
     this.alertCarShow = false;
@@ -602,16 +601,16 @@ export class FinanceDataComponent implements OnInit {
     this.optionsCarPieInstance = ec;
   }
   public optionsCarPieClick(e) {
-    console.log(e.name);
     this.carAreaName = e.name;
-    this.carTableData = this.dataService.getJsonObj(8);
+    this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
   }
   public carBtnClick(e): void {
     console.log(e.srcElement.innerText);
     if (e.srcElement.innerText === '小车') {
       this.alertCarTitle = '小车';
       this.arryCarPie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.carTableData = [];
+      this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryCarPie.push({value: val, name: this.citys[index]});
       });
       this.optionsCarType = {
@@ -647,11 +646,53 @@ export class FinanceDataComponent implements OnInit {
           }
         ]
       };
-      this.carTableData = this.dataService.getJsonObj(8);
+      this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
+    } else if (e.srcElement.innerText === '总数') {
+      this.alertCarTitle = '总数';
+      this.arryCarPie = [];
+      this.carTableData = [];
+      this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
+        this.arryCarPie.push({value: val, name: this.citys[index]});
+      });
+      this.optionsCarType = {
+        title: {
+          text: `贵州省各市所有服务区今日${this.alertCarTitle}占比统计`,
+          x: 'center',
+          textStyle: {
+            color: '#fff',
+            fontSize: 16
+          }
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {d}%'
+        },
+        series: [
+          {
+            name: `${this.alertCarTitle}`,
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: this.arryCarPie,
+            itemStyle: {
+              color: function (params) {
+                return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
+              },
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      };
+      this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
     } else if (e.srcElement.innerText === '客车') {
       this.alertCarTitle = '客车';
       this.arryCarPie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.carTableData = [];
+      this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryCarPie.push({value: val, name: this.citys[index]});
       });
       this.optionsCarType = {
@@ -687,14 +728,14 @@ export class FinanceDataComponent implements OnInit {
           }
         ]
       };
-      this.carTableData = this.dataService.getJsonObj(8);
+      this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
     } else if (e.srcElement.innerText === '货车') {
       this.alertCarTitle = '货车';
       this.arryCarPie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.carTableData = [];
+      this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryCarPie.push({value: val, name: this.citys[index]});
       });
-      this.optionsCarPieInstance.setOption(this.optionsCarType);
       this.optionsCarType = {
         title: {
           text: `贵州省各市所有服务区今日${this.alertCarTitle}占比统计`,
@@ -728,6 +769,7 @@ export class FinanceDataComponent implements OnInit {
           }
         ]
       };
+      this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
     }
   }
 
@@ -1326,7 +1368,6 @@ export class FinanceDataComponent implements OnInit {
   }
   // 中部地图省市联动
   public provinceClick() {
-    console.log('111');
     this.provinceShow = true;
     this.http.get('assets/data/province.json').subscribe(
       (res) => {
@@ -1383,9 +1424,118 @@ export class FinanceDataComponent implements OnInit {
   /*********************************右边*****************************/
   // 业态经营数据前十排名
   public backCrosswiseBar() {
-    this.diagrams.getIncomerRanked(this.dataStatus).subscribe(
+   const IncomeValue = this.dataService.getIncome(9, 1000, 200);
+    this.crosswiseBar = {
+      title: [
+        {
+          text: `${this.dataToggle}业态数据前十排名`,
+          left: 'center',
+          textStyle: {
+            color: '#fff',
+            fontSize: 14
+          }
+        },
+      ],
+      tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+          type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+      },
+      legend: {
+        data: ['业态收入（元）', '车流量（辆）', '客流量（人次）'],
+        left: 'center',
+        top: '6%',
+        textStyle: {
+          color: 'white'
+        }
+      },
+      grid: {
+        top: '18%',
+        left: '1%',
+        right: '4%',
+        bottom: '1%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'value',
+        name: '数值',
+        splitLine: {show: false},
+        axisLabel: {
+          formatter: '{value}'
+        },
+        nameTextStyle: {
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      yAxis: {
+        type: 'category',
+        name: '万元/辆/人次',
+        inverse: false,
+        splitLine: {show: false},
+        data: IncomeValue.serviceZone,
+        axisLabel: {
+          margin: 20,
+        },
+        nameTextStyle: {
+          color: 'white'
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'white'
+          }
+        },
+      },
+      series: [
+        {
+          name: '业态收入（元）',
+          type: 'bar',
+          stack: '总量',
+          color: '#FF2600',
+          label: {
+            normal: {
+              show: true,
+              position: 'insideRight'
+            }
+          },
+          data: IncomeValue.Income,
+        },
+        {
+          name: '车流量（辆）',
+          type: 'bar',
+          stack: '总量',
+          color: '#FFC000',
+          label: {
+            normal: {
+              show: true,
+              position: 'insideRight'
+            }
+          },
+          data: IncomeValue.car,
+        },
+        {
+          name: '客流量（人次）',
+          type: 'bar',
+          stack: '总量',
+          color: '#00AD4E',
+          label: {
+            normal: {
+              show: true,
+              position: 'insideRight'
+            }
+          },
+          data: IncomeValue.person,
+        }
+      ]
+    };
+    /*this.diagrams.getIncomerRanked(this.dataStatus).subscribe(
       (value) => {
-        /*this.crosswiseBar = {
+        this.crosswiseBar = {
           title: [
             {
               text: value.title,
@@ -1445,7 +1595,7 @@ export class FinanceDataComponent implements OnInit {
               color: '#FBB034',
             }
           ]
-        };*/
+        };
         this.crosswiseBar = {
           title: [
             {
@@ -1519,7 +1669,7 @@ export class FinanceDataComponent implements OnInit {
           ]
         };
       }
-    );
+    );*/
   }
   // 业态经营数据前十排名相关操作
   public clickBtn(e): void {
@@ -1617,9 +1767,10 @@ export class FinanceDataComponent implements OnInit {
     this.alertIncomeTitle = e.name;
     this.alertIncomeShow = true;
     this.arryIncomePie = [];
-    this.dataService.getrandomPie(9).map((val, index) => {
+    this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
       this.arryIncomePie.push({value: val, name: this.citys[index]});
     });
+    console.log(this.arryIncomePie);
     this.optionsIncomeTypes = {
       title: {
         text: `贵州省各市所有服务区当日${e.name}类型占比统计`,

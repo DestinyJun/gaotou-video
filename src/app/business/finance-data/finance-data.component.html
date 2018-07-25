@@ -126,11 +126,11 @@
       <!--右边-->
       <div class="col-lg-3 col-md-3">
         <div class="crosswise">
-          <div class="crosswise-btn text-center" (click)="clickBtn($event)">
+         <!-- <div class="crosswise-btn text-center" (click)="clickBtn($event)">
             <button  class="btn " [ngClass]="{'btn-danger': barStatus1}"  >业态收入</button>
             <button  class="btn" [ngClass]="{'btn-success': barStatus2}">车流量</button>
             <button  class="btn" [ngClass]="{'btn-info': barStatus3}">客流量</button>
-          </div>
+          </div>-->
           <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartClick)="rankingClick($event)"></div>
         </div>
         <div class="income">
@@ -196,13 +196,12 @@
           <div class="col-ld-6 col-md-6">
             <div class="alert-window-content-table">
               <div class="toggle-btn" (click)="carBtnClick($event)">
-                <button class="btn btn-danger" [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">总数</button>
+                <button class="btn btn-warning" [ngStyle]="{'background':alertCarTitle === '总数'?'black': ''}">总数</button>
                 <button class="btn btn-info" [ngStyle]="{'background':alertCarTitle === '小车'?'black': ''}">小车</button>
                 <button class="btn btn-primary" [ngStyle]="{'background':alertCarTitle === '客车'?'black': ''}">客车</button>
                 <button class="btn btn-danger" [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">货车</button>
-
                 <div class="toggle-btn-area pull-right" style="">
-                  <button class="btn btn-success">{{carAreaName}}</button>
+                  <button class="btn btn-warning">{{carAreaName}}</button>
                   <button class="btn btn-success">表格导出</button>
                 </div>
               </div>
@@ -211,20 +210,20 @@
                   <thead>
                   <tr>
                     <th>{{alertCarTitle}}排名</th>
-                    <th>车辆总数</th>
-                    <th>小车总数</th>
-                    <th>货车总数</th>
-                    <th>客车总数</th>
+                    <th [ngStyle]="{'background':alertCarTitle === '总数'?'black': ''}">车辆总数</th>
+                    <th [ngStyle]="{'background':alertCarTitle === '小车'?'black': ''}">小车总数</th>
+                    <th [ngStyle]="{'background':alertCarTitle === '客车'?'black': ''}">客车总数</th>
+                    <th [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">货车总数</th>
                     <th>服务区</th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr *ngFor="let item of carTableData">
-                    <td>{{item.num}}</td>
-                    <td>115</td>
-                    <td>115</td>
-                    <td>115</td>
-                    <td>115</td>
+                    <td >{{item.num}}</td>
+                    <td [ngStyle]="{'background':alertCarTitle === '总数'?'black': ''}">{{item.sum}}</td>
+                    <td [ngStyle]="{'background':alertCarTitle === '小车'?'black': ''}">{{item.cart}}</td>
+                    <td [ngStyle]="{'background':alertCarTitle === '客车'?'black': ''}">{{item.trucks}}</td>
+                    <td [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">{{item.bus}}</td>
                     <td>{{item.zone}}</td>
                   </tr>
                   </tbody>
@@ -242,6 +241,7 @@
           </div>
         </div>
       </div>
+      <div class="alert-window-table"></div>
     </div>
   </div>
   <!--收入类型弹窗-->
