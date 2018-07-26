@@ -4,15 +4,15 @@ import {SharedModule} from '../../common/shared.module';
 import {FinanceDataRoutingModule} from './finance-data.routing.module';
 
 import { FinanceDataComponent } from './finance-data.component';
-import {ScrollPanelModule} from 'primeng/primeng';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     FinanceDataRoutingModule,
     SharedModule,
-    ScrollPanelModule
   ],
   declarations: [FinanceDataComponent],
   entryComponents: []

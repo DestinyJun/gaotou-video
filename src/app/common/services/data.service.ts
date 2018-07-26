@@ -109,8 +109,38 @@ export class DataService {
     } else if (types === '货车') {
       arry4 = this.bubbleSortSmall(arry4);
       arry4.map((val, index) => {
-        arryObj.push({num: index + 1, sum: arry1[index], cart: arry2[index], trucks: arry3[index], bus: val zone: this.citys[Math.round(Math.random() * 12)]});
+        arryObj.push({num: index + 1, sum: arry1[index], cart: arry2[index], trucks: arry3[index], bus: val, zone: this.citys[Math.round(Math.random() * 12)]});
     });
+    }
+
+    return arryObj;
+  }
+
+  // 收入类型数据
+  public getIncomeObj(num: number, sum: number, min: number, types: string): any {
+    /*let a = [
+      {num: 1, sum: 50, income: 10}
+    ];*/
+    const arryObj = [];
+    // 总数
+    let arry1 = [];
+    // 小车
+    let arry2 = [];
+
+    for (let i = 0; i < num; i++) {
+      arry1.push(Math.round(Math.random() * sum) + min);
+      arry2.push(Math.round(Math.random() * sum) + min);
+    }
+    if (types === '收入总数') {
+      arry1 = this.bubbleSortSmall(arry1);
+      arry1.map((val, index) => {
+        arryObj.push({num: index + 1, sum: val, income: arry2[index], zone: this.citys[Math.round(Math.random() * 12)]});
+      });
+    } else {
+      arry2 = this.bubbleSortSmall(arry2);
+      arry2.map((val, index) => {
+        arryObj.push({num: index + 1, sum: arry1[index], income: val, zone: this.citys[Math.round(Math.random() * 12)]});
+      });
     }
 
     return arryObj;

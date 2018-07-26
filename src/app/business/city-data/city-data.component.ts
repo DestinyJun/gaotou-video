@@ -296,7 +296,7 @@ export class CityDataComponent implements OnInit {
     const barData = this.dataService.get3dOption(12);
     const pieDataName = barData[e.data.value[0]];
     this.arryPie = [];
-    this.dataService.getrandomPie(9).map((val, index) => {
+    this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
       this.arryPie.push({value: val, name: this.dataService.country[index]});
     });
 
@@ -456,10 +456,9 @@ export class CityDataComponent implements OnInit {
     this.colorList[e.dataIndex] = 'red';
     this.options3dBarInstance.setOption(this.options3dBar);
     this.arryPie = [];
-    this.dataService.getrandomPie(9).map((val, index) => {
+    this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
       this.arryPie.push({value: val, name: this.dataService.country[index]});
     });
-    console.log(this.arryPie);
     this.options3dPie = {
       title: {
         text: `贵州省贵阳市所有服务区年度${e.name}类型占比统计`,
@@ -560,7 +559,7 @@ export class CityDataComponent implements OnInit {
     this.alertCarShow = true;
     this.alertCarTitle = e.name;
     this.arryCarPie = [];
-    this.dataService.getrandomPie(9).map((val, index) => {
+    this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
       this.arryCarPie.push({value: val, name: this.dataService.country[index]});
     });
     this.optionsCarType = {
@@ -596,7 +595,7 @@ export class CityDataComponent implements OnInit {
         }
       ]
     };
-    this.carTableData = this.dataService.getJsonObj(8);
+    this.carTableData = this.dataService.getJsonObj(8, 1000, 100, '总数');
   }
   public closeCarShow(): void {
     this.alertCarShow = false;
@@ -608,13 +607,13 @@ export class CityDataComponent implements OnInit {
   public optionsCarPieClick(e) {
     console.log(e.name);
     this.carAreaName = e.name;
-    this.carTableData = this.dataService.getJsonObj(8);
+    this.carTableData = this.dataService.getJsonObj(8, 1000, 100, '总数');
   }
   public carBtnClick(e): void {
     if (e.srcElement.innerText === '小车') {
       this.alertCarTitle = '小车';
       this.arryCarPie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
         this.arryCarPie.push({value: val, name: this.dataService.country[index]});
       });
       this.optionsCarType = {
@@ -650,11 +649,11 @@ export class CityDataComponent implements OnInit {
           }
         ]
       };
-      this.carTableData = this.dataService.getJsonObj(8);
+      this.carTableData = this.dataService.getJsonObj(8, 1000, 100, '总数');
     } else if (e.srcElement.innerText === '客车') {
       this.alertCarTitle = '客车';
       this.arryCarPie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
         this.arryCarPie.push({value: val, name: this.dataService.country[index]});
       });
       this.optionsCarType = {
@@ -690,11 +689,11 @@ export class CityDataComponent implements OnInit {
           }
         ]
       };
-      this.carTableData = this.dataService.getJsonObj(8);
+      this.carTableData = this.dataService.getJsonObj(8, 1000, 100, '总数');
     } else if (e.srcElement.innerText === '货车') {
       this.alertCarTitle = '货车';
       this.arryCarPie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
         this.arryCarPie.push({value: val, name: this.dataService.country[index]});
       });
       this.optionsCarPieInstance.setOption(this.optionsCarType);
@@ -1596,7 +1595,7 @@ export class CityDataComponent implements OnInit {
     this.alertIncomeTitle = e.name;
     this.alertIncomeShow = true;
     this.arryIncomePie = [];
-    this.dataService.getrandomPie(9).map((val, index) => {
+    this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
       this.arryIncomePie.push({value: val, name: this.dataService.country[index]});
     });
     this.optionsIncomeTypes = {
@@ -1632,7 +1631,7 @@ export class CityDataComponent implements OnInit {
         }
       ]
     };
-    this.IncomeTableData = this.dataService.getJsonObj(8);
+    this.IncomeTableData = this.dataService.getJsonObj(8, 1000, 100, '总数');
   }
   public closeIncomeShow(): void {
     this.alertIncomeShow = false;
@@ -1643,13 +1642,13 @@ export class CityDataComponent implements OnInit {
   }
   public optionsIncomePieClick(e) {
     this.IncomeAreaName = e.name;
-    this.IncomeTableData = this.dataService.getJsonObj(8);
+    this.IncomeTableData = this.dataService.getJsonObj(8, 1000, 100, '总数');
   }
   public IncomeBtnClick(e): void {
     if (e.srcElement.innerText === '小吃') {
       this.alertIncomeTitle = '小吃';
       this.arryIncomePie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.dataService.country[index]});
       });
       this.optionsIncomeTypes = {
@@ -1685,12 +1684,12 @@ export class CityDataComponent implements OnInit {
           }
         ]
       };
-      this.IncomeTableData = this.dataService.getJsonObj(8);
+      this.IncomeTableData = this.dataService.getJsonObj(8, 1000, 100, '总数');
     }
     else if (e.srcElement.innerText === '中式快餐') {
       this.alertIncomeTitle = '中式快餐';
       this.arryIncomePie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.dataService.country[index]});
       });
       this.optionsIncomeTypes = {
@@ -1726,12 +1725,12 @@ export class CityDataComponent implements OnInit {
           }
         ]
       };
-      this.IncomeTableData = this.dataService.getJsonObj(8);
+      this.IncomeTableData = this.dataService.getJsonObj(8, 1000, 100, '总数');
     }
     else if (e.srcElement.innerText === '西式快餐') {
       this.alertIncomeTitle = '西式快餐';
       this.arryIncomePie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.dataService.country[index]});
       });
       this.optionsIncomeTypes = {
@@ -1767,12 +1766,12 @@ export class CityDataComponent implements OnInit {
           }
         ]
       };
-      this.IncomeTableData = this.dataService.getJsonObj(8);
+      this.IncomeTableData = this.dataService.getJsonObj(8, 1000, 100, '总数');
     }
     else if (e.srcElement.innerText === '商超') {
       this.alertIncomeTitle = '商超';
       this.arryIncomePie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.dataService.country[index]});
       });
       this.optionsIncomeTypes = {
@@ -1808,12 +1807,12 @@ export class CityDataComponent implements OnInit {
           }
         ]
       };
-      this.IncomeTableData = this.dataService.getJsonObj(8);
+      this.IncomeTableData = this.dataService.getJsonObj(8, 1000, 100, '总数');
     }
     else if (e.srcElement.innerText === '住宿') {
       this.alertIncomeTitle = '住宿';
       this.arryIncomePie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.dataService.country[index]});
       });
       this.optionsIncomeTypes = {
@@ -1849,12 +1848,12 @@ export class CityDataComponent implements OnInit {
           }
         ]
       };
-      this.IncomeTableData = this.dataService.getJsonObj(8);
+      this.IncomeTableData = this.dataService.getJsonObj(8, 1000, 100, '总数');
     }
     else if (e.srcElement.innerText === '汽修') {
       this.alertIncomeTitle = '汽修';
       this.arryIncomePie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.dataService.country[index]});
       });
       this.optionsIncomeTypes = {
@@ -1890,7 +1889,7 @@ export class CityDataComponent implements OnInit {
           }
         ]
       };
-      this.IncomeTableData = this.dataService.getJsonObj(8);
+      this.IncomeTableData = this.dataService.getJsonObj(8, 1000, 100, '总数');
     }
   }
 

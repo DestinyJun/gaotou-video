@@ -176,7 +176,7 @@
     </div>
   </div>
   <!--车辆类型弹窗-->
-  <div class="bg-box" *ngIf="alertCarShow">
+  <div class="bg-box" *ngIf="true">
     <div class="alert-window">
       <div class="alert-window-header">
         <div class="row">
@@ -241,7 +241,18 @@
           </div>
         </div>
       </div>
-      <div class="alert-window-table"></div>
+      <div class="bg-excel">
+        <div class="alert-window-excel">
+          <div class="alert-window-excel-header">
+            <span>表格导出</span>
+            <div class="pull-right">
+              <i class="fa fa-window-close " aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="alert-window-excel-content">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!--收入类型弹窗-->
@@ -265,6 +276,7 @@
           <div class="col-ld-6 col-md-6">
             <div class="alert-window-content-table">
               <div class="toggle-btn" (click)="IncomeBtnClick($event)">
+                <button class="btn btn-info" [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': ''}">收入总数</button>
                 <button class="btn btn-danger" [ngStyle]="{'background':alertIncomeTitle === '小吃'?'black': ''}">小吃</button>
                 <button class="btn btn-primary" [ngStyle]="{'background':alertIncomeTitle === '中式快餐'?'black': ''}">中式快餐</button>
                 <button class="btn btn-success" [ngStyle]="{'background':alertIncomeTitle === '西式快餐'?'black': ''}">西式快餐</button>
@@ -279,15 +291,17 @@
                 <table class="table table-bordered">
                   <thead>
                   <tr>
-                    <th>{{alertIncomeTitle}}排名</th>
-                    <th>{{alertIncomeTitle}}数值(辆）</th>
+                    <th>排名</th>
+                    <th [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': ''}">收入总数</th>
+                    <th *ngIf="!(alertIncomeTitle === '收入总数')" [ngStyle]="{'background':!(alertIncomeTitle === '收入总数')?'black': ''}">{{alertIncomeTitle}}收入(元）</th>
                     <th>服务区</th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr *ngFor="let item of IncomeTableData">
                     <td>{{item.num}}</td>
-                    <td>{{item.value}}</td>
+                    <td [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': ''}">{{item.sum}}</td>
+                    <td *ngIf="!(alertIncomeTitle === '收入总数')" [ngStyle]="{'background':!(alertIncomeTitle === '收入总数')?'black': ''}">{{item.income}}</td>
                     <td>{{item.zone}}</td>
                   </tr>
                   </tbody>

@@ -246,7 +246,7 @@ export class ServiceDataComponent implements OnInit {
     const barData = this.dataService.get3dOption(12);
     const pieDataName = barData[e.data.value[0]];
     this.arryPie = [];
-    this.dataService.getrandomPie(6).map((val, index) => {
+    this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
       this.arryPie.push({value: val, name: this.business[index]});
     });
 
@@ -398,7 +398,7 @@ export class ServiceDataComponent implements OnInit {
     this.colorList[e.dataIndex] = 'red';
     this.options3dBarInstance.setOption(this.options3dBar);
     this.arryPie = [];
-    this.dataService.getrandomPie(9).map((val, index) => {
+    this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
       this.arryPie.push({value: val, name: this.business[index]});
     });
     console.log(this.arryPie);

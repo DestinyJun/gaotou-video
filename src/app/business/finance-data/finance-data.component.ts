@@ -11,9 +11,15 @@ import {CentermapService} from '../../common/services/centermap.service';
 import {DiagramService} from '../../common/services/diagram.service';
 import {Router} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
+import {SelectItem} from 'primeng/api';
 
 declare let BMap;
 declare let BMapLib;
+
+interface City {
+  name: string;
+  code: string;
+}
 
 @Component({
   selector: 'app-finance-data',
@@ -87,15 +93,16 @@ export class FinanceDataComponent implements OnInit {
   /**********************弹窗部分**********************/
   // 收入类型弹窗
   public alertIncomeShow = false;
-  public alertIncomeTitle: string;
+  public alertIncomeTitle = '收入总数';
   public optionsIncomeTypes = {};
   public IncomeAreaName = '贵州省';
   public IncomeTableData: any;
   public arryIncomePie = [];
+  /**********************************表格导出*****************************/
+  public cities: City[];
 
   /**********************基础数据部分**********************/
   public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
-
 
   /**********************暂时不知道的分布**********************/
     // 当日服务区停车量排名
@@ -137,6 +144,14 @@ export class FinanceDataComponent implements OnInit {
         this.cityShow = false;
       }
     });
+    //
+    this.cities = [
+      {name: 'New York', code: 'NY'},
+      {name: 'Rome', code: 'RM'},
+      {name: 'London', code: 'LDN'},
+      {name: 'Istanbul', code: 'IST'},
+      {name: 'Paris', code: 'PRS'}
+    ];
   }
 
   /**********************************左边*****************************/
@@ -550,7 +565,6 @@ export class FinanceDataComponent implements OnInit {
       }
     );
   }
-
   // 车型日分布类型占比饼状图相关点击事件
   public parkClick(e): void {
     this.alertCarShow = true;
@@ -1764,13 +1778,11 @@ export class FinanceDataComponent implements OnInit {
   }
   // 收入类型相关操作
   public incomeClick(e): void {
-    this.alertIncomeTitle = e.name;
     this.alertIncomeShow = true;
     this.arryIncomePie = [];
     this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
       this.arryIncomePie.push({value: val, name: this.citys[index]});
     });
-    console.log(this.arryIncomePie);
     this.optionsIncomeTypes = {
       title: {
         text: `贵州省各市所有服务区当日${e.name}类型占比统计`,
@@ -1804,7 +1816,7 @@ export class FinanceDataComponent implements OnInit {
         }
       ]
     };
-    this.IncomeTableData = this.dataService.getJsonObj(8);
+    this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
   }
   public closeIncomeShow(): void {
     this.alertIncomeShow = false;
@@ -1815,13 +1827,13 @@ export class FinanceDataComponent implements OnInit {
   }
   public optionsIncomePieClick(e) {
     this.IncomeAreaName = e.name;
-    this.IncomeTableData = this.dataService.getJsonObj(8);
+    this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
   }
   public IncomeBtnClick(e): void {
-    if (e.srcElement.innerText === '小吃') {
-      this.alertIncomeTitle = '小吃';
+    if (e.srcElement.innerText === '收入总数') {
+      this.alertIncomeTitle = '收入总数';
       this.arryIncomePie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
       });
       this.optionsIncomeTypes = {
@@ -1857,12 +1869,53 @@ export class FinanceDataComponent implements OnInit {
           }
         ]
       };
-      this.IncomeTableData = this.dataService.getJsonObj(8);
+      this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
+    }
+    else if (e.srcElement.innerText === '小吃') {
+      this.alertIncomeTitle = '小吃';
+      this.arryIncomePie = [];
+      this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
+        this.arryIncomePie.push({value: val, name: this.citys[index]});
+      });
+      this.optionsIncomeTypes = {
+        title: {
+          text: `贵州省各市所有服务区今日${this.alertIncomeTitle}占比统计`,
+          x: 'center',
+          textStyle: {
+            color: '#fff',
+            fontSize: 16
+          }
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {d}%'
+        },
+        series: [
+          {
+            name: `${this.alertIncomeTitle}`,
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: this.arryIncomePie,
+            itemStyle: {
+              color: function (params) {
+                return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
+              },
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      };
+      this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
     }
     else if (e.srcElement.innerText === '中式快餐') {
       this.alertIncomeTitle = '中式快餐';
       this.arryIncomePie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
       });
       this.optionsIncomeTypes = {
@@ -1898,12 +1951,12 @@ export class FinanceDataComponent implements OnInit {
           }
         ]
       };
-      this.IncomeTableData = this.dataService.getJsonObj(8);
+      this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
     }
     else if (e.srcElement.innerText === '西式快餐') {
       this.alertIncomeTitle = '西式快餐';
       this.arryIncomePie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
       });
       this.optionsIncomeTypes = {
@@ -1939,12 +1992,12 @@ export class FinanceDataComponent implements OnInit {
           }
         ]
       };
-      this.IncomeTableData = this.dataService.getJsonObj(8);
+      this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
     }
     else if (e.srcElement.innerText === '商超') {
       this.alertIncomeTitle = '商超';
       this.arryIncomePie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
       });
       this.optionsIncomeTypes = {
@@ -1980,12 +2033,12 @@ export class FinanceDataComponent implements OnInit {
           }
         ]
       };
-      this.IncomeTableData = this.dataService.getJsonObj(8);
+      this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
     }
     else if (e.srcElement.innerText === '住宿') {
       this.alertIncomeTitle = '住宿';
       this.arryIncomePie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
       });
       this.optionsIncomeTypes = {
@@ -2021,12 +2074,12 @@ export class FinanceDataComponent implements OnInit {
           }
         ]
       };
-      this.IncomeTableData = this.dataService.getJsonObj(8);
+      this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
     }
     else if (e.srcElement.innerText === '汽修') {
       this.alertIncomeTitle = '汽修';
       this.arryIncomePie = [];
-      this.dataService.getrandomPie(9).map((val, index) => {
+      this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
       });
       this.optionsIncomeTypes = {
@@ -2062,7 +2115,7 @@ export class FinanceDataComponent implements OnInit {
           }
         ]
       };
-      this.IncomeTableData = this.dataService.getJsonObj(8);
+      this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
     }
   }
 
