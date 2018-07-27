@@ -61,65 +61,191 @@
         </div>
         <!--事件监控-->
         <div class="event-table">
-          <div class="table-title text-center">
-            <span>{{this.dataToggle}}服务区事件监控</span>
+          <div class="col-lg-3 col-md-3" style="padding-right: 0">
+            <div class="table-title text-center">
+              <span>{{this.dataToggle}}服务区事件监控</span>
+            </div>
+            <div class="table-responsive">
+              <table class="table" cellspacing="5px">
+                <thead class="table-header">
+                <tr>
+                  <td>标记</td>
+                  <td>时间</td>
+                  <td>事件类型</td>
+                  <td>事件描述</td>
+                  <td>最新动态</td>
+                </tr>
+                </thead>
+                <tbody class="table-body">
+                <tr class="table-tr" style="color: #BB32F4">
+                  <td><span style="background: #BB32F4;"></span></td>
+                  <td>1分钟之前</td>
+                  <td>工程类</td>
+                  <td>一号水库水位低</td>
+                  <td class="hot">03<span></span></td>
+                </tr>
+                <tr class="table-tr" style="color: #F432AD">
+                  <td><span style="background: #F432AD;"></span></td>
+                  <td>3分钟之前</td>
+                  <td>经营类</td>
+                  <td>妹妹小吃账户异常</td>
+                  <td class="hot">04<span></span></td>
+                </tr>
+                <tr class="table-tr" style="color: #E57D0D">
+                  <td><span style="background: #E57D0D;"></span></td>
+                  <td>5分钟之前</td>
+                  <td>卫生类</td>
+                  <td>乌江服务区卫生差</td>
+                  <td class="hot">07<span></span></td>
+                </tr>
+                <tr class="table-tr" style="color: #1ED1D8">
+                  <td><span style="background: #1ED1D8;"></span></td>
+                  <td>15分钟之前</td>
+                  <td>监控类</td>
+                  <td>一号门监控设备出问题</td>
+                  <td class="hot">02<span></span></td>
+                </tr>
+                <tr class="table-tr" style="color: #3BF49F">
+                  <td><span style="background: #3BF49F;"></span></td>
+                  <td>30分钟之前</td>
+                  <td>系统故障</td>
+                  <td>服务器异常</td>
+                  <td class="hot">10<span></span></td>
+                </tr>
+                <tr class="table-tr" style="color: #1ED1D8">
+                  <td><span style="background: #1ED1D8;"></span></td>
+                  <td>40分钟之前</td>
+                  <td>其他</td>
+                  <td>出口位置轿车刮伤</td>
+                  <td class="hot">04<span></span></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div class="table-responsive">
-            <table class="table" cellspacing="5px">
-              <thead class="table-header">
-              <tr>
-                <td>标记</td>
-                <td>时间</td>
-                <td>事件类型</td>
-                <td>事件描述</td>
-                <td>最新动态</td>
-              </tr>
-              </thead>
-              <tbody class="table-body">
-              <tr class="table-tr" style="color: #BB32F4">
-                <td><span style="background: #BB32F4;"></span></td>
-                <td>1分钟之前</td>
-                <td>工程类</td>
-                <td>一号水库水位低</td>
-                <td class="hot">03<span></span></td>
-              </tr>
-              <tr class="table-tr" style="color: #F432AD">
-                <td><span style="background: #F432AD;"></span></td>
-                <td>3分钟之前</td>
-                <td>经营类</td>
-                <td>妹妹小吃账户异常</td>
-                <td class="hot">04<span></span></td>
-              </tr>
-              <tr class="table-tr" style="color: #E57D0D">
-                <td><span style="background: #E57D0D;"></span></td>
-                <td>5分钟之前</td>
-                <td>卫生类</td>
-                <td>乌江服务区卫生差</td>
-                <td class="hot">07<span></span></td>
-              </tr>
-              <tr class="table-tr" style="color: #1ED1D8">
-                <td><span style="background: #1ED1D8;"></span></td>
-                <td>15分钟之前</td>
-                <td>监控类</td>
-                <td>一号门监控设备出问题</td>
-                <td class="hot">02<span></span></td>
-              </tr>
-              <tr class="table-tr" style="color: #3BF49F">
-                <td><span style="background: #3BF49F;"></span></td>
-                <td>30分钟之前</td>
-                <td>系统故障</td>
-                <td>服务器异常</td>
-                <td class="hot">10<span></span></td>
-              </tr>
-              <tr class="table-tr" style="color: #1ED1D8">
-                <td><span style="background: #1ED1D8;"></span></td>
-                <td>40分钟之前</td>
-                <td>其他</td>
-                <td>出口位置轿车刮伤</td>
-                <td class="hot">04<span></span></td>
-              </tr>
-              </tbody>
-            </table>
+          <div class="col-lg-6 col-md-6">
+              <div class="table-title text-center">
+                <span>{{this.dataToggle}}服务区办公信息</span>
+              </div>
+              <div class="table-responsive">
+                <table class="table" cellspacing="5px">
+                  <thead class="table-header">
+                  <tr>
+                    <td>标记</td>
+                    <td>时间</td>
+                    <td>事件类型</td>
+                    <td>事件描述</td>
+                    <td>最新动态</td>
+                  </tr>
+                  </thead>
+                  <tbody class="table-body">
+                  <tr class="table-tr" style="color: #BB32F4">
+                    <td><span style="background: #BB32F4;"></span></td>
+                    <td>1分钟之前</td>
+                    <td>工程类</td>
+                    <td>一号水库水位低</td>
+                    <td class="hot">03<span></span></td>
+                  </tr>
+                  <tr class="table-tr" style="color: #F432AD">
+                    <td><span style="background: #F432AD;"></span></td>
+                    <td>3分钟之前</td>
+                    <td>经营类</td>
+                    <td>妹妹小吃账户异常</td>
+                    <td class="hot">04<span></span></td>
+                  </tr>
+                  <tr class="table-tr" style="color: #E57D0D">
+                    <td><span style="background: #E57D0D;"></span></td>
+                    <td>5分钟之前</td>
+                    <td>卫生类</td>
+                    <td>乌江服务区卫生差</td>
+                    <td class="hot">07<span></span></td>
+                  </tr>
+                  <tr class="table-tr" style="color: #1ED1D8">
+                    <td><span style="background: #1ED1D8;"></span></td>
+                    <td>15分钟之前</td>
+                    <td>监控类</td>
+                    <td>一号门监控设备出问题</td>
+                    <td class="hot">02<span></span></td>
+                  </tr>
+                  <tr class="table-tr" style="color: #3BF49F">
+                    <td><span style="background: #3BF49F;"></span></td>
+                    <td>30分钟之前</td>
+                    <td>系统故障</td>
+                    <td>服务器异常</td>
+                    <td class="hot">10<span></span></td>
+                  </tr>
+                  <tr class="table-tr" style="color: #1ED1D8">
+                    <td><span style="background: #1ED1D8;"></span></td>
+                    <td>40分钟之前</td>
+                    <td>其他</td>
+                    <td>出口位置轿车刮伤</td>
+                    <td class="hot">04<span></span></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          <div class="col-lg-3 col-md-3" style="padding-left: 0">
+            <div class="table-title text-center">
+              <span>{{this.dataToggle}}服务区处理信息</span>
+            </div>
+            <div class="table-responsive">
+              <table class="table" cellspacing="5px">
+                <thead class="table-header">
+                <tr>
+                  <td>标记</td>
+                  <td>时间</td>
+                  <td>事件类型</td>
+                  <td>事件描述</td>
+                  <td>最新动态</td>
+                </tr>
+                </thead>
+                <tbody class="table-body">
+                <tr class="table-tr" style="color: #BB32F4">
+                  <td><span style="background: #BB32F4;"></span></td>
+                  <td>1分钟之前</td>
+                  <td>工程类</td>
+                  <td>一号水库水位低</td>
+                  <td class="hot">03<span></span></td>
+                </tr>
+                <tr class="table-tr" style="color: #F432AD">
+                  <td><span style="background: #F432AD;"></span></td>
+                  <td>3分钟之前</td>
+                  <td>经营类</td>
+                  <td>妹妹小吃账户异常</td>
+                  <td class="hot">04<span></span></td>
+                </tr>
+                <tr class="table-tr" style="color: #E57D0D">
+                  <td><span style="background: #E57D0D;"></span></td>
+                  <td>5分钟之前</td>
+                  <td>卫生类</td>
+                  <td>乌江服务区卫生差</td>
+                  <td class="hot">07<span></span></td>
+                </tr>
+                <tr class="table-tr" style="color: #1ED1D8">
+                  <td><span style="background: #1ED1D8;"></span></td>
+                  <td>15分钟之前</td>
+                  <td>监控类</td>
+                  <td>一号门监控设备出问题</td>
+                  <td class="hot">02<span></span></td>
+                </tr>
+                <tr class="table-tr" style="color: #3BF49F">
+                  <td><span style="background: #3BF49F;"></span></td>
+                  <td>30分钟之前</td>
+                  <td>系统故障</td>
+                  <td>服务器异常</td>
+                  <td class="hot">10<span></span></td>
+                </tr>
+                <tr class="table-tr" style="color: #1ED1D8">
+                  <td><span style="background: #1ED1D8;"></span></td>
+                  <td>40分钟之前</td>
+                  <td>其他</td>
+                  <td>出口位置轿车刮伤</td>
+                  <td class="hot">04<span></span></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -176,7 +302,7 @@
     </div>
   </div>
   <!--车辆类型弹窗-->
-  <div class="bg-box" *ngIf="true">
+  <div class="bg-box" *ngIf="alertCarShow">
     <div class="alert-window">
       <div class="alert-window-header">
         <div class="row">
@@ -202,7 +328,7 @@
                 <button class="btn btn-danger" [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">货车</button>
                 <div class="toggle-btn-area pull-right" style="">
                   <button class="btn btn-warning">{{carAreaName}}</button>
-                  <button class="btn btn-success">表格导出</button>
+                  <button class="btn btn-success" (click)="openCarExcel()">表格导出</button>
                 </div>
               </div>
               <div class="content-table">
@@ -241,15 +367,43 @@
           </div>
         </div>
       </div>
-      <div class="bg-excel">
+      <div class="bg-excel" *ngIf="carExcelShow">
         <div class="alert-window-excel">
           <div class="alert-window-excel-header">
-            <span>表格导出</span>
+            <span>车辆数据表格导出</span>
             <div class="pull-right">
-              <i class="fa fa-window-close " aria-hidden="true"></i>
+              <i class="fa fa-window-close " aria-hidden="true" (click)="closeCarExcel()"></i>
             </div>
           </div>
           <div class="alert-window-excel-content">
+            <div class="alert-window-excel-content-list">
+              <label for="dates">请选择时间：</label>
+              <input type="date" id="dates" (change)="carDateChange($event)">
+            </div>
+            <div class="alert-window-excel-content-list">
+              <label for="carTypes">请选择类型：</label>
+              <select name="" id="carTypes" (change)="carTypeChange($event)">
+                <option value="">总数</option>
+                <option value="">小车</option>
+                <option value="">客车</option>
+                <option value="">货车</option>
+              </select>
+            </div>
+            <div class="alert-window-excel-content-list">
+              <label for="carArea">请选择片区：</label>
+              <select name="" id="carArea" (change)="carAreaChange($event)">
+                <option value="">东部片区</option>
+                <option value="">西部片区</option>
+                <option value="">南部片区</option>
+                <option value="">北部</option>
+                <option value="">中部</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="alert-window-excel-footer text-center">
+            <button class="btn btn-primary" (click)="carExportClick()">确认导出</button>
+            <button class="btn btn-danger" (click)="closeCarExcel()">取消导出</button>
           </div>
         </div>
       </div>
@@ -284,8 +438,11 @@
                 <button class="btn btn-warning" [ngStyle]="{'background':alertIncomeTitle === '住宿'?'black': ''}">住宿</button>
                 <button class="btn btn-primary" [ngStyle]="{'background':alertIncomeTitle === '汽修'?'black': ''}">汽修</button>
                 <div class="toggle-btn-area pull-right" style="">
-                  <button class="btn btn-success">{{IncomeAreaName}}</button>
+                  <button class="btn btn-success" (click)="openIncomeExcel()">表格导出</button>
                 </div>
+              </div>
+              <div class="pull-right" style="margin-right: 10px;margin-bottom: 5px">
+                <button class="btn btn-danger">{{IncomeAreaName}}</button>
               </div>
               <div class="content-table">
                 <table class="table table-bordered">
@@ -316,6 +473,46 @@
                 </ul>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-excel" *ngIf="incomeExcelShow">
+        <div class="alert-window-excel">
+          <div class="alert-window-excel-header">
+            <span>收入数据表格导出</span>
+            <div class="pull-right">
+              <i class="fa fa-window-close " aria-hidden="true" (click)="closeincomeExcel()"></i>
+            </div>
+          </div>
+          <div class="alert-window-excel-content">
+            <div class="alert-window-excel-content-list">
+              <label for="incomeDates">请选择时间：</label>
+              <input type="date" id="incomeDates" (change)="incomeDateChange($event)">
+            </div>
+            <div class="alert-window-excel-content-list">
+              <label for="incomeTypes">请选择类型：</label>
+              <select name="" id="incomeTypes" (change)="incomeTypeChange($event)">
+                <option value="">总数</option>
+                <option value="">小车</option>
+                <option value="">客车</option>
+                <option value="">货车</option>
+              </select>
+            </div>
+            <div class="alert-window-excel-content-list">
+              <label for="incomeArea">请选择片区：</label>
+              <select name="" id="incomeArea" (change)="incomeAreaChange($event)">
+                <option value="">东部片区</option>
+                <option value="">西部片区</option>
+                <option value="">南部片区</option>
+                <option value="">北部</option>
+                <option value="">中部</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="alert-window-excel-footer text-center">
+            <button class="btn btn-primary" (click)="incomeExportClick()">确认导出</button>
+            <button class="btn btn-danger" (click)="closeincomeExcel()">取消导出</button>
           </div>
         </div>
       </div>

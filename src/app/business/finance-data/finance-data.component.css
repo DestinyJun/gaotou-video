@@ -376,6 +376,7 @@
   background: white;
 }
 .alert-window-excel-header{
+  position: relative;
   height: 3vh;
   line-height: 3vh;
   background: #C42632;
@@ -388,6 +389,22 @@
 }
 .alert-window-excel-header>.pull-right:hover{
   background:red;
+}
+.alert-window-excel-content{
+  color: black;
+  padding: 5px 5px;
+}
+.alert-window-excel-content-list {
+  margin-bottom: 5px;
+}
+.alert-window-excel-content>input{
+  color: black;
+}
+.alert-window-excel-footer{
+  width: 100%;
+  position: absolute;
+  left:0;
+  bottom: 5px;
 }
 
 /********************************分割线******************************
@@ -441,5 +458,4 @@
 .pagination > li > a > input{
   width: 5vw;
 }
-
 

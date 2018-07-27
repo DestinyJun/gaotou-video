@@ -122,3 +122,8 @@
       -webkit-transform: scale(1.0);
     }
 }
+
+/*公共样式*/
+.ui-overflow-hidden {
+  overflow: hidden;
+}

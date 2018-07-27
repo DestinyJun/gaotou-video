@@ -81,7 +81,7 @@ export class ServiceDataComponent implements OnInit {
       }
     );
     // 百度地图
-    this.ionViewWillEnter();
+   /* this.ionViewWillEnter();*/
     //  高速服液态数据3d统计
     this.packOption3();
     // 贵阳业态经营数据前十排名
@@ -514,7 +514,7 @@ export class ServiceDataComponent implements OnInit {
 
   /************************中部***************************/
   // 百度地图
-  public ionViewWillEnter() {
+/*  public ionViewWillEnter() {
     let that;
     that = this;
     const map = new BMap.Map('servicesMap');
@@ -549,7 +549,7 @@ export class ServiceDataComponent implements OnInit {
     }, 3000);
 
 
-    /*const polyline = new BMap.Polyline(points, {
+    /!*const polyline = new BMap.Polyline(points, {
       enableEditing: false, // 是否启用线编辑，默认为false
       enableClicking: true, // 是否响应点击事件，默认为true
       icons: [icons],
@@ -557,11 +557,11 @@ export class ServiceDataComponent implements OnInit {
       strokeOpacity: 0.8, // 折线的透明度，取值范围0 - 1
       strokeColor: '#18a45b' // 折线颜色
     });
-    map.addOverlay(polyline); // 增加折线*/
+    map.addOverlay(polyline); // 增加折线*!/
 
     // 添加弧线覆盖物
-   /* const curve = new BMapLib.CurveLine(points, {strokeColor: 'blue', strokeWeight: 3, strokeOpacity: 0.5});
-    map.addOverlay(curve);*/
+   /!* const curve = new BMapLib.CurveLine(points, {strokeColor: 'blue', strokeWeight: 3, strokeOpacity: 0.5});
+    map.addOverlay(curve);*!/
 
     // 地址解析器
     const geolocation = new BMap.Geolocation();
@@ -572,7 +572,7 @@ export class ServiceDataComponent implements OnInit {
         that.locationState = true;
       });
     }, {enableHighAccuracy: true});
-  }
+  }*/
 
 
   /************************右边***************************/

@@ -11,14 +11,19 @@ import {CentermapService} from '../../common/services/centermap.service';
 import {DiagramService} from '../../common/services/diagram.service';
 import {Router} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
-import {SelectItem} from 'primeng/api';
 
 declare let BMap;
 declare let BMapLib;
 
-interface City {
-  name: string;
-  code: string;
+interface CarExportType {
+  carNumType: string;
+  carArea: string;
+  carDate: string;
+}
+interface IncomeExportType {
+  incomeNumType: string;
+  incomeArea: string;
+  incomeDate: string;
 }
 
 @Component({
@@ -58,6 +63,8 @@ export class FinanceDataComponent implements OnInit {
   public carTableData: any;
   public carAreaName = '贵州省';
   public optionsCarPieInstance: any;
+  public carExcelShow = false;
+  public carExportType: CarExportType;
 
   /*****************************中部**************************/
     // 省市联动
@@ -98,8 +105,8 @@ export class FinanceDataComponent implements OnInit {
   public IncomeAreaName = '贵州省';
   public IncomeTableData: any;
   public arryIncomePie = [];
-  /**********************************表格导出*****************************/
-  public cities: City[];
+  public incomeExcelShow = false;
+  public incomeExportType: IncomeExportType;
 
   /**********************基础数据部分**********************/
   public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
@@ -133,6 +140,17 @@ export class FinanceDataComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // 导出表格数据初始化
+    this.carExportType = {
+      carNumType: '',
+      carArea: '',
+      carDate: ''
+    };
+    this.incomeExportType = {
+      incomeNumType: '',
+      incomeArea: '',
+      incomeDate: ''
+    };
     this.amount();
     // 图表更行
     this.updataEcharts();
@@ -144,14 +162,6 @@ export class FinanceDataComponent implements OnInit {
         this.cityShow = false;
       }
     });
-    //
-    this.cities = [
-      {name: 'New York', code: 'NY'},
-      {name: 'Rome', code: 'RM'},
-      {name: 'London', code: 'LDN'},
-      {name: 'Istanbul', code: 'IST'},
-      {name: 'Paris', code: 'PRS'}
-    ];
   }
 
   /**********************************左边*****************************/
@@ -295,6 +305,7 @@ export class FinanceDataComponent implements OnInit {
   // 3D柱状图的相关点击事件
   public barClick(e): void {
     const that = this;
+    document.body.className = 'ui-overflow-hidden';
     this.alertBarShow = true;
     const yType = ['经营收入', '驻车量', '用电量', '用水量', '客流量'];
     this.colorList = [
@@ -450,6 +461,7 @@ export class FinanceDataComponent implements OnInit {
     };
   }
   public closeBarShow() {
+    document.body.className = '';
     this.alertBarShow = false;
   }
   // 3D柱状图弹窗操作
@@ -568,6 +580,7 @@ export class FinanceDataComponent implements OnInit {
   // 车型日分布类型占比饼状图相关点击事件
   public parkClick(e): void {
     this.alertCarShow = true;
+    document.body.className = 'ui-overflow-hidden';
     this.arryCarPie = [];
     this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
       this.arryCarPie.push({value: val, name: this.citys[index]});
@@ -608,6 +621,7 @@ export class FinanceDataComponent implements OnInit {
     this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
   }
   public closeCarShow(): void {
+    document.body.className = '';
     this.alertCarShow = false;
   }
   // 车型日分布类型占比饼状图弹窗
@@ -619,7 +633,6 @@ export class FinanceDataComponent implements OnInit {
     this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
   }
   public carBtnClick(e): void {
-    console.log(e.srcElement.innerText);
     if (e.srcElement.innerText === '小车') {
       this.alertCarTitle = '小车';
       this.arryCarPie = [];
@@ -786,7 +799,36 @@ export class FinanceDataComponent implements OnInit {
       this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
     }
   }
-
+  // 表格导出
+  public carDateChange(e) {
+    this.carExportType.carDate = e.srcElement.value;
+  }
+  public carTypeChange(e) {
+    this.carExportType.carNumType = e.srcElement.options[e.srcElement.selectedIndex].innerText;
+  }
+  public carAreaChange(e) {
+    this.carExportType.carArea = e.srcElement.options[e.srcElement.selectedIndex].innerText;
+  }
+  public carExportClick() {
+    if (!(this.carExportType.carDate === '') || !(this.carExportType.carNumType === '') || !(this.carExportType.carArea === '')) {
+      this.carExcelShow = false;
+      console.log(this.carExportType);
+      // 导出表格数据初始化
+      this.carExportType = {
+        carNumType: '',
+        carArea: '',
+        carDate: ''
+      };
+    } else {
+      window.alert('请把数据选择全在提交');
+    }
+  }
+  public openCarExcel() {
+    this.carExcelShow = true;
+  }
+  public closeCarExcel() {
+    this.carExcelShow = false;
+  }
   /*********************************中部*****************************/
   // 中部服务区分布图
   public centerMap() {
@@ -1779,6 +1821,7 @@ export class FinanceDataComponent implements OnInit {
   // 收入类型相关操作
   public incomeClick(e): void {
     this.alertIncomeShow = true;
+    document.body.className = 'ui-overflow-hidden';
     this.arryIncomePie = [];
     this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
       this.arryIncomePie.push({value: val, name: this.citys[index]});
@@ -1819,6 +1862,7 @@ export class FinanceDataComponent implements OnInit {
     this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
   }
   public closeIncomeShow(): void {
+    document.body.className = '';
     this.alertIncomeShow = false;
   }
   // 收入类型弹窗
@@ -2117,6 +2161,36 @@ export class FinanceDataComponent implements OnInit {
       };
       this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
     }
+  }
+  // 表格导出
+  public incomeDateChange(e) {
+    this.incomeExportType.incomeDate = e.srcElement.value;
+  }
+  public incomeTypeChange(e) {
+    this.incomeExportType.incomeNumType = e.srcElement.options[e.srcElement.selectedIndex].innerText;
+  }
+  public incomeAreaChange(e) {
+    this.incomeExportType.incomeArea = e.srcElement.options[e.srcElement.selectedIndex].innerText;
+  }
+  public incomeExportClick() {
+    if (!(this.incomeExportType.incomeDate === '') || !(this.incomeExportType.incomeNumType === '') || !(this.incomeExportType.incomeArea === '')) {
+      this.incomeExcelShow = false;
+      console.log(this.incomeExportType);
+      // 导出表格数据初始化
+      this.incomeExportType = {
+        incomeNumType: '',
+        incomeArea: '',
+        incomeDate: ''
+      };
+    } else {
+      window.alert('请把数据选择全在提交');
+    }
+  }
+  public openIncomeExcel() {
+    this.incomeExcelShow = true;
+  }
+  public closeincomeExcel() {
+    this.incomeExcelShow = false;
   }
 
   // 图表更新

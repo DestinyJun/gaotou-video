@@ -90,7 +90,28 @@
   margin-left: -8px;
   margin-right: -8px;
 }
-
+.main-content .servicesMap .servicesMap-top{
+  background: red;
+  color: red;
+  height: 20vh;
+}
+.main-content .servicesMap .servicesMap-center{
+  background: #FED669;
+  color: red;
+  height: 13vh;
+}
+.main-content .servicesMap-center .servicesMap-center-left{
+  height: 6.5vh;
+  border: 1px solid #FBC527;
+}
+.main-content .servicesMap-center .servicesMap-center-right{
+  height: 6.5vh;
+}
+.main-content .servicesMap .servicesMap-bottom{
+  background: blue;
+  color: red;
+  height: 20vh;
+}
 /*事件监控列表*/
 .main-content .event-table{
   padding-top: 1px;
