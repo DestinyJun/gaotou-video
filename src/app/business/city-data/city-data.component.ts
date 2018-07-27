@@ -1,10 +1,7 @@
 import {
   Component,
   ComponentFactoryResolver,
-  ComponentRef,
   OnInit,
-  ViewChild,
-  ViewContainerRef
 } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NgxEchartsService} from 'ngx-echarts';
