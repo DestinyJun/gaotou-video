@@ -208,4 +208,12 @@ export class DataService {
     return obj;
   }
 
+  // 返回服务区收入跟具体的店铺名字
+  public getServiceData(sum, min): any {
+    const arryObj = [];
+    this.ranked.map((val, index, arr) => {
+      arryObj.push({name: arr[Math.round(Math.random() * (arr.length - 1))], num: Math.round(Math.random() * sum) + min});
+    });
+    return arryObj;
+  }
 }

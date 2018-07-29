@@ -54,15 +54,15 @@
   display: inline-block;
   width: 30px;
   height: 5vh;
-  border: 1px solid #7D8DA7;
   line-height: 5vh;
   text-align: center;
-  background: -moz-linear-gradient(top, #01071D 0%, #0A4D84 100%);
+ /* background: -moz-linear-gradient(top, #01071D 0%, #0A4D84 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#01071D), color-stop(100%,#0A4D84));
   background: -webkit-linear-gradient(top, #01071D 50%,#0A4D84 100%);
   background: -o-linear-gradient(top, #01071D 0%,#0A4D84 100%);
   background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
-  background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);
+  background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);*/
+  background: orangered;
 }
 .main-content .vehicle .vehicle-amount>p{
   margin-top: 1vh;
@@ -100,7 +100,13 @@
 }
 .main-content .servicesMap .servicesMap-top .servicesMap-top-box{
   height: 20vh;
+  width: 3vw;
   border:1px solid #3B425C;
+  line-height: 6vh;
+  font-size: 1.6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .main-content .servicesMap .servicesMap-center{
   background: #FED669;
@@ -121,8 +127,20 @@
   align-items: center;
 }
 .main-content .servicesMap .servicesMap-bottom{
-  background: blue;
   height: 20vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.main-content .servicesMap .servicesMap-bottom .servicesMap-bottom-box{
+  height: 20vh;
+  width: 3vw;
+  border:1px solid #3B425C;
+  line-height: 6vh;
+  font-size: 1.6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 /*事件监控列表*/
 .main-content .event-table{
@@ -192,6 +210,7 @@
   margin-bottom: 1vh;
   margin-left: -8px;
   position: relative;
+  padding: 0 10px;
 }
 .main-content .crosswise .crosswise-btn{
   /* position: absolute;
@@ -210,6 +229,15 @@
   height: 48vh;
 }
 
+/*服务区基本信息*/
+.main-content .crosswise .services-Info p{
+  overflow: hidden;
+  margin-bottom: 2vh;
+}
+.main-content .crosswise .services-Info{
+  padding-top: 1vh;
+}
+.main-content .crosswise .crosswise-footer{}
 /*实时收入数据监控*/
 .main-content .income{
   height: 12.5vh;
@@ -344,9 +372,69 @@
   line-height: 5vh;
   padding-right: 10px;
 }
+.alert-window-content-table .toggle-btn .toggle-btn-area>button{
+  margin-left: 10px;
+}
 .alert-window-content-table .content-table{
   height: 50vh;
 }
-
-
-
+/*数据导出弹窗*/
+.bg-excel{
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(149,161,154,0.6);
+}
+.alert-window-excel{
+  position: absolute;
+  top: 50%;
+  margin-top: -10vh;
+  left: 50%;
+  margin-left: -10vw;
+  width: 20vw;
+  height: 20vh;
+  background: white;
+}
+.alert-window-excel-header{
+  position: relative;
+  height: 3vh;
+  line-height: 3vh;
+  background: #C42632;
+  padding-left: 5px;
+}
+.alert-window-excel-header>.pull-right{
+  height: 3vh;
+  width: 3vh;
+  text-align: center;
+}
+.alert-window-excel-header>.pull-right:hover{
+  background:red;
+}
+.alert-window-excel-content{
+  color: black;
+  padding: 5px 5px;
+}
+.alert-window-excel-content-list {
+  margin-bottom: 5px;
+}
+.alert-window-excel-content>input{
+  color: black;
+}
+.alert-window-excel-footer{
+  width: 100%;
+  position: absolute;
+  left:0;
+  bottom: 5px;
+}
+/*字体颜色*/
+.text-c1{
+  color: #33F3B1;
+}
+.text-c2{
+  color: #FF37AC;
+}
+.text-c3{
+  color: #87FFFF;
+}

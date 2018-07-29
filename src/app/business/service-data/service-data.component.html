@@ -22,17 +22,18 @@
           </h3>
         </div>
       </div>
-      <div class="accumulation" echarts [options]="optionsCarModel"></div>
+      <div class="accumulation" echarts [options]="optionsCarModel" (chartClick)="parkClick($event)"></div>
     </div>
     <!--中部-->
     <div class="col-lg-6 col-md-6">
        <div class="servicesMap">
          <div class="servicesMap-top">
-          <div class="servicesMap-top-box text-center">
-            <p>王大妈餐馆</p>
-            <p>1452</p>
+          <div class="servicesMap-top-box text-center" *ngFor="let item of incomeData">
+            <p style="color: #3BF49F;" [title]="item.name">{{item.name}}</p>
+            <p style="color: #00CFB1;" [title]="item.num">{{item.num}}元</p>
             <p>
-              <button class="btn btn-danger">监控</button></p>
+              <button class="btn btn-danger">监控</button>
+            </p>
           </div>
          </div>
          <div class="servicesMap-center">
@@ -53,80 +54,259 @@
              <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
            </div>
          </div>
-         <div class="servicesMap-bottom"></div>
+         <div class="servicesMap-bottom">
+           <div class="servicesMap-bottom-box text-center" *ngFor="let item of incomeData">
+             <p>
+               <button class="btn btn-danger">监控</button>
+             </p>
+             <p style="color: #00CFB1;" [title]="item.num">{{item.num}}元</p>
+             <p style="color: #3BF49F;" [title]="item.name">{{item.name}}</p>
+           </div>
+         </div>
        </div>
-       <div class="event-table">
-        <div class="table-title text-center">
-          <span>{{this.serviceZoneTitle}}服务区事件监控</span>
+      <!--事件监控-->
+      <div class="event-table">
+        <div class="col-lg-3 col-md-3" style="padding-right: 0">
+          <div class="table-title text-center">
+            <span>{{this.serviceZoneTitle}}服务区事件监控</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table" cellspacing="5px">
+              <thead class="table-header">
+              <tr>
+                <td>标记</td>
+                <td>时间</td>
+                <td>事件类型</td>
+                <td>事件描述</td>
+                <td>最新动态</td>
+              </tr>
+              </thead>
+              <tbody class="table-body">
+              <tr class="table-tr" style="color: #BB32F4">
+                <td><span style="background: #BB32F4;"></span></td>
+                <td>1分钟之前</td>
+                <td>工程类</td>
+                <td>一号水库水位低</td>
+                <td class="hot">03<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #F432AD">
+                <td><span style="background: #F432AD;"></span></td>
+                <td>3分钟之前</td>
+                <td>经营类</td>
+                <td>妹妹小吃账户异常</td>
+                <td class="hot">04<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #E57D0D">
+                <td><span style="background: #E57D0D;"></span></td>
+                <td>5分钟之前</td>
+                <td>卫生类</td>
+                <td>乌江服务区卫生差</td>
+                <td class="hot">07<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #1ED1D8">
+                <td><span style="background: #1ED1D8;"></span></td>
+                <td>15分钟之前</td>
+                <td>监控类</td>
+                <td>一号门监控设备出问题</td>
+                <td class="hot">02<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #3BF49F">
+                <td><span style="background: #3BF49F;"></span></td>
+                <td>30分钟之前</td>
+                <td>系统故障</td>
+                <td>服务器异常</td>
+                <td class="hot">10<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #1ED1D8">
+                <td><span style="background: #1ED1D8;"></span></td>
+                <td>40分钟之前</td>
+                <td>其他</td>
+                <td>出口位置轿车刮伤</td>
+                <td class="hot">04<span></span></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="table-responsive">
-          <table class="table" cellspacing="5px">
-            <thead class="table-header">
-            <tr>
-              <td>标记</td>
-              <td>时间</td>
-              <td>事件类型</td>
-              <td>事件描述</td>
-              <td>最新动态</td>
-            </tr>
-            </thead>
-            <tbody class="table-body">
-            <tr class="table-tr" style="color: #BB32F4">
-              <td><span style="background: #BB32F4;"></span></td>
-              <td>1分钟之前</td>
-              <td>工程类</td>
-              <td>一号水库水位低</td>
-              <td class="hot">03<span></span></td>
-            </tr>
-            <tr class="table-tr" style="color: #F432AD">
-              <td><span style="background: #F432AD;"></span></td>
-              <td>3分钟之前</td>
-              <td>经营类</td>
-              <td>妹妹小吃账户异常</td>
-              <td class="hot">04<span></span></td>
-            </tr>
-            <tr class="table-tr" style="color: #E57D0D">
-              <td><span style="background: #E57D0D;"></span></td>
-              <td>5分钟之前</td>
-              <td>卫生类</td>
-              <td>乌江服务区卫生差</td>
-              <td class="hot">07<span></span></td>
-            </tr>
-            <tr class="table-tr" style="color: #1ED1D8">
-              <td><span style="background: #1ED1D8;"></span></td>
-              <td>15分钟之前</td>
-              <td>监控类</td>
-              <td>一号门监控设备出问题</td>
-              <td class="hot">02<span></span></td>
-            </tr>
-            <tr class="table-tr" style="color: #3BF49F">
-              <td><span style="background: #3BF49F;"></span></td>
-              <td>30分钟之前</td>
-              <td>系统故障</td>
-              <td>服务器异常</td>
-              <td class="hot">10<span></span></td>
-            </tr>
-            <tr class="table-tr" style="color: #1ED1D8">
-              <td><span style="background: #1ED1D8;"></span></td>
-              <td>40分钟之前</td>
-              <td>其他</td>
-              <td>出口位置轿车刮伤</td>
-              <td class="hot">04<span></span></td>
-            </tr>
-            </tbody>
-          </table>
+        <div class="col-lg-6 col-md-6">
+          <div class="table-title text-center">
+            <span>{{this.serviceZoneTitle}}服务区办公信息</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table" cellspacing="5px">
+              <thead class="table-header">
+              <tr>
+                <td>标记</td>
+                <td>时间</td>
+                <td>事件类型</td>
+                <td>事件描述</td>
+                <td>最新动态</td>
+              </tr>
+              </thead>
+              <tbody class="table-body">
+              <tr class="table-tr" style="color: #BB32F4">
+                <td><span style="background: #BB32F4;"></span></td>
+                <td>1分钟之前</td>
+                <td>工程类</td>
+                <td>一号水库水位低</td>
+                <td class="hot">03<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #F432AD">
+                <td><span style="background: #F432AD;"></span></td>
+                <td>3分钟之前</td>
+                <td>经营类</td>
+                <td>妹妹小吃账户异常</td>
+                <td class="hot">04<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #E57D0D">
+                <td><span style="background: #E57D0D;"></span></td>
+                <td>5分钟之前</td>
+                <td>卫生类</td>
+                <td>乌江服务区卫生差</td>
+                <td class="hot">07<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #1ED1D8">
+                <td><span style="background: #1ED1D8;"></span></td>
+                <td>15分钟之前</td>
+                <td>监控类</td>
+                <td>一号门监控设备出问题</td>
+                <td class="hot">02<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #3BF49F">
+                <td><span style="background: #3BF49F;"></span></td>
+                <td>30分钟之前</td>
+                <td>系统故障</td>
+                <td>服务器异常</td>
+                <td class="hot">10<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #1ED1D8">
+                <td><span style="background: #1ED1D8;"></span></td>
+                <td>40分钟之前</td>
+                <td>其他</td>
+                <td>出口位置轿车刮伤</td>
+                <td class="hot">04<span></span></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-       </div>
+        <div class="col-lg-3 col-md-3" style="padding-left: 0">
+          <div class="table-title text-center">
+            <span>{{this.serviceZoneTitle}}服务区处理信息</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table" cellspacing="5px">
+              <thead class="table-header">
+              <tr>
+                <td>标记</td>
+                <td>时间</td>
+                <td>事件类型</td>
+                <td>事件描述</td>
+                <td>最新动态</td>
+              </tr>
+              </thead>
+              <tbody class="table-body">
+              <tr class="table-tr" style="color: #BB32F4">
+                <td><span style="background: #BB32F4;"></span></td>
+                <td>1分钟之前</td>
+                <td>工程类</td>
+                <td>一号水库水位低</td>
+                <td class="hot">03<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #F432AD">
+                <td><span style="background: #F432AD;"></span></td>
+                <td>3分钟之前</td>
+                <td>经营类</td>
+                <td>妹妹小吃账户异常</td>
+                <td class="hot">04<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #E57D0D">
+                <td><span style="background: #E57D0D;"></span></td>
+                <td>5分钟之前</td>
+                <td>卫生类</td>
+                <td>乌江服务区卫生差</td>
+                <td class="hot">07<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #1ED1D8">
+                <td><span style="background: #1ED1D8;"></span></td>
+                <td>15分钟之前</td>
+                <td>监控类</td>
+                <td>一号门监控设备出问题</td>
+                <td class="hot">02<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #3BF49F">
+                <td><span style="background: #3BF49F;"></span></td>
+                <td>30分钟之前</td>
+                <td>系统故障</td>
+                <td>服务器异常</td>
+                <td class="hot">10<span></span></td>
+              </tr>
+              <tr class="table-tr" style="color: #1ED1D8">
+                <td><span style="background: #1ED1D8;"></span></td>
+                <td>40分钟之前</td>
+                <td>其他</td>
+                <td>出口位置轿车刮伤</td>
+                <td class="hot">04<span></span></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
     <!--右边-->
     <div class="col-lg-3 col-md-3">
        <div class="crosswise">
-         <div class="crosswise-btn text-center" (click)="clickBtn($event)">
-           <button  class="btn " [ngClass]="{'btn-danger': barStatus1}"  >业态收入</button>
-           <button  class="btn" [ngClass]="{'btn-success': barStatus2}">车流量</button>
-           <button  class="btn" [ngClass]="{'btn-info': barStatus3}">客流量</button>
+         <h5 class="text-center">
+           {{serviceZoneTitle}}基本信息
+         </h5>
+         <div class="row">
+           <div class="col-lg-6 col-md-6 services-Info">
+             <p>
+               <span class="pull-left text-c1">始建时间：</span>
+               <span class="pull-right text-c3">2018月7月18日</span>
+             </p>
+             <p>
+               <span class="pull-left text-c1">占地面积：</span>
+               <span class="pull-right text-c3">154554㎡</span>
+             </p>
+             <p>
+               <span class="pull-left text-c1">运营时间：</span>
+               <span class="pull-right text-c3">2017年10月10号</span>
+             </p>
+           </div>
+           <div class="col-lg-6 col-md-6 services-Info" >
+             <p>
+               <span class="pull-right text-c2">：位车停总</span>
+               <span class="pull-left text-c3">15454545个</span>
+             </p>
+             <p>
+               <span class="pull-right text-c2">：位车停总</span>
+               <span class="pull-left text-c3">15454545个</span>
+             </p>
+             <p>
+               <span class="pull-right text-c2">：位车停总</span>
+               <span class="pull-left text-c3">15454545个</span>
+             </p>
+           </div>
          </div>
-         <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartInit)="crosswiseBarInit($event)" (chartClick)="rankingClick($event)"></div>
+         <div class="row">
+           <div class="col-lg-12 col-md-12">
+             <div class="crosswise-footer">
+               <p class="text-center">
+                 <button class="btn btn-warning" (click)="crosswiseClick()">
+                   更多信息......
+                 </button>
+               </p>
+             </div>
+           </div>
+         </div>
+         <!--<div class="crosswise-btn text-center" (click)="clickBtn($event)">-->
+           <!--<button  class="btn " [ngClass]="{'btn-danger': barStatus1}"  >业态收入</button>-->
+           <!--<button  class="btn" [ngClass]="{'btn-success': barStatus2}">车流量</button>-->
+           <!--<button  class="btn" [ngClass]="{'btn-info': barStatus3}">客流量</button>-->
+         <!--</div>-->
+         <!--<div class="crosswise-bar" echarts [options]="crosswiseBar" (chartInit)="crosswiseBarInit($event)" (chartClick)="rankingClick($event)"></div>-->
        </div>
        <div class="income">
          <p class="text-center">{{serviceZoneTitle}}今日实时收入</p>
@@ -140,7 +320,7 @@
            </h3>
          </div>
        </div>
-       <div class="today-income" echarts [options]="optionsIncomeModel"></div>
+       <div class="today-income" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
     </div>
   </div>
 </div>
@@ -156,16 +336,304 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-ld-6 col-md-6">
+      <div class="col-ld-12 col-md-12">
         <div class="alert-3D-bar-bar" echarts [options]="options3dBar" (chartInit)="options3dBarInit($event)" (chartClick)="options3dBarClick($event)"></div>
       </div>
-      <div class="col-ld-6 col-md-6">
+     <!-- <div class="col-ld-6 col-md-6">
         <div class="alert-3D-bar-pie" echarts [options]="options3dPie" (chartInit)="options3dPieInit($event)" ></div>
-      </div>
+      </div>-->
     </div>
-
   </div>
 </div>
+<!--服务区数据排名类型弹窗-->
+<div class="bg-box" *ngIf="alertCrosswiseShow">
+  <div class="alert-window">
+    <div class="alert-window-header">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <span>{{serviceZoneTitle}}</span>
+          <div class="pull-right" (click)="closeCrosswiseShow()">
+            <i class="fa fa-window-close " aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-window-content">
+      <div class="row">
+        <div class="col-ld-12 col-md-12">
+          <div class="alert-window-content-table">
+            <div class="toggle-btn" (click)="crosswiseBtnClick($event)">
+              <button class="btn btn-info" [ngStyle]="{'background':crosswiseBarDate === '当日'?'black': '','margin-left': '10px'}">当日</button>
+              <button class="btn btn-danger" [ngStyle]="{'background':crosswiseBarDate === '月度'?'black': ''}">月度</button>
+              <button class="btn btn-primary" [ngStyle]="{'background':crosswiseBarDate === '年度'?'black': ''}">年度</button>
+              <div class="toggle-btn-area pull-right" style="">
+                <button class="btn btn-warning" (click)="openCrosswiseExcel()">表格导出</button>
+              </div>
+            </div>
+            <div class="alert-3D-bar-bar" echarts [options]="crosswiseBar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-excel" *ngIf="crosswiseExcelShow">
+      <div class="alert-window-excel">
+        <div class="alert-window-excel-header">
+          <span>收入数据表格导出</span>
+          <div class="pull-right">
+            <i class="fa fa-window-close " aria-hidden="true" (click)="closecrosswiseExcel()"></i>
+          </div>
+        </div>
+        <div class="alert-window-excel-content">
+          <div class="alert-window-excel-content-list">
+            <label for="incomeDates">请选择时间：</label>
+            <input type="date" id="incomeDates" (change)="crosswiseDateChange($event)">
+          </div>
+          <div class="alert-window-excel-content-list">
+            <label for="incomeTypes">请选择类型：</label>
+            <select name="" id="incomeTypes" (change)="crosswiseTypeChange($event)">
+              <option value="">总数</option>
+              <option value="">小车</option>
+              <option value="">客车</option>
+              <option value="">货车</option>
+            </select>
+          </div>
+          <div class="alert-window-excel-content-list">
+            <label for="incomeArea">请选择片区：</label>
+            <select name="" id="incomeArea" (change)="crosswiseAreaChange($event)">
+              <option value="">东部片区</option>
+              <option value="">西部片区</option>
+              <option value="">南部片区</option>
+              <option value="">北部</option>
+              <option value="">中部</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="alert-window-excel-footer text-center">
+          <button class="btn btn-primary" (click)="crosswiseExportClick()">确认导出</button>
+          <button class="btn btn-danger" (click)="closecrosswiseExcel()">取消导出</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--车辆类型弹窗-->
+<div class="bg-box" *ngIf="alertCarShow">
+  <div class="alert-window">
+    <div class="alert-window-header">
+      <div class="row">
+        <div class="col-ld-12 col-md-12">
+          <span>{{serviceZoneTitle}}</span>
+          <div class="pull-right" (click)="closeCarShow()">
+            <i class="fa fa-window-close " aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-window-content">
+      <div class="row">
+       <!-- <div class="col-ld-6 col-md-6">
+          <div class="alert-3D-bar-bar" echarts [options]="optionsCarType" (chartInit)="optionsCarPieInit($event)" (chartClick)="optionsCarPieClick($event)"></div>
+        </div>-->
+        <div class="col-ld-12 col-md-12">
+          <div class="alert-window-content-table">
+            <div class="toggle-btn" (click)="carBtnClick($event)">
+              <button class="btn btn-info" [ngStyle]="{'background':alertCarTitle === '小车'?'black': '','margin-left': '10px'}">小车</button>
+              <button class="btn btn-primary" [ngStyle]="{'background':alertCarTitle === '客车'?'black': ''}">客车</button>
+              <button class="btn btn-danger" [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">货车</button>
+              <div class="toggle-btn-area pull-right" style="">
+                <button class="btn btn-success" (click)="openCarExcel()">表格导出</button>
+              </div>
+            </div>
+            <div class="content-table">
+              <table class="table table-bordered">
+                <thead>
+                <tr>
+                  <th>时间段</th>
+                  <th [ngStyle]="{'background':alertCarTitle === '小车'?'black': ''}">小车总数</th>
+                  <th [ngStyle]="{'background':alertCarTitle === '客车'?'black': ''}">客车总数</th>
+                  <th [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">货车总数</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of carTableData">
+                  <td >2018-07-29 18:31:20</td>
+                  <td [ngStyle]="{'background':alertCarTitle === '小车'?'black': ''}">{{item.cart}}</td>
+                  <td [ngStyle]="{'background':alertCarTitle === '客车'?'black': ''}">{{item.trucks}}</td>
+                  <td [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">{{item.bus}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="bottom-pagination text-center">
+              <ul class="pagination">
+                <li><a class="btn btn-info">上一页</a></li>
+                <li><a>共5页/第3页</a></li>
+                <li><a style="padding: 3px 12px;">跳转到: <input type="number"><span style="margin-left: 10px">页</span></a></li>
+                <li><a class="btn btn-warning">下一页</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-excel" *ngIf="carExcelShow">
+      <div class="alert-window-excel">
+        <div class="alert-window-excel-header">
+          <span>车辆数据表格导出</span>
+          <div class="pull-right">
+            <i class="fa fa-window-close " aria-hidden="true" (click)="closeCarExcel()"></i>
+          </div>
+        </div>
+        <div class="alert-window-excel-content">
+          <div class="alert-window-excel-content-list">
+            <label for="dates">请选择时间：</label>
+            <input type="date" id="dates" (change)="carDateChange($event)">
+          </div>
+          <div class="alert-window-excel-content-list">
+            <label for="carTypes">请选择类型：</label>
+            <select name="" id="carTypes" (change)="carTypeChange($event)">
+              <option value="">总数</option>
+              <option value="">小车</option>
+              <option value="">客车</option>
+              <option value="">货车</option>
+            </select>
+          </div>
+          <div class="alert-window-excel-content-list">
+            <label for="carArea">请选择片区：</label>
+            <select name="" id="carArea" (change)="carAreaChange($event)">
+              <option value="">东部片区</option>
+              <option value="">西部片区</option>
+              <option value="">南部片区</option>
+              <option value="">北部</option>
+              <option value="">中部</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="alert-window-excel-footer text-center">
+          <button class="btn btn-primary" (click)="carExportClick()">确认导出</button>
+          <button class="btn btn-danger" (click)="closeCarExcel()">取消导出</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--收入类型弹窗-->
+<div class="bg-box" *ngIf="alertIncomeShow">
+  <div class="alert-window">
+    <div class="alert-window-header">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <span>{{serviceZoneTitle}}</span>
+          <div class="pull-right" (click)="closeIncomeShow()">
+            <i class="fa fa-window-close " aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-window-content">
+      <div class="row">
+       <!-- <div class="col-ld-6 col-md-6">
+          <div class="alert-3D-bar-bar" echarts [options]="optionsIncomeTypes" (chartInit)="optionsIncomePieInit($event)" (chartClick)="optionsIncomePieClick($event)"></div>
+        </div>-->
+        <div class="col-ld-12 col-md-12">
+          <div class="alert-window-content-table">
+            <div class="toggle-btn" (click)="IncomeBtnClick($event)">
+              <button class="btn btn-info" [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': '','margin-left': '10px'}">收入总数</button>
+              <button class="btn btn-danger" [ngStyle]="{'background':alertIncomeTitle === '小吃'?'black': ''}">小吃</button>
+              <button class="btn btn-primary" [ngStyle]="{'background':alertIncomeTitle === '中式快餐'?'black': ''}">中式快餐</button>
+              <button class="btn btn-success" [ngStyle]="{'background':alertIncomeTitle === '西式快餐'?'black': ''}">西式快餐</button>
+              <button class="btn btn-info" [ngStyle]="{'background':alertIncomeTitle === '商超'?'black': ''}">商超</button>
+              <button class="btn btn-warning" [ngStyle]="{'background':alertIncomeTitle === '住宿'?'black': ''}">住宿</button>
+              <button class="btn btn-primary" [ngStyle]="{'background':alertIncomeTitle === '汽修'?'black': ''}">汽修</button>
+              <div class="toggle-btn-area pull-right" style="">
+                <button class="btn btn-success" (click)="openIncomeExcel()">表格导出</button>
+              </div>
+            </div>
+            <div class="content-table">
+              <table class="table table-bordered">
+                <thead>
+                <tr>
+                  <th>时间段</th>
+                  <th [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': ''}">收入总数</th>
+                  <th [ngStyle]="{'background':alertIncomeTitle === '小吃'?'black': ''}">小吃(元）</th>
+                  <th [ngStyle]="{'background':alertIncomeTitle === '中式快餐'?'black': ''}">中式快餐(元）</th>
+                  <th [ngStyle]="{'background':alertIncomeTitle === '西式快餐'?'black': ''}">西式快餐(元）</th>
+                  <th [ngStyle]="{'background':alertIncomeTitle === '商超'?'black': ''}">商超(元）</th>
+                  <th [ngStyle]="{'background':alertIncomeTitle === '住宿'?'black': ''}">住宿(元）</th>
+                  <th [ngStyle]="{'background':alertIncomeTitle === '汽修'?'black': ''}">汽修(元）</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of IncomeTableData">
+                  <td>2018-07-29 20:28:33</td>
+                  <td [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': ''}">{{item.sum}}</td>
+                  <td [ngStyle]="{'background':alertIncomeTitle === '小吃'?'black': ''}">{{item.income}}</td>
+                  <td [ngStyle]="{'background':alertIncomeTitle === '中式快餐'?'black': ''}">{{item.income}}</td>
+                  <td [ngStyle]="{'background':alertIncomeTitle === '西式快餐'?'black': ''}">{{item.income}}</td>
+                  <td [ngStyle]="{'background':alertIncomeTitle === '商超'?'black': ''}">{{item.income}}</td>
+                  <td [ngStyle]="{'background':alertIncomeTitle === '住宿'?'black': ''}">{{item.income}}</td>
+                  <td [ngStyle]="{'background':alertIncomeTitle === '汽修'?'black': ''}">{{item.income}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="bottom-pagination text-center">
+              <ul class="pagination">
+                <li><a class="btn btn-info">上一页</a></li>
+                <li><a>共5页/第3页</a></li>
+                <li><a style="padding: 3px 12px;">跳转到: <input type="number"><span style="margin-left: 10px">页</span></a></li>
+                <li><a class="btn btn-warning">下一页</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-excel" *ngIf="incomeExcelShow">
+      <div class="alert-window-excel">
+        <div class="alert-window-excel-header">
+          <span>收入数据表格导出</span>
+          <div class="pull-right">
+            <i class="fa fa-window-close " aria-hidden="true" (click)="closeincomeExcel()"></i>
+          </div>
+        </div>
+        <div class="alert-window-excel-content">
+          <div class="alert-window-excel-content-list">
+            <label for="incomeDates">请选择时间：</label>
+            <input type="date" id="incomeDates" (change)="incomeDateChange($event)">
+          </div>
+          <div class="alert-window-excel-content-list">
+            <label for="incomeTypes">请选择类型：</label>
+            <select name="" id="incomeTypes" (change)="incomeTypeChange($event)">
+              <option value="">总数</option>
+              <option value="">小车</option>
+              <option value="">客车</option>
+              <option value="">货车</option>
+            </select>
+          </div>
+          <div class="alert-window-excel-content-list">
+            <label for="incomeArea">请选择片区：</label>
+            <select name="" id="incomeArea" (change)="incomeAreaChange($event)">
+              <option value="">东部片区</option>
+              <option value="">西部片区</option>
+              <option value="">南部片区</option>
+              <option value="">北部</option>
+              <option value="">中部</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="alert-window-excel-footer text-center">
+          <button class="btn btn-primary" (click)="incomeExportClick()">确认导出</button>
+          <button class="btn btn-danger" (click)="closeincomeExcel()">取消导出</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

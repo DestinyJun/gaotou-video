@@ -96,8 +96,6 @@ export class FinanceDataComponent implements OnInit {
 
   // 全国当日收入类型占比分析
   public optionsIncomeModel = {};
-
-  /**********************弹窗部分**********************/
   // 收入类型弹窗
   public alertIncomeShow = false;
   public alertIncomeTitle = '收入总数';
@@ -1480,7 +1478,7 @@ export class FinanceDataComponent implements OnInit {
   /*********************************右边*****************************/
   // 业态经营数据前十排名
   public backCrosswiseBar() {
-   const IncomeValue = this.dataService.getIncome(9, 1000, 200);
+    const IncomeValue = this.dataService.getIncome(9, 1000, 200);
     this.crosswiseBar = {
       title: [
         {

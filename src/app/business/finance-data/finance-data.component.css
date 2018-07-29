@@ -357,6 +357,7 @@
 .alert-window-content-table .content-table{
   height: 50vh;
 }
+/*数据导出弹窗*/
 .bg-excel{
   height: 100vh;
   width: 100vw;
