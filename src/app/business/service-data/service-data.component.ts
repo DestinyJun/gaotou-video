@@ -572,39 +572,6 @@ export class ServiceDataComponent implements OnInit {
       this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryCarPie.push({value: val, name: this.citys[index]});
       });
-      this.optionsCarType = {
-        title: {
-          text: `贵州省各市所有服务区今日${this.alertCarTitle}占比统计`,
-          x: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: 16
-          }
-        },
-        tooltip: {
-          trigger: 'item',
-          formatter: '{a} <br/>{b} : {d}%'
-        },
-        series: [
-          {
-            name: `${this.alertCarTitle}`,
-            type: 'pie',
-            radius: '55%',
-            center: ['50%', '60%'],
-            data: this.arryCarPie,
-            itemStyle: {
-              color: function (params) {
-                return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
-              },
-              emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              }
-            }
-          }
-        ]
-      };
       this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
     } else if (e.srcElement.innerText === '总数') {
       this.alertCarTitle = '总数';
@@ -613,39 +580,6 @@ export class ServiceDataComponent implements OnInit {
       this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryCarPie.push({value: val, name: this.citys[index]});
       });
-      this.optionsCarType = {
-        title: {
-          text: `贵州省各市所有服务区今日${this.alertCarTitle}占比统计`,
-          x: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: 16
-          }
-        },
-        tooltip: {
-          trigger: 'item',
-          formatter: '{a} <br/>{b} : {d}%'
-        },
-        series: [
-          {
-            name: `${this.alertCarTitle}`,
-            type: 'pie',
-            radius: '55%',
-            center: ['50%', '60%'],
-            data: this.arryCarPie,
-            itemStyle: {
-              color: function (params) {
-                return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
-              },
-              emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              }
-            }
-          }
-        ]
-      };
       this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
     } else if (e.srcElement.innerText === '客车') {
       this.alertCarTitle = '客车';
@@ -654,39 +588,6 @@ export class ServiceDataComponent implements OnInit {
       this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryCarPie.push({value: val, name: this.citys[index]});
       });
-      this.optionsCarType = {
-        title: {
-          text: `贵州省各市所有服务区今日${this.alertCarTitle}占比统计`,
-          x: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: 16
-          }
-        },
-        tooltip: {
-          trigger: 'item',
-          formatter: '{a} <br/>{b} : {d}%'
-        },
-        series: [
-          {
-            name: `${this.alertCarTitle}`,
-            type: 'pie',
-            radius: '55%',
-            center: ['50%', '60%'],
-            data: this.arryCarPie,
-            itemStyle: {
-              color: function (params) {
-                return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
-              },
-              emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              }
-            }
-          }
-        ]
-      };
       this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
     } else if (e.srcElement.innerText === '货车') {
       this.alertCarTitle = '货车';
@@ -695,39 +596,6 @@ export class ServiceDataComponent implements OnInit {
       this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryCarPie.push({value: val, name: this.citys[index]});
       });
-      this.optionsCarType = {
-        title: {
-          text: `贵州省各市所有服务区今日${this.alertCarTitle}占比统计`,
-          x: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: 16
-          }
-        },
-        tooltip: {
-          trigger: 'item',
-          formatter: '{a} <br/>{b} : {d}%'
-        },
-        series: [
-          {
-            name: `${this.alertCarTitle}`,
-            type: 'pie',
-            radius: '55%',
-            center: ['50%', '60%'],
-            data: this.arryCarPie,
-            itemStyle: {
-              color: function (params) {
-                return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
-              },
-              emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              }
-            }
-          }
-        ]
-      };
       this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
     }
   }
@@ -1200,7 +1068,7 @@ export class ServiceDataComponent implements OnInit {
   }
   // 收入类型弹窗
   public optionsIncomePieInit(ec): void {
-    this.optionsCarPieInstance = ec;
+    // this.optionsCarPieInstance = ec;
   }
   public optionsIncomePieClick(e) {
     this.IncomeAreaName = e.name;
