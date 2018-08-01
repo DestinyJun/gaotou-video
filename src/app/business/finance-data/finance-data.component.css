@@ -5,15 +5,59 @@
 .main{
   position: relative;
 }
-/****************************主体上部分****************************/
-
+/****************************左边****************************/
 /*3D柱状图*/
 .main-top .accumulation3d{
-  height: 53vh;
+  height: 50vh;
   border:1px solid #3B425C;
   margin-bottom: 1vh;
   margin-right: -8px;
 }
+
+/*实时车流收入数据监控*/
+.main-top .number{
+  margin-bottom: 1vh;
+  height: 32vh;
+  margin-left: -8px;
+  margin-right: -8px;
+  overflow: hidden;
+}
+.main-top .vehicle{
+  height: 12.5vh;
+  border:1px solid #3B425C;
+  padding-left: 5px;
+  margin-bottom: 1vh;
+  margin-right: -8px;
+}
+.main-top .vehicle>p{
+  padding-top: 1vh;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.main-top .vehicle-amount>h3>span{
+  display: inline-block;
+  width: 30px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  /*background: -moz-linear-gradient(top, #01071D 0%, #0A4D84 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#01071D), color-stop(100%,#0A4D84));
+  background: -webkit-linear-gradient(top, #01071D 50%,#0A4D84 100%);
+  background: -o-linear-gradient(top, #01071D 0%,#0A4D84 100%);
+  background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
+  background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);*/
+  background: orangered;
+}
+.main-top .vehicle .vehicle-amount>p{
+  margin-top: 1vh;
+  font-size: 1.5rem;
+}
+
+
+
+
+
+
 /*离散地图分布图*/
 .main-top .map {
   margin-left: -8px;
@@ -172,44 +216,8 @@
   background: red;
   display: inline-block;
 }
-/*实时车流收入数据监控*/
-.main-top .number{
-  margin-bottom: 1vh;
-  height: 32vh;
-  margin-left: -8px;
-  margin-right: -8px;
-  overflow: hidden;
-}
-.main-top .vehicle{
-  height: 12.5vh;
-  border:1px solid #3B425C;
-  padding-left: 5px;
-  margin-bottom: 1vh;
-  margin-right: -8px;
-}
-.main-top .vehicle>p{
-  padding-top: 1vh;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-.main-top .vehicle-amount>h3>span{
-  display: inline-block;
-  width: 30px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  /*background: -moz-linear-gradient(top, #01071D 0%, #0A4D84 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#01071D), color-stop(100%,#0A4D84));
-  background: -webkit-linear-gradient(top, #01071D 50%,#0A4D84 100%);
-  background: -o-linear-gradient(top, #01071D 0%,#0A4D84 100%);
-  background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
-  background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);*/
-  background: orangered;
-}
-.main-top .vehicle .vehicle-amount>p{
-  margin-top: 1vh;
-  font-size: 1.5rem;
-}
+
+
 .main-top .income{
   height: 12.5vh;
   border:1px solid #3B425C;

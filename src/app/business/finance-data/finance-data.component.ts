@@ -160,6 +160,9 @@ export class FinanceDataComponent implements OnInit {
         this.cityShow = false;
       }
     });
+    window.addEventListener('resize', function (e) {
+      console.log(e);
+    });
   }
 
   /**********************************左边*****************************/

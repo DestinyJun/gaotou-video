@@ -1,0 +1,10 @@
+footer span{
+  display: block;
+  height: 3vh;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  line-height: 3vh;
+  background: orangered;
+}

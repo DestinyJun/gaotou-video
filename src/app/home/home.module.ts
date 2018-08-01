@@ -6,6 +6,7 @@ import {SharedModule} from '../common/shared.module';
 import { HomeComponent } from './home.component';
 import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import { NavComponent } from './nav/nav.component';
     HomeRoutingModule,
     SharedModule
   ],
-  declarations: [HomeComponent, HeaderComponent, NavComponent],
+  declarations: [HomeComponent, HeaderComponent, NavComponent, FooterComponent],
   entryComponents: [NavComponent]
 })
 export class HomeModule { }
