@@ -109,7 +109,7 @@
   white-space: nowrap;
 }
 .main-content .servicesMap .servicesMap-center{
-  background: #FED669;
+  background: #59443D;
   height: 13vh;
 }
 .main-content .servicesMap-center .servicesMap-center-left{
@@ -316,6 +316,14 @@
 .alert-3D-bar-header .pull-right:hover{
   background: red;
 }
+.toggle-btn-area{
+  position: relative;
+}
+.bar3D-charts>.toggle-btn-area{
+  position: absolute;
+  right: 10px;
+  top: 6vh;
+}
 .alert-3D-bar-bar{
   height: 55vh;
 }
@@ -437,4 +445,29 @@
 }
 .text-c3{
   color: #87FFFF;
+}
+
+/*bootstrap改造*/
+.bottom-pagination {
+  position: absolute;
+  width: 100%;
+  bottom: 5px;
+  left: 0;
+}
+.list-group>a{
+  color: #87FFFF;
+}
+.pagination > li > a {
+  background-color: #86FDFE;
+  margin-right: 1vw;
+  font-size: 1.5rem;
+  color: #333333;
+  cursor: pointer;
+}
+.pagination > li > a:hover{
+  background-color: #31B0D5;
+  border: 1px solid #31B0D5;
+}
+.pagination > li > a > input{
+  width: 5vw;
 }

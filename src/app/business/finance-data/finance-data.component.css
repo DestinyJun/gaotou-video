@@ -13,7 +13,6 @@
   margin-bottom: 1vh;
   margin-right: -8px;
 }
-
 /*实时车流收入数据监控*/
 .main-top .number{
   margin-bottom: 1vh;
@@ -52,11 +51,12 @@
   margin-top: 1vh;
   font-size: 1.5rem;
 }
-
-
-
-
-
+/*服务区当日驻车量排名*/
+.main-top .accumulation{
+  height: 24.5vh;
+  border:1px solid #3B425C;
+  margin-right: -8px;
+}
 
 /*离散地图分布图*/
 .main-top .map {
@@ -121,12 +121,12 @@
 .main-top .top-map{
   border:1px solid #3B425C;
   margin-bottom: 1vh;
-  height: 54vh;
+  height: 51vh;
 }
 
 /*横向排名柱状图*/
 .main-top .crosswise{
-  height: 53vh;
+  height: 50vh;
   border:1px solid #3B425C;
   margin-bottom: 1vh;
   margin-left: -8px;
@@ -151,12 +151,7 @@
 
 /****************************主体下部分****************************/
 
-/*服务区当日驻车量排名*/
-.main-top .accumulation{
-  height: 24.5vh;
-  border:1px solid #3B425C;
-  margin-right: -8px;
-}
+
 /*事件监控列表*/
 .main-top .event-table{
   padding-top: 1px;
@@ -303,8 +298,26 @@
 .alert-3D-bar-header .pull-right:hover{
   background: red;
 }
+.toggle-btn-area{
+  position: relative;
+}
+.bar3D-charts>.toggle-btn-area{
+  position: absolute;
+  left: 35vw;
+  top: 6vh;
+}
 .alert-3D-bar-bar{
   height: 55vh;
+  position: relative;
+}
+.echart-btn{
+  position: relative;
+}
+.echart-btn > .btn{
+  position: absolute;
+  top: 7px;
+  left: 24px;
+  z-index: 999;
 }
 .alert-3D-bar-pie{
   height: 55vh;

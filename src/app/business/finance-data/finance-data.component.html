@@ -290,15 +290,60 @@
           <i class="fa fa-window-close " aria-hidden="true"></i>
         </div>
       </div>
-      <div class="row">
+      <div class="row bar3D-charts">
         <div class="col-ld-6 col-md-6">
           <div class="alert-3D-bar-bar" echarts [options]="options3dBar" (chartInit)="options3dBarInit($event)" (chartClick)="options3dBarClick($event)"></div>
         </div>
         <div class="col-ld-6 col-md-6">
           <div class="alert-3D-bar-pie" echarts [options]="options3dPie" (chartInit)="options3dPieInit($event)" ></div>
         </div>
+        <div class="toggle-btn-area" style="">
+          <button class="btn btn-success" (click)="open3dBarExcel()">表格导出</button>
+        </div>
       </div>
+      <div class="bg-excel" *ngIf="bar3dExcelShow">
+        <div class="alert-window-excel">
+          <div class="alert-window-excel-header">
+            <span>收入数据表格导出</span>
+            <div class="pull-right">
+              <i class="fa fa-window-close " aria-hidden="true" (click)="close3dBarExcel()"></i>
+            </div>
+          </div>
+          <div class="alert-window-excel-content">
+            <div class="alert-window-excel-content-list">
+              <label for="incomeDates">请选择时间：</label>
+              <input type="date" id="incomeDates" (change)="bar3dDateChange($event)">
+            </div>
+            <div class="alert-window-excel-content-list">
+              <label for="incomeTypes">请选择类型：</label>
+              <select name="" id="incomeTypes" (change)="bar3dTypeChange($event)">
+                <option value="">点击选择...</option>
+                <option value="">所有类型</option>
+                <option value="">经营收入</option>
+                <option value="">驻车量</option>
+                <option value="">用电量</option>
+                <option value="">用水量</option>
+                <option value="">客流量</option>
+              </select>
+            </div>
+            <!--<div class="alert-window-excel-content-list">
+              <label for="incomeArea">请选择片区：</label>
+              <select name="" id="incomeArea" (change)="bar3dAreaChange($event)">
+                <option value="">东部片区</option>
+                <option value="">西部片区</option>
+                <option value="">南部片区</option>
+                <option value="">北部</option>
+                <option value="">中部</option>
+              </select>
+            </div>-->
 
+          </div>
+          <div class="alert-window-excel-footer text-center">
+            <button class="btn btn-primary" (click)="bar3dExportClick()">确认导出</button>
+            <button class="btn btn-danger" (click)="closeincomeExcel()">取消导出</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!--车辆类型弹窗-->
@@ -316,8 +361,10 @@
       </div>
       <div class="alert-window-content">
         <div class="row">
-          <div class="col-ld-6 col-md-6">
-            <div class="alert-3D-bar-bar" echarts [options]="optionsCarType" (chartInit)="optionsCarPieInit($event)" (chartClick)="optionsCarPieClick($event)"></div>
+          <div class="col-ld-6 col-md-6 echart-btn">
+            <button class="btn btn-danger" [ngStyle]="{'background':CarTypeisShow ? 'black': ''}" (click)="echartBtn($event)">{{selectDate}}</button>
+            <div class="alert-3D-bar-bar" echarts [options]="optionsCarType" (chartInit)="optionsCarPieInit($event)" (chartClick)="optionsCarPieClick($event)">
+            </div>
           </div>
           <div class="col-ld-6 col-md-6">
             <div class="alert-window-content-table">
@@ -424,7 +471,8 @@
       </div>
       <div class="alert-window-content">
         <div class="row">
-          <div class="col-ld-6 col-md-6">
+          <div class="col-ld-6 col-md-6 echart-btn">
+            <button class="btn btn-danger" [ngStyle]="{'background':incomeTypeisShow ? 'black': ''}" (click)="echarIncomeBtn($event)">{{selectDate}}</button>
             <div class="alert-3D-bar-bar" echarts [options]="optionsIncomeTypes" (chartInit)="optionsIncomePieInit($event)" (chartClick)="optionsIncomePieClick($event)"></div>
           </div>
           <div class="col-ld-6 col-md-6">

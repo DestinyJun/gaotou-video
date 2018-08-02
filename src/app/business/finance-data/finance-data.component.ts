@@ -25,6 +25,11 @@ interface IncomeExportType {
   incomeArea: string;
   incomeDate: string;
 }
+interface Bar3dExportType {
+  Bar3dNumType: string;
+  Bar3dArea: string;
+  Bar3dDate: string;
+}
 
 @Component({
   selector: 'app-finance-data',
@@ -48,6 +53,8 @@ export class FinanceDataComponent implements OnInit {
     '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
   ];
   public arryPie = [];
+  public bar3dExcelShow = false;
+  public bar3dExportType: Bar3dExportType;
 
   // 车流量实时数值
   public vehicleAmount = [];
@@ -65,6 +72,7 @@ export class FinanceDataComponent implements OnInit {
   public optionsCarPieInstance: any;
   public carExcelShow = false;
   public carExportType: CarExportType;
+  public CarTypeisShow = false;
 
   /*****************************中部**************************/
     // 省市联动
@@ -105,6 +113,7 @@ export class FinanceDataComponent implements OnInit {
   public arryIncomePie = [];
   public incomeExcelShow = false;
   public incomeExportType: IncomeExportType;
+  public incomeTypeisShow = true;
 
   /**********************基础数据部分**********************/
   public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
@@ -139,6 +148,11 @@ export class FinanceDataComponent implements OnInit {
 
   ngOnInit() {
     // 导出表格数据初始化
+    this.bar3dExportType = {
+      Bar3dNumType: '',
+      Bar3dArea: '',
+      Bar3dDate: ''
+    };
     this.carExportType = {
       carNumType: '',
       carArea: '',
@@ -161,7 +175,7 @@ export class FinanceDataComponent implements OnInit {
       }
     });
     window.addEventListener('resize', function (e) {
-      console.log(e);
+
     });
   }
 
@@ -197,13 +211,13 @@ export class FinanceDataComponent implements OnInit {
               return res;
             }
           },
-          visualMap: {
+         /* visualMap: {
             max: 100,
             show: false,
             inRange: {
               color: this.options3dArray.colorData
             }
-          },
+          },*/
           xAxis3D: {
             type: 'category',
             name: '月份',
@@ -267,10 +281,11 @@ export class FinanceDataComponent implements OnInit {
             {
               type: 'bar3D',
               barWidth: 30, // 柱图宽度
+              // data: this.data3dS.data3dFac(), // 这种方式点击函数打不开
+              /*data的两种的请求方式*/
               data: this.data3dS.data3dFac().map(function (item) {
-                return {
-                  value: [item[0], item[1], item[2]]
-                };
+                const a = {value: [item[0], item[1], item[2]]};
+                return a;
               }),
               // 柱状图阴影
               shading: 'lambert',
@@ -284,17 +299,20 @@ export class FinanceDataComponent implements OnInit {
               },
               // 柱状图主子的样式
               itemStyle: {
-                opacity: 0.9
+                opacity: 0.9,
+                color: function (params) {
+                  return ['#C27CD2', '#BDD139', '#78E77D', '#09D4D6', 'green'][params.value[1]];
+                },
               },
               emphasis: {
                 label: {
                   textStyle: {
                     fontSize: 20,
-                    color: '#900'
+                    color: '#002140'
                   }
                 },
                 itemStyle: {
-                  color: '#900'
+                  color: '#FF2600'
                 }
               }
             }
@@ -525,6 +543,37 @@ export class FinanceDataComponent implements OnInit {
       ]
     };
   }
+  // 表格导出
+  public bar3dDateChange(e) {
+    this.bar3dExportType.Bar3dDate = e.srcElement.value;
+  }
+  public bar3dTypeChange(e) {
+    this.bar3dExportType.Bar3dNumType = e.srcElement.options[e.srcElement.selectedIndex].innerText;
+  }
+  public bar3dAreaChange(e) {
+    this.bar3dExportType.Bar3dArea = e.srcElement.options[e.srcElement.selectedIndex].innerText;
+    console.log(this.bar3dExportType.Bar3dArea);
+  }
+  public bar3dExportClick() {
+    if (!(this.bar3dExportType.Bar3dDate === '') || !(this.bar3dExportType.Bar3dNumType === '') || !(this.bar3dExportType.Bar3dArea === '')) {
+      this.bar3dExcelShow = false;
+      console.log(this.bar3dExportType);
+      // 导出表格数据初始化
+      this.bar3dExportType = {
+        Bar3dNumType: '',
+        Bar3dArea: '',
+        Bar3dDate: ''
+      };
+    } else {
+      window.alert('请把数据选择全在提交');
+    }
+  }
+  public open3dBarExcel() {
+    this.bar3dExcelShow = true;
+  }
+  public close3dBarExcel() {
+    this.bar3dExcelShow = false;
+  }
 
   // 车型日分布类型占比饼状图
   public CarTypes() {
@@ -630,6 +679,7 @@ export class FinanceDataComponent implements OnInit {
     this.optionsCarPieInstance = ec;
   }
   public optionsCarPieClick(e) {
+    this.CarTypeisShow = false;
     this.carAreaName = e.name;
     this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
   }
@@ -799,6 +849,48 @@ export class FinanceDataComponent implements OnInit {
       };
       this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
     }
+  }
+  public echartBtn(e): void {
+    this.CarTypeisShow = true;
+    this.carAreaName = e.srcElement.innerText;
+    this.arryCarPie = [];
+    this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
+      this.arryCarPie.push({value: val, name: this.citys[index]});
+    });
+    this.optionsCarType = {
+      title: {
+        text: `贵州省各市所有服务区今日${e.name}占比统计`,
+        x: 'center',
+        textStyle: {
+          color: '#fff',
+          fontSize: 16
+        }
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {d}%'
+      },
+      series: [
+        {
+          name: `${e.name}`,
+          type: 'pie',
+          radius: '55%',
+          center: ['50%', '60%'],
+          data: this.arryCarPie,
+          itemStyle: {
+            color: function (params) {
+              return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
+            },
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
+    this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
   }
   // 表格导出
   public carDateChange(e) {
@@ -1510,13 +1602,12 @@ export class FinanceDataComponent implements OnInit {
       grid: {
         top: '18%',
         left: '1%',
-        right: '4%',
-        bottom: '1%',
+        right: '5%',
+        bottom: '6%',
         containLabel: true
       },
       xAxis: {
         type: 'value',
-        name: '数值',
         splitLine: {show: false},
         axisLabel: {
           formatter: '{value}'
@@ -1872,6 +1963,7 @@ export class FinanceDataComponent implements OnInit {
   }
   public optionsIncomePieClick(e) {
     this.IncomeAreaName = e.name;
+    this.incomeTypeisShow = false;
     this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
   }
   public IncomeBtnClick(e): void {
@@ -2162,6 +2254,48 @@ export class FinanceDataComponent implements OnInit {
       };
       this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
     }
+  }
+  public echarIncomeBtn(e): void {
+    this.incomeTypeisShow = true;
+    this.IncomeAreaName = e.srcElement.innerText;
+    this.arryIncomePie = [];
+    this.dataService.getrandomPie(9, 1000, 100).map((val, index) => {
+      this.arryIncomePie.push({value: val, name: this.citys[index]});
+    });
+    this.optionsIncomeTypes = {
+      title: {
+        text: `贵州省各市所有服务区当日${e.name}类型占比统计`,
+        x: 'center',
+        textStyle: {
+          color: '#fff',
+          fontSize: 16
+        }
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+      },
+      series: [
+        {
+          name: `${e.name}`,
+          type: 'pie',
+          radius: '50%',
+          center: ['50%', '50%'],
+          data: this.arryIncomePie,
+          itemStyle: {
+            color: function (params) {
+              return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
+            },
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
+    this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
   }
   // 表格导出
   public incomeDateChange(e) {

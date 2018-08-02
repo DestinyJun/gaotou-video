@@ -212,7 +212,7 @@ export class DataService {
   public getServiceData(sum, min): any {
     const arryObj = [];
     this.ranked.map((val, index, arr) => {
-      arryObj.push({name: arr[Math.round(Math.random() * (arr.length - 1))], num: Math.round(Math.random() * sum) + min});
+      arryObj.push({name: arr[Math.round(Math.random() * (arr.length - 1))], num: Math.round(Math.random() * sum) + min, videoUrl: 'https://www.baidu.com'});
     });
     return arryObj;
   }

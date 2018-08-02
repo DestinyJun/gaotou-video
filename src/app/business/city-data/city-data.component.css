@@ -295,13 +295,29 @@
 .alert-3D-bar-header .pull-right:hover{
   background: red;
 }
+.toggle-btn-area{
+  position: relative;
+}
+.bar3D-charts>.toggle-btn-area{
+  position: absolute;
+  left: 35vw;
+  top: 6vh;
+}
 .alert-3D-bar-bar{
   height: 55vh;
 }
 .alert-3D-bar-pie{
   height: 55vh;
 }
-
+.echart-btn{
+  position: relative;
+}
+.echart-btn > .btn{
+  position: absolute;
+  top: 7px;
+  left: 24px;
+  z-index: 999;
+}
 /*收入类型监控弹窗样式、车辆类型监控弹窗样式*/
 .alert-window{
   position: absolute;

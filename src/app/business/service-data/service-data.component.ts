@@ -20,7 +20,11 @@ interface IncomeExportType {
   incomeArea: string;
   incomeDate: string;
 }
-
+interface Bar3dExportType {
+  Bar3dNumType: string;
+  Bar3dArea: string;
+  Bar3dDate: string;
+}
 @Component({
   selector: 'app-service-data',
   templateUrl: './service-data.component.html',
@@ -51,6 +55,8 @@ export class ServiceDataComponent implements OnInit {
     '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
   ];
   public arryPie = [];
+  public bar3dExcelShow = false;
+  public bar3dExportType: Bar3dExportType;
 
   // 车辆收入数值表现
   public vehicleAmount = [];
@@ -66,6 +72,9 @@ export class ServiceDataComponent implements OnInit {
 
   /***********************中部************************/
   public incomeData: any;
+  // 服务区商家
+  public videoAlertShow = false;
+  public videoAlertTitle: string;
 
   /***********************右边************************/
   // 业态经营数据前十排名
@@ -106,6 +115,11 @@ export class ServiceDataComponent implements OnInit {
 
   ngOnInit() {
     // 导出表格数据初始化
+    this.bar3dExportType = {
+      Bar3dNumType: '',
+      Bar3dArea: '',
+      Bar3dDate: ''
+    };
     this.carExportType = {
       carNumType: '',
       carArea: '',
@@ -163,13 +177,13 @@ export class ServiceDataComponent implements OnInit {
               return res;
             }
           },
-          visualMap: {
+          /*visualMap: {
             max: 100,
             show: false,
             inRange: {
               color: this.options3dArray.colorData
             }
-          },
+          },*/
           xAxis3D: {
             type: 'category',
             name: '月份',
@@ -250,7 +264,10 @@ export class ServiceDataComponent implements OnInit {
               },
               // 柱状图主子的样式
               itemStyle: {
-                opacity: 0.9
+                opacity: 0.9,
+                color: function (params) {
+                  return ['#C27CD2', '#BDD139', '#78E77D', '#09D4D6', 'green'][params.value[1]];
+                },
               },
               emphasis: {
                 label: {
@@ -484,6 +501,37 @@ export class ServiceDataComponent implements OnInit {
       ]
     };
   }
+  // 表格导出
+  public bar3dDateChange(e) {
+    this.bar3dExportType.Bar3dDate = e.srcElement.value;
+  }
+  public bar3dTypeChange(e) {
+    this.bar3dExportType.Bar3dNumType = e.srcElement.options[e.srcElement.selectedIndex].innerText;
+  }
+  public bar3dAreaChange(e) {
+    this.bar3dExportType.Bar3dArea = e.srcElement.options[e.srcElement.selectedIndex].innerText;
+    console.log(this.bar3dExportType.Bar3dArea);
+  }
+  public bar3dExportClick() {
+    if (!(this.bar3dExportType.Bar3dDate === '') || !(this.bar3dExportType.Bar3dNumType === '') || !(this.bar3dExportType.Bar3dArea === '')) {
+      this.bar3dExcelShow = false;
+      console.log(this.bar3dExportType);
+      // 导出表格数据初始化
+      this.bar3dExportType = {
+        Bar3dNumType: '',
+        Bar3dArea: '',
+        Bar3dDate: ''
+      };
+    } else {
+      window.alert('请把数据选择全在提交');
+    }
+  }
+  public open3dBarExcel() {
+    this.bar3dExcelShow = true;
+  }
+  public close3dBarExcel() {
+    this.bar3dExcelShow = false;
+  }
 
   // 流量收入实时监控
   public amount(): void {
@@ -695,7 +743,17 @@ export class ServiceDataComponent implements OnInit {
   // 中部服务区数据展示
   public backCenterDate() {
   this.incomeData = this.dataService.getServiceData(1000, 200);
-}
+  }
+  // 中部服务商家操作
+  public closeVideoAlertClick(): void {
+    document.body.className = '';
+    this.videoAlertShow = false;
+  }
+  public openVideoAlertClick(e): void {
+    document.body.className = 'ui-overflow-hidden';
+    this.videoAlertShow = true;
+    this.videoAlertTitle = e;
+  }
 
   /************************右边***************************/
   // 业态经营数据前十排名
