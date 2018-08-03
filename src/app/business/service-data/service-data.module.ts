@@ -8,7 +8,7 @@ import {ServiceDataRoutingModule} from './service-data.routing.module';
   imports: [
     CommonModule,
     ServiceDataRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [ServiceDataComponent]
 })

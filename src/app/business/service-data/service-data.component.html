@@ -669,7 +669,6 @@
               <option value="">中部</option>
             </select>
           </div>
-
         </div>
         <div class="alert-window-excel-footer text-center">
           <button class="btn btn-primary" (click)="incomeExportClick()">确认导出</button>
@@ -680,8 +679,8 @@
   </div>
 </div>
 <!--商家视频弹窗-->
-<div class="bg-box" *ngIf="videoAlertShow">
-  <div class="alert-window">
+<div class="bg-box" *ngIf="videoAlertShow" >
+  <div class="alert-window" style="width: 50vw;margin-left: -25vw;">
     <div class="alert-window-header">
       <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -694,14 +693,42 @@
     </div>
     <div class="alert-window-content">
       <div class="row">
-        <div class="col-ld-4 col-md-4">
-          <p>时间段</p>
-        </div>
-        <div class="col-ld-8 col-md-8">
-          <div>
-            <p>视频区</p>
+        <div class="col-ld-3 col-md-3">
+          <div class="video-time">
+            <label for="videoDate">请选择日期：</label>
+            <input type="date" id="videoDate" class="video-time-input">
+            <label for="videoTime">请选择时间：</label>
+            <input type="time" id="videoTime" class="video-time-input">
+            <button class="btn btn-warning btn-block">00:00</button>
+            <button class="btn btn-primary btn-block">02:00</button>
+            <button class="btn btn-danger btn-block">04:00</button>
+            <button class="btn btn-info btn-block">06:00</button>
+            <button class="btn btn-success btn-block">08:00</button>
+            <button class="btn btn-default btn-block">10:00</button>
+            <button class="btn btn-warning btn-block">12:00</button>
+            <button class="btn btn-primary btn-block">14:00</button>
+            <button class="btn btn-danger btn-block">16:00</button>
+            <button class="btn btn-info btn-block">18:00</button>
+            <button class="btn btn-success btn-block">20:00</button>
+            <button class="btn btn-warning btn-block">22:00</button>
           </div>
-        <div>事件区</div>
+        </div>
+        <div class="col-ld-9 col-md-9">
+          <div class="video-play">
+            <object type='application/x-vlc-plugin' id='' width="100%" height="100%"
+                    events='True'
+                    pluginspage="http://www.videolan.org"
+                    codebase="http://downloads.videolan.org/pub/videolan/vlc-webplugins/2.0.6/npapi-vlc-2.0.6.tar.xz">
+              <param name='mrl' value='${url}' />
+              <param name='volume' value='50' />
+              <param name='autoplay' value='true' />
+              <param name='loop' value='false' />
+              <param value="transparent" name="wmode">
+              <embed id='vlc1' wmode="transparent" type="application/x-vlc-plugin" width="100%" height="100%"
+                     pluginspage="http://www.videolan.org" allownetworking="internal" allowscriptaccess="always" quality="high"
+                     src="${url}">
+            </object>
+          </div>
         </div>
       </div>
     </div>

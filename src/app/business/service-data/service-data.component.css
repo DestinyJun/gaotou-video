@@ -436,6 +436,35 @@
   left:0;
   bottom: 5px;
 }
+
+/*服务区视频弹窗*/
+.alert-window .video-time{
+  color: white;
+  height: 55vh;
+  border:1px solid #3B425C;
+  margin-right: -20px;
+  padding: 10px 10px;
+}
+.alert-window .video-time .btn{
+  margin-top: 1vh;
+}
+.alert-window .video-play{
+  height: 45vh;
+  padding-right: 13px;
+  border:1px solid #3B425C;
+}
+.alert-window .video-event{
+  height: 10vh;
+  border:1px solid #3B425C;
+}
+.video-time-input{
+  width: 100%;
+  color: #000;
+}
+.video-time .btn {
+  padding: 0;
+}
+
 /*字体颜色*/
 .text-c1{
   color: #33F3B1;
@@ -471,3 +500,4 @@
 .pagination > li > a > input{
   width: 5vw;
 }
+
