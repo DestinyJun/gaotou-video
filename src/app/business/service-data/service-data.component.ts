@@ -6,6 +6,7 @@ import {Data3dService} from '../../common/services/data3d.service';
 import {DiagramService} from '../../common/services/diagram.service';
 import {ActivatedRoute} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 declare let BMap;
 declare let BMapLib;
 declare let BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW;
@@ -75,6 +76,8 @@ export class ServiceDataComponent implements OnInit {
   // 服务区商家
   public videoAlertShow = false;
   public videoAlertTitle: string;
+  // 服务区商家弹窗
+  public selectFormModule: FormGroup;
 
   /***********************右边************************/
   // 业态经营数据前十排名
@@ -107,6 +110,7 @@ export class ServiceDataComponent implements OnInit {
 
   constructor(
     private el: ElementRef,
+    private fb: FormBuilder,
     private data3dS: Data3dService,
     private diagrams: DiagramService,
     private routerInfo: ActivatedRoute,
@@ -135,6 +139,14 @@ export class ServiceDataComponent implements OnInit {
       incomeArea: '',
       incomeDate: ''
     };
+
+    // 视频弹窗时间选择表单
+    this.selectFormModule = this.fb.group({
+      videoDate: ['', [Validators.required]],
+      videoTimeStart: ['', [Validators.required]],
+      videoTimeFinish: ['', [Validators.required]],
+      // weixin: ['', {disabled: true}, [Validators.required]],
+    });
     // 路由接受参数
     this.routerInfo.params.subscribe(
       (params) => {
@@ -753,6 +765,14 @@ export class ServiceDataComponent implements OnInit {
     document.body.className = 'ui-overflow-hidden';
     this.videoAlertShow = true;
     this.videoAlertTitle = e;
+  }
+  // 视频参数提交
+  public onSubmit(): void {
+    if (this.selectFormModule.valid) {
+        console.log(this.selectFormModule.value);
+    } else {
+      window.alert('请把参数填写完整');
+    }
   }
 
   /************************右边***************************/

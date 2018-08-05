@@ -11,9 +11,11 @@ import {DiagramService} from './services/diagram.service';
 import {ToolsService} from './services/tools.service';
 import {DataService} from './services/data.service';
 import { TableMenuComponent } from './components/table-menu/table-menu.component';
+import { TimerShaftCrosswiseComponent } from './components/timer-shaft-crosswise/timer-shaft-crosswise.component';
+import { TimerShaftLengthwaysComponent } from './components/timer-shaft-lengthways/timer-shaft-lengthways.component';
 
 @NgModule({
-  declarations: [TableMenuComponent],
+  declarations: [TableMenuComponent, TimerShaftCrosswiseComponent, TimerShaftLengthwaysComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -25,9 +27,12 @@ import { TableMenuComponent } from './components/table-menu/table-menu.component
   exports: [
     HttpClientModule,
     NgxEchartsModule,
+    FormsModule,
     ReactiveFormsModule,
     TreeModule,
-    TableMenuComponent
+    TableMenuComponent,
+    TimerShaftCrosswiseComponent,
+    TimerShaftLengthwaysComponent
   ],
   providers: [
     EventsService,

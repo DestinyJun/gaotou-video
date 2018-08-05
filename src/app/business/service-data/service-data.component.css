@@ -440,7 +440,7 @@
 /*服务区视频弹窗*/
 .alert-window .video-time{
   color: white;
-  height: 55vh;
+  height: 65vh;
   border:1px solid #3B425C;
   margin-right: -20px;
   padding: 10px 10px;
@@ -449,13 +449,13 @@
   margin-top: 1vh;
 }
 .alert-window .video-play{
-  height: 45vh;
-  padding-right: 13px;
+  height: 55vh;
   border:1px solid #3B425C;
 }
 .alert-window .video-event{
   height: 10vh;
   border:1px solid #3B425C;
+  padding-top: 5vh;
 }
 .video-time-input{
   width: 100%;
