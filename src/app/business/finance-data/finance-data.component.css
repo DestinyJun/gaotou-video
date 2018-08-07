@@ -183,6 +183,22 @@
   background: rgba(7,149,188,0.2);
   color: #00ECF1;
 }
+
+.main-top .table-header .hot{
+  position: relative;
+}
+.main-top .table-header .hot span::before{
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 35px;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background: red;
+  display: inline-block;
+}
+
 .main-top .table-body{
   margin-top: 5px;
 }
@@ -192,6 +208,9 @@
   color: #87FFFF;
   border-collapse:separate;
   border-spacing:10px;
+}
+.main-top .table-body .table-tr:hover{
+  background:rgba(255,255,255,0.3);
 }
 .main-top .table-body .table-tr span{
   display: inline-block;

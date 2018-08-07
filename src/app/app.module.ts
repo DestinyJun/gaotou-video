@@ -9,6 +9,7 @@ import {AppComponent} from './app.component';
 import {LocalStorageService} from './common/services/local-storage.service';
 import {LoginService} from './common/services/login.service';
 import {LoginComponent} from './login/login.component';
+// import {WenjunAlertModule} from './common/wenjun/wenjun-alert';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {LoginComponent} from './login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    // WenjunAlertModule
   ],
   providers: [
     LoginService,

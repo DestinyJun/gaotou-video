@@ -1,0 +1,64 @@
+/*3D柱状图弹窗*/
+.bg-box{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(149,161,154,0.6);
+  z-index: 2;
+}
+.alert-window{
+  position: absolute;
+  width: 80vw;
+  height:60vh;
+  left: 50%;
+  margin-left: -40vw;
+  top: 50%;
+  margin-top: -30vh;
+  background: rgba(10,10,72,0.9);
+  z-index: 1;
+}
+.alert-window-header{
+  height: 5vh;
+  line-height: 5vh;
+  background: rgba(240,43,43,0.8);
+}
+.alert-window-header span{
+  margin-left: 10px;
+  font-size: 1.8rem;
+}
+.alert-window-header .pull-right{
+  height: 5vh;
+  width: 5vh;
+  cursor: pointer;
+  text-align: center;
+}
+.alert-window-header .pull-right:hover{
+  background: red;
+}
+.alert-window-content{
+  height: 55vh;
+}
+.alert-window-content-table{
+  position: relative;
+  height: 55vh;
+}
+.alert-window-content-table .toggle-btn{
+  height: 5vh;
+  line-height: 5vh;
+}
+.alert-window-content-table .toggle-btn>button{
+  margin-right: 10px;
+}
+.alert-window-content-table .toggle-btn .toggle-btn-area{
+  height: 5vh;
+  line-height: 5vh;
+  padding-right: 10px;
+}
+.alert-window-content-table .toggle-btn .toggle-btn-area>button{
+  margin-left: 10px;
+}
+.alert-window-content-table .content-table{
+  height: 50vh;
+}
