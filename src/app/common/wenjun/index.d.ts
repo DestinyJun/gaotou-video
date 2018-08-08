@@ -1,1 +1,1 @@
-export { WenjunAlertModule } from './wenjun-alert/index';
+export { WenjunAlertModule, WenjunAlertService, ConfigModule} from './wenjun-alert/index';

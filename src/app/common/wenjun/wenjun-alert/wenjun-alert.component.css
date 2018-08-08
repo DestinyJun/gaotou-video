@@ -10,19 +10,14 @@
 }
 .alert-window{
   position: absolute;
-  width: 80vw;
-  height:60vh;
   left: 50%;
-  margin-left: -40vw;
   top: 50%;
-  margin-top: -30vh;
-  background: rgba(10,10,72,0.9);
   z-index: 1;
 }
 .alert-window-header{
   height: 5vh;
   line-height: 5vh;
-  background: rgba(240,43,43,0.8);
+  /*background: rgba(240,43,43,0.8);*/
 }
 .alert-window-header span{
   margin-left: 10px;

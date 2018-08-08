@@ -1,9 +1,17 @@
 <div class="bg-box" *ngIf="alertShow" [ngStyle]="{'color': config.titleColor}">
-  <div class="alert-window" [ngStyle]="{'background': config.background}">
-    <div class="alert-window-header" [ngStyle]="{'background':config.background}">
+  <div class="alert-window"
+       [ngStyle]="{
+       'background': config.background,
+       'width':config.width + 'vw',
+       'height':config.height + 'vh',
+       'margin-left': -(config.width/2) + 'vw',
+       'margin-top': -(config.height/2) + 'vh'
+       }"
+  >
+    <div class="alert-window-header" [ngStyle]="{'background':config.titleBgColor}">
       <div class="row">
         <div class="col-ld-12 col-md-12">
-          <span>{{alertTitle}}</span>
+          <span>{{config.alertTitle}}</span>
           <div class="pull-right" (click)="closeAlertShow()">
             <i class="fa fa-window-close " aria-hidden="true"></i>
           </div>
