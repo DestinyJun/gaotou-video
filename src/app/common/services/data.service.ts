@@ -183,25 +183,46 @@ export class DataService {
   }
 
   // 返回服务区业态数据排名
-  public getIncome(num, sum, min): any {
+  public getIncome(num, sum, min, title): any {
     const obj = {
       serviceZone: [],
-      Income: [],
-      car: [],
-      person: []
+      Income: {
+        title: '业态收入',
+        data: []
+      },
+      car: {
+        title: '车流量',
+        data: []
+      },
+      person: {
+        title: '客流量',
+        data: []
+      }
     };
     let arry1 = [];
-    const arry2 = [];
-    const arry3 = [];
+    let arry2 = [];
+    let arry3 = [];
     for (let i = 0; i < num; i++) {
       arry1.push((Math.round(Math.random() * sum)) + min);
       arry2.push((Math.round(Math.random() * sum)) + min);
       arry3.push((Math.round(Math.random() * sum)) + min);
     }
-    arry1 = this.bubbleSortBig(arry1);
-    obj.serviceZone = arry1.map((value, index) => {
-      return this.citys[(Math.round(Math.random() * 9))];
-    });
+    if (types === '业态收入') {
+      arry1 = this.bubbleSortBig(arry1);
+      obj.serviceZone = arry1.map((value, index) => {
+        return this.citys[(Math.round(Math.random() * 9))];
+      });
+    } else if (types === '车流量') {
+      arry2 = this.bubbleSortBig(arry2);
+      obj.serviceZone = arry2.map((value, index) => {
+        return this.citys[(Math.round(Math.random() * 9))];
+      });
+    } else if (types === '客流量') {
+      arry3 = this.bubbleSortBig(arry3);
+      obj.serviceZone = arry3.map((value, index) => {
+        return this.citys[(Math.round(Math.random() * 9))];
+      });
+    }
     obj.Income = arry1;
     obj.car = arry2;
     obj.person = arry3;

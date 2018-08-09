@@ -13,7 +13,7 @@
   margin-bottom: 1vh;
   margin-right: -8px;
 }
-/*实时车流收入数据监控*/
+/*日车流量实时统计*/
 .main-top .number{
   margin-bottom: 1vh;
   height: 32vh;
@@ -51,14 +51,15 @@
   margin-top: 1vh;
   font-size: 1.5rem;
 }
-/*服务区当日驻车量排名*/
+/*车型日分布占比*/
 .main-top .accumulation{
   height: 24.5vh;
   border:1px solid #3B425C;
   margin-right: -8px;
 }
 
-/*离散地图分布图*/
+/****************************中部****************************/
+/*中部服务区分布图*/
 .main-top .map {
   margin-left: -8px;
   margin-right: -8px;
@@ -123,34 +124,6 @@
   margin-bottom: 1vh;
   height: 51vh;
 }
-
-/*横向排名柱状图*/
-.main-top .crosswise{
-  height: 50vh;
-  border:1px solid #3B425C;
-  margin-bottom: 1vh;
-  margin-left: -8px;
-  position: relative;
-}
-.main-top .crosswise .crosswise-btn{
- /* position: absolute;
-  top: 36px;
-  left: 30%;
-  margin-left: -23px;*/
-  height: 5vh;
-
-}
-.main-top .crosswise .crosswise-btn .btn{
-  margin-right: 30px;
-  /*background: linear-gradient(red,blue);*/
-  box-shadow:2px 3px 10px #01D1DB ;
-}
-.main-top .crosswise .crosswise-bar{
-  height: 53vh;
-}
-
-/****************************主体下部分****************************/
-
 
 /*事件监控列表*/
 .main-top .event-table{
@@ -231,6 +204,34 @@
   display: inline-block;
 }
 
+/****************************右边****************************/
+/*业态前十排名柱状图*/
+.main-top .crosswise{
+  height: 50vh;
+  border:1px solid #3B425C;
+  margin-bottom: 1vh;
+  margin-left: -8px;
+  position: relative;
+}
+.main-top .crosswise .crosswise-btn{
+  /* position: absolute;
+   top: 36px;
+   left: 30%;
+   margin-left: -23px;*/
+  height: 5vh;
+
+}
+.main-top .crosswise .crosswise-btn:hover{
+  color: white;
+}
+.main-top .crosswise .crosswise-btn .btn{
+  margin-right: 30px;
+  /*background: linear-gradient(red,blue);*/
+  box-shadow:2px 3px 10px #01D1DB ;
+}
+.main-top .crosswise .crosswise-bar{
+  height: 53vh;
+}
 
 .main-top .income{
   height: 12.5vh;
@@ -256,7 +257,7 @@
   margin-top: 1vh;
   font-size: 1.5rem;
 }
-/*服务区当日收入排名*/
+/*服务器收入实时统计*/
 .main-top .today-income {
   margin-bottom: 1vh;
   height: 24.5vh;

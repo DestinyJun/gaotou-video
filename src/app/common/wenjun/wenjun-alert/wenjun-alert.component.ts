@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ConfigModule} from './wenjun-alert.service';
+import {ConfigModule, WenjunAlertService} from './wenjun-alert.service';
 
 @Component({
   selector: 'app-wenjun-alert',
@@ -8,18 +8,14 @@ import {ConfigModule} from './wenjun-alert.service';
 })
 
 export class WenjunAlertComponent implements OnInit, OnChanges {
+  // public alertShow: boolean;
   @Input() public config: ConfigModule;
-  @Input() public alertShow = true;
-  constructor() { }
-
+  constructor(
+    public alertService: WenjunAlertService
+  ) { }
   ngOnInit() {
-
-  }
-  public closeAlertShow(): void {
-    this.alertShow = false;
+    // this.alertShow = this.alertService.alertShow;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.alertShow);
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
 }
