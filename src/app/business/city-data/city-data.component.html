@@ -252,11 +252,11 @@
       <!--右边-->
       <div class="col-lg-3 col-md-3">
         <div class="crosswise">
-          <!-- <div class="crosswise-btn text-center" (click)="clickBtn($event)">
-             <button  class="btn " [ngClass]="{'btn-danger': barStatus1}"  >业态收入</button>
-             <button  class="btn" [ngClass]="{'btn-success': barStatus2}">车流量</button>
-             <button  class="btn" [ngClass]="{'btn-info': barStatus3}">客流量</button>
-           </div>-->
+          <div class="crosswise-btn text-center" (click)="clickBtn($event)">
+            <button  class="btn " [ngStyle]="{'background': barStatus1?'#FF2600': '','color': 'white'}">业态收入</button>
+            <button  class="btn" [ngStyle]="{'background': barStatus2?'#FFC000': '','color': 'white'}">车流量</button>
+            <button  class="btn" [ngStyle]="{'background': barStatus3?'#00AD4E': '','color': 'white'}">客流量</button>
+          </div>
           <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartClick)="rankingClick($event)"></div>
         </div>
         <div class="income">

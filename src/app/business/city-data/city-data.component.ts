@@ -1550,6 +1550,24 @@ export class CityDataComponent implements OnInit {
   // 业态经营数据前十排名
   public backCrosswiseBar(title) {
     const IncomeValue = this.dataService.getIncome(9, 1000, 200, title);
+    const barData = [];
+    IncomeValue.map((val, index) => {
+      barData.push(
+        {
+          name: val.title,
+          type: 'bar',
+          stack: '总量',
+          color: val.color,
+          label: {
+            normal: {
+              show: true,
+              position: 'insideRight'
+            }
+          },
+          data: val.data,
+        }
+      );
+    });
     this.crosswiseBar = {
       title: [
         {
@@ -1578,13 +1596,12 @@ export class CityDataComponent implements OnInit {
       grid: {
         top: '18%',
         left: '1%',
-        right: '4%',
-        bottom: '1%',
+        right: '5%',
+        bottom: '16%',
         containLabel: true
       },
       xAxis: {
         type: 'value',
-        name: '数值',
         splitLine: {show: false},
         axisLabel: {
           formatter: '{value}'
@@ -1603,7 +1620,7 @@ export class CityDataComponent implements OnInit {
         name: '万元/辆/人次',
         inverse: false,
         splitLine: {show: false},
-        data: IncomeValue.serviceZone,
+        data: IncomeValue[0].serviceZone,
         axisLabel: {
           margin: 20,
         },
@@ -1616,47 +1633,7 @@ export class CityDataComponent implements OnInit {
           }
         },
       },
-      series: [
-        {
-          name: '业态收入（元）',
-          type: 'bar',
-          stack: '总量',
-          color: '#FF2600',
-          label: {
-            normal: {
-              show: true,
-              position: 'insideRight'
-            }
-          },
-          data: IncomeValue.Income,
-        },
-        {
-          name: '车流量（辆）',
-          type: 'bar',
-          stack: '总量',
-          color: '#FFC000',
-          label: {
-            normal: {
-              show: true,
-              position: 'insideRight'
-            }
-          },
-          data: IncomeValue.car,
-        },
-        {
-          name: '客流量（人次）',
-          type: 'bar',
-          stack: '总量',
-          color: '#00AD4E',
-          label: {
-            normal: {
-              show: true,
-              position: 'insideRight'
-            }
-          },
-          data: IncomeValue.person,
-        }
-      ]
+      series: barData
     };
     /*this.diagrams.getIncomerRanked(this.dataStatus).subscribe(
       (value) => {

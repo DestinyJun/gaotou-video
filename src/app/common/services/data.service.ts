@@ -1,10 +1,6 @@
 import {Injectable} from '@angular/core';
-
 @Injectable()
 export class DataService {
-  constructor() {
-  }
-
   // 基础数据部分
   public citys = ['久长服务区', '石阡服务区', '虹桥服务区',
     '玉屏服务区', '荔波服务区', '六枝服务区', '盘县服务区',
@@ -18,6 +14,15 @@ export class DataService {
   public country = ['南明区', '云岩区', '花溪区', '观山湖区',
     '白云区', '乌当区', '清镇市', '开阳县', '息烽县', '修文县'
   ];
+  public eventTypes = [
+    {name: '工程类', id: '001', number: 22, color: '#BB32F4'},
+    {name: '经营类', id: '002', number: 15, color: '#F432AD'},
+    {name: '卫生类', id: '003', number: 12, color: '#E57D0D'},
+    {name: '监控类', id: '004', number: 0, color: '#1ED1D8'},
+    {name: '系统故障', id: '005', number: 23, color: '#3BF49F'},
+    {name: '其他', id: '006', number: 7, color: '#1ED1D8'}
+  ];
+  constructor() {}
 
   public getIncomerStore(status): any {
     if (status === '业态收入') {
@@ -184,21 +189,7 @@ export class DataService {
 
   // 返回服务区业态数据排名
   public getIncome(num, sum, min, title): any {
-    const obj = {
-      serviceZone: [],
-      Income: {
-        title: '业态收入',
-        data: []
-      },
-      car: {
-        title: '车流量',
-        data: []
-      },
-      person: {
-        title: '客流量',
-        data: []
-      }
-    };
+    const obj = [];
     let arry1 = [];
     let arry2 = [];
     let arry3 = [];
@@ -208,21 +199,60 @@ export class DataService {
       arry3.push((Math.round(Math.random() * sum)) + min);
     }
     if (title === '业态收入') {
+      console.log(title);
       arry1 = this.bubbleSortBig(arry1);
-      obj.serviceZone = arry1.map((value, index) => {
-        return this.citys[(Math.round(Math.random() * 9))];
-      });
+      console.log(arry1);
+      for (let i = 0; i <= 2; i++) {
+        if (i === 0) {
+          obj.push(new ObjArray('业态收入（元）', '#FF2600',  arry1, arry1.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        } else if (i === 1) {
+          obj.push(new ObjArray('车流量（辆）', '#FFC000',  arry2, arry2.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        } else if (i === 2) {
+          obj.push(new ObjArray('客流量（人次）', '#00AD4E',  arry3, arry3.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        }
+      }
     } else if (title === '车流量') {
       arry2 = this.bubbleSortBig(arry2);
-      obj.serviceZone = arry2.map((value, index) => {
-        return this.citys[(Math.round(Math.random() * 9))];
-      });
+      for (let i = 0; i <= 2; i++) {
+        if (i === 0) {
+          obj.push(new ObjArray('车流量（辆）', '#FFC000',  arry2, arry1.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        } else if (i === 1) {
+          obj.push(new ObjArray('业态收入（元）', '#FF2600',  arry1, arry2.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        } else if (i === 2) {
+          obj.push(new ObjArray('客流量（人次）', '#00AD4E',  arry3, arry3.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        }
+      }
     } else if (title === '客流量') {
       arry3 = this.bubbleSortBig(arry3);
-      obj.serviceZone = arry3.map((value, index) => {
-        return this.citys[(Math.round(Math.random() * 9))];
-      });
+      for (let i = 0; i <= 2; i++) {
+        if (i === 0) {
+          obj.push(new ObjArray('客流量（人次）', '#00AD4E', arry3, arry1.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        } else if (i === 1) {
+          obj.push(new ObjArray('业态收入（元）', '#FF2600', arry1, arry2.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        } else if (i === 2) {
+          obj.push(new ObjArray('车流量（辆）', '#FFC000 ', arry3, arry3.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        }
+      }
     }
+    console.log(obj);
     return obj;
   }
 
@@ -234,4 +264,15 @@ export class DataService {
     });
     return arryObj;
   }
+
+  // 事件类数据
+
+}
+export class ObjArray {
+  constructor(
+    public title: string,
+    public color: string,
+    public data: any,
+    public serviceZone: any
+  ) {}
 }

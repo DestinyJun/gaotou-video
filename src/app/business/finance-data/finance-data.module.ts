@@ -5,7 +5,7 @@ import {FinanceDataRoutingModule} from './finance-data.routing.module';
 
 import { FinanceDataComponent } from './finance-data.component';
 import {FormsModule} from '@angular/forms';
-
+import {WenjunAlertModule} from '../../common/wenjun';
 
 @NgModule({
   imports: [
@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
     FinanceDataRoutingModule,
     SharedModule,
+    WenjunAlertModule
   ],
   declarations: [FinanceDataComponent],
   entryComponents: []

@@ -18,4 +18,10 @@ export class WenjunAlertComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {}
+  public alertMouseenter(e) {
+    e.srcElement.style.backgroundColor = this.config.closeHoverBgColor;
+  }
+  public alertMouseleave(e) {
+    e.srcElement.style.backgroundColor = '';
+  }
 }

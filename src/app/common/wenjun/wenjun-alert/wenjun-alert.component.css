@@ -29,10 +29,8 @@
   cursor: pointer;
   text-align: center;
 }
-.alert-window-header .pull-right:hover{
-  background: red;
-}
 .alert-window-content{
+  padding-top: 5px;
   height: 55vh;
 }
 .alert-window-content-table{

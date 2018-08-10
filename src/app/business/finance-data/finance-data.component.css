@@ -196,13 +196,23 @@
 }
 .main-top .table-body .table-tr>.hot>span{
   position: absolute;
-  top: 3px;
-  left: 24px;
-  width: 10px;
-  height: 10px;
-  background: red;
   display: inline-block;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  top: 7px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  background: red;
+  line-height: 20px;
 }
+.main-top .table-body .table-tr>.hot>button{
+  position: absolute;
+  top: 7px;
+  right: 5px;
+}
+
 
 /****************************右边****************************/
 /*业态前十排名柱状图*/

@@ -18,6 +18,7 @@ export class ConfigModule {
     public alertTitle: string,
     public titleColor: string,
     public titleBgColor: string,
+    public closeHoverBgColor: string,
     public background: string,
     public width: number,
     public height: number,

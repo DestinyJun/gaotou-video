@@ -11,6 +11,7 @@ import {CentermapService} from '../../common/services/centermap.service';
 import {DiagramService} from '../../common/services/diagram.service';
 import {Router} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
+import {ConfigModule, WenjunAlertService} from '../../common/wenjun';
 
 declare let BMap;
 declare let BMapLib;
@@ -94,6 +95,11 @@ export class FinanceDataComponent implements OnInit {
   // 全国高速服务区分布图
   public optionsMap = {};
 
+  // 事件类数据
+  public eventTypes: any;
+  // 事件弹窗
+  public eventConfig: ConfigModule;
+
   /*****************************右边***************************/
     // 全国业态经营数据前十排名
   public crosswiseBar = {};
@@ -143,7 +149,8 @@ export class FinanceDataComponent implements OnInit {
     private centerMapS: CentermapService,
     private diagrams: DiagramService,
     private dataService: DataService,
-    public router: Router
+    public router: Router,
+    private wenJunAlertService: WenjunAlertService
   ) {}
 
   ngOnInit() {
@@ -1569,11 +1576,45 @@ export class FinanceDataComponent implements OnInit {
     }
   }
 
+  // 事件处理函数
+  public tableEventClick(name): void {
+    // 弹窗配置
+    this.eventConfig = {
+      alertTitle: name,
+      titleColor: '#FDF8F9',
+      titleBgColor: '#C42631',
+      closeHoverBgColor: '#FF0000',
+      background: 'rgba(19,24,76,0.6)',
+      width: 80,
+      height: 60,
+    };
+    this.wenJunAlertService.openAlertShow();
+    console.log(name);
+  }
+
 
   /*********************************右边*****************************/
   // 业态经营数据前十排名
-  public backCrosswiseBar(types) {
-    const IncomeValue = this.dataService.getIncome(9, 1000, 200, types);
+  public backCrosswiseBar(title) {
+    const IncomeValue = this.dataService.getIncome(9, 1000, 200, title);
+    const barData = [];
+    IncomeValue.map((val, index) => {
+      barData.push(
+        {
+          name: val.title,
+          type: 'bar',
+          stack: '总量',
+          color: val.color,
+          label: {
+            normal: {
+              show: true,
+              position: 'insideRight'
+            }
+          },
+          data: val.data,
+        }
+      );
+    });
     this.crosswiseBar = {
       title: [
         {
@@ -1626,7 +1667,7 @@ export class FinanceDataComponent implements OnInit {
         name: '万元/辆/人次',
         inverse: false,
         splitLine: {show: false},
-        data: IncomeValue.serviceZone,
+        data: IncomeValue[0].serviceZone,
         axisLabel: {
           margin: 20,
         },
@@ -1639,47 +1680,7 @@ export class FinanceDataComponent implements OnInit {
           }
         },
       },
-      series: [
-        {
-          name: '业态收入（元）',
-          type: 'bar',
-          stack: '总量',
-          color: '#FF2600',
-          label: {
-            normal: {
-              show: true,
-              position: 'insideRight'
-            }
-          },
-          data: IncomeValue.Income,
-        },
-        {
-          name: '车流量（辆）',
-          type: 'bar',
-          stack: '总量',
-          color: '#FFC000',
-          label: {
-            normal: {
-              show: true,
-              position: 'insideRight'
-            }
-          },
-          data: IncomeValue.car,
-        },
-        {
-          name: '客流量（人次）',
-          type: 'bar',
-          stack: '总量',
-          color: '#00AD4E',
-          label: {
-            normal: {
-              show: true,
-              position: 'insideRight'
-            }
-          },
-          data: IncomeValue.person,
-        }
-      ]
+      series: barData
     };
     /*this.diagrams.getIncomerRanked(this.dataStatus).subscribe(
       (value) => {
@@ -2336,7 +2337,12 @@ export class FinanceDataComponent implements OnInit {
     //  高速服务区分布散点统计
     // this.centerMap();
     // this.centerMap1();
+
+    /***********中部**********/
+    // 地图
     this.centerMap2();
+    // 事件
+    this.eventTypes = this.dataService.eventTypes;
     // 业态经营数据前十排名
     this.backCrosswiseBar(this.dataStatus);
 
