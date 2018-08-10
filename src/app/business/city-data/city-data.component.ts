@@ -1548,8 +1548,8 @@ export class CityDataComponent implements OnInit {
 
   /*********************************右边*****************************/
   // 业态经营数据前十排名
-  public backCrosswiseBar() {
-    const IncomeValue = this.dataService.getIncome(9, 1000, 200);
+  public backCrosswiseBar(title) {
+    const IncomeValue = this.dataService.getIncome(9, 1000, 200, title);
     this.crosswiseBar = {
       title: [
         {
@@ -1803,19 +1803,19 @@ export class CityDataComponent implements OnInit {
       this.barStatus1 = true;
       this.barStatus2 = false;
       this.barStatus3 = false;
-      this.backCrosswiseBar();
+      this.backCrosswiseBar(this.dataStatus);
     } else if (e.srcElement.innerText === '车流量') {
       this.dataStatus = '车流量';
       this.barStatus1 = false;
       this.barStatus2 = true;
       this.barStatus3 = false;
-      this.backCrosswiseBar();
+      this.backCrosswiseBar(this.dataStatus);
     } else {
       this.dataStatus = '客流量';
       this.barStatus1 = false;
       this.barStatus2 = false;
       this.barStatus3 = true;
-      this.backCrosswiseBar();
+      this.backCrosswiseBar(this.dataStatus);
     }
   }
   public rankingClick(e) {
@@ -2315,7 +2315,7 @@ export class CityDataComponent implements OnInit {
     // this.centerMap1();
     this.centerMap2();
     // 业态经营数据前十排名
-    this.backCrosswiseBar();
+    this.backCrosswiseBar(this.dataStatus);
 
     // 全国当日车型日分布类型占比分析
     this.CarTypes();

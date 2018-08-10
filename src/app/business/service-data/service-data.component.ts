@@ -851,7 +851,7 @@ export class ServiceDataComponent implements OnInit {
 
       ]
     };*/
-    const IncomeValue = this.dataService.getIncome(9, 1000, 200);
+    const IncomeValue = this.dataService.getIncome(9, 1000, 200, '业态收入');
     this.crosswiseBar = {
       title: [
         {

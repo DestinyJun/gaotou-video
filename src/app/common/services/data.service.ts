@@ -207,25 +207,22 @@ export class DataService {
       arry2.push((Math.round(Math.random() * sum)) + min);
       arry3.push((Math.round(Math.random() * sum)) + min);
     }
-    if (types === '业态收入') {
+    if (title === '业态收入') {
       arry1 = this.bubbleSortBig(arry1);
       obj.serviceZone = arry1.map((value, index) => {
         return this.citys[(Math.round(Math.random() * 9))];
       });
-    } else if (types === '车流量') {
+    } else if (title === '车流量') {
       arry2 = this.bubbleSortBig(arry2);
       obj.serviceZone = arry2.map((value, index) => {
         return this.citys[(Math.round(Math.random() * 9))];
       });
-    } else if (types === '客流量') {
+    } else if (title === '客流量') {
       arry3 = this.bubbleSortBig(arry3);
       obj.serviceZone = arry3.map((value, index) => {
         return this.citys[(Math.round(Math.random() * 9))];
       });
     }
-    obj.Income = arry1;
-    obj.car = arry2;
-    obj.person = arry3;
     return obj;
   }
 
