@@ -96,18 +96,14 @@
                 <table class="table" cellspacing="5px">
                   <thead class="table-header">
                   <tr>
-                    <!--<td>标记</td>-->
                     <td>时间</td>
-                    <!--<td>事件类型</td>-->
                     <td>问题描述</td>
                     <td>处理反馈</td>
                   </tr>
                   </thead>
                   <tbody class="table-body">
-                  <tr class="table-tr" style="color: #BB32F4">
-                    <!--<td><span style="background: #BB32F4;"></span></td>-->
+                  <tr class="table-tr" style="color: #BB32F4" (click)="tableOfficeClick()">
                     <td>2018-08-10 12:00</td>
-                    <!--<td>工程类</td>-->
                     <td>王小二提交出差申请</td>
                     <td >已处理（处理人：王小花）</td>
                   </tr>
@@ -541,14 +537,106 @@
         <button class="btn btn-info">事件列表</button>
         <button class="btn btn-danger pull-right">未处理</button>
       </div>
+      <div class="table-responsive">
+        <table class="table" cellspacing="5px">
+          <thead class="table-header">
+          <tr>
+            <td>时间</td>
+            <td>责任人</td>
+            <td>问题描述</td>
+            <td>处理反馈</td>
+          </tr>
+          </thead>
+          <tbody class="table-body">
+          <tr class="table-tr" style="color: #E55C28">
+            <td>2018-08-10 12:00</td>
+            <td>王小三</td>
+            <td>久长服务区广场卫生不达标</td>
+            <td style="color: #D9534F">未处理</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="col-lg-6 col-md-6">
       <div>
         <button class="btn btn-success">已处理</button>
         <button class="btn btn-info pull-right">事件列表</button>
       </div>
+      <div class="table-responsive">
+        <table class="table" cellspacing="5px">
+          <thead class="table-header">
+          <tr>
+            <td>时间</td>
+            <td>责任人</td>
+            <td>问题描述</td>
+            <td>处理反馈</td>
+          </tr>
+          </thead>
+          <tbody class="table-body">
+          <tr class="table-tr" style="color: #00ECF1">
+            <td>2018-08-10 12:00</td>
+            <td>王筱思</td>
+            <td>乌江服务区厕所卫生不达标</td>
+            <td style="color: #5CB85C">已处理</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </app-wenjun-alert>
+  <!--办公信息处理-->
+  <app-wenjun-alert [config]="officeConfig">
+    <div class="col-lg-6 col-md-6">
       <div>
-
+        <button class="btn btn-info">事件列表</button>
+        <button class="btn btn-danger pull-right">未处理</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table" cellspacing="5px">
+          <thead class="table-header">
+          <tr>
+            <td>时间</td>
+            <td>责任人</td>
+            <td>问题描述</td>
+            <td>处理反馈</td>
+          </tr>
+          </thead>
+          <tbody class="table-body">
+          <tr class="table-tr" style="color: #E55C28">
+            <td>2018-08-10 12:00</td>
+            <td>王小三</td>
+            <td>久长服务区广场卫生不达标</td>
+            <td style="color: #D9534F">未处理</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <div>
+        <button class="btn btn-success">已处理</button>
+        <button class="btn btn-info pull-right">事件列表</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table" cellspacing="5px">
+          <thead class="table-header">
+          <tr>
+            <td>时间</td>
+            <td>责任人</td>
+            <td>问题描述</td>
+            <td>处理反馈</td>
+          </tr>
+          </thead>
+          <tbody class="table-body">
+          <tr class="table-tr" style="color: #00ECF1">
+            <td>2018-08-10 12:00</td>
+            <td>王筱思</td>
+            <td>乌江服务区厕所卫生不达标</td>
+            <td style="color: #5CB85C">已处理</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </app-wenjun-alert>

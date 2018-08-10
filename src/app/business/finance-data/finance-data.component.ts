@@ -99,6 +99,8 @@ export class FinanceDataComponent implements OnInit {
   public eventTypes: any;
   // 事件弹窗
   public eventConfig: ConfigModule;
+  // 办公信息弹窗
+  public officeConfig: ConfigModule;
 
   /*****************************右边***************************/
     // 全国业态经营数据前十排名
@@ -1584,12 +1586,26 @@ export class FinanceDataComponent implements OnInit {
       titleColor: '#FDF8F9',
       titleBgColor: '#C42631',
       closeHoverBgColor: '#FF0000',
-      background: 'rgba(19,24,76,0.6)',
+      background: 'rgba(19,24,76,0.8)',
       width: 80,
       height: 60,
     };
     this.wenJunAlertService.openAlertShow();
     console.log(name);
+  }
+  // 办公室信息处理函数
+  public tableOfficeClick(): void {
+    // 弹窗配置
+    this.officeConfig = {
+      alertTitle: name,
+      titleColor: '#FDF8F9',
+      titleBgColor: '#C42631',
+      closeHoverBgColor: '#FF0000',
+      background: 'rgba(19,24,76,0.8)',
+      width: 80,
+      height: 60,
+    };
+    this.wenJunAlertService.openAlertShow();
   }
 
 
