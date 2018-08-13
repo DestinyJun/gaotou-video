@@ -32,7 +32,7 @@
 /******************************左边*******************************/
 /*3D柱状图*/
 .main-content .accumulation3d{
-  height: 47vh;
+  height: 45vh;
   border:1px solid #3B425C;
   margin-bottom: 1vh;
   margin-right: -8px;
@@ -84,7 +84,7 @@
 /******************************中间*******************************/
 /*中部服务区地图*/
 .main-content .servicesMap{
-  height: 53vh;
+  height: 51vh;
   border:1px solid #3B425C;
   margin-bottom: 1vh;
   margin-left: -8px;
@@ -225,7 +225,7 @@
 /******************************右边*******************************/
 /*横向排名柱状图*/
 .main-content .crosswise{
-  height: 47vh;
+  height: 45vh;
   border:1px solid #3B425C;
   margin-bottom: 1vh;
   margin-left: -8px;
@@ -246,7 +246,7 @@
   box-shadow:2px 3px 10px #01D1DB ;
 }
 .main-content .crosswise .crosswise-bar{
-  height: 48vh;
+  height: 46vh;
 }
 
 /*服务区基本信息*/
