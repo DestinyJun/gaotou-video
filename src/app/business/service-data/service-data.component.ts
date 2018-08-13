@@ -97,6 +97,9 @@ export class ServiceDataComponent implements OnInit {
   public crosswiseExcelShow = false;
   public CrosswiseExportType: IncomeExportType;
 
+  // 服务区基本信息之园区平面图
+  public servicesPlan = true;
+
   // 实时收入
   public incomeAmount = [];
 
@@ -772,10 +775,12 @@ export class ServiceDataComponent implements OnInit {
   }
   // 中部服务区视频监控
   public openPublicVideo(e) {
+    document.body.className = 'ui-overflow-hidden';
     this.videoPublicShow = true;
     this.publicVideoTitle = e.srcElement.innerText;
   }
   public closePublicVideo() {
+     document.body.className = '';
      this.videoPublicShow = false;
   }
   // 视频参数提交
@@ -1001,6 +1006,16 @@ export class ServiceDataComponent implements OnInit {
   public rankingClick(e) {
     // this.router.navigate(['/home/serzone', {name: e.name, point: [116.39737, 39.935076]}]);
   }*/
+
+ // 服务区基本信息之园区平面图
+ public openServicesPlan() {
+   document.body.className = 'ui-overflow-hidden';
+   this.servicesPlan = true;
+ }
+ public closeServicesPlan() {
+   document.body.className = '';
+   this.servicesPlan = false;
+ }
 
   // 收入类型排名相关操作
   public crosswiseClick(): void {

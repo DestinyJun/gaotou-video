@@ -308,6 +308,9 @@
                  <button class="btn btn-warning" (click)="crosswiseClick()">
                    更多信息......
                  </button>
+                 <button class="btn btn-primary" (click)="openServicesPlan()">
+                   园区平面图
+                 </button>
                </p>
              </div>
            </div>
@@ -895,6 +898,43 @@
         </div>
       </div>
     </div>-->
+  </div>
+</div>
+<!--服务区平面图弹窗-->
+<div class="bg-box" *ngIf="servicesPlan" >
+  <div class="alert-window" style="height:80vh; margin-top: -40vh;">
+    <div class="alert-window-header">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <span>{{serviceZoneTitle}}园区平面图</span>
+          <div class="pull-right" (click)="closeServicesPlan()">
+            <i class="fa fa-window-close " aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-window-content">
+      <div class="row">
+        <div class="col-ld-12 col-md-12 text-center">
+          <div class="services-plan" [ngStyle]="">
+            <div class="services-plan-left pull-left">
+              <div class="service-date-info-top">
+                <h5 class="text-center">服务区收入</h5>
+              </div>
+              <div class="service-date-info-top"></div>
+              <div class="service-date-info-top"></div>
+            </div>
+            <div class="services-plan-right pull-right">
+              <div class="service-date-info-bottom">
+                <h5 class="text-center">服务区车流</h5>
+              </div>
+              <div class="service-date-info-bottom"></div>
+              <div class="service-date-info-bottom"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

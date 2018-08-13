@@ -378,7 +378,7 @@
   background: red;
 }
 .alert-window-content{
-  height: 55vh;
+  height: 75vh;
 }
 .alert-window-content-table{
   position: relative;
@@ -479,6 +479,98 @@
 }
 .video-time .btn {
   padding: 0;
+}
+
+/*服务区平面图弹窗*/
+.services-plan-left{
+  width: 20%;
+  height: 75vh;
+  position: absolute;
+  top: 0;
+  left: 1vw;
+}
+.services-plan{
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 75vh;
+  background-image: url(http://120.78.138.104/images/gaotou/%E6%9C%8D%E5%8A%A1%E5%8C%BA%E9%B8%9F%E7%9E%B0%E5%9B%BE.jpg);
+  background-repeat: no-repeat;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  background-position: center center;
+}
+.services-plan-right{
+  width: 20%;
+  height: 75vh;
+  position: absolute;
+  top: 0;
+  right: 1vw;
+}
+.service-date-info-top>h5,.service-date-info-bottom>h5{}
+.service-date-info-top{
+  position: relative;
+  height: 22vh;
+  background: rgba(5,46,74,0.4);
+  margin-top: 2.2vh;
+  border-top: 1px solid #69FFFF;
+  box-shadow: 0 0 20px #69FFFF;
+}
+.service-date-info-bottom{
+  position: relative;
+  height: 22vh;
+  background: rgba(5,46,74,0.4);
+  margin-top: 2.2vh;
+  border-top: 1px solid #69FFFF;
+  box-shadow: 0 0 20px #69FFFF;
+}
+.service-date-info-top::before{
+  content:"";
+  position:absolute;
+  right: -17px;
+  top: 6px;
+  width:20px;
+  height: 1px;
+  box-sizing:border-box;
+  border-bottom:1px solid #69FFFF;
+  transform-origin:bottom center;
+  /*transform:rotateZ(45deg) scale(1.414);*/
+  /*animation:slash 5s infinite ease;*/
+  transform:rotate(45deg);
+  -o-transform:rotate(45deg);
+  -moz-transform:rotate(45deg);
+  -webkit-transform:rotate(45deg);
+}
+.service-date-info-bottom::before{
+  content:"";
+  position:absolute;
+  left: -17px;
+  top: 6px;
+  width:20px;
+  height: 1px;
+  box-sizing:border-box;
+  border-bottom:1px solid #69FFFF;
+  transform-origin:bottom center;
+  /*transform:rotateZ(45deg) scale(1.414);*/
+  /*animation:slash 5s infinite ease;*/
+  transform:rotate(135deg);
+  -o-transform:rotate(135deg);
+  -moz-transform:rotate(135deg);
+  -webkit-transform:rotate(135deg);
+}
+@keyframes slash{
+  0%{
+    transform:rotateZ(0deg) scale(1);
+  }
+  30%{
+    transform:rotateZ(45deg) scale(1);
+  }
+  60%{
+    transform:rotateZ(45deg) scale(1.414);
+  }
+  100%{
+    transform:rotateZ(45deg) scale(1.414);
+  }
 }
 
 /*字体颜色*/
