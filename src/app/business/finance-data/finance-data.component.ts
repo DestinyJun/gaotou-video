@@ -99,8 +99,12 @@ export class FinanceDataComponent implements OnInit {
   public eventTypes: any;
   // 事件弹窗
   public eventConfig: ConfigModule;
+  // 办公类数据
+  public officeTypes: any;
   // 办公信息弹窗
-  public officeConfig: ConfigModule;
+  public alertOfficeShow = false;
+  // 个人信息数据
+  public personOfficeTypes: any;
 
   /*****************************右边***************************/
     // 全国业态经营数据前十排名
@@ -151,7 +155,7 @@ export class FinanceDataComponent implements OnInit {
     private centerMapS: CentermapService,
     private diagrams: DiagramService,
     private dataService: DataService,
-    public router: Router,
+    private router: Router,
     private wenJunAlertService: WenjunAlertService
   ) {}
 
@@ -1594,19 +1598,7 @@ export class FinanceDataComponent implements OnInit {
     console.log(name);
   }
   // 办公室信息处理函数
-  public tableOfficeClick(): void {
-    // 弹窗配置
-    this.officeConfig = {
-      alertTitle: name,
-      titleColor: '#FDF8F9',
-      titleBgColor: '#C42631',
-      closeHoverBgColor: '#FF0000',
-      background: 'rgba(19,24,76,0.8)',
-      width: 80,
-      height: 60,
-    };
-    this.wenJunAlertService.openAlertShow();
-  }
+  public tableOfficeClick(): void {}
 
 
   /*********************************右边*****************************/
@@ -2354,11 +2346,16 @@ export class FinanceDataComponent implements OnInit {
     // this.centerMap();
     // this.centerMap1();
 
-    /***********中部**********/
+    /**************************中部****************************/
     // 地图
     this.centerMap2();
     // 事件
     this.eventTypes = this.dataService.eventTypes;
+    // 办公
+    this.officeTypes = this.dataService.officeTypes;
+    // 个人
+    this.personOfficeTypes = this.dataService.personOfficeTypes;
+
     // 业态经营数据前十排名
     this.backCrosswiseBar(this.dataStatus);
 

@@ -22,6 +22,22 @@ export class DataService {
     {name: '系统故障', id: '005', number: 23, color: '#3BF49F'},
     {name: '其他', id: '006', number: 7, color: '#1ED1D8'}
   ];
+  public officeTypes = [
+    {time: '2018-08-10 12:00', proDesc: '王小二提交出差申请', feedback: '已处理（处理人：王小花）'},
+    {time: '2018-08-10 12:00', proDesc: '大麻子提交交通补贴申请', feedback: '未处理'},
+    {time: '2018-08-10 12:00', proDesc: '小马扎通知下午开会', feedback: '已处理（处理人：王小花）'},
+    {time: '2018-08-10 12:00', proDesc: '五月份工作计划', feedback: '未处理'},
+    {time: '2018-08-10 12:00', proDesc: '下午开年度总结大会', feedback: '已处理（处理人：王小花）'},
+    {time: '2018-08-10 12:00', proDesc: '2018年度销售计划提交', feedback: '已处理（处理人：王小花）'},
+  ];
+  public personOfficeTypes = [
+    {dynamic: '17:50分去大堂开会', dispose: '已处理', color: '#BB32F4'},
+    {dynamic: '8月20号之前提交公司计划', dispose: '已处理', color: '#F432AD'},
+    {dynamic: '新进人员管理', dispose: '已处理', color: '#E57D0D'},
+    {dynamic: '提交项目申报', dispose: '未处理', color: '#1ED1D8'},
+    {dynamic: '人员登记', dispose: '未处理', color: '#3BF49F'},
+    {dynamic: '办公用品申请', dispose: '未处理', color: '#1ED1D8'}
+  ];
   constructor() {}
 
   public getIncomerStore(status): any {

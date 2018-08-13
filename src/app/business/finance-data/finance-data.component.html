@@ -95,53 +95,18 @@
               <div class="table-responsive">
                 <table class="table" cellspacing="5px">
                   <thead class="table-header">
-                  <tr>
-                    <td>时间</td>
-                    <td>问题描述</td>
-                    <td>处理反馈</td>
-                  </tr>
+                    <tr>
+                      <td>时间</td>
+                      <td>问题描述</td>
+                      <td>处理反馈</td>
+                    </tr>
                   </thead>
                   <tbody class="table-body">
-                  <tr class="table-tr" style="color: #BB32F4" (click)="tableOfficeClick()">
-                    <td>2018-08-10 12:00</td>
-                    <td>王小二提交出差申请</td>
-                    <td >已处理（处理人：王小花）</td>
-                  </tr>
-                  <tr class="table-tr" style="color: #F432AD">
-                    <!--<td><span style="background: #F432AD;"></span></td>-->
-                    <td>2018-08-10 12:00</td>
-                    <!--<td>经营类</td>-->
-                    <td>大麻子提交交通补贴申请</td>
-                    <td class="hot">未处理<button class="btn btn-info" style="margin-left:15px;padding: 0 5px;font-size: 12px">提交</button></td>
-                  </tr>
-                  <tr class="table-tr" style="color: #E57D0D">
-                    <!--<td><span style="background: #E57D0D;"></span></td>-->
-                    <td>2018-08-10 12:00</td>
-                    <!--<td>卫生类</td>-->
-                    <td>小马扎通知下午开会</td>
-                    <td class="hot">已处理（处理人：王小花）</td>
-                  </tr>
-                  <tr class="table-tr" style="color: #1ED1D8">
-                    <!--<td><span style="background: #1ED1D8;"></span></td>-->
-                    <td>2018-08-10 12:00</td>
-                    <!--<td>监控类</td>-->
-                    <td>五月份工作计划</td>
-                    <td class="hot">未处理<button class="btn btn-info" style="margin-left:15px;padding: 0 5px;font-size: 12px">提交</button></td>
-                  </tr>
-                  <tr class="table-tr" style="color: #3BF49F">
-                    <!--<td><span style="background: #3BF49F;"></span></td>-->
-                    <td>2018-08-10 12:00</td>
-                    <!--<td>系统故障</td>-->
-                    <td>下午开年度总结大会</td>
-                    <td class="hot">已处理（处理人：王小花）</td>
-                  </tr>
-                  <tr class="table-tr" style="color: #1ED1D8">
-                    <!--<td><span style="background: #1ED1D8;"></span></td>-->
-                    <td>2018-08-10 12:00</td>
-                    <!--<td>其他</td>-->
-                    <td>2018年度销售计划提交</td>
-                    <td>已处理（处理人：王小花）</td>
-                  </tr>
+                    <tr class="table-tr" *ngFor="let item of officeTypes" style="color: #01D1DB" (click)="tableOfficeClick()">
+                      <td>{{item.time}}</td>
+                      <td>{{item.proDesc}}</td>
+                      <td class="hot">{{item.feedback}}<button class="btn btn-info" style="margin-left:15px;padding: 0 5px;font-size: 12px">提交</button></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -153,60 +118,16 @@
             <div class="table-responsive">
               <table class="table" cellspacing="5px">
                 <thead class="table-header">
-                <tr>
-                  <!--<td>标记</td>-->
-                  <td class="hot">动态</td>
-
-                  <!--<td>事件类型</td>-->
-                  <!--<td>事件描述</td>-->
-                  <td>状态</td>
-                </tr>
+                  <tr>
+                    <td class="hot">动态</td>
+                    <td>状态</td>
+                  </tr>
                 </thead>
                 <tbody class="table-body">
-                <tr class="table-tr" style="color: #BB32F4">
-                  <!--<td><span style="background: #BB32F4;"></span></td>-->
-
-                  <!--<td>工程类</td>-->
-                  <!--<td>一号水库水位低</td>-->
-                  <td class="hot">17:50分去大堂开会</td>
-                  <td>已处理</td>
-                </tr>
-                <tr class="table-tr" style="color: #F432AD">
-                  <!--<td><span style="background: #F432AD;"></span></td>-->
-
-                  <!--<td>经营类</td>-->
-                  <!--<td>妹妹小吃账户异常</td>-->
-                  <td class="hot">8月20号之前提交公司计划</td>
-                  <td>已处理</td>
-                </tr>
-                <tr class="table-tr" style="color: #E57D0D">
-                  <!--<td><span style="background: #E57D0D;"></span></td>-->
-                  <td>新进人员管理</td>
-                  <!--<td>卫生类</td>-->
-                  <!--<td>乌江服务区卫生差</td>-->
-                  <td class="hot">已处理</td>
-                </tr>
-                <tr class="table-tr" style="color: #1ED1D8">
-                  <!--<td><span style="background: #1ED1D8;"></span></td>-->
-                  <td>提交项目申报</td>
-                  <!--<td>监控类</td>-->
-                  <!--<td>一号门监控设备出问题</td>-->
-                  <td class="hot">未处理</td>
-                </tr>
-                <tr class="table-tr" style="color: #3BF49F">
-                  <!--<td><span style="background: #3BF49F;"></span></td>-->
-                  <td>人员登记</td>
-                  <!--<td>系统故障</td>-->
-                  <!--<td>服务器异常</td>-->
-                  <td class="hot">未处理</td>
-                </tr>
-                <tr class="table-tr" style="color: #1ED1D8">
-                  <!--<td><span style="background: #1ED1D8;"></span></td>-->
-                  <td>办公用品申请</td>
-                  <!--<td>其他</td>-->
-                  <!--<td>出口位置轿车刮伤</td>-->
-                  <td>未处理</td>
-                </tr>
+                  <tr class="table-tr" *ngFor="let item  of personOfficeTypes" [ngStyle]="{'color': item.color}">
+                    <td class="hot">{{item.dynamic}}</td>
+                    <td>{{item.dispose}}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -586,7 +507,116 @@
     </div>
   </app-wenjun-alert>
   <!--办公信息处理-->
-  <app-wenjun-alert [config]="officeConfig">
+  <div class="bg-box" *ngIf="alertOfficeShow">
+    <div class="alert-window">
+      <div class="alert-window-header">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <span>{{alertIncomeTitle}}</span>
+            <div class="pull-right" (click)="closeIncomeShow()">
+              <i class="fa fa-window-close " aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert-window-content">
+        <div class="row">
+          <div class="col-ld-6 col-md-6 echart-btn">
+            <button class="btn btn-danger" [ngStyle]="{'background':incomeTypeisShow ? 'black': ''}" (click)="echarIncomeBtn($event)">{{selectDate}}</button>
+            <div class="alert-3D-bar-bar" echarts [options]="optionsIncomeTypes" (chartInit)="optionsIncomePieInit($event)" (chartClick)="optionsIncomePieClick($event)"></div>
+          </div>
+          <div class="col-ld-6 col-md-6">
+            <div class="alert-window-content-table">
+              <div class="toggle-btn" (click)="IncomeBtnClick($event)">
+                <button class="btn btn-info" [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': ''}">收入总数</button>
+                <button class="btn btn-danger" [ngStyle]="{'background':alertIncomeTitle === '小吃'?'black': ''}">小吃</button>
+                <button class="btn btn-primary" [ngStyle]="{'background':alertIncomeTitle === '中式快餐'?'black': ''}">中式快餐</button>
+                <button class="btn btn-success" [ngStyle]="{'background':alertIncomeTitle === '西式快餐'?'black': ''}">西式快餐</button>
+                <button class="btn btn-info" [ngStyle]="{'background':alertIncomeTitle === '商超'?'black': ''}">商超</button>
+                <button class="btn btn-warning" [ngStyle]="{'background':alertIncomeTitle === '住宿'?'black': ''}">住宿</button>
+                <button class="btn btn-primary" [ngStyle]="{'background':alertIncomeTitle === '汽修'?'black': ''}">汽修</button>
+                <div class="toggle-btn-area pull-right" style="">
+                  <button class="btn btn-success" (click)="openIncomeExcel()">表格导出</button>
+                </div>
+              </div>
+              <div class="pull-right" style="margin-right: 10px;margin-bottom: 5px">
+                <button class="btn btn-danger">{{IncomeAreaName}}</button>
+              </div>
+              <div class="content-table">
+                <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                    <th>排名</th>
+                    <th [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': ''}">收入总数</th>
+                    <th *ngIf="!(alertIncomeTitle === '收入总数')" [ngStyle]="{'background':!(alertIncomeTitle === '收入总数')?'black': ''}">{{alertIncomeTitle}}收入(元）</th>
+                    <th>服务区</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of IncomeTableData">
+                    <td>{{item.num}}</td>
+                    <td [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': ''}">{{item.sum}}</td>
+                    <td *ngIf="!(alertIncomeTitle === '收入总数')" [ngStyle]="{'background':!(alertIncomeTitle === '收入总数')?'black': ''}">{{item.income}}</td>
+                    <td>{{item.zone}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="bottom-pagination text-center">
+                <ul class="pagination">
+                  <li><a class="btn btn-info">上一页</a></li>
+                  <li><a>共5页/第3页</a></li>
+                  <li><a style="padding: 3px 12px;">跳转到: <input type="number"><span style="margin-left: 10px">页</span></a></li>
+                  <li><a class="btn btn-warning">下一页</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-excel" *ngIf="incomeExcelShow">
+        <div class="alert-window-excel">
+          <div class="alert-window-excel-header">
+            <span>收入数据表格导出</span>
+            <div class="pull-right">
+              <i class="fa fa-window-close " aria-hidden="true" (click)="closeincomeExcel()"></i>
+            </div>
+          </div>
+          <div class="alert-window-excel-content">
+            <div class="alert-window-excel-content-list">
+              <label for="incomeDates">请选择时间：</label>
+              <input type="date" id="incomeDates" (change)="incomeDateChange($event)">
+            </div>
+            <div class="alert-window-excel-content-list">
+              <label for="incomeTypes">请选择类型：</label>
+              <select name="" id="incomeTypes" (change)="incomeTypeChange($event)">
+                <option value="">总数</option>
+                <option value="">小车</option>
+                <option value="">客车</option>
+                <option value="">货车</option>
+              </select>
+            </div>
+            <div class="alert-window-excel-content-list">
+              <label for="incomeArea">请选择片区：</label>
+              <select name="" id="incomeArea" (change)="incomeAreaChange($event)">
+                <option value="">东部片区</option>
+                <option value="">西部片区</option>
+                <option value="">南部片区</option>
+                <option value="">北部</option>
+                <option value="">中部</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="alert-window-excel-footer text-center">
+            <button class="btn btn-primary" (click)="incomeExportClick()">确认导出</button>
+            <button class="btn btn-danger" (click)="closeincomeExcel()">取消导出</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-- <app-wenjun-alert [config]="officeConfig">
     <div class="col-lg-6 col-md-6">
       <div>
         <button class="btn btn-info">事件列表</button>
@@ -639,6 +669,6 @@
         </table>
       </div>
     </div>
-  </app-wenjun-alert>
+  </app-wenjun-alert>-->
 </div>
 
