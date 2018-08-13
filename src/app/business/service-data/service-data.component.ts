@@ -39,6 +39,7 @@ export class ServiceDataComponent implements OnInit {
   public serviceZonePoint: string;
   public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
   public business = ['住宿', '汽修', '商超', '小吃', '西式快餐', '中式快餐'];
+  public btnClass = ['btn-danger', 'btn-info', 'btn-default', 'btn-primary', 'btn-warning', 'btn-success', 'btn-danger', 'btn-info', 'btn-default', 'btn-primary', 'btn-warning', 'btn-success']
 
   /***********************左边************************/
     //  高速服液态数据3d统计
@@ -78,6 +79,9 @@ export class ServiceDataComponent implements OnInit {
   public videoAlertTitle: string;
   // 服务区商家弹窗
   public selectFormModule: FormGroup;
+  // 公共视频弹窗
+  public videoPublicShow = false;
+  public publicVideoTitle: string;
 
   /***********************右边************************/
   // 业态经营数据前十排名
@@ -757,14 +761,22 @@ export class ServiceDataComponent implements OnInit {
   this.incomeData = this.dataService.getServiceData(1000, 200);
   }
   // 中部服务商家操作
-  public closeVideoAlertClick(): void {
+  public closeMerchantVideo(): void {
     document.body.className = '';
     this.videoAlertShow = false;
   }
-  public openVideoAlertClick(e): void {
+  public openMerchantVideo(e): void {
     document.body.className = 'ui-overflow-hidden';
     this.videoAlertShow = true;
     this.videoAlertTitle = e;
+  }
+  // 中部服务区视频监控
+  public openPublicVideo(e) {
+    this.videoPublicShow = true;
+    this.publicVideoTitle = e.srcElement.innerText;
+  }
+  public closePublicVideo() {
+     this.videoPublicShow = false;
   }
   // 视频参数提交
   public onSubmit(): void {

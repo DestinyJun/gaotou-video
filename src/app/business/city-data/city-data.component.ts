@@ -11,6 +11,7 @@ import {CentermapService} from '../../common/services/centermap.service';
 import {DiagramService} from '../../common/services/diagram.service';
 import {Router} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
+import {ConfigModule} from '../../common/wenjun';
 
 declare let BMap;
 declare let BMapLib;
@@ -95,6 +96,19 @@ export class CityDataComponent implements OnInit {
 
   // 全国高速服务区分布图
   public optionsMap = {};
+
+  // 事件类数据
+  public eventTypes: any;
+  // 事件弹窗
+  public eventConfig: ConfigModule;
+  // 办公类数据
+  public officeTypes: any;
+  // 办公信息弹窗
+  public alertOfficeShow = false;
+  // 个人信息数据
+  public personOfficeTypes: any;
+  // 个人信息弹窗
+  public alertPersonShow = false;
 
   /*****************************右边***************************/
     // 全国业态经营数据前十排名
@@ -1546,6 +1560,36 @@ export class CityDataComponent implements OnInit {
     }
   }
 
+  // 事件处理函数
+  public tableEventClick(name): void {
+    // 弹窗配置
+    this.eventConfig = {
+      alertTitle: name,
+      titleColor: '#FDF8F9',
+      titleBgColor: '#C42631',
+      closeHoverBgColor: '#FF0000',
+      background: 'rgba(19,24,76,0.8)',
+      width: 80,
+      height: 60,
+    };
+    this.wenJunAlertService.openAlertShow();
+    console.log(name);
+  }
+  // 办公室信息处理函数
+  public tableOfficeClick(): void {
+    this.alertOfficeShow = true;
+  }
+  public closeOfficeShow() {
+    this.alertOfficeShow = false;
+  }
+  // 个人信息处理
+  public tablePersonClick() {
+    this.alertPersonShow = true;
+  }
+  public closePersonShow() {
+    this.alertPersonShow = false;
+  }
+
   /*********************************右边*****************************/
   // 业态经营数据前十排名
   public backCrosswiseBar(title) {
@@ -2290,7 +2334,16 @@ export class CityDataComponent implements OnInit {
     //  高速服务区分布散点统计
     // this.centerMap();
     // this.centerMap1();
+
+    /**************************中部****************************/
     this.centerMap2();
+    // 事件
+    this.eventTypes = this.dataService.eventTypes;
+    // 办公
+    this.officeTypes = this.dataService.officeTypes;
+    // 个人
+    this.personOfficeTypes = this.dataService.personOfficeTypes;
+
     // 业态经营数据前十排名
     this.backCrosswiseBar(this.dataStatus);
 

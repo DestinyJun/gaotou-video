@@ -69,56 +69,21 @@
               <table class="table" cellspacing="5px">
                 <thead class="table-header">
                 <tr>
-                  <td>标记</td>
-                  <td>时间</td>
-                  <td>事件类型</td>
-                  <td>事件描述</td>
-                  <td>最新动态</td>
+                  <td>类型</td>
+                  <td class="hot">状态</td>
                 </tr>
                 </thead>
                 <tbody class="table-body">
-                <tr class="table-tr" style="color: #BB32F4">
-                  <td><span style="background: #BB32F4;"></span></td>
-                  <td>1分钟之前</td>
-                  <td>工程类</td>
-                  <td>一号水库水位低</td>
-                  <td class="hot">03<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #F432AD">
-                  <td><span style="background: #F432AD;"></span></td>
-                  <td>3分钟之前</td>
-                  <td>经营类</td>
-                  <td>妹妹小吃账户异常</td>
-                  <td class="hot">04<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #E57D0D">
-                  <td><span style="background: #E57D0D;"></span></td>
-                  <td>5分钟之前</td>
-                  <td>卫生类</td>
-                  <td>乌江服务区卫生差</td>
-                  <td class="hot">07<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #1ED1D8">
-                  <td><span style="background: #1ED1D8;"></span></td>
-                  <td>15分钟之前</td>
-                  <td>监控类</td>
-                  <td>一号门监控设备出问题</td>
-                  <td class="hot">02<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #3BF49F">
-                  <td><span style="background: #3BF49F;"></span></td>
-                  <td>30分钟之前</td>
-                  <td>系统故障</td>
-                  <td>服务器异常</td>
-                  <td class="hot">10<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #1ED1D8">
-                  <td><span style="background: #1ED1D8;"></span></td>
-                  <td>40分钟之前</td>
-                  <td>其他</td>
-                  <td>出口位置轿车刮伤</td>
-                  <td class="hot">04<span></span></td>
-                </tr>
+                <!--  <tr class="table-tr" style="color: #BB32F4" >
+                    &lt;!&ndash;<td><span style="background: #BB32F4;"></span></td>&ndash;&gt;
+                    <td>工程类</td>
+                    <td class="hot">未处理<span>22</span></td>
+                  </tr>-->
+                <tr class="table-tr" *ngFor="let item  of eventTypes" [ngStyle]="{'color': item.color}" (click)="tableEventClick(item.name)">
+                  <!--<td><span style="background: #F432AD;"></span></td>-->
+                  <td>{{item.name}}</td>
+                  <td class="hot">未处理<span [ngStyle]="{'background': item.number === 0?'#3AD900':''}">{{item.number}}</span></td>
+                </tr >
                 </tbody>
               </table>
             </div>
@@ -131,55 +96,18 @@
               <table class="table" cellspacing="5px">
                 <thead class="table-header">
                 <tr>
-                  <td>标记</td>
                   <td>时间</td>
-                  <td>事件类型</td>
-                  <td>事件描述</td>
-                  <td>最新动态</td>
+                  <td>问题描述</td>
+                  <td>处理反馈</td>
                 </tr>
                 </thead>
                 <tbody class="table-body">
-                <tr class="table-tr" style="color: #BB32F4">
-                  <td><span style="background: #BB32F4;"></span></td>
-                  <td>1分钟之前</td>
-                  <td>工程类</td>
-                  <td>一号水库水位低</td>
-                  <td class="hot">03<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #F432AD">
-                  <td><span style="background: #F432AD;"></span></td>
-                  <td>3分钟之前</td>
-                  <td>经营类</td>
-                  <td>妹妹小吃账户异常</td>
-                  <td class="hot">04<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #E57D0D">
-                  <td><span style="background: #E57D0D;"></span></td>
-                  <td>5分钟之前</td>
-                  <td>卫生类</td>
-                  <td>乌江服务区卫生差</td>
-                  <td class="hot">07<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #1ED1D8">
-                  <td><span style="background: #1ED1D8;"></span></td>
-                  <td>15分钟之前</td>
-                  <td>监控类</td>
-                  <td>一号门监控设备出问题</td>
-                  <td class="hot">02<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #3BF49F">
-                  <td><span style="background: #3BF49F;"></span></td>
-                  <td>30分钟之前</td>
-                  <td>系统故障</td>
-                  <td>服务器异常</td>
-                  <td class="hot">10<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #1ED1D8">
-                  <td><span style="background: #1ED1D8;"></span></td>
-                  <td>40分钟之前</td>
-                  <td>其他</td>
-                  <td>出口位置轿车刮伤</td>
-                  <td class="hot">04<span></span></td>
+                <tr class="table-tr" *ngFor="let item of officeTypes" style="color: #01D1DB" (click)="tableOfficeClick()">
+                  <td>{{item.time}}</td>
+                  <td>{{item.proDesc}}</td>
+                  <td class="hot">
+                    {{item.feedback}}
+                    <button class="btn btn-info" *ngIf="item.feedback === '未处理'" style="margin-left:15px;padding: 0 5px;font-size: 12px">提交</button></td>
                 </tr>
                 </tbody>
               </table>
@@ -193,55 +121,14 @@
               <table class="table" cellspacing="5px">
                 <thead class="table-header">
                 <tr>
-                  <td>标记</td>
-                  <td>时间</td>
-                  <td>事件类型</td>
-                  <td>事件描述</td>
-                  <td>最新动态</td>
+                  <td class="hot">动态</td>
+                  <td>状态</td>
                 </tr>
                 </thead>
                 <tbody class="table-body">
-                <tr class="table-tr" style="color: #BB32F4">
-                  <td><span style="background: #BB32F4;"></span></td>
-                  <td>1分钟之前</td>
-                  <td>工程类</td>
-                  <td>一号水库水位低</td>
-                  <td class="hot">03<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #F432AD">
-                  <td><span style="background: #F432AD;"></span></td>
-                  <td>3分钟之前</td>
-                  <td>经营类</td>
-                  <td>妹妹小吃账户异常</td>
-                  <td class="hot">04<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #E57D0D">
-                  <td><span style="background: #E57D0D;"></span></td>
-                  <td>5分钟之前</td>
-                  <td>卫生类</td>
-                  <td>乌江服务区卫生差</td>
-                  <td class="hot">07<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #1ED1D8">
-                  <td><span style="background: #1ED1D8;"></span></td>
-                  <td>15分钟之前</td>
-                  <td>监控类</td>
-                  <td>一号门监控设备出问题</td>
-                  <td class="hot">02<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #3BF49F">
-                  <td><span style="background: #3BF49F;"></span></td>
-                  <td>30分钟之前</td>
-                  <td>系统故障</td>
-                  <td>服务器异常</td>
-                  <td class="hot">10<span></span></td>
-                </tr>
-                <tr class="table-tr" style="color: #1ED1D8">
-                  <td><span style="background: #1ED1D8;"></span></td>
-                  <td>40分钟之前</td>
-                  <td>其他</td>
-                  <td>出口位置轿车刮伤</td>
-                  <td class="hot">04<span></span></td>
+                <tr class="table-tr" *ngFor="let item  of personOfficeTypes" [ngStyle]="{'color': item.color}" (click)="tablePersonClick()">
+                  <td class="hot">{{item.dynamic}}</td>
+                  <td>{{item.dispose}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -560,6 +447,105 @@
           <div class="alert-window-excel-footer text-center">
             <button class="btn btn-primary" (click)="incomeExportClick()">确认导出</button>
             <button class="btn btn-danger" (click)="closeincomeExcel()">取消导出</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--事件监控弹窗-->
+  <app-wenjun-alert [config]="eventConfig">
+    <div class="col-lg-6 col-md-6">
+      <div>
+        <button class="btn btn-info">事件列表</button>
+        <button class="btn btn-danger pull-right">未处理</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table" cellspacing="5px">
+          <thead class="table-header">
+          <tr>
+            <td>时间</td>
+            <td>责任人</td>
+            <td>问题描述</td>
+            <td>处理反馈</td>
+          </tr>
+          </thead>
+          <tbody class="table-body">
+          <tr class="table-tr" style="color: #E55C28">
+            <td>2018-08-10 12:00</td>
+            <td>王小三</td>
+            <td>久长服务区广场卫生不达标</td>
+            <td style="color: #D9534F">未处理</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <div>
+        <button class="btn btn-success">已处理</button>
+        <button class="btn btn-info pull-right">事件列表</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table" cellspacing="5px">
+          <thead class="table-header">
+          <tr>
+            <td>时间</td>
+            <td>责任人</td>
+            <td>问题描述</td>
+            <td>处理反馈</td>
+          </tr>
+          </thead>
+          <tbody class="table-body">
+          <tr class="table-tr" style="color: #00ECF1">
+            <td>2018-08-10 12:00</td>
+            <td>王筱思</td>
+            <td>乌江服务区厕所卫生不达标</td>
+            <td style="color: #5CB85C">已处理</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </app-wenjun-alert>
+  <!--办公信息处理-->
+  <div class="bg-box" *ngIf="alertOfficeShow">
+    <div class="alert-window" [ngStyle] = "{'background': 'rgba(10,10,72,0.7)'}">
+      <div class="alert-window-header">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <span>{{this.dataToggle}}服务区办公信息</span>
+            <div class="pull-right" (click)="closeOfficeShow()">
+              <i class="fa fa-window-close " aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert-window-content">
+        <div class="row">
+          <div class="col-ld-12 col-md-12">
+            <h1 class="text-center">待开发中......</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--个人信息办公处处理-->
+  <div class="bg-box" *ngIf="alertPersonShow">
+    <div class="alert-window" [ngStyle] = "{'background': 'rgba(10,10,72,0.7)'}">
+      <div class="alert-window-header">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <span>{{this.dataToggle}}服务区办公信息</span>
+            <div class="pull-right" (click)="closePersonShow()">
+              <i class="fa fa-window-close " aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert-window-content">
+        <div class="row">
+          <div class="col-ld-12 col-md-12">
+            <h1 class="text-center">待开发中......</h1>
           </div>
         </div>
       </div>

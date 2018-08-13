@@ -93,50 +93,66 @@
   font-size: 2rem;
 }
 .main-content .servicesMap .servicesMap-top{
-  height: 20vh;
+  height: 10vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 .main-content .servicesMap .servicesMap-top .servicesMap-top-box{
-  height: 20vh;
+  height: 10vh;
   width: 3vw;
   border:1px solid #3B425C;
-  line-height: 6vh;
+  line-height: 2vh;
   font-size: 1.6rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .main-content .servicesMap .servicesMap-center{
-  background: #59443D;
-  height: 13vh;
+  height: 33vh;
+}
+.main-content .servicesMap-center .video-top{
+  padding-top: 5px;
+  height: 13.5vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
 }
 .main-content .servicesMap-center .servicesMap-center-left{
-  height: 6.5vh;
+  height: 3vh;
   border: 1px solid #FBC527;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #59443D;
 }
 .main-content .servicesMap-center .servicesMap-center-right{
-  height: 6.5vh;
+  height: 3vh;
   border: 1px solid #FBC527;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #59443D;
+}
+.main-content .servicesMap-center .video-bottom{
+  padding-top: 5px;
+  height: 13.5vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 .main-content .servicesMap .servicesMap-bottom{
-  height: 20vh;
+  height: 10vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 .main-content .servicesMap .servicesMap-bottom .servicesMap-bottom-box{
-  height: 20vh;
+  height: 10vh;
   width: 3vw;
   border:1px solid #3B425C;
-  line-height: 6vh;
+  line-height: 2vh;
   font-size: 1.6rem;
   overflow: hidden;
   text-overflow: ellipsis;

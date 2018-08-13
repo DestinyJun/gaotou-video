@@ -32,12 +32,26 @@
             <p style="color: #3BF49F;" [title]="item.name">{{item.name}}</p>
             <p style="color: #00CFB1;" [title]="item.num">{{item.num}}元</p>
             <p>
-              <button class="btn btn-danger" (click)="openVideoAlertClick(item.name,item.videoUrl)">监控</button>
-            </p>
+              <button class="btn btn-danger" (click)="openMerchantVideo(item.name,item.videoUrl)">监控</button>
+            b
           </div>
          </div>
          <div class="servicesMap-center">
+           <div class="video-top" >
+             <div *ngFor="let item of btnClass" style="margin-left: 15px">
+               <button class="btn" [ngClass]="item" (click)="openPublicVideo($event)">监控点一号</button>
+             </div>
+           </div>
            <div class="servicesMap-center-left">
+             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+
+           </div>
+           <div class="servicesMap-center-right">
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
@@ -45,13 +59,10 @@
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
            </div>
-           <div class="servicesMap-center-right">
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+           <div class="video-bottom">
+             <div *ngFor="let item of btnClass" style="margin-left: 15px">
+               <button class="btn" [ngClass]="item" (click)="openPublicVideo($event)">监控点一号</button>
+             </div>
            </div>
          </div>
          <div class="servicesMap-bottom">
@@ -685,7 +696,7 @@
       <div class="row">
         <div class="col-lg-12 col-md-12">
           <span>{{videoAlertTitle}}</span>
-          <div class="pull-right" (click)="closeVideoAlertClick()">
+          <div class="pull-right" (click)="closeMerchantVideo()">
             <i class="fa fa-window-close " aria-hidden="true"></i>
           </div>
         </div>
@@ -737,6 +748,110 @@
           <div class="video-event">
             <app-timer-shaft-crosswise></app-timer-shaft-crosswise>
           </div>
+        </div>
+      </div>
+    </div>
+    <!--<div class="bg-excel" *ngIf="incomeExcelShow">
+      <div class="alert-window-excel">
+        <div class="alert-window-excel-header">
+          <span>收入数据表格导出</span>
+          <div class="pull-right">
+            <i class="fa fa-window-close " aria-hidden="true" (click)="closeincomeExcel()"></i>
+          </div>
+        </div>
+        <div class="alert-window-excel-content">
+          <div class="alert-window-excel-content-list">
+            <label for="incomeDates">请选择时间：</label>
+            <input type="date" id="incomeDates" (change)="incomeDateChange($event)">
+          </div>
+          <div class="alert-window-excel-content-list">
+            <label for="incomeTypes">请选择类型：</label>
+            <select name="" id="incomeTypes" (change)="incomeTypeChange($event)">
+              <option value="">总数</option>
+              <option value="">小车</option>
+              <option value="">客车</option>
+              <option value="">货车</option>
+            </select>
+          </div>
+          <div class="alert-window-excel-content-list">
+            <label for="incomeArea">请选择片区：</label>
+            <select name="" id="incomeArea" (change)="incomeAreaChange($event)">
+              <option value="">东部片区</option>
+              <option value="">西部片区</option>
+              <option value="">南部片区</option>
+              <option value="">北部</option>
+              <option value="">中部</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="alert-window-excel-footer text-center">
+          <button class="btn btn-primary" (click)="incomeExportClick()">确认导出</button>
+          <button class="btn btn-danger" (click)="closeincomeExcel()">取消导出</button>
+        </div>
+      </div>
+    </div>-->
+  </div>
+</div>
+<!--服务区公共视频监控弹窗-->
+<div class="bg-box" *ngIf="videoPublicShow" >
+  <div class="alert-window" style="height:70vh; margin-top: -35vh;">
+    <div class="alert-window-header">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <span>{{publicVideoTitle}}</span>
+          <div class="pull-right" (click)="closePublicVideo()">
+            <i class="fa fa-window-close " aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-window-content">
+      <div class="row">
+        <div class="col-ld-2 col-md-2">
+          <div class="video-time">
+            <form [formGroup]="selectFormModule" class="playback" (submit)="onSubmit()">
+              <label for="videoDate">请选择日期：</label>
+              <input formControlName="videoDate" type="date" id="videoDate" class="video-time-input">
+              <label for="videoTimeStart">请选择起始时间：</label>
+              <input formControlName="videoTimeStart" type="time" id="videoTimeStart" class="video-time-input">
+              <label for="videoTimeFinish">请选择结束时间：</label>
+              <input formControlName="videoTimeFinish" type="time" id="videoTimeFinish" class="video-time-input">
+              <button type="submit" class="btn btn-primary btn-block">点击回看</button>
+            </form>
+            <button class="btn btn-warning btn-block">00:00</button>
+            <button class="btn btn-primary btn-block">02:00</button>
+            <button class="btn btn-danger btn-block">04:00</button>
+            <button class="btn btn-info btn-block">06:00</button>
+            <button class="btn btn-success btn-block">08:00</button>
+            <button class="btn btn-default btn-block">10:00</button>
+            <button class="btn btn-warning btn-block">12:00</button>
+            <button class="btn btn-primary btn-block">14:00</button>
+            <button class="btn btn-danger btn-block">16:00</button>
+            <button class="btn btn-info btn-block">18:00</button>
+            <button class="btn btn-success btn-block">20:00</button>
+            <button class="btn btn-warning btn-block">22:00</button>
+          </div>
+        </div>
+        <div class="col-ld-10 col-md-10">
+          <div class="video-play" [ngStyle]="{'height': '65vh'}">
+            <object type='application/x-vlc-plugin' id='' width="100%" height="100%"
+                    events='True'
+                    pluginspage="http://www.videolan.org"
+                    codebase="http://downloads.videolan.org/pub/videolan/vlc-webplugins/2.0.6/npapi-vlc-2.0.6.tar.xz">
+              <param name='mrl' value='${url}' />
+              <param name='volume' value='50' />
+              <param name='autoplay' value='true' />
+              <param name='loop' value='false' />
+              <param value="transparent" name="wmode">
+              <embed id='vlc1' wmode="transparent" type="application/x-vlc-plugin" width="100%" height="100%"
+                     pluginspage="http://www.videolan.org" allownetworking="internal" allowscriptaccess="always" quality="high"
+                     src="${url}">
+            </object>
+          </div>
+         <!-- <div class="video-event">
+            <app-timer-shaft-crosswise></app-timer-shaft-crosswise>
+          </div>-->
         </div>
       </div>
     </div>

@@ -105,6 +105,8 @@ export class FinanceDataComponent implements OnInit {
   public alertOfficeShow = false;
   // 个人信息数据
   public personOfficeTypes: any;
+  // 个人信息弹窗
+  public alertPersonShow = false;
 
   /*****************************右边***************************/
     // 全国业态经营数据前十排名
@@ -1598,9 +1600,19 @@ export class FinanceDataComponent implements OnInit {
     console.log(name);
   }
   // 办公室信息处理函数
-  public tableOfficeClick(): void {}
-
-
+  public tableOfficeClick(): void {
+    this.alertOfficeShow = true;
+  }
+  public closeOfficeShow() {
+    this.alertOfficeShow = false;
+  }
+  // 个人信息处理
+  public tablePersonClick() {
+    this.alertPersonShow = true;
+  }
+  public closePersonShow() {
+    this.alertPersonShow = false;
+  }
   /*********************************右边*****************************/
   // 业态经营数据前十排名
   public backCrosswiseBar(title) {
