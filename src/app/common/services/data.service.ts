@@ -38,6 +38,26 @@ export class DataService {
     {dynamic: '人员登记', dispose: '未处理', color: '#3BF49F'},
     {dynamic: '办公用品申请', dispose: '未处理', color: '#1ED1D8'}
   ];
+  public serviceBasicInformation1 = [
+    {name: '始建时间', desc: '2018月7月18日'},
+    {name: '占地面积', desc: '154554㎡'},
+    {name: '运营时间', desc: '2017年10月10号'},
+    {name: '保洁人员', desc: '21名'},
+    {name: '保安人员', desc: '15名'},
+    {name: '大车车位', desc: '524个'},
+    {name: '小车车位', desc: '654个'},
+    {name: '客车车位', desc: '654个'},
+  ];
+  public serviceBasicInformation2 = [
+    {name: '供电账户', desc: '某某服务区'},
+    {name: '上次交电费时间', desc: '2018-08-15'},
+    {name: '合同签订时间', desc: '2018-08-18'},
+    {name: '用水量', desc: '4500m³'},
+    {name: '上次交水费时间', desc: '4500m³'},
+    {name: '服务区管理人', desc: '王小丹'},
+    {name: '管理人电话', desc: '18888888888'},
+  ];
+
   constructor() {}
 
   public getIncomerStore(status): any {

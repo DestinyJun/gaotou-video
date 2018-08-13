@@ -199,6 +199,10 @@
   border-collapse:separate;
   border-spacing:10px;
 }
+.table-body .table-tr:hover{
+  background:rgba(255,255,255,0.3);
+  cursor: pointer;
+}
 .main-content .table-body .table-tr span{
   display: inline-block;
   width: 15px;
@@ -609,3 +613,7 @@
   width: 5vw;
 }
 
+/*hover伪类*/
+.hovers:hover{
+  cursor: pointer;
+}

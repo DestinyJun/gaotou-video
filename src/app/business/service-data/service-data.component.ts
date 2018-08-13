@@ -82,6 +82,9 @@ export class ServiceDataComponent implements OnInit {
   // 公共视频弹窗
   public videoPublicShow = false;
   public publicVideoTitle: string;
+  // 事件弹窗
+  public eventAlertShow = false;
+  public eventAlertTitle: string;
 
   /***********************右边************************/
   // 业态经营数据前十排名
@@ -97,8 +100,14 @@ export class ServiceDataComponent implements OnInit {
   public crosswiseExcelShow = false;
   public CrosswiseExportType: IncomeExportType;
 
+  // 服务区基本信息数据
+  public serviceBasicAlert = true;
+  public serviceBasicAlertTitle: string;
+  public serviceBasicInformation1: any;
+  public serviceBasicInformation2: any;
+
   // 服务区基本信息之园区平面图
-  public servicesPlan = true;
+  public servicesPlan = false;
 
   // 实时收入
   public incomeAmount = [];
@@ -162,6 +171,13 @@ export class ServiceDataComponent implements OnInit {
         // console.log(this.serviceZonePoint);
       }
     );
+
+    /*****************************右边**********************/
+    // 服务区信息数据
+    this.serviceBasicInformation1 = this.dataService.serviceBasicInformation1;
+    this.serviceBasicInformation2 = this.dataService.serviceBasicInformation2;
+
+    // 数据更行
     this.upData();
   }
   /************************左边***************************/
@@ -792,6 +808,16 @@ export class ServiceDataComponent implements OnInit {
     }
   }
 
+  // 事件弹窗
+  public openEventAlert(e) {
+    document.body.className = 'ui-overflow-hidden';
+    this.eventAlertShow = true;
+  }
+  public closeEventAlert() {
+    document.body.className = '';
+    this.eventAlertShow = false;
+  }
+
   /************************右边***************************/
   // 业态经营数据前十排名
   public backCrosswiseBar() {
@@ -1007,6 +1033,16 @@ export class ServiceDataComponent implements OnInit {
     // this.router.navigate(['/home/serzone', {name: e.name, point: [116.39737, 39.935076]}]);
   }*/
 
+  // 服务区基本信息之信息详情
+  public openServiceBasicAlert(name) {
+    document.body.className = 'ui-overflow-hidden';
+    this.serviceBasicAlert = true;
+    this.serviceBasicAlertTitle = name;
+  }
+  public closeServiceBasicAlert() {
+    document.body.className = '';
+    this.serviceBasicAlert = false;
+  }
  // 服务区基本信息之园区平面图
  public openServicesPlan() {
    document.body.className = 'ui-overflow-hidden';
