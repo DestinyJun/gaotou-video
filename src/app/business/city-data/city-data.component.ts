@@ -11,7 +11,7 @@ import {CentermapService} from '../../common/services/centermap.service';
 import {DiagramService} from '../../common/services/diagram.service';
 import {Router} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
-import {ConfigModule} from '../../common/wenjun';
+import {ConfigModule, WenjunAlertService} from '../../common/wenjun';
 
 declare let BMap;
 declare let BMapLib;
@@ -159,7 +159,9 @@ export class CityDataComponent implements OnInit {
     private centerMapS: CentermapService,
     private diagrams: DiagramService,
     private dataService: DataService,
-    public router: Router
+    public router: Router,
+    private wenJunAlertService: WenjunAlertService
+
   ) {}
 
   ngOnInit() {
