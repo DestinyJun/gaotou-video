@@ -340,7 +340,7 @@ export class CityDataComponent implements OnInit {
     const that = this;
     document.body.className = 'ui-overflow-hidden';
     this.alertBarShow = true;
-    const yType = ['经营收入', '驻车量', '用电量', '用水量', '客流量'];
+    const yType = ['经营收入', '客流量', '车流量', '用水量', '用电量'];
     this.colorList = [
       '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
       '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'

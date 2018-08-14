@@ -38,7 +38,7 @@
          </div>
          <div class="servicesMap-center">
            <div class="video-top" >
-             <div *ngFor="let item of btnClass" style="margin-left: 15px">
+             <div *ngFor="let item of btnClass" style="margin-right: 10px">
                <button class="btn" [ngClass]="item" (click)="openPublicVideo($event)">监控点一号</button>
              </div>
            </div>
@@ -60,7 +60,7 @@
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
            </div>
            <div class="video-bottom">
-             <div *ngFor="let item of btnClass" style="margin-left: 15px">
+             <div *ngFor="let item of btnClass" style="margin-left: 10px">
                <button class="btn" [ngClass]="item" (click)="openPublicVideo($event)">监控点一号</button>
              </div>
            </div>
@@ -95,9 +95,15 @@
               </thead>
               <tbody class="table-body">
                 <tr class="table-tr" style="color: #00ECF1">
-                  <td>1分钟之前</td>
-                  <td>工程类</td>
-                  <td>一号水库水位低</td>
+                  <td>3分钟之前</td>
+                  <td>经营类</td>
+                  <td>妹妹小吃账户异常</td>
+                  <td style="color: #68E868">已处理</td>
+                </tr>
+                <tr class="table-tr" style="color: #00ECF1">
+                  <td>3分钟之前</td>
+                  <td>合同类</td>
+                  <td>合同距离到期时间还有5天</td>
                   <td style="color: #68E868">已处理</td>
                 </tr>
                 <tr class="table-tr" style="color: #00ECF1">
@@ -107,27 +113,21 @@
                   <td style="color: #68E868">已处理</td>
                 </tr>
                 <tr class="table-tr" style="color: #00ECF1">
-                  <td>5分钟之前</td>
-                  <td>卫生类</td>
-                  <td>乌江服务区卫生差</td>
+                  <td>3分钟之前</td>
+                  <td>经营类</td>
+                  <td>妹妹小吃账户异常</td>
                   <td style="color: #68E868">已处理</td>
                 </tr>
                 <tr class="table-tr" style="color: #00ECF1">
-                  <td>15分钟之前</td>
-                  <td>监控类</td>
-                  <td>一号门监控设备出问题</td>
+                  <td>3分钟之前</td>
+                  <td>经营类</td>
+                  <td>妹妹小吃账户异常</td>
                   <td style="color: #68E868">已处理</td>
                 </tr>
                 <tr class="table-tr" style="color: #00ECF1">
-                  <td>30分钟之前</td>
-                  <td>系统故障</td>
-                  <td>服务器异常</td>
-                  <td style="color: #68E868">已处理</td>
-                </tr>
-                <tr class="table-tr" style="color: #00ECF1">
-                  <td>40分钟之前</td>
-                  <td>其他</td>
-                  <td>出口位置轿车刮伤</td>
+                  <td>3分钟之前</td>
+                  <td>经营类</td>
+                  <td>妹妹小吃账户异常</td>
                   <td style="color: #68E868">已处理</td>
                 </tr>
               </tbody>
@@ -135,7 +135,7 @@
           </div>
         </div>
         <!--未处理-->
-        <div class="col-lg-5 col-md-5">
+        <div class="col-lg-4 col-md-4">
           <div class="table-title text-center">
             <span>服务区未处理事件</span>
             <span class="pull-right" style="cursor: pointer;color:#86FDFE;" (click)="openEventAlert()">查看更多...</span>
@@ -153,38 +153,38 @@
               <tbody class="table-body">
                 <tr class="table-tr" style="color: #E57D0D">
                   <td>1分钟之前</td>
-                  <td>工程类</td>
-                  <td>一号水库水位低</td>
-                  <td style="color:#CF5B56">未处理</td>
-                </tr>
-                <tr class="table-tr" style="color: #E57D0D">
-                  <td>3分钟之前</td>
                   <td>经营类</td>
-                  <td>妹妹小吃账户异常</td>
+                  <td>王姨妈米皮店</td>
                   <td style="color:#CF5B56">未处理</td>
                 </tr>
                 <tr class="table-tr" style="color: #E57D0D">
-                  <td>5分钟之前</td>
-                  <td>卫生类</td>
-                  <td>乌江服务区卫生差</td>
+                  <td>1分钟之前</td>
+                  <td>经营类</td>
+                  <td>王姨妈米皮店</td>
                   <td style="color:#CF5B56">未处理</td>
                 </tr>
                 <tr class="table-tr" style="color: #E57D0D">
-                  <td>15分钟之前</td>
-                  <td>监控类</td>
-                  <td>一号门监控设备出问题</td>
+                  <td>1分钟之前</td>
+                  <td>经营类</td>
+                  <td>王姨妈米皮店</td>
                   <td style="color:#CF5B56">未处理</td>
                 </tr>
                 <tr class="table-tr" style="color: #E57D0D">
-                  <td>30分钟之前</td>
-                  <td>系统故障</td>
-                  <td>服务器异常</td>
+                  <td>1分钟之前</td>
+                  <td>经营类</td>
+                  <td>王姨妈米皮店</td>
                   <td style="color:#CF5B56">未处理</td>
                 </tr>
                 <tr class="table-tr" style="color: #E57D0D">
-                  <td>40分钟之前</td>
-                  <td>其他</td>
-                  <td>出口位置轿车刮伤</td>
+                  <td>1分钟之前</td>
+                  <td>经营类</td>
+                  <td>王姨妈米皮店</td>
+                  <td style="color:#CF5B56">未处理</td>
+                </tr>
+                <tr class="table-tr" style="color: #E57D0D">
+                  <td>1分钟之前</td>
+                  <td>经营类</td>
+                  <td>王姨妈米皮店</td>
                   <td style="color:#CF5B56">未处理</td>
                 </tr>
               </tbody>
@@ -192,7 +192,7 @@
           </div>
         </div>
         <!--洗手间-->
-        <div class="col-lg-2 col-md-2" style="padding-left: 0">
+        <div class="col-lg-3 col-md-3" style="padding-left: 0">
           <div class="table-title text-center">
             <span>服务区卫生间信息</span>
           </div>
@@ -200,15 +200,35 @@
             <table class="table" cellspacing="5px">
               <thead class="table-header">
               <tr>
-                <td>男厕</td>
-                <td>女厕</td>
+                <td>时间</td>
+                <td>男厕/女厕</td>
               </tr>
               </thead>
-              <tbody class="table-body">
-              <tr class="table-tr" style="color: #01D1DB">
-                <td>50个</td>
-                <td>100个</td>
-              </tr>
+              <tbody class="table-body" (click)="openServersToiletAlert()">
+                <tr class="table-tr" style="color: #01D1DB">
+                  <td>08/14 10:51</td>
+                  <td>50个/100个</td>
+                </tr>
+                <tr class="table-tr" style="color: #01D1DB">
+                  <td>08/14 10:51</td>
+                  <td>50个/100个</td>
+                </tr>
+                <tr class="table-tr" style="color: #01D1DB">
+                  <td>08/14 10:51</td>
+                  <td>50个/100个</td>
+                </tr>
+                <tr class="table-tr" style="color: #01D1DB">
+                  <td>08/14 10:51</td>
+                  <td>50个/100个</td>
+                </tr>
+                <tr class="table-tr" style="color: #01D1DB">
+                  <td>08/14 10:51</td>
+                  <td>50个/100个</td>
+                </tr>
+                <tr class="table-tr" style="color: #01D1DB">
+                  <td>08/14 10:51</td>
+                  <td>50个/100个</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -976,42 +996,42 @@
               </tr>
               </thead>
               <tbody class="table-body">
-              <tr class="table-tr" style="color: #00ECF1">
-                <td>1分钟之前</td>
-                <td>工程类</td>
-                <td>一号水库水位低</td>
-                <td style="color: #68E868">已处理</td>
-              </tr>
-              <tr class="table-tr" style="color: #00ECF1">
-                <td>3分钟之前</td>
-                <td>经营类</td>
-                <td>妹妹小吃账户异常</td>
-                <td style="color: #68E868">已处理</td>
-              </tr>
-              <tr class="table-tr" style="color: #00ECF1">
-                <td>5分钟之前</td>
-                <td>卫生类</td>
-                <td>乌江服务区卫生差</td>
-                <td style="color: #68E868">已处理</td>
-              </tr>
-              <tr class="table-tr" style="color: #00ECF1">
-                <td>15分钟之前</td>
-                <td>监控类</td>
-                <td>一号门监控设备出问题</td>
-                <td style="color: #68E868">已处理</td>
-              </tr>
-              <tr class="table-tr" style="color: #00ECF1">
-                <td>30分钟之前</td>
-                <td>系统故障</td>
-                <td>服务器异常</td>
-                <td style="color: #68E868">已处理</td>
-              </tr>
-              <tr class="table-tr" style="color: #00ECF1">
-                <td>40分钟之前</td>
-                <td>其他</td>
-                <td>出口位置轿车刮伤</td>
-                <td style="color: #68E868">已处理</td>
-              </tr>
+                <tr class="table-tr" style="color: #00ECF1">
+                  <td>3分钟之前</td>
+                  <td>经营类</td>
+                  <td>妹妹小吃账户异常</td>
+                  <td style="color: #68E868">已处理</td>
+                </tr>
+                <tr class="table-tr" style="color: #00ECF1">
+                  <td>3分钟之前</td>
+                  <td>经营类</td>
+                  <td>妹妹小吃账户异常</td>
+                  <td style="color: #68E868">已处理</td>
+                </tr>
+                <tr class="table-tr" style="color: #00ECF1">
+                  <td>3分钟之前</td>
+                  <td>经营类</td>
+                  <td>妹妹小吃账户异常</td>
+                  <td style="color: #68E868">已处理</td>
+                </tr>
+                <tr class="table-tr" style="color: #00ECF1">
+                  <td>3分钟之前</td>
+                  <td>经营类</td>
+                  <td>妹妹小吃账户异常</td>
+                  <td style="color: #68E868">已处理</td>
+                </tr>
+                <tr class="table-tr" style="color: #00ECF1">
+                  <td>3分钟之前</td>
+                  <td>经营类</td>
+                  <td>妹妹小吃账户异常</td>
+                  <td style="color: #68E868">已处理</td>
+                </tr>
+                <tr class="table-tr" style="color: #00ECF1">
+                  <td>3分钟之前</td>
+                  <td>经营类</td>
+                  <td>妹妹小吃账户异常</td>
+                  <td style="color: #68E868">已处理</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -1031,45 +1051,67 @@
               </tr>
               </thead>
               <tbody class="table-body">
-              <tr class="table-tr" style="color: #E57D0D">
-                <td>1分钟之前</td>
-                <td>工程类</td>
-                <td>一号水库水位低</td>
-                <td style="color:#CF5B56">未处理</td>
-              </tr>
-              <tr class="table-tr" style="color: #E57D0D">
-                <td>3分钟之前</td>
-                <td>经营类</td>
-                <td>妹妹小吃账户异常</td>
-                <td style="color:#CF5B56">未处理</td>
-              </tr>
-              <tr class="table-tr" style="color: #E57D0D">
-                <td>5分钟之前</td>
-                <td>卫生类</td>
-                <td>乌江服务区卫生差</td>
-                <td style="color:#CF5B56">未处理</td>
-              </tr>
-              <tr class="table-tr" style="color: #E57D0D">
-                <td>15分钟之前</td>
-                <td>监控类</td>
-                <td>一号门监控设备出问题</td>
-                <td style="color:#CF5B56">未处理</td>
-              </tr>
-              <tr class="table-tr" style="color: #E57D0D">
-                <td>30分钟之前</td>
-                <td>系统故障</td>
-                <td>服务器异常</td>
-                <td style="color:#CF5B56">未处理</td>
-              </tr>
-              <tr class="table-tr" style="color: #E57D0D">
-                <td>40分钟之前</td>
-                <td>其他</td>
-                <td>出口位置轿车刮伤</td>
-                <td style="color:#CF5B56">未处理</td>
-              </tr>
+                <tr class="table-tr" style="color: #E57D0D">
+                  <td>1分钟之前</td>
+                  <td>经营类</td>
+                  <td>王姨妈米皮店</td>
+                  <td style="color:#CF5B56">未处理</td>
+                </tr>
+                <tr class="table-tr" style="color: #E57D0D">
+                  <td>1分钟之前</td>
+                  <td>经营类</td>
+                  <td>王姨妈米皮店</td>
+                  <td style="color:#CF5B56">未处理</td>
+                </tr>
+                <tr class="table-tr" style="color: #E57D0D">
+                  <td>1分钟之前</td>
+                  <td>经营类</td>
+                  <td>王姨妈米皮店</td>
+                  <td style="color:#CF5B56">未处理</td>
+                </tr>
+                <tr class="table-tr" style="color: #E57D0D">
+                  <td>1分钟之前</td>
+                  <td>经营类</td>
+                  <td>王姨妈米皮店</td>
+                  <td style="color:#CF5B56">未处理</td>
+                </tr>
+                <tr class="table-tr" style="color: #E57D0D">
+                  <td>1分钟之前</td>
+                  <td>经营类</td>
+                  <td>王姨妈米皮店</td>
+                  <td style="color:#CF5B56">未处理</td>
+                </tr>
+                <tr class="table-tr" style="color: #E57D0D">
+                  <td>1分钟之前</td>
+                  <td>经营类</td>
+                  <td>王姨妈米皮店</td>
+                  <td style="color:#CF5B56">未处理</td>
+                </tr>
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--服务洗手间信息监控-->
+<div class="bg-box" *ngIf="serversToiletAlertShow">
+  <div class="alert-window" [ngStyle] = "{'background': 'rgba(10,10,72,0.7)'}">
+    <div class="alert-window-header">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <span>服务区洗手间信息监控</span>
+          <div class="pull-right" (click)="closeServersToiletAlert()">
+            <i class="fa fa-window-close " aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-window-content">
+      <div class="row">
+        <div class="col-ld-12 col-md-12">
+          <h1 class="text-center">待开发中......</h1>
         </div>
       </div>
     </div>

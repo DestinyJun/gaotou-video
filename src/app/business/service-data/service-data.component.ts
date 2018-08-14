@@ -85,6 +85,8 @@ export class ServiceDataComponent implements OnInit {
   // 事件弹窗
   public eventAlertShow = false;
   public eventAlertTitle: string;
+  // 服务区厕所监控
+  public serversToiletAlertShow = false;
 
   /***********************右边************************/
   // 业态经营数据前十排名
@@ -326,7 +328,7 @@ export class ServiceDataComponent implements OnInit {
     const that = this;
     this.alertBarShow = true;
     document.body.className = 'ui-overflow-hidden';
-    const yType = ['经营收入', '驻车量', '用电量', '用水量', '客流量'];
+    const yType = ['经营收入', '客流量', '车流量', '用水量', '用电量'];
     this.colorList = [
       '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
       '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
@@ -816,6 +818,15 @@ export class ServiceDataComponent implements OnInit {
   public closeEventAlert() {
     document.body.className = '';
     this.eventAlertShow = false;
+  }
+  // 厕所弹窗
+  public openServersToiletAlert() {
+    document.body.className = 'ui-overflow-hidden';
+    this.serversToiletAlertShow = true;
+  }
+  public closeServersToiletAlert() {
+    document.body.className = '';
+    this.serversToiletAlertShow = false;
   }
 
   /************************右边***************************/
