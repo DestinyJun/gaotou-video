@@ -109,7 +109,7 @@
   white-space: nowrap;
 }
 .main-content .servicesMap .servicesMap-center{
-  height: 33vh;
+  height: 30vh;
 }
 .main-content .servicesMap-center .video-top{
   padding-top: 5px;
@@ -612,8 +612,17 @@
 .pagination > li > a > input{
   width: 5vw;
 }
+.form-horizontal{
+  margin-top: 15px;
+}
+.form-horizontal .form-control{
+  background: rgba(255,255,255,0.11);
+  border: none;
+  color: white;
+}
 
 /*hover伪类*/
 .hovers:hover{
   cursor: pointer;
 }
+

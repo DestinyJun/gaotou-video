@@ -339,13 +339,13 @@
     </div>
   </div>
 </div>
-<!--服务区数据排名类型弹窗-->
+<!--服务器信息修改弹窗-->
 <div class="bg-box" *ngIf="alertCrosswiseShow">
   <div class="alert-window">
     <div class="alert-window-header">
       <div class="row">
         <div class="col-lg-12 col-md-12">
-          <span>{{serviceZoneTitle}}</span>
+          <span>服务区信息修改</span>
           <div class="pull-right" (click)="closeCrosswiseShow()">
             <i class="fa fa-window-close " aria-hidden="true"></i>
           </div>
@@ -355,16 +355,91 @@
     <div class="alert-window-content">
       <div class="row">
         <div class="col-ld-12 col-md-12">
-          <div class="alert-window-content-table">
-            <div class="toggle-btn" (click)="crosswiseBtnClick($event)">
-              <button class="btn btn-info" [ngStyle]="{'background':crosswiseBarDate === '当日'?'black': '','margin-left': '10px'}">当日</button>
-              <button class="btn btn-danger" [ngStyle]="{'background':crosswiseBarDate === '月度'?'black': ''}">月度</button>
-              <button class="btn btn-primary" [ngStyle]="{'background':crosswiseBarDate === '年度'?'black': ''}">年度</button>
-              <div class="toggle-btn-area pull-right" style="">
-                <button class="btn btn-warning" (click)="openCrosswiseExcel()">表格导出</button>
+          <div class="form-horizontal">
+            <div class="form-group">
+              <label for="name" class="col-sm-1 control-label" disabled="">始建时间</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="name" name="name" [value]="userInfo.name" [disabled]="btnProfileTxt">
+              </div>
+              <label for="duty" class="col-sm-1 control-label">占地面积</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="duty" name="duty" [value]="userInfo.duty" [disabled]="btnProfileTxt">
               </div>
             </div>
-            <div class="alert-3D-bar-bar" echarts [options]="crosswiseBar"></div>
+            <div class="form-group">
+              <label for="phone" class="col-sm-1 control-label">运营时间</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="phone" name="remark" [value]="userInfo.phone" [disabled]="btnProfileTxt">
+              </div>
+              <label for="email" class="col-sm-1 control-label">保洁人员</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="email" name="remark" [value]="userInfo.email" [disabled]="btnProfileTxt">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="adress" class="col-sm-1 control-label" >保安人员</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="adress" name="remark" [value]="userInfo.address" [disabled]="btnProfileTxt">
+              </div>
+              <label for="remark" class="col-sm-1 control-label">大车车位</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="remark" name="remark" [value]="userInfo.remark" [disabled]="btnProfileTxt">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="adress" class="col-sm-1 control-label" >小车车位</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="adress" name="remark" [value]="userInfo.address" [disabled]="btnProfileTxt">
+              </div>
+              <label for="remark" class="col-sm-1 control-label">客车车位</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="remark" name="remark" [value]="userInfo.remark" [disabled]="btnProfileTxt">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="adress" class="col-sm-1 control-label" >供电账户</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="adress" name="remark" [value]="userInfo.address" [disabled]="btnProfileTxt">
+              </div>
+              <label for="remark" class="col-sm-1 control-label">上次交电费时间</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="remark" name="remark" [value]="userInfo.remark" [disabled]="btnProfileTxt">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="adress" class="col-sm-1 control-label" >用水量</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="adress" name="remark" [value]="userInfo.address" [disabled]="btnProfileTxt">
+              </div>
+              <label for="remark" class="col-sm-1 control-label">上次交水费时间</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="remark" name="remark" [value]="userInfo.remark" [disabled]="btnProfileTxt">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="adress" class="col-sm-1 control-label" >服务区管理人</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="adress" name="remark" [value]="userInfo.address" [disabled]="btnProfileTxt">
+              </div>
+              <label for="remark" class="col-sm-1 control-label">管理人电话</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="remark" name="remark" [value]="userInfo.remark" [disabled]="btnProfileTxt">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="adress" class="col-sm-1 control-label" >合同签订时间</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="adress" name="remark" [value]="userInfo.address" [disabled]="btnProfileTxt">
+              </div>
+              <label for="remark" class="col-sm-1 control-label">合同签上传</label>
+              <div class="col-sm-5">
+                <input type="file" class="form-control" id="remark" name="remark" [value]="userInfo.remark" [disabled]="btnProfileTxt">
+              </div>
+            </div>
+            <div class="form-group text-center style-border">
+              <button class="btn btn-primary" type="button">确认修改</button>
+              <button class="btn btn-danger" type="button">取消修改</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1001,7 +1076,7 @@
   </div>
 </div>
 <!--服务器详情弹窗-->
-<div class="bg-box" *ngIf="serviceBasicAlert" >
+<!--<div class="bg-box" *ngIf="serviceBasicAlert" >
   <div class="alert-window" style="height:80vh; margin-top: -40vh;">
     <div class="alert-window-header" >
       <div class="row">
@@ -1128,7 +1203,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
 
 

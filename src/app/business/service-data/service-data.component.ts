@@ -809,7 +809,7 @@ export class ServiceDataComponent implements OnInit {
   }
 
   // 事件弹窗
-  public openEventAlert(e) {
+  public openEventAlert() {
     document.body.className = 'ui-overflow-hidden';
     this.eventAlertShow = true;
   }
