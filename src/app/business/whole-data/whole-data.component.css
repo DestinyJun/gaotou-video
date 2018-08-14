@@ -8,13 +8,13 @@
 /****************************主体左边****************************/
 /*3D柱状图*/
 .main .accumulation3d{
-  height: 45vh;
+  height: 44vh;
   border:1px solid #3B425C;
   margin-bottom: 1vh;
   margin-right: -8px;
 }
 .main .accumulation{
-  height: 45vh;
+  height: 44vh;
   border:1px solid #3B425C;
   margin-right: -8px;
 }
@@ -82,19 +82,19 @@
 .main .top-map{
   border:1px solid #3B425C;
   /*margin-bottom: 1vh;*/
-  height: 86vh;
+  height: 84vh;
 }
 
 /*横向柱状图 右部分*/
 .main .crosswise-bar{
-  height: 45vh;
+  height: 44vh;
   border:1px solid #3B425C;
   margin-bottom: 1vh;
   margin-left: -8px;
 }
 .main .today-income {
   /*margin-bottom: 1vh;*/
-  height: 45vh;
+  height: 44vh;
   border:1px solid #3B425C;
   margin-left: -8px;
 }
