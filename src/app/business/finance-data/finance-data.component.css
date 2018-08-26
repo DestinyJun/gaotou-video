@@ -130,12 +130,24 @@
 /*事件监控列表*/
 .main-top .event-table{
   padding-top: 1px;
-  height: 32vh;
-  border:1px solid #3B425C;
+  min-height: 32vh;
   overflow: hidden;
+  border:1px solid #3B425C;
   margin-left: -8px;
   margin-right: -8px;
   font-size: 12px;
+}
+.main-top .event-table .event-table-events{
+  padding-right: 0;
+  padding-left: 0;
+}
+.main-top .event-table .event-table-office{
+ /* padding-right: 0;
+  padding-left: 0;*/
+}
+.main-top .event-table .event-table-person{
+  padding-right: 0;
+  padding-left: 0;
 }
 .main-top .event-table tr{
   cursor: pointer;
@@ -514,6 +526,21 @@
 }
 
 @media (max-width: 993px) {
+  .main-top .event-table{
+
+  }
+  .main-top .event-table .event-table-events{
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .main-top .event-table .event-table-office{
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .main-top .event-table .event-table-person{
+    padding-right: 0;
+    padding-left: 0;
+  }
   .main-top .accumulation3d,.main-top .accumulation{
     display: none;
   }

@@ -164,13 +164,26 @@
 /*事件监控列表*/
 .main-content .event-table{
   padding-top: 1px;
-  height: 32vh;
+  min-height: 32vh;
   border:1px solid #3B425C;
   overflow: hidden;
   margin-left: -8px;
   margin-right: -8px;
   font-size: 12px;
 }
+.main-content  .event-table .event-processed-table{
+  padding-right: 0;
+  padding-left: 0;
+}
+.main-content .event-table .event-untreated-table{
+  /* padding-right: 0;
+   padding-left: 0;*/
+}
+.main-content  .event-table .event-else-table{
+  padding-right: 0;
+  padding-left: 0;
+}
+
 .main-content .event-table tr{
   cursor: pointer;
 
@@ -344,8 +357,9 @@
 }
 .bar3D-charts>.toggle-btn-area{
   position: absolute;
-  right: 10px;
   top: 6vh;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .alert-3D-bar-bar{
   height: 55vh;
@@ -501,8 +515,8 @@
   display: inline-block;
   width: 100%;
   height: 75vh;
-  background-image: url(http://120.78.138.104/images/gaotou/%E6%9C%8D%E5%8A%A1%E5%8C%BA%E9%B8%9F%E7%9E%B0%E5%9B%BE.jpg);
-  background-repeat: no-repeat;
+  /*background-image: url(http://120.78.138.104/images/gaotou/%E6%9C%8D%E5%8A%A1%E5%8C%BA%E9%B8%9F%E7%9E%B0%E5%9B%BE.jpg);*/
+  event-tablebackground-repeat: no-repeat;
   -webkit-background-size: 100%;
   background-size: 100%;
   background-position: center center;
@@ -633,6 +647,10 @@
     margin-left: -15px;
     margin-right: -15px;
   }
+  .main-content .event-table .event-untreated-table{
+    padding-right: 0;
+    padding-left: 0;
+  }
   .main-content .accumulation3d, .main-content .accumulation,.main-content .crosswise,.main-content .today-income{
     display: none;
   }
@@ -645,6 +663,7 @@
     min-height: 16vh;
     margin-left: -15px;
     margin-right: -15px;
+    margin-bottom: 7vh;
   }
   .main-content .event-table{
     margin-left: -15px;

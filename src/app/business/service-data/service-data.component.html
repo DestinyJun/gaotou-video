@@ -1,5 +1,4 @@
 <!--主内容-->
-<div class="main">
   <div class="main-header">
     <span>{{serviceZoneTitle}}</span>
     <div class="pull-right text-center" (click)="goBack()">
@@ -78,10 +77,10 @@
       <!--事件监控-->
       <div class="event-table">
         <!--已处理-->
-        <div class="col-lg-5 col-md-5" style="padding-right: 0">
+        <div class="col-lg-5 col-md-5 event-processed-table">
           <div class="table-title text-center">
             <span>服务区已处理事件</span>
-            <span class="pull-right" style="cursor: pointer;color:#86FDFE;" (click)="openEventAlert()">查看更多...</span>
+            <span class="pull-right" style="cursor: pointer;color:#86FDFE; position: absolute;right: 5px;" (click)="openEventAlert()">查看更多...</span>
           </div>
           <div class="table-responsive">
             <table class="table" cellspacing="5px">
@@ -135,10 +134,10 @@
           </div>
         </div>
         <!--未处理-->
-        <div class="col-lg-4 col-md-4">
+        <div class="col-lg-4 col-md-4 event-untreated-table">
           <div class="table-title text-center">
             <span>服务区未处理事件</span>
-            <span class="pull-right" style="cursor: pointer;color:#86FDFE;" (click)="openEventAlert()">查看更多...</span>
+            <span class="pull-right" style="cursor: pointer;color:#86FDFE;position: absolute;right: 5px;" (click)="openEventAlert()">查看更多...</span>
           </div>
           <div class="table-responsive">
             <table class="table" cellspacing="5px">
@@ -192,7 +191,7 @@
           </div>
         </div>
         <!--洗手间-->
-        <div class="col-lg-3 col-md-3" style="padding-left: 0">
+        <div class="col-lg-3 col-md-3 event-else-table">
           <div class="table-title text-center">
             <span>服务区卫生间信息</span>
           </div>
@@ -291,8 +290,6 @@
        <div class="today-income" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
     </div>
   </div>
-</div>
-
 <!--*************************弹窗部分**************************-->
 <!--3D柱状图弹窗-->
 <div class="bg-box" *ngIf="alertBarShow">
@@ -304,11 +301,16 @@
       </div>
     </div>
     <div class="row bar3D-charts">
-      <div class="col-ld-12 col-md-12">
+      <div class="col-ld-6 col-md-6">
         <div class="alert-3D-bar-bar" echarts [options]="options3dBar" (chartInit)="options3dBarInit($event)" (chartClick)="options3dBarClick($event)"></div>
       </div>
-      <div class="toggle-btn-area" style="">
+      <div class="col-ld-6 col-md-6">
+        <div class="alert-3D-bar-bar" echarts [options]="options3dLine" (chartInit)="options3dBarInit($event)" (chartClick)="options3dBarClick($event)"></div>
+      </div>
+      <div class="toggle-btn-area">
         <button class="btn btn-success" (click)="open3dBarExcel()">表格导出</button>
+        <label for="date"></label>
+        <input type="date" id="date" name="date" style="color: white;background: transparent;height: 30px;border: 1px solid #2DE4E5;">
       </div>
      <!-- <div class="col-ld-6 col-md-6">
         <div class="alert-3D-bar-pie" echarts [options]="options3dPie" (chartInit)="options3dPieInit($event)" ></div>
@@ -945,7 +947,7 @@
     <div class="alert-window-content">
       <div class="row">
         <div class="col-ld-12 col-md-12 text-center">
-          <div class="services-plan" [ngStyle]="">
+          <!--<div class="services-plan" [ngStyle]="">
             <div class="services-plan-left pull-left">
               <div class="service-date-info-top">
                 <h5 class="text-center">服务区收入</h5>
@@ -960,7 +962,8 @@
               <div class="service-date-info-bottom"></div>
               <div class="service-date-info-bottom"></div>
             </div>
-          </div>
+          </div>-->
+          <div class="services-plan" echarts [options]="servicesMap"></div>
         </div>
       </div>
     </div>

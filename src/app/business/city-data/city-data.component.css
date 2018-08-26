@@ -131,12 +131,24 @@
 /*事件监控列表*/
 .main-top .event-table{
   padding-top: 1px;
-  height: 32vh;
+  min-height: 32vh;
   border:1px solid #3B425C;
   overflow: hidden;
   margin-left: -8px;
   margin-right: -8px;
   font-size: 12px;
+}
+.main-top .event-table .event-table-events{
+  padding-right: 0;
+  padding-left: 0;
+}
+.main-top .event-table .event-table-office{
+  /* padding-right: 0;
+   padding-left: 0;*/
+}
+.main-top .event-table .event-table-person{
+  padding-right: 0;
+  padding-left: 0;
 }
 .main-top .event-table tr{
   cursor: pointer;
@@ -553,4 +565,60 @@
     min-height: 16vh;;
   }
 }
+@media (max-width: 993px) {
+  .main-top .event-table{
 
+  }
+  .main-top .event-table .event-table-events{
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .main-top .event-table .event-table-office{
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .main-top .event-table .event-table-person{
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .main-top .accumulation3d,.main-top .accumulation{
+    display: none;
+  }
+  .main-top .crosswise,.main-top .today-income{
+    display: none;
+  }
+  .main-top .vehicle,.main-top .accumulation{
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .main-top .event-table{
+    min-height: 32vh;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .main-top .map{
+    margin-top: 1vh;
+  }
+  .main-top .map{
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .main-top .income{
+    margin-top: 1vh;
+  }
+  .main-top .income,.main-top .today-income{
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .main-top .today-income{
+    margin-bottom: 7vh;
+    min-height: 28vh;
+  }
+  .main-top .income{
+    margin-bottom: 7vh;
+    min-height: 16vh;
+  }
+  .main-top .vehicle{
+    min-height: 16vh;;
+  }
+}

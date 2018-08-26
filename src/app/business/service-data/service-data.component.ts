@@ -51,6 +51,7 @@ export class ServiceDataComponent implements OnInit {
   public options3dBar = {};
   public options3dBarInstance: any;
   public options3dPie = {};
+  public options3dLine = {};
   public options3dPieInstance: any;
   public colorList = [
     '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
@@ -110,6 +111,7 @@ export class ServiceDataComponent implements OnInit {
 
   // 服务区基本信息之园区平面图
   public servicesPlan = false;
+  public servicesMap = {};
 
   // 实时收入
   public incomeAmount = [];
@@ -472,6 +474,67 @@ export class ServiceDataComponent implements OnInit {
         }
       ]
     };
+
+    // 折线图
+    const xAxisData = ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'];
+    const legendData = ['经营收入', '客流量', '车流量', '用水量', '用电量'];
+    const title = '服务区业态数据变化';
+    const serieData = [];
+    const metaDate = [
+      [120, 140, 100, 120, 300, 230, 130, 170, 140, 120, 300, 230],
+      [200, 120, 300, 200, 170, 300, 200, 180, 200, 190, 300, 200],
+      [100, 200, 140, 300, 200, 180, 100, 300, 230, 130, 100, 300],
+      [152, 418, 89, 156, 200, 180, 100, 300, 230, 130, 145, 300],
+      [56, 223, 140, 300, 200, 180, 283, 300, 230, 148, 100, 300]
+
+
+    ];
+    for (let v = 0; v < legendData.length; v++) {
+      const serie = {
+        name: legendData[v],
+        type: 'line',
+        symbol: 'circle',
+        symbolSize: 10,
+        data: metaDate[v]
+      };
+      serieData.push(serie);
+    }
+    const colors = ['#036BC8', '#4A95FF', '#5EBEFC', '#2EF7F3', '#FFFFFF'];
+    this.options3dLine = {
+      title: {
+        text: title,
+        x: 'center',
+        textStyle: {
+          color: '#fff',
+          fontSize: 16
+        }
+          },
+      legend: {
+        show: true, left: 'right', data: legendData, y: '5%',
+        itemWidth: 18, itemHeight: 12, textStyle: {color: '#fff', fontSize: 14},
+      },
+      color: colors,
+      grid: {left: '2%', top: '12%', bottom: '5%', right: '5%', containLabel: true},
+      tooltip: {trigger: 'axis', axisPointer: {type: 'shadow'}},
+      xAxis: [
+        {
+          type: 'category',
+          axisLine: {show: true, lineStyle: {color: '#6173A3'}},
+          axisLabel: {interval: 'auto', textStyle: {color: '#fff', fontSize: 14}},
+          axisTick: {show: false},
+          data: xAxisData,
+        },
+      ],
+      yAxis: [
+        {
+          axisTick: {show: false},
+          splitLine: {show: false},
+          axisLabel: {textStyle: {color: '#9ea7c4', fontSize: 14}},
+          axisLine: {show: true, lineStyle: {color: '#6173A3'}},
+        },
+      ],
+      series: serieData
+    };
   }
   public closeBarShow() {
     this.alertBarShow = false;
@@ -495,7 +558,8 @@ export class ServiceDataComponent implements OnInit {
     this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
       this.arryPie.push({value: val, name: this.business[index]});
     });
-    console.log(this.arryPie);
+
+
     this.options3dPie = {
       title: {
         text: `${this.serviceZoneTitle}年度${e.name}类型占比统计`,
@@ -1058,6 +1122,167 @@ export class ServiceDataComponent implements OnInit {
  public openServicesPlan() {
    document.body.className = 'ui-overflow-hidden';
    this.servicesPlan = true;
+   this.servicesMap = {
+     legend: {
+       orient: 'vertical',
+       y: 'bottom',
+       x: 'right',
+       data: ['pm2.5'],
+       textStyle: {
+         color: '#fff'
+       }
+     },
+     bmap: {
+       center: [106.70604, 26.901521],
+       zoom: 20,
+       roam: true,
+       mapStyle: {
+         'styleJson': [
+           {
+             "featureType": "water",
+             "elementType": "all",
+             "stylers": {
+               "color": "#021019"
+             }
+           },
+           {
+             "featureType": "highway",
+             "elementType": "geometry.fill",
+             "stylers": {
+               "color": "#000000"
+             }
+           },
+           {
+             "featureType": "highway",
+             "elementType": "geometry.stroke",
+             "stylers": {
+               "color": "#147a92"
+             }
+           },
+           {
+             "featureType": "arterial",
+             "elementType": "geometry.fill",
+             "stylers": {
+               "color": "#000000"
+             }
+           },
+           {
+             "featureType": "arterial",
+             "elementType": "geometry.stroke",
+             "stylers": {
+               "color": "#0b3d51"
+             }
+           },
+           {
+             "featureType": "local",
+             "elementType": "geometry",
+             "stylers": {
+               "color": "#000000"
+             }
+           },
+           {
+             "featureType": "land",
+             "elementType": "all",
+             "stylers": {
+               "color": "#08304b"
+             }
+           },
+           {
+             "featureType": "railway",
+             "elementType": "geometry.fill",
+             "stylers": {
+               "color": "#000000"
+             }
+           },
+           {
+             "featureType": "railway",
+             "elementType": "geometry.stroke",
+             "stylers": {
+               "color": "#08304b"
+             }
+           },
+           {
+             "featureType": "subway",
+             "elementType": "geometry",
+             "stylers": {
+               "lightness": -70
+             }
+           },
+           {
+             "featureType": "building",
+             "elementType": "geometry.fill",
+             "stylers": {
+               "color": "#000000"
+             }
+           },
+           {
+             "featureType": "all",
+             "elementType": "labels.text.fill",
+             "stylers": {
+               "color": "#857f7f"
+             }
+           },
+           {
+             "featureType": "all",
+             "elementType": "labels.text.stroke",
+             "stylers": {
+               "color": "#000000"
+             }
+           },
+           {
+             "featureType": "building",
+             "elementType": "geometry",
+             "stylers": {
+               "color": "#022338"
+             }
+           },
+           {
+             "featureType": "green",
+             "elementType": "geometry",
+             "stylers": {
+               "color": "#062032"
+             }
+           },
+           {
+             "featureType": "boundary",
+             "elementType": "all",
+             "stylers": {
+               "color": "#1e1c1c"
+             }
+           },
+           {
+             "featureType": "manmade",
+             "elementType": "geometry",
+             "stylers": {
+               "color": "#022338"
+             }
+           },
+           {
+             "featureType": "poi",
+             "elementType": "all",
+             "stylers": {
+               "visibility": "off"
+             }
+           },
+           {
+             "featureType": "all",
+             "elementType": "labels.icon",
+             "stylers": {
+               "visibility": "off"
+             }
+           },
+           {
+             "featureType": "all",
+             "elementType": "labels.text.fill",
+             "stylers": {
+               "color": "#2da0c6",
+               "visibility": "on"
+             }
+           }
+         ]
+       }
+     },
+   };
  }
  public closeServicesPlan() {
    document.body.className = '';
