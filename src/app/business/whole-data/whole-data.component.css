@@ -338,19 +338,24 @@ table tr td{
 }
 @media (max-width: 993px) {
   .main .accumulation3d{
-    margin-right: 0;
+    margin-right: -15px;
+    margin-left: -15px;
   }
   .main .accumulation{
-    margin-right: 0;
+    margin-right: -15px;
+    margin-left: -15px;
   }
   .main .map {
-    margin-left: 0;
-    margin-right: 0;
+    margin-right: -15px;
+    margin-left: -15px;
   }
   .main .crosswise-bar{
-    margin-left: 0;
+    margin-right: -15px;
+    margin-left: -15px;
   }
   .main .today-income {
-    margin-left: 0;
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-bottom: 7vh;
   }
 }

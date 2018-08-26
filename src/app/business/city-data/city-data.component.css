@@ -511,4 +511,46 @@
 .pagination > li > a > input{
   width: 5vw;
 }
+@media (max-width: 993px) {
+  .main-top .accumulation3d,.main-top .accumulation{
+    display: none;
+  }
+  .main-top .crosswise,.main-top .today-income{
+    display: none;
+  }
+  .main-top .vehicle,.main-top .accumulation{
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .main-top .event-table{
+    min-height: 32vh;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .main-top .map{
+    margin-top: 1vh;
+  }
+  .main-top .map{
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .main-top .income{
+    margin-top: 1vh;
+  }
+  .main-top .income,.main-top .today-income{
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .main-top .today-income{
+    margin-bottom: 7vh;
+    min-height: 28vh;
+  }
+  .main-top .income{
+    margin-bottom: 7vh;
+    min-height: 16vh;
+  }
+  .main-top .vehicle{
+    min-height: 16vh;;
+  }
+}
 

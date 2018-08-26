@@ -32,4 +32,8 @@
 .active{
   color: orangered
 }
-
+@media (max-width: 993px) {
+  .nav{
+    display: none;
+  }
+}
