@@ -336,3 +336,21 @@ table tr td{
 .custombar1 .ui-scrollpanel-bar:hover {
   background-color: #135ba1;
 }
+@media (max-width: 993px) {
+  .main .accumulation3d{
+    margin-right: 0;
+  }
+  .main .accumulation{
+    margin-right: 0;
+  }
+  .main .map {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .main .crosswise-bar{
+    margin-left: 0;
+  }
+  .main .today-income {
+    margin-left: 0;
+  }
+}

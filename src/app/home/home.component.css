@@ -22,7 +22,7 @@
   display: inline-block;
   height: 6vh;
   line-height: 6vh;
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-left: 36px;
 }
 .header-title-h4 span{
@@ -94,4 +94,22 @@
   padding-top: 1vh;
   position: relative;
 }
+@media (max-width: 993px) {
+  .header-title-h4{
+    font-size: 1.5rem;
+  }
+  .header-per-title{
+    display: none;
+  }
+  .header .header-person{
+    display: none;
+  }
+  .header-per-unit{
+    display: none;
+  }
+  .header-manner{
+    display: none;
+  }
+}
+
 

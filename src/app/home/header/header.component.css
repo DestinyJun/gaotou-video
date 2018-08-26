@@ -54,3 +54,8 @@
 .header-manner i:hover{
   cursor: pointer;
 }
+@media (max-width: 993px) {
+  .header-title-h4{
+    font-size: 1rem;
+  }
+}
