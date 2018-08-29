@@ -171,14 +171,15 @@
   margin-right: -8px;
   font-size: 12px;
 }
-.main-content  .event-table .event-processed-table{
-  padding-right: 0;
-  padding-left: 0;
-}
 .main-content .event-table .event-untreated-table{
-  /* padding-right: 0;
-   padding-left: 0;*/
+   padding-right: 0;
+   padding-left: 0;
 }
+.main-content  .event-table .event-processed-table{
+  /*padding-right: 0;
+  padding-left: 0;*/
+}
+
 .main-content  .event-table .event-else-table{
   padding-right: 0;
   padding-left: 0;

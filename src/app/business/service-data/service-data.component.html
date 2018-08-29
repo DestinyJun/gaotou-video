@@ -76,65 +76,8 @@
        </div>
       <!--事件监控-->
       <div class="event-table">
-        <!--已处理-->
-        <div class="col-lg-5 col-md-5 event-processed-table">
-          <div class="table-title text-center">
-            <span>服务区已处理事件</span>
-            <span class="pull-right" style="cursor: pointer;color:#86FDFE; position: absolute;right: 5px;" (click)="openEventAlert()">查看更多...</span>
-          </div>
-          <div class="table-responsive">
-            <table class="table" cellspacing="5px">
-              <thead class="table-header">
-                <tr>
-                  <td>时间</td>
-                  <td>事件类型</td>
-                  <td>事件描述</td>
-                  <td>状态</td>
-                </tr>
-              </thead>
-              <tbody class="table-body">
-                <tr class="table-tr" style="color: #00ECF1">
-                  <td>3分钟之前</td>
-                  <td>经营类</td>
-                  <td>妹妹小吃账户异常</td>
-                  <td style="color: #68E868">已处理</td>
-                </tr>
-                <tr class="table-tr" style="color: #00ECF1">
-                  <td>3分钟之前</td>
-                  <td>合同类</td>
-                  <td>合同距离到期时间还有5天</td>
-                  <td style="color: #68E868">已处理</td>
-                </tr>
-                <tr class="table-tr" style="color: #00ECF1">
-                  <td>3分钟之前</td>
-                  <td>经营类</td>
-                  <td>妹妹小吃账户异常</td>
-                  <td style="color: #68E868">已处理</td>
-                </tr>
-                <tr class="table-tr" style="color: #00ECF1">
-                  <td>3分钟之前</td>
-                  <td>经营类</td>
-                  <td>妹妹小吃账户异常</td>
-                  <td style="color: #68E868">已处理</td>
-                </tr>
-                <tr class="table-tr" style="color: #00ECF1">
-                  <td>3分钟之前</td>
-                  <td>经营类</td>
-                  <td>妹妹小吃账户异常</td>
-                  <td style="color: #68E868">已处理</td>
-                </tr>
-                <tr class="table-tr" style="color: #00ECF1">
-                  <td>3分钟之前</td>
-                  <td>经营类</td>
-                  <td>妹妹小吃账户异常</td>
-                  <td style="color: #68E868">已处理</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
         <!--未处理-->
-        <div class="col-lg-4 col-md-4 event-untreated-table">
+        <div class="col-lg-5 col-md-5 event-untreated-table">
           <div class="table-title text-center">
             <span>服务区未处理事件</span>
             <span class="pull-right" style="cursor: pointer;color:#86FDFE;position: absolute;right: 5px;" (click)="openEventAlert()">查看更多...</span>
@@ -142,49 +85,99 @@
           <div class="table-responsive">
             <table class="table" cellspacing="5px">
               <thead class="table-header">
+              <tr>
+                <td>时间</td>
+                <td>事件类型</td>
+                <td>事件描述</td>
+                <td>状态</td>
+              </tr>
+              </thead>
+              <tbody class="table-body">
+              <tr class="table-tr" style="color: #E57D0D">
+                <td>1分钟之前</td>
+                <td>经营类</td>
+                <td>王姨妈米皮店</td>
+                <td style="color:#CF5B56">未处理</td>
+              </tr>
+              <tr class="table-tr" style="color: #E57D0D">
+                <td>1分钟之前</td>
+                <td>经营类</td>
+                <td>王姨妈米皮店</td>
+                <td style="color:#CF5B56">未处理</td>
+              </tr>
+              <tr class="table-tr" style="color: #E57D0D">
+                <td>1分钟之前</td>
+                <td>经营类</td>
+                <td>王姨妈米皮店</td>
+                <td style="color:#CF5B56">未处理</td>
+              </tr>
+              <tr class="table-tr" style="color: #E57D0D">
+                <td>1分钟之前</td>
+                <td>经营类</td>
+                <td>王姨妈米皮店</td>
+                <td style="color:#CF5B56">未处理</td>
+              </tr>
+              <tr class="table-tr" style="color: #E57D0D">
+                <td>1分钟之前</td>
+                <td>经营类</td>
+                <td>王姨妈米皮店</td>
+                <td style="color:#CF5B56">未处理</td>
+              </tr>
+              <tr class="table-tr" style="color: #E57D0D">
+                <td>1分钟之前</td>
+                <td>经营类</td>
+                <td>王姨妈米皮店</td>
+                <td style="color:#CF5B56">未处理</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--事件上报-->
+        <div class="col-lg-4 col-md-4 event-processed-table">
+          <div class="table-title text-center">
+            <span>服务区事件上报</span>
+            <!--<span class="pull-right" style="cursor: pointer;color:#86FDFE; position: absolute;right: 5px;" (click)="openEventAlert()">查看更多...</span>-->
+          </div>
+          <div class="table-responsive">
+            <table class="table" cellspacing="5px">
+              <thead class="table-header">
                 <tr>
-                  <td>时间</td>
                   <td>事件类型</td>
                   <td>事件描述</td>
-                  <td>状态</td>
+                  <td style="color: red;">事件上报</td>
                 </tr>
               </thead>
               <tbody class="table-body">
-                <tr class="table-tr" style="color: #E57D0D">
-                  <td>1分钟之前</td>
+                <tr class="table-tr" style="color: #00ECF1">
                   <td>经营类</td>
-                  <td>王姨妈米皮店</td>
-                  <td style="color:#CF5B56">未处理</td>
+                  <td>经营类异常</td>
+                  <td class="text-center" style="color: red;">上报</td>
                 </tr>
-                <tr class="table-tr" style="color: #E57D0D">
-                  <td>1分钟之前</td>
-                  <td>经营类</td>
-                  <td>王姨妈米皮店</td>
-                  <td style="color:#CF5B56">未处理</td>
+                <tr class="table-tr" style="color: #00ECF1">
+                  <td>合同类</td>
+                  <td>合同异常</td>
+                  <td class="text-center" style="color: red;">上报</td>
                 </tr>
-                <tr class="table-tr" style="color: #E57D0D">
-                  <td>1分钟之前</td>
+                <tr class="table-tr" style="color: #00ECF1">
                   <td>经营类</td>
-                  <td>王姨妈米皮店</td>
-                  <td style="color:#CF5B56">未处理</td>
+                  <td>经营类异常</td>
+                  <td class="text-center" style="color: red;">上报</td>
                 </tr>
-                <tr class="table-tr" style="color: #E57D0D">
-                  <td>1分钟之前</td>
+                <tr class="table-tr" style="color: #00ECF1">
                   <td>经营类</td>
-                  <td>王姨妈米皮店</td>
-                  <td style="color:#CF5B56">未处理</td>
+                  <td>经营类异常</td>
+                  <td class="text-center" style="color: red;">上报</td>
                 </tr>
-                <tr class="table-tr" style="color: #E57D0D">
-                  <td>1分钟之前</td>
+                <tr class="table-tr" style="color: #00ECF1">
                   <td>经营类</td>
-                  <td>王姨妈米皮店</td>
-                  <td style="color:#CF5B56">未处理</td>
+                  <td>经营类异常</td>
+                  <td class="text-center" style="color: red;">上报</td>
                 </tr>
-                <tr class="table-tr" style="color: #E57D0D">
-                  <td>1分钟之前</td>
+                <tr class="table-tr" style="color: #00ECF1">
                   <td>经营类</td>
-                  <td>王姨妈米皮店</td>
-                  <td style="color:#CF5B56">未处理</td>
+                  <td>经营类异常</td>
+                  <td class="text-center" style="color: red;">上报</td>
                 </tr>
               </tbody>
             </table>
