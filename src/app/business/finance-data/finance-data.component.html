@@ -182,7 +182,7 @@
           <div class="alert-3D-bar-bar" echarts [options]="options3dBar" (chartInit)="options3dBarInit($event)" (chartClick)="options3dBarClick($event)"></div>
         </div>
         <div class="col-ld-6 col-md-6">
-          <div class="alert-3D-bar-pie" echarts [options]="options3dPie" (chartInit)="options3dPieInit($event)" ></div>
+          <div class="alert-3D-bar-pie" echarts [options]="options3dPie" (chartInit)="options3dPieInit($event)" (chartClick)="options3dPieClick($event)"></div>
         </div>
         <div class="toggle-btn-area" style="">
           <button class="btn btn-success" (click)="open3dBarExcel()">表格导出</button>
@@ -284,7 +284,7 @@
                     <td [ngStyle]="{'background':alertCarTitle === '小车'?'black': ''}">{{item.cart}}</td>
                     <td [ngStyle]="{'background':alertCarTitle === '客车'?'black': ''}">{{item.trucks}}</td>
                     <td [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">{{item.bus}}</td>
-                    <td>{{item.zone}}</td>
+                    <td class="content-table-car" (click)="carTableClick(item.zone)">{{item.zone}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -382,19 +382,19 @@
               <div class="content-table">
                 <table class="table table-bordered">
                   <thead>
-                  <tr>
-                    <th>排名</th>
-                    <th [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': ''}">收入总数</th>
-                    <th *ngIf="!(alertIncomeTitle === '收入总数')" [ngStyle]="{'background':!(alertIncomeTitle === '收入总数')?'black': ''}">{{alertIncomeTitle}}收入(元）</th>
-                    <th>服务区</th>
-                  </tr>
+                    <tr>
+                      <th>排名</th>
+                      <th [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': ''}">收入总数</th>
+                      <th *ngIf="!(alertIncomeTitle === '收入总数')" [ngStyle]="{'background':!(alertIncomeTitle === '收入总数')?'black': ''}">{{alertIncomeTitle}}收入(元）</th>
+                      <th>服务区</th>
+                    </tr>
                   </thead>
                   <tbody>
                   <tr *ngFor="let item of IncomeTableData">
                     <td>{{item.num}}</td>
                     <td [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': ''}">{{item.sum}}</td>
                     <td *ngIf="!(alertIncomeTitle === '收入总数')" [ngStyle]="{'background':!(alertIncomeTitle === '收入总数')?'black': ''}">{{item.income}}</td>
-                    <td>{{item.zone}}</td>
+                    <td class="content-table-income" (click)="IncomeTableClick(item.zone)">{{item.zone}}</td>
                   </tr>
                   </tbody>
                 </table>

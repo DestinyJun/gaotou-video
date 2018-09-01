@@ -489,8 +489,13 @@
   display:none;
 }
 
-/********************************数据排名******************************
-/*数据排名*/
+/********************************数据排名*******************************/
+
+/*车辆数据排名*/
+.content-table-car:hover{
+  cursor: pointer;
+}
+/*收入数据排名*/
 .content-table{
   height: auto;
   padding-top: 1vh;
@@ -499,6 +504,9 @@
 }
 .content-table table{
   padding-right: 5px;
+}
+.content-table-income:hover{
+  cursor: pointer;
 }
 /*bootstrap改造*/
 .bottom-pagination {

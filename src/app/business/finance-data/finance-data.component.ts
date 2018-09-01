@@ -558,6 +558,14 @@ export class FinanceDataComponent implements OnInit {
       ]
     };
   }
+  public options3dPieClick(e): void {
+    console.log(e);
+    if (e.name === '贵阳市') {
+      this.router.navigate(['/home/city', {name: e.name}]);
+    } else {
+      window.alert (`很抱歉，${e.name}暂无数据`);
+    }
+  }
   // 表格导出
   public bar3dDateChange(e) {
     this.bar3dExportType.Bar3dDate = e.srcElement.value;
@@ -864,6 +872,9 @@ export class FinanceDataComponent implements OnInit {
       };
       this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
     }
+  }
+  public carTableClick(e) {
+    this.router.navigate(['/home/serzone', {name: e.name}]);
   }
   public echartBtn(e): void {
     this.CarTypeisShow = true;
@@ -1866,7 +1877,7 @@ export class FinanceDataComponent implements OnInit {
     }
   }
   public rankingClick(e) {
-    this.router.navigate(['/home/serzone', {name: e.name, point: [116.39737, 39.935076]}]);
+    this.router.navigate(['/home/serzone', {name: e.name}]);
   }
 
   // 流量收入实时监控
@@ -2279,6 +2290,9 @@ export class FinanceDataComponent implements OnInit {
       this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
     }
   }
+  public IncomeTableClick(e): void {
+    this.router.navigate(['/home/serzone', {name: e}]);
+  }
   public echarIncomeBtn(e): void {
     this.incomeTypeisShow = true;
     this.IncomeAreaName = e.srcElement.innerText;
@@ -2322,16 +2336,16 @@ export class FinanceDataComponent implements OnInit {
     this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
   }
   // 表格导出
-  public incomeDateChange(e) {
+  public incomeDateChange(e): void {
     this.incomeExportType.incomeDate = e.srcElement.value;
   }
-  public incomeTypeChange(e) {
+  public incomeTypeChange(e): void {
     this.incomeExportType.incomeNumType = e.srcElement.options[e.srcElement.selectedIndex].innerText;
   }
-  public incomeAreaChange(e) {
+  public incomeAreaChange(e): void {
     this.incomeExportType.incomeArea = e.srcElement.options[e.srcElement.selectedIndex].innerText;
   }
-  public incomeExportClick() {
+  public incomeExportClick(): void {
     if (!(this.incomeExportType.incomeDate === '') || !(this.incomeExportType.incomeNumType === '') || !(this.incomeExportType.incomeArea === '')) {
       this.incomeExcelShow = false;
       console.log(this.incomeExportType);
