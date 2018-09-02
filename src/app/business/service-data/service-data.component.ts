@@ -7,6 +7,7 @@ import {DiagramService} from '../../common/services/diagram.service';
 import {ActivatedRoute} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {EventListInfo} from '../../common/model/service-data.model';
 declare let BMap;
 declare let BMapLib;
 declare let BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW;
@@ -84,8 +85,11 @@ export class ServiceDataComponent implements OnInit {
   public videoPublicShow = false;
   public publicVideoTitle: string;
   // 事件弹窗
+  public eventListInfos: EventListInfo[];
+  public eventListInfo: EventListInfo = new EventListInfo();
   public eventAlertShow = false;
-  public eventAlertTitle: string;
+  public eventAlertListShow = true;
+  public eventAlertInfoUp: false;
   // 服务区厕所监控
   public serversToiletAlertShow = false;
 
@@ -875,13 +879,23 @@ export class ServiceDataComponent implements OnInit {
   }
 
   // 事件弹窗
-  public openEventAlert() {
+  public openEventAlert(e): void {
     document.body.className = 'ui-overflow-hidden';
     this.eventAlertShow = true;
+    this.eventListInfo = e;
   }
   public closeEventAlert() {
     document.body.className = '';
     this.eventAlertShow = false;
+  }
+  public eventAlertListCtrlw(): void {
+    this.eventAlertListShow = true;
+  }
+  public eventAlertListCtrly(): void {
+    this.eventAlertListShow = false;
+  }
+  public eventListInfoClick(e): void {
+    this.eventListInfo = e;
   }
   // 厕所弹窗
   public openServersToiletAlert() {
@@ -1114,7 +1128,7 @@ export class ServiceDataComponent implements OnInit {
     this.serviceBasicAlert = true;
     this.serviceBasicAlertTitle = name;
   }
-  public closeServiceBasicAlert() {
+  public closeServiceInfoUpAlert() {
     document.body.className = '';
     this.serviceBasicAlert = false;
   }
@@ -1791,6 +1805,16 @@ export class ServiceDataComponent implements OnInit {
     // 贵阳业态经营数据前十排名
     // this.backCrosswiseBar();
     this.backCenterDate();
+    // 事件列表
+    this.eventListInfos = [
+      {time: '2018-08-12', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店1'},
+      {time: '2018-08-13', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店2'},
+      {time: '2018-08-14', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店3'},
+      {time: '2018-08-15', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店4'},
+      {time: '2018-08-16', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店5'},
+      {time: '2018-08-17', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店6'}
+    ];
+    this.eventListInfo = this.eventListInfos[0];
 
     /************************右边***************************/
     // 当日收入类型占比分析
