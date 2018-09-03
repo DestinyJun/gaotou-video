@@ -7,7 +7,7 @@ import {DiagramService} from '../../common/services/diagram.service';
 import {ActivatedRoute} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {EventListInfo} from '../../common/model/service-data.model';
+import {EventInfoUpType, EventListInfo} from '../../common/model/service-data.model';
 declare let BMap;
 declare let BMapLib;
 declare let BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW;
@@ -86,10 +86,11 @@ export class ServiceDataComponent implements OnInit {
   public publicVideoTitle: string;
   // 事件弹窗
   public eventListInfos: EventListInfo[];
+  public eventInfoUpTypes = ['经营类', '合同类', '工程类', '卫生类', '监控类', '系统类'];
   public eventListInfo: EventListInfo = new EventListInfo();
   public eventAlertShow = false;
   public eventAlertListShow = true;
-  public eventAlertInfoUp: false;
+  public eventAlertInfoUp = false;
   // 服务区厕所监控
   public serversToiletAlertShow = false;
 
@@ -897,6 +898,9 @@ export class ServiceDataComponent implements OnInit {
   public eventListInfoClick(e): void {
     this.eventListInfo = e;
   }
+  public eventInfoUpClick(): void {
+    this.eventAlertInfoUp = true;
+  }
   // 厕所弹窗
   public openServersToiletAlert() {
     document.body.className = 'ui-overflow-hidden';
@@ -1130,7 +1134,7 @@ export class ServiceDataComponent implements OnInit {
   }
   public closeServiceInfoUpAlert() {
     document.body.className = '';
-    this.serviceBasicAlert = false;
+    this.eventAlertInfoUp = false;
   }
  // 服务区基本信息之园区平面图
  public openServicesPlan() {
@@ -1807,12 +1811,12 @@ export class ServiceDataComponent implements OnInit {
     this.backCenterDate();
     // 事件列表
     this.eventListInfos = [
-      {time: '2018-08-12', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店1'},
-      {time: '2018-08-13', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店2'},
-      {time: '2018-08-14', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店3'},
-      {time: '2018-08-15', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店4'},
-      {time: '2018-08-16', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店5'},
-      {time: '2018-08-17', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店6'}
+      {time: '2018-08-12', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店1', plan: '立即派人去处理', solution: '大家使劲排查'},
+      {time: '2018-08-13', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店2', plan: '立即派人去处理', solution: '大家使劲排查'},
+      {time: '2018-08-14', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店3', plan: '立即派人去处理', solution: '大家使劲排查'},
+      {time: '2018-08-15', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店4', plan: '立即派人去处理', solution: '大家使劲排查'},
+      {time: '2018-08-16', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店5', plan: '立即派人去处理', solution: '大家使劲排查'},
+      {time: '2018-08-17', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店6', plan: '立即派人去处理', solution: '大家使劲排查'}
     ];
     this.eventListInfo = this.eventListInfos[0];
 
