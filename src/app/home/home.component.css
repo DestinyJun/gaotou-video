@@ -90,7 +90,35 @@
 }
 
 /*************************主体侧边导航栏*************************/
-
+.mian .search-nav{
+  display: block;
+}
+/*bootstrap*/
+.form-horizontal{
+  margin-top: 8px;
+}
+.form-horizontal .form-group{
+  position: relative;
+}
+.service-select .form-group button{
+  position: absolute;
+  top: 34px;
+  left: 20px;
+}
+.form-horizontal .form-control{
+  margin-bottom: 5px;
+}
+.form-horizontal .form-control>option:hover{
+  color:#01D1DB;
+}
+.form-horizontal .form-control{
+  background: rgba(255,255,255,0.11);
+  border: none;
+  color: white;
+}
+.form-horizontal .form-control::placeholder{
+  color: #87FFFF;
+}
 
 /*****************************主体******************************/
 .main{

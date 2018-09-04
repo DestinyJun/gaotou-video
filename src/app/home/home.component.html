@@ -31,20 +31,46 @@
   <app-nav></app-nav>
   <!--主内容-->
   <div class="main" [ngStyle]="{'margin-left': navShow?'215px':''}">
-    <div class="row">
+    <div class="row search-nav">
       <div class="col-xs-12 service-search" >
-        <form class="form-horizontal">
+        <form [formGroup]="searchForm" class="form-horizontal" (submit)="searchArea()" novalidate>
           <div class="form-group">
             <div class="col-xs-9">
-              <input type="text" class="form-control" id="serviceZone" name="serviceZone" placeholder="请输入服务区">
+              <input type="text" class="form-control" formControlName="searchText" id="serviceZone" name="serviceZone" placeholder="请输入服务区">
             </div>
             <div class="col-xs-3 text-center">
-              <button class="btn btn-primary">搜索</button>
+              <button type="submit" class="btn btn-primary">搜索</button>
             </div>
           </div>
         </form>
       </div>
-    </div>
+      <div class="col-xs-12 service-select" >
+        <form [formGroup]="selectForm" class="form-horizontal" (submit)="selectArea()" novalidate>
+          <div class="form-group">
+            <div class="col-xs-9">
+              <select  class="form-control" formControlName="province" id="province" name="type">
+                <option value="0" style="color: black">请选择类型...</option>
+                <option value="贵州省" style="color: black">贵州省</option>
+                <option value="云南省" style="color: black">云南省</option>
+              </select>
+              <select  class="form-control" formControlName="city" id="city" name="type">
+                <option value="0" style="color: black">请选择类型...</option>
+                <option value="贵阳市" style="color: black">贵阳市</option>
+                <option value="安顺市" style="color: black">安顺市</option>
+              </select>
+              <select  class="form-control" formControlName="serZone" id="serZone" name="city">
+                <option value="0" style="color: black">请选择类型...</option>
+                <option value="久长服务区" style="color: black">久长服务区</option>
+                <option value="瓮安服务区" style="color: black">瓮安服务区</option>
+              </select>
+            </div>
+            <div class="col-xs-3 text-center">
+              <button type="submit" class="btn btn-primary">确定</button>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
     <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>

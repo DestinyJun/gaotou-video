@@ -7,13 +7,15 @@ import { HomeComponent } from './home.component';
 import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   imports: [
     CommonModule,
     HomeRoutingModule,
-    SharedModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [HomeComponent, HeaderComponent, NavComponent, FooterComponent],
   entryComponents: [NavComponent]
