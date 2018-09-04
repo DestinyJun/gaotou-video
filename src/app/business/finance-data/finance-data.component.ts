@@ -559,7 +559,6 @@ export class FinanceDataComponent implements OnInit {
     };
   }
   public options3dPieClick(e): void {
-    console.log(e);
     if (e.name === '贵阳市') {
       this.router.navigate(['/home/city', {name: e.name}]);
     } else {
@@ -874,7 +873,7 @@ export class FinanceDataComponent implements OnInit {
     }
   }
   public carTableClick(e) {
-    this.router.navigate(['/home/serzone', {name: e.name}]);
+    this.router.navigate(['/home/serzone', {name: e}]);
   }
   public echartBtn(e): void {
     this.CarTypeisShow = true;

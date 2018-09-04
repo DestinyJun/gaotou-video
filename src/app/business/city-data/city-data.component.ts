@@ -132,7 +132,7 @@ export class CityDataComponent implements OnInit {
   public incomeTypeisShow = true;
 
   /**********************基础数据部分**********************/
-  public citys = ['乌当区', '南明区', '云岩区', '花溪区', '白云区', '观山湖区', '清镇市', '开阳县', '息烽县', '修文县'];
+  public citys = ['久长服务区', '石阡服务区', '虹桥服务区', '玉屏服务区', '荔波服务区', '六枝服务区', '盘县服务区', '红果服务区', '老马服务区', '乌江服务区'];
 
   /**********************暂时不知道的分布**********************/
     // 当日服务区停车量排名
@@ -145,7 +145,7 @@ export class CityDataComponent implements OnInit {
   public mapZoom = 0.8;
   public mapLeft = '';
   public mapRight = '';
-  // 图表加载状态状态:
+  // 图表加载状态状态:+
   public echartsIntance: any;
   // 车月度所有服务区车辆流量柱状图统计
   public optionsCar = {};
@@ -557,6 +557,9 @@ export class CityDataComponent implements OnInit {
       ]
     };
   }
+  public options3dPieClick(e): void {
+    this.router.navigate(['/home/serzone', {name: e.name}]);
+  }
   // 表格导出
   public bar3dDateChange(e) {
     this.bar3dExportType.Bar3dDate = e.srcElement.value;
@@ -863,6 +866,9 @@ export class CityDataComponent implements OnInit {
       };
       this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
     }
+  }
+  public carTableClick(e) {
+    this.router.navigate(['/home/serzone', {name: e}]);
   }
   public echartBtn(e): void {
     this.CarTypeisShow = true;
@@ -2254,6 +2260,9 @@ export class CityDataComponent implements OnInit {
       };
       this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
     }
+  }
+  public IncomeTableClick(e): void {
+    this.router.navigate(['/home/serzone', {name: e}]);
   }
   public echarIncomeBtn(e): void {
     this.incomeTypeisShow = true;

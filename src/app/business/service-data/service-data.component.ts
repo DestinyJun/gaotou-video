@@ -36,8 +36,6 @@ export class ServiceDataComponent implements OnInit {
   /***********************基础信息************************/
   // 服务区名称
   public serviceZoneTitle: string;
-  // 服务区坐标
-  public serviceZonePoint: string;
   public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
   public business = ['住宿', '汽修', '商超', '小吃', '西式快餐', '中式快餐'];
   public btnClass = ['btn-danger', 'btn-info', 'btn-default', 'btn-primary', 'btn-warning', 'btn-success', 'btn-danger', 'btn-info', 'btn-default', 'btn-primary', 'btn-warning', 'btn-success']
@@ -91,6 +89,7 @@ export class ServiceDataComponent implements OnInit {
   public eventAlertShow = false;
   public eventAlertListShow = true;
   public eventAlertInfoUp = false;
+  public eventAlertInfoUpTitle: string;
   // 服务区厕所监控
   public serversToiletAlertShow = false;
 
@@ -98,11 +97,6 @@ export class ServiceDataComponent implements OnInit {
   // 业态经营数据前十排名
   public crosswiseBar = {};
   public crosswiseBarDate = '当日';
-  public barStatus1 = true;
-  public barStatus2 = false;
-  public barStatus3 = false;
-  public dataStatus = '业态收入';
-  public crosswiseBarInstance: any;
   // 另外收入排名+表格导出
   public alertCrosswiseShow = false;
   public crosswiseExcelShow = false;
@@ -176,7 +170,7 @@ export class ServiceDataComponent implements OnInit {
     this.routerInfo.params.subscribe(
       (params) => {
         this.serviceZoneTitle = params.name;
-        this.serviceZonePoint = params.point.split(',');
+        // this.serviceZonePoint = params.point.split(',');
         // console.log(this.serviceZonePoint);
       }
     );
@@ -504,7 +498,7 @@ export class ServiceDataComponent implements OnInit {
       };
       serieData.push(serie);
     }
-    const colors = ['#036BC8', '#4A95FF', '#5EBEFC', '#2EF7F3', '#FFFFFF'];
+    const colors = ['#BE86C6', '#A7B937', '#73DD79', '#09CDCF', '#007C00'];
     this.options3dLine = {
       title: {
         text: title,
@@ -559,12 +553,10 @@ export class ServiceDataComponent implements OnInit {
     ];
     this.colorList[e.dataIndex] = 'red';
     this.options3dBarInstance.setOption(this.options3dBar);
-    this.arryPie = [];
+   /* this.arryPie = [];
     this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
       this.arryPie.push({value: val, name: this.business[index]});
     });
-
-
     this.options3dPie = {
       title: {
         text: `${this.serviceZoneTitle}年度${e.name}类型占比统计`,
@@ -578,14 +570,14 @@ export class ServiceDataComponent implements OnInit {
         trigger: 'item',
         formatter: '{b} : {d}%'
       },
-      /*legend: {
+      /!*legend: {
         orient: 'vertical',
         left: 'left',
         data: ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州','黔西南布依族苗族自治州'],
         textStyle: {
           color: 'white'
         }
-      },*/
+      },*!/
       series: [
         {
           name: `${e.name}总计：${e.value}`,
@@ -605,7 +597,7 @@ export class ServiceDataComponent implements OnInit {
           }
         }
       ]
-    };
+    };*/
   }
   // 表格导出
   public bar3dDateChange(e) {
@@ -898,8 +890,9 @@ export class ServiceDataComponent implements OnInit {
   public eventListInfoClick(e): void {
     this.eventListInfo = e;
   }
-  public eventInfoUpClick(): void {
+  public eventInfoUpClick(e): void {
     this.eventAlertInfoUp = true;
+    this.eventAlertInfoUpTitle = e;
   }
   // 厕所弹窗
   public openServersToiletAlert() {

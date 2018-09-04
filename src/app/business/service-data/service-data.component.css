@@ -184,7 +184,21 @@
   padding-right: 0;
   padding-left: 0;
 }
-
+.main-content  .event-table .event-else-table .table-responsive{
+  padding-top: 15px;
+}
+.event-else-table .event-toilet{
+  height: 15.5vh;
+}
+.event-else-table .event-toilet span{
+  margin-bottom: 15px;
+}
+.event-else-table .event-carport{
+  height: 15.5vh;
+}
+.event-else-table .event-carport span{
+  margin-bottom: 15px;
+}
 .main-content .event-table tr{
   cursor: pointer;
 
@@ -649,6 +663,10 @@
     margin-right: -15px;
   }
   .main-content .event-table .event-untreated-table{
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .main-content .event-table .event-processed-table{
     padding-right: 0;
     padding-left: 0;
   }

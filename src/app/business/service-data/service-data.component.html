@@ -114,59 +114,38 @@
               <thead class="table-header">
                 <tr>
                   <td>事件类型</td>
-                  <td style="color: red;">事件上报</td>
+                  <td style="color: red; direction: rtl">事件上报</td>
                 </tr>
               </thead>
               <tbody class="table-body">
-                <tr class="table-tr" style="color: #00ECF1" *ngFor="let item of eventInfoUpTypes" (click)="eventInfoUpClick()">
+                <tr class="table-tr" style="color: #00ECF1" *ngFor="let item of eventInfoUpTypes" (click)="eventInfoUpClick(item)">
                   <td>{{item}}</td>
-                  <td class="text-center" style="color: red;">上报</td>
+                  <td style="color: red; direction: rtl">上报</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <!--洗手间-->
-        <div class="col-lg-3 col-md-3 event-else-table">
+        <!--洗手间/车位监控-->
+        <div class="col-lg-3 col-md-3 event-else-table" (click)="openServersToiletAlert()">
+          <div class="event-toilet">
+            <div class="table-title text-center">
+              <span>服务区卫生间使用率</span>
+            </div>
+            <div class="table-responsive text-center">
+              <span class="btn btn-danger" style="width: 162px">男洗手间：45%</span>
+              <span class="btn btn-info" style="width: 162px">女洗手间：50%</span>
+            </div>
+          </div>
+          <div class="event-carport">
           <div class="table-title text-center">
-            <span>服务区卫生间信息</span>
+            <span>服务区停车位监控</span>
           </div>
-          <div class="table-responsive">
-            <table class="table" cellspacing="5px">
-              <thead class="table-header">
-              <tr>
-                <td>时间</td>
-                <td>男厕/女厕</td>
-              </tr>
-              </thead>
-              <tbody class="table-body" (click)="openServersToiletAlert()">
-                <tr class="table-tr" style="color: #01D1DB">
-                  <td>08/14 10:51</td>
-                  <td>50个/100个</td>
-                </tr>
-                <tr class="table-tr" style="color: #01D1DB">
-                  <td>08/14 10:51</td>
-                  <td>50个/100个</td>
-                </tr>
-                <tr class="table-tr" style="color: #01D1DB">
-                  <td>08/14 10:51</td>
-                  <td>50个/100个</td>
-                </tr>
-                <tr class="table-tr" style="color: #01D1DB">
-                  <td>08/14 10:51</td>
-                  <td>50个/100个</td>
-                </tr>
-                <tr class="table-tr" style="color: #01D1DB">
-                  <td>08/14 10:51</td>
-                  <td>50个/100个</td>
-                </tr>
-                <tr class="table-tr" style="color: #01D1DB">
-                  <td>08/14 10:51</td>
-                  <td>50个/100个</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="table-responsive text-center">
+            <span class="btn btn-warning">大车剩余车位：256个</span>
+            <span class="btn btn-primary">大车剩余车位：318个</span>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -241,7 +220,7 @@
         <div class="alert-3D-bar-bar" echarts [options]="options3dBar" (chartInit)="options3dBarInit($event)" (chartClick)="options3dBarClick($event)"></div>
       </div>
       <div class="col-ld-6 col-md-6">
-        <div class="alert-3D-bar-bar" echarts [options]="options3dLine" (chartInit)="options3dBarInit($event)" (chartClick)="options3dBarClick($event)"></div>
+        <div class="alert-3D-bar-bar" echarts [options]="options3dLine"></div>
       </div>
       <div class="toggle-btn-area">
         <button class="btn btn-success" (click)="open3dBarExcel()">表格导出</button>
@@ -1020,7 +999,7 @@
     <div class="alert-window-header" >
       <div class="row">
         <div class="col-lg-12 col-md-12">
-          <span>事件上报</span>
+          <span>{{eventAlertInfoUpTitle}}事件上报</span>
           <div class="pull-right" (click)="closeServiceInfoUpAlert()">
             <i class="fa fa-window-close " aria-hidden="true"></i>
           </div>
@@ -1032,20 +1011,27 @@
         <div class="col-ld-12 col-md-12">
           <form class="form-horizontal">
             <div class="form-group">
-              <label for="type" class="col-sm-1 control-label" disabled="">事件类型</label>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="type" name="type">
+              <label for="type" class="col-sm-2 control-label" disabled="">事件类型</label>
+              <div class="col-sm-4">
+                <select type="text" class="form-control" id="type" name="type">
+                  <option value="0" style="color: black">请选择类型...</option>
+                  <option *ngFor="let item of eventInfoUpTypes" [value]="item" style="color: black">{{item}}</option>
+                </select>
+              </div>
+              <label for="personage" class="col-sm-2 control-label" disabled="">责任人</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="personage" name="type">
               </div>
             </div>
             <div class="form-group">
-              <label for="description" class="col-sm-1 control-label">事件描述</label>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" id="description" name="description">
+              <label for="description" class="col-sm-2 control-label">事件描述</label>
+              <div class="col-sm-10">
+                <textarea type="text" class="form-control" id="description" name="description"></textarea>
               </div>
             </div>
             <div class="form-group text-center style-border">
-              <button class="btn btn-success" type="button" >上报</button>
-              <button class="btn btn-danger" type="button" >取消</button>
+              <button class="btn btn-success" type="button" (click)="closeServiceInfoUpAlert()">上报</button>
+              <button class="btn btn-danger" type="button" (click)="closeServiceInfoUpAlert()">取消</button>
             </div>
           </form>
         </div>

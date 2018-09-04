@@ -24,6 +24,23 @@
             </p>-->
           </div>
         </div>
+        <div class="income mobile">
+          <p class="text-center">全国高速服务区实时收入</p>
+          <div class="income-amount">
+            <h3 class="text-center">
+              <span>0</span>
+              <span>0</span>
+              <span>0</span>
+              <span style="margin-right: 10px" *ngFor="let i of incomeAmount">{{i}}</span>
+              <small style="font-size: 14px;color: white;">元</small>
+            </h3>
+            <!--  <p class="text-center">
+                <span style="margin-right: 10px">前日时间同比</span>
+                <i class="fa fa-long-arrow-up" style="color: #03D095"></i>
+                <span class="">15%</span>
+              </p>-->
+          </div>
+        </div>
         <!--车型日分布占比-->
         <div class="accumulation" echarts [options]="optionsCarModel" (chartClick)="parkClick($event)"></div>
       </div>
@@ -182,7 +199,7 @@
           <div class="alert-3D-bar-bar" echarts [options]="options3dBar" (chartInit)="options3dBarInit($event)" (chartClick)="options3dBarClick($event)"></div>
         </div>
         <div class="col-ld-6 col-md-6">
-          <div class="alert-3D-bar-pie" echarts [options]="options3dPie" (chartInit)="options3dPieInit($event)" ></div>
+          <div class="alert-3D-bar-pie" echarts [options]="options3dPie" (chartInit)="options3dPieInit($event)" (chartClick)="options3dPieClick($event)"></div>
         </div>
         <div class="toggle-btn-area" style="">
           <button class="btn btn-success" (click)="open3dBarExcel()">表格导出</button>
@@ -283,7 +300,7 @@
                     <td [ngStyle]="{'background':alertCarTitle === '小车'?'black': ''}">{{item.cart}}</td>
                     <td [ngStyle]="{'background':alertCarTitle === '客车'?'black': ''}">{{item.trucks}}</td>
                     <td [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">{{item.bus}}</td>
-                    <td>{{item.zone}}</td>
+                    <td class="content-table-car"  (click)="carTableClick(item.zone)">{{item.zone}}</td>
                   </tr>
                   </tbody>
                 </table>
@@ -393,7 +410,7 @@
                     <td>{{item.num}}</td>
                     <td [ngStyle]="{'background':alertIncomeTitle === '收入总数'?'black': ''}">{{item.sum}}</td>
                     <td *ngIf="!(alertIncomeTitle === '收入总数')" [ngStyle]="{'background':!(alertIncomeTitle === '收入总数')?'black': ''}">{{item.income}}</td>
-                    <td>{{item.zone}}</td>
+                    <td class="content-table-income" (click)="IncomeTableClick(item.zone)">{{item.zone}}</td>
                   </tr>
                   </tbody>
                 </table>

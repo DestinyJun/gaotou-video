@@ -4,6 +4,10 @@
   background: #151A30;
   min-height: 100vh;
 }
+/****************************手机搜索按钮****************************/
+.main .service-search{
+  display: none;
+}
 /******************************头部****************************/
 .header{
   height: 6vh;
@@ -98,6 +102,9 @@
   .container-fluid{
    /* padding-left: 0;
     padding-right: 0;*/
+  }
+  .main .service-search{
+    display: block;
   }
   .header{
     margin-left: -15px;

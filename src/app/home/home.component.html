@@ -31,6 +31,20 @@
   <app-nav></app-nav>
   <!--主内容-->
   <div class="main" [ngStyle]="{'margin-left': navShow?'215px':''}">
+    <div class="row">
+      <div class="col-xs-12 service-search" >
+        <form class="form-horizontal">
+          <div class="form-group">
+            <div class="col-xs-9">
+              <input type="text" class="form-control" id="serviceZone" name="serviceZone" placeholder="请输入服务区">
+            </div>
+            <div class="col-xs-3 text-center">
+              <button class="btn btn-primary">搜索</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
     <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>
