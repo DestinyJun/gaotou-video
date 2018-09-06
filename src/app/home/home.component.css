@@ -5,7 +5,7 @@
   min-height: 100vh;
 }
 /****************************手机搜索按钮****************************/
-.main .service-search{
+.main .service-search, .main .service-select{
   display: none;
 }
 /******************************头部****************************/
@@ -131,7 +131,7 @@
    /* padding-left: 0;
     padding-right: 0;*/
   }
-  .main .service-search{
+  .main .service-search, .main .service-select{
     display: block;
   }
   .header{
