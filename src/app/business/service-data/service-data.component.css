@@ -112,6 +112,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.main-content .servicesMap .servicesMap-top .servicesMap-top-box .shop-info:hover{
+  cursor: pointer;
+}
 
 .main-content .servicesMap .servicesMap-center{
   height: 30vh;

@@ -1,0 +1,17 @@
+<div class="bg-box" *ngIf="messageWindowShow">
+  <div class="alert-window">
+    <div class="alert-window-header">
+      <div class="row">
+        <div class="col-ld-12 col-md-12">
+          <span>领导视察提醒窗口</span>
+          <div class="pull-right" (click)="closeCarShow()">
+            <i class="fa fa-window-close " aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-window-content">
+      <h1 class="text-center" style="line-height: 45vh;">热烈欢迎某某领导视察</h1>
+    </div>
+  </div>
+</div>

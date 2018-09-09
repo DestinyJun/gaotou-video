@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MessageWindowComponent } from './message-window/message-window.component';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [HomeComponent, HeaderComponent, NavComponent, FooterComponent],
+  declarations: [HomeComponent, HeaderComponent, NavComponent, FooterComponent, MessageWindowComponent],
   entryComponents: [NavComponent]
 })
 export class HomeModule { }

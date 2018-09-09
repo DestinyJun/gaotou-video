@@ -74,10 +74,13 @@ export class ServiceDataComponent implements OnInit {
 
   /***********************中部************************/
   public incomeData: any;
-  // 服务区商家
+  // 服务区商家视频弹窗
   public videoAlertShow = false;
   public videoAlertTitle: string;
-  // 服务区商家弹窗
+  // 服务区商家信息弹窗
+  public serviceShopShow = false;
+  public serviceShopTitle: string;
+  // 服务区信息修改
   public selectFormModule: FormGroup;
   // 公共视频弹窗
   public videoPublicShow = false;
@@ -120,6 +123,8 @@ export class ServiceDataComponent implements OnInit {
   public optionsIncomeModel = {};
   // 收入类型弹窗
   public alertIncomeShow = false;
+  public alertIncomeTypeShow = false;
+  public alertIncomeTypeTitle: string;
   public alertIncomeTitle = '收入总数';
   public optionsIncomeTypes = {};
   public IncomeAreaName = '贵州省';
@@ -853,6 +858,15 @@ export class ServiceDataComponent implements OnInit {
     this.videoAlertShow = true;
     this.videoAlertTitle = e;
   }
+  public closeServiceShop(): void {
+    document.body.className = '';
+    this.serviceShopShow = false;
+  }
+  public openServiceShop(e): void {
+    this.serviceShopTitle = e;
+    this.serviceShopShow = true;
+    document.body.className = 'ui-overflow-hidden';
+  }
   // 中部服务区视频监控
   public openPublicVideo(e) {
     document.body.className = 'ui-overflow-hidden';
@@ -1338,6 +1352,7 @@ export class ServiceDataComponent implements OnInit {
   public IncomeBtnClick(e): void {
     if (e.srcElement.innerText === '收入总数') {
       this.alertIncomeTitle = '收入总数';
+      this.alertIncomeTypeShow = false;
       this.arryIncomePie = [];
       this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
@@ -1379,6 +1394,8 @@ export class ServiceDataComponent implements OnInit {
     }
     else if (e.srcElement.innerText === '小吃') {
       this.alertIncomeTitle = '小吃';
+      this.alertIncomeTypeTitle = '小吃';
+      this.alertIncomeTypeShow = true;
       this.arryIncomePie = [];
       this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
@@ -1420,6 +1437,8 @@ export class ServiceDataComponent implements OnInit {
     }
     else if (e.srcElement.innerText === '中式快餐') {
       this.alertIncomeTitle = '中式快餐';
+      this.alertIncomeTypeTitle = '中式快餐';
+      this.alertIncomeTypeShow = true;
       this.arryIncomePie = [];
       this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
@@ -1461,6 +1480,8 @@ export class ServiceDataComponent implements OnInit {
     }
     else if (e.srcElement.innerText === '西式快餐') {
       this.alertIncomeTitle = '西式快餐';
+      this.alertIncomeTypeTitle = '西式快餐';
+      this.alertIncomeTypeShow = true;
       this.arryIncomePie = [];
       this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
@@ -1502,6 +1523,8 @@ export class ServiceDataComponent implements OnInit {
     }
     else if (e.srcElement.innerText === '商超') {
       this.alertIncomeTitle = '商超';
+      this.alertIncomeTypeTitle = '商超';
+      this.alertIncomeTypeShow = true;
       this.arryIncomePie = [];
       this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
@@ -1543,6 +1566,8 @@ export class ServiceDataComponent implements OnInit {
     }
     else if (e.srcElement.innerText === '住宿') {
       this.alertIncomeTitle = '住宿';
+      this.alertIncomeTypeTitle = '住宿';
+      this.alertIncomeTypeShow = true;
       this.arryIncomePie = [];
       this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
@@ -1584,6 +1609,8 @@ export class ServiceDataComponent implements OnInit {
     }
     else if (e.srcElement.innerText === '汽修') {
       this.alertIncomeTitle = '汽修';
+      this.alertIncomeTypeTitle = '汽修';
+      this.alertIncomeTypeShow = true;
       this.arryIncomePie = [];
       this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
         this.arryIncomePie.push({value: val, name: this.citys[index]});
