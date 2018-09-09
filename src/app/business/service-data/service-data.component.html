@@ -44,7 +44,6 @@
             <p style="color: #00CFB1;" [title]="item.num">{{item.num}}元</p>
             <p>
               <button class="btn btn-danger" (click)="openMerchantVideo(item.name,item.videoUrl)">监控</button>
-            b
           </div>
          </div>
          <div class="servicesMap-center">
@@ -56,17 +55,18 @@
            <div class="servicesMap-center-left">
              <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+             <span style="font-size: 16px">遵义方向<——贵阳</span>
              <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-
            </div>
            <div class="servicesMap-center-right">
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+             <span style="font-size: 16px">贵阳——>遵义方向</span>
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
            </div>
@@ -139,9 +139,9 @@
           </div>
         </div>
         <!--洗手间/车位监控-->
-        <div class="col-lg-3 col-md-3 event-else-table" (click)="openServersToiletAlert()">
-          <div class="event-toilet">
-            <div class="table-title text-center">
+        <div class="col-lg-3 col-md-3 event-else-table">
+          <div class="event-toilet" (click)="openServersToiletAlert('服务区卫生间使用率')">
+            <div class="table-title text-center" >
               <span>服务区卫生间使用率</span>
             </div>
             <div class="table-responsive text-center">
@@ -149,14 +149,14 @@
               <span class="btn btn-info" style="width: 162px">女洗手间：50%</span>
             </div>
           </div>
-          <div class="event-carport">
-          <div class="table-title text-center">
-            <span>服务区停车位监控</span>
-          </div>
-          <div class="table-responsive text-center">
-            <span class="btn btn-warning">大车剩余车位：256个</span>
-            <span class="btn btn-primary">大车剩余车位：318个</span>
-          </div>
+          <div class="event-carport" (click)="openServersToiletAlert('服务区停车位监控')">
+            <div class="table-title text-center">
+              <span>服务区停车位监控</span>
+            </div>
+            <div class="table-responsive text-center">
+              <span class="btn btn-warning">大车剩余车位：256个</span>
+              <span class="btn btn-primary">小车剩余车位：318个</span>
+            </div>
         </div>
         </div>
       </div>
@@ -874,7 +874,7 @@
     <div class="alert-window-content">
       <div class="row">
         <div class="col-ld-12 col-md-12 text-center">
-          <!--<div class="services-plan" [ngStyle]="">
+         <!-- <div class="services-plan" [ngStyle]="">
             <div class="services-plan-left pull-left">
               <div class="service-date-info-top">
                 <h5 class="text-center">服务区收入</h5>
@@ -993,13 +993,24 @@
         </div>
         <div class="col-lg-6 col-md-6">
           <h4 class="text-center">事件详情信息</h4>
-          <span>{{eventListInfo?.time}}</span>
-          <span>{{eventListInfo?.type}}</span>
-          <span>{{eventListInfo?.description}}</span>
-          <span>{{eventListInfo?.state}}</span>
-          <span>{{eventListInfo?.personage}}</span>
-          <span>{{eventListInfo?.plan}}</span>
-          <span>{{eventListInfo?.solution}}</span>
+          <p>
+            事件发生时间：<span>{{eventListInfo?.time}}</span>
+          </p>
+          <p>
+            事件发生类型：<span>{{eventListInfo?.type}}</span>
+          </p>
+          <p>
+            事件处理情况： <span>{{eventListInfo?.state}}</span>
+          </p>
+          <p>
+            事件发生对象： <span>{{eventListInfo?.personage}}</span>
+          </p>
+          <p>
+            事件处理预案： <span>{{eventListInfo?.plan}}</span>
+          </p>
+          <p>
+            事件处理方式：<span>{{eventListInfo?.solution}}</span>
+          </p>
         </div>
       </div>
     </div>
@@ -1057,7 +1068,7 @@
     <div class="alert-window-header">
       <div class="row">
         <div class="col-lg-12 col-md-12">
-          <span>服务区洗手间信息监控</span>
+          <span>{{waitTitle}}</span>
           <div class="pull-right" (click)="closeServersToiletAlert()">
             <i class="fa fa-window-close " aria-hidden="true"></i>
           </div>

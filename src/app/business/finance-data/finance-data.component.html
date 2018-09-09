@@ -8,7 +8,7 @@
         <div class="accumulation3d" echarts [options]="options3d" (chartClick)="barClick($event)"></div>
         <!--日车流量实时统计-->
         <div class="vehicle">
-          <p class="text-center">{{this.dataToggle}}今日车辆流动数量</p>
+          <p class="text-center">{{dataToggle}}今日车辆流动数量</p>
           <div class="vehicle-amount">
             <h3 class="text-center">
               <span>0</span>
@@ -157,14 +157,14 @@
       <div class="col-lg-3 col-md-3">
         <div class="crosswise">
           <div class="crosswise-btn text-center" (click)="clickBtn($event)">
-            <button  class="btn " [ngStyle]="{'background': barStatus1?'#FF2600': '','color': 'white', 'font-weight': '700'}">业态收入</button>
-            <button  class="btn" [ngStyle]="{'background': barStatus2?'#FFC000': '','color': 'white', 'font-weight': '700'}">车流量</button>
-            <button  class="btn" [ngStyle]="{'background': barStatus3?'#00AD4E': '','color': 'white', 'font-weight': '700'}">客流量</button>
+            <button  class="btn " [ngStyle]="{'background': barStatus1?'#FF2600': '','color': '#000', 'font-weight': '600'}">业态收入</button>
+            <button  class="btn" [ngStyle]="{'background': barStatus2?'#FFC000': '','color': '#000', 'font-weight': '600'}">车流量</button>
+            <button  class="btn" [ngStyle]="{'background': barStatus3?'#00AD4E': '','color': '#000', 'font-weight': '600'}">客流量</button>
           </div>
           <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartClick)="rankingClick($event)"></div>
         </div>
         <div class="income">
-          <p class="text-center">全国高速服务区实时收入</p>
+          <p class="text-center">{{dataToggle}}高速服务区实时收入</p>
           <div class="income-amount">
             <h3 class="text-center">
               <span>0</span>
