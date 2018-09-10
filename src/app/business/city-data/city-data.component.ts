@@ -696,9 +696,10 @@ export class CityDataComponent implements OnInit {
     this.optionsCarPieInstance = ec;
   }
   public optionsCarPieClick(e) {
-    this.carAreaName = e.name;
+    // this.carAreaName = e.name;
+    this.router.navigate(['/home/serzone', {name: e.name}]);
     this.CarTypeisShow = false;
-    this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
+    // this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
   }
   public carBtnClick(e): void {
     if (e.srcElement.innerText === '小车') {
@@ -1968,9 +1969,10 @@ export class CityDataComponent implements OnInit {
     this.optionsCarPieInstance = ec;
   }
   public optionsIncomePieClick(e) {
-    this.IncomeAreaName = e.name;
+    // this.IncomeAreaName = e.name;
     this.incomeTypeisShow = false;
-    this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
+    this.router.navigate(['/home/serzone', {name: e.name}]);
+    // this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
   }
   public IncomeBtnClick(e): void {
     if (e.srcElement.innerText === '收入总数') {
