@@ -14,7 +14,6 @@ import {DataService} from '../../common/services/data.service';
 import {ConfigModule, WenjunAlertService} from '../../common/wenjun';
 
 declare let BMap;
-declare let BMapLib;
 
 interface CarExportType {
   carNumType: string;
