@@ -104,7 +104,7 @@
 }
 .main-content .servicesMap .servicesMap-top .servicesMap-top-box{
   height: 10vh;
-  width: 3vw;
+  min-width: 3vw;
   border:1px solid #3B425C;
   line-height: 2vh;
   font-size: 1.6rem;
@@ -159,7 +159,7 @@
 }
 .main-content .servicesMap .servicesMap-bottom .servicesMap-bottom-box{
   height: 10vh;
-  width: 3vw;
+  min-width: 3vw;
   border:1px solid #3B425C;
   line-height: 2vh;
   font-size: 1.6rem;

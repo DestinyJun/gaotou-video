@@ -11,6 +11,8 @@ export class DataService {
     '德克士', '坑德基', '小花超市', '王嬢快餐店', '小美汽修',
     '阿花住宿', '妹妹果汁店'
   ];
+  public rankedRelly = ['酸辣粉', '小黄鸭', '特色小吃',
+    '最美高速', '小圆满商城', '德克士', '小圆满餐厅'];
   public country = ['南明区', '云岩区', '花溪区', '观山湖区',
     '白云区', '乌当区', '清镇市', '开阳县', '息烽县', '修文县'
   ];
@@ -295,8 +297,10 @@ export class DataService {
   // 返回服务区收入跟具体的店铺名字
   public getServiceData(sum, min): any {
     const arryObj = [];
-    this.ranked.map((val, index, arr) => {
-      arryObj.push({name: arr[Math.round(Math.random() * (arr.length - 1))], num: Math.round(Math.random() * sum) + min, videoUrl: 'https://www.baidu.com'});
+    this.rankedRelly.map((val, index, arr) => {
+      arryObj.push({name: arr[Math.round(Math.random() * (arr.length - 1))],
+        num: Math.round(Math.random() * sum) +
+          min, videoUrl: 'rtsp://admin:admin12345@117.187.60.138:555/Streaming/Channels/101?transportmode-unicast'});
     });
     return arryObj;
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NodeEvent, NodeMenuItemAction, TreeModel} from 'ng2-tree';
+import {VideoWindowService} from '../../common/services/video-window.service';
 @Component({
   selector: 'app-video-window',
   templateUrl: './video-window.component.html',
@@ -17,13 +18,16 @@ export class VideoWindowComponent implements OnInit {
   /**************  ng2-tree ************/
   public tree: TreeModel;
   public tree1: TreeModel;
-  constructor() { }
+  constructor(
+    private videoWindowService: VideoWindowService
+  ) { }
 
   ngOnInit() {
     this.videoLocation1 = '';
     this.videoLocation2 = '';
     this.videoLocation3 = '';
     this.videoLocation4 = '';
+    this.getUploadDate();
     this.tree = {
       value: '贵州高速服务区监控',
       settings: {
@@ -750,6 +754,13 @@ export class VideoWindowComponent implements OnInit {
             </object>
 `;
     return html;
+  }
+  public getUploadDate() {
+    this.videoWindowService.getAreaList().subscribe(
+      (value) => {
+        console.log(value);
+      }
+    );
   }
 }
 export class VideoChildrenList {
