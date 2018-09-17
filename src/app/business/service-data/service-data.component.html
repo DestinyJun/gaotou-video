@@ -702,7 +702,7 @@
     </div>
     <div class="alert-window-content">
       <div class="row">
-        <div class="col-ld-2 col-md-2">
+       <!-- <div class="col-ld-2 col-md-2">
           <div class="video-time">
             <form [formGroup]="selectFormModule" class="playback" (submit)="onSubmit()">
               <label for="videoDate">请选择日期：</label>
@@ -726,21 +726,16 @@
             <button class="btn btn-success btn-block">20:00</button>
             <button class="btn btn-warning btn-block">22:00</button>
           </div>
-        </div>
-        <div class="col-ld-10 col-md-10">
+        </div>-->
+        <div class="col-ld-12 col-md-12">
           <div class="video-play">
-            <object type='application/x-vlc-plugin' id='' width="100%" height="100%"
-                    events='True'
-                    pluginspage="http://www.videolan.org"
-                    codebase="http://downloads.videolan.org/pub/videolan/vlc-webplugins/2.0.6/npapi-vlc-2.0.6.tar.xz">
-              <param name='mrl' value='${url}' />
+            <object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="100%" height="100%">
+              <param name='mrl' value='rtsp://admin:12345678a@222.85.147.216:554/Streaming/Channels/901?transportmode-unicast' />
               <param name='volume' value='50' />
               <param name='autoplay' value='true' />
               <param name='loop' value='false' />
-              <param value="transparent" name="wmode">
-              <embed id='vlc1' wmode="transparent" type="application/x-vlc-plugin" width="100%" height="100%"
-                     pluginspage="http://www.videolan.org" allownetworking="internal" allowscriptaccess="always" quality="high"
-                     src="rtsp://admin:admin12345@117.187.60.138:555/Streaming/Channels/101?transportmode-unicast">
+              <param name='fullscreen' value='true' />
+              <param name='controls' value='true' />
             </object>
           </div>
           <div class="video-event">
@@ -806,7 +801,7 @@
     </div>
     <div class="alert-window-content">
       <div class="row">
-        <div class="col-ld-2 col-md-2">
+       <!-- <div class="col-ld-2 col-md-2">
           <div class="video-time">
             <form [formGroup]="selectFormModule" class="playback" (submit)="onSubmit()">
               <label for="videoDate">请选择日期：</label>
@@ -830,22 +825,32 @@
             <button class="btn btn-success btn-block">20:00</button>
             <button class="btn btn-warning btn-block">22:00</button>
           </div>
-        </div>
-        <div class="col-ld-10 col-md-10">
+        </div>-->
+        <div class="col-ld-12 col-md-12">
           <div class="video-play" [ngStyle]="{'height': '65vh'}">
-            <object type='application/x-vlc-plugin' id='' width="100%" height="100%"
+            <object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="100%" height="100%">
+              <param name='mrl' value='rtsp://admin:12345678a@222.85.147.216:554/Streaming/Channels/901?transportmode-unicast' />
+              <param name='volume' value='50' />
+              <param name='autoplay' value='true' />
+              <param name='loop' value='false' />
+              <param name='fullscreen' value='true' />
+              <param name='controls' value='true' />
+            </object>
+           <!-- <object type='application/x-vlc-plugin' id='' width="100%" height="100%"
                     events='True'
                     pluginspage="http://www.videolan.org"
                     codebase="http://downloads.videolan.org/pub/videolan/vlc-webplugins/2.0.6/npapi-vlc-2.0.6.tar.xz">
-              <param name='mrl' value='rtsp://admin:admin12345@117.187.60.138:555/Streaming/Channels/101?transportmode-unicast' />
+              <param name='mrl' value='rtsp://admin:12345678a@222.85.147.216:554/Streaming/Channels/901?transportmode-unicast
+' />
               <param name='volume' value='50' />
               <param name='autoplay' value='true' />
               <param name='loop' value='false' />
               <param value="transparent" name="wmode">
               <embed id='vlc1' wmode="transparent" type="application/x-vlc-plugin" width="100%" height="100%"
                      pluginspage="http://www.videolan.org" allownetworking="internal" allowscriptaccess="always" quality="high"
-                     src="${url}">
-            </object>
+                     src="rtsp://admin:12345678a@222.85.147.216:554/Streaming/Channels/901?transportmode-unicast
+">
+            </object>-->
           </div>
          <!-- <div class="video-event">
             <app-timer-shaft-crosswise></app-timer-shaft-crosswise>
