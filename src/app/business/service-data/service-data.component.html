@@ -39,20 +39,20 @@
     <div class="col-lg-6 col-md-6">
        <div class="servicesMap">
          <div class="servicesMap-top">
-          <div class="servicesMap-top-box text-center" *ngFor="let item of incomeData">
-            <div class="shop-info" (click)="openServiceShop(item.name)">
-              <p style="color: #3BF49F;" [title]="item.name">{{item.name}}</p>
-              <p style="color: #00CFB1;" [title]="item.num">{{item.num}}元</p>
+          <div class="servicesMap-top-box text-center" *ngFor="let item of incomeBottomData">
+            <div class="shop-info" (click)="openServiceShop(item.storeName)">
+              <p style="color: #3BF49F;" [title]="item.name">{{item.storeName}}</p>
+              <p style="color: #00CFB1;" [title]="item.num">1000元</p>
             </div>
             <p>
-              <button class="btn btn-danger" (click)="openMerchantVideo(item.name,item.videoUrl)">监控</button>
+              <button class="btn btn-danger" (click)="openMerchantVideo(item.storeName,item.cameraList)">监控</button>
             </p>
           </div>
          </div>
          <div class="servicesMap-center">
            <div class="video-top" >
-             <div *ngFor="let item of btnClass" style="margin-right: 10px">
-               <button class="btn" [ngClass]="item" (click)="openPublicVideo($event)">监控点一号</button>
+             <div *ngFor="let item of publicBottomVideoList;let i = index" style="margin-right: 10px">
+               <button class="btn" [ngClass]="btnClass[i]" (click)="openPublicVideo(item)">{{item.cameraName}}</button>
              </div>
            </div>
            <div class="servicesMap-center-left">
@@ -74,18 +74,20 @@
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
            </div>
            <div class="video-bottom">
-             <div *ngFor="let item of btnClass" style="margin-left: 10px">
-               <button class="btn" [ngClass]="item" (click)="openPublicVideo($event)">监控点一号</button>
+             <div *ngFor="let item of publicTopVideoList;let i = index" style="margin-left: 10px">
+               <button class="btn" [ngClass]="btnClass[i]" (click)="openPublicVideo(item)">{{item.cameraName}}</button>
              </div>
            </div>
          </div>
          <div class="servicesMap-bottom">
-           <div class="servicesMap-bottom-box text-center" *ngFor="let item of incomeData">
+           <div class="servicesMap-bottom-box text-center" *ngFor="let item of incomeTopData">
+             <div class="shop-info" (click)="openServiceShop(item.storeName)">
+               <p style="color: #3BF49F;" [title]="item.name">{{item.storeName}}</p>
+               <p style="color: #00CFB1;" [title]="item.num">1000元</p>
+             </div>
              <p>
-               <button class="btn btn-danger" (click)="openMerchantVideo(item.name,item.videoUrl)">监控</button>
+               <button class="btn btn-danger" (click)="openMerchantVideo(item.storeName,item.cameraList)">监控</button>
              </p>
-             <p style="color: #00CFB1;" [title]="item.num">{{item.num}}元</p>
-             <p style="color: #3BF49F;" [title]="item.name">{{item.name}}</p>
            </div>
          </div>
        </div>
@@ -701,7 +703,7 @@
       </div>
     </div>
     <div class="alert-window-content">
-      <div class="row">
+      <div class="row" id="shopWindowShop">
        <!-- <div class="col-ld-2 col-md-2">
           <div class="video-time">
             <form [formGroup]="selectFormModule" class="playback" (submit)="onSubmit()">
@@ -727,10 +729,10 @@
             <button class="btn btn-warning btn-block">22:00</button>
           </div>
         </div>-->
-        <div class="col-ld-12 col-md-12">
+        <!--<div class="col-ld-6 col-md-6">
           <div class="video-play">
             <object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="100%" height="100%">
-              <param name='mrl' value='rtsp://admin:12345678a@222.85.147.216:554/Streaming/Channels/901?transportmode-unicast' />
+              <param name='mrl' value=`${videoItem.outUrl}` />
               <param name='volume' value='50' />
               <param name='autoplay' value='true' />
               <param name='loop' value='false' />
@@ -738,10 +740,10 @@
               <param name='controls' value='true' />
             </object>
           </div>
-          <div class="video-event">
-            <app-timer-shaft-crosswise></app-timer-shaft-crosswise>
-          </div>
-        </div>
+        </div>-->
+       <!-- <div class="video-event">
+          <app-timer-shaft-crosswise></app-timer-shaft-crosswise>
+        </div>-->
       </div>
     </div>
     <!--<div class="bg-excel" *ngIf="incomeExcelShow">
@@ -827,15 +829,8 @@
           </div>
         </div>-->
         <div class="col-ld-12 col-md-12">
-          <div class="video-play" [ngStyle]="{'height': '65vh'}">
-            <object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="100%" height="100%">
-              <param name='mrl' value='rtsp://admin:12345678a@222.85.147.216:554/Streaming/Channels/901?transportmode-unicast' />
-              <param name='volume' value='50' />
-              <param name='autoplay' value='true' />
-              <param name='loop' value='false' />
-              <param name='fullscreen' value='true' />
-              <param name='controls' value='true' />
-            </object>
+          <div class="video-play" [ngStyle]="{'height': '65vh'}" id="publicVideo">
+
            <!-- <object type='application/x-vlc-plugin' id='' width="100%" height="100%"
                     events='True'
                     pluginspage="http://www.videolan.org"

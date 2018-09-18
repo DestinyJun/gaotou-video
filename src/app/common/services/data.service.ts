@@ -298,9 +298,10 @@ export class DataService {
   public getServiceData(sum, min): any {
     const arryObj = [];
     this.rankedRelly.map((val, index, arr) => {
-      arryObj.push({name: arr[Math.round(Math.random() * (arr.length - 1))],
-        num: Math.round(Math.random() * sum) +
-          min, videoUrl: 'rtsp://admin:admin12345@117.187.60.138:555/Streaming/Channels/101?transportmode-unicast'});
+      arryObj.push({
+        name: arr[Math.round(Math.random() * (arr.length - 1))],
+        num: Math.round(Math.random() * sum) + min,
+        videoUrl: 'rtsp://admin:admin12345@117.187.60.138:555/Streaming/Channels/101?transportmode-unicast'});
     });
     return arryObj;
   }

@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   Component, ElementRef,
   OnInit,
 } from '@angular/core';
@@ -8,6 +9,7 @@ import {ActivatedRoute} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EventInfoUpType, EventListInfo} from '../../common/model/service-data.model';
+import {SerareaService} from '../../common/services/serarea.service';
 declare let BMap;
 declare let BMapLib;
 declare let BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW;
@@ -38,7 +40,7 @@ export class ServiceDataComponent implements OnInit {
   public serviceZoneTitle: string;
   public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
   public business = ['住宿', '汽修', '商超', '小吃', '西式快餐', '中式快餐'];
-  public btnClass = ['btn-danger', 'btn-info', 'btn-default', 'btn-primary', 'btn-warning', 'btn-success', 'btn-danger', 'btn-info', 'btn-default', 'btn-primary', 'btn-warning', 'btn-success']
+  public btnClass = ['btn-danger', 'btn-info', 'btn-default', 'btn-primary', 'btn-warning', 'btn-success', 'btn-danger', 'btn-info', 'btn-default', 'btn-primary', 'btn-warning', 'btn-success'];
 
   /***********************左边************************/
     //  高速服液态数据3d统计
@@ -73,10 +75,13 @@ export class ServiceDataComponent implements OnInit {
   public carExportType: CarExportType;
 
   /***********************中部************************/
-  public incomeData: any;
+  public incomeBottomData: any;
+  public incomeTopData: any;
+
   // 服务区商家视频弹窗
   public videoAlertShow = false;
   public videoAlertTitle: string;
+  public videoBottomShopUrl: string;
   // 服务区商家信息弹窗
   public serviceShopShow = false;
   public serviceShopTitle: string;
@@ -85,6 +90,8 @@ export class ServiceDataComponent implements OnInit {
   // 公共视频弹窗
   public videoPublicShow = false;
   public publicVideoTitle: string;
+  public publicBottomVideoList = [];
+  public publicTopVideoList = [];
   // 事件弹窗
   public eventListInfos: EventListInfo[];
   public eventInfoUpTypes = ['经营类', '合同类', '工程类', '卫生类', '监控类', '系统类'];
@@ -139,7 +146,8 @@ export class ServiceDataComponent implements OnInit {
     private data3dS: Data3dService,
     private diagrams: DiagramService,
     private routerInfo: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private serareaService: SerareaService
   ) {}
 
   ngOnInit() {
@@ -846,17 +854,61 @@ export class ServiceDataComponent implements OnInit {
   }*/
   // 中部服务区数据展示
   public backCenterDate() {
-  this.incomeData = this.dataService.getServiceData(1000, 200);
+  // this.incomeData = this.dataService.getServiceData(1000, 200);
+    // 店铺数据
+    this.serareaService.getServiceShopVDate().subscribe(
+      (value) => {
+        value.data.map((val, index) => {
+          console.log(val);
+          if (val.flag === '3') {
+            this.incomeBottomData = val.storeInfoList;
+            this.publicBottomVideoList = val.cameraList;
+          } else if (val.flag === '2') {
+            this.incomeTopData = val.storeInfoList;
+            this.publicTopVideoList = val.cameraList;
+          }
+        });
+        console.log(this.incomeBottomData);
+        console.log(this.incomeTopData);
+      }
+    );
   }
   // 中部服务商家操作
   public closeMerchantVideo(): void {
     document.body.className = '';
     this.videoAlertShow = false;
   }
-  public openMerchantVideo(e): void {
+  public openMerchantVideo(e, url): void {
+    this.videoBottomShopUrl = '';
+    console.log(url);
+    const that = this;
     document.body.className = 'ui-overflow-hidden';
     this.videoAlertShow = true;
     this.videoAlertTitle = e;
+    for (let i = 0; i < url.length; i++) {
+      this.videoBottomShopUrl =  this.videoBottomShopUrl +  `
+         <div class="col-ld-6 col-md-6">
+          <div class="video-play" style="height: 32vh">
+           <object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="100%" height="96%">
+              <param name='mrl' value='${url[i].outUrl}' />
+              <param name='volume' value='50' />
+              <param name='autoplay' value='true' />
+              <param name='loop' value='false' />
+              <param name='fullscreen' value='true' />
+              <param name='controls' value='true' />
+            </object>
+</div>
+</div>
+      `;
+    }
+    setTimeout(() => {
+       if (!url.length) {
+         console.log(111);
+         document.getElementById('shopWindowShop').innerHTML = `<h1 class="text-center">此商店暂无摄像头</h1>`;
+         return;
+       }
+      document.getElementById('shopWindowShop').innerHTML = this.videoBottomShopUrl;
+    }, 100);
   }
   public closeServiceShop(): void {
     document.body.className = '';
@@ -869,9 +921,29 @@ export class ServiceDataComponent implements OnInit {
   }
   // 中部服务区视频监控
   public openPublicVideo(e) {
+    console.log(e);
+    console.log(e.outUrl);
+    let videoUrlHtml = '';
     document.body.className = 'ui-overflow-hidden';
     this.videoPublicShow = true;
-    this.publicVideoTitle = e.srcElement.innerText;
+    this.publicVideoTitle = e.cameraName;
+    videoUrlHtml = videoUrlHtml + `
+         <object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="100%" height="99%">
+              <param name='mrl' value='${e.outUrl}' />
+              <param name='volume' value='50' />
+              <param name='autoplay' value='true' />
+              <param name='loop' value='false' />
+              <param name='fullscreen' value='true' />
+              <param name='controls' value='true' />
+            </object>
+    `;
+    setTimeout(() => {
+      if (e.outUrl === '' || e.outUrl === null || e.outUrl === undefined) {
+        document.getElementById('publicVideo').innerHTML = `<h1 class="text-center">此商店暂无摄像头</h1>`;
+        return;
+      }
+      document.getElementById('publicVideo').innerHTML = videoUrlHtml;
+    }, 100);
   }
   public closePublicVideo() {
      document.body.className = '';
@@ -1699,8 +1771,10 @@ export class ServiceDataComponent implements OnInit {
     this.CarTypes();
 
     /************************中部***************************/
-    // 贵阳业态经营数据前十排名
-    // this.backCrosswiseBar();
+    /*
+ 贵阳业态经营数据前十排名
+     this.backCrosswiseBar();
+*/
     this.backCenterDate();
     // 事件列表
     this.eventListInfos = [
@@ -1712,6 +1786,7 @@ export class ServiceDataComponent implements OnInit {
       {time: '2018-08-17', type: '经营类', description: '收入数据异常', state: '未处理', personage: '妹妹小吃店6', plan: '立即派人去处理', solution: '大家使劲排查'}
     ];
     this.eventListInfo = this.eventListInfos[0];
+
 
     /************************右边***************************/
     // 当日收入类型占比分析
