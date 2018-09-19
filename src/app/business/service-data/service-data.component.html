@@ -702,8 +702,8 @@
         </div>
       </div>
     </div>
-    <div class="alert-window-content">
-      <div class="row" id="shopWindowShop">
+    <div class="alert-window-content" id ='shopWindowAlert'>
+      <div class="row">
        <!-- <div class="col-ld-2 col-md-2">
           <div class="video-time">
             <form [formGroup]="selectFormModule" class="playback" (submit)="onSubmit()">
@@ -729,7 +729,7 @@
             <button class="btn btn-warning btn-block">22:00</button>
           </div>
         </div>-->
-        <!--<div class="col-ld-6 col-md-6">
+       <!--<div class="col-ld-6 col-md-6">
           <div class="video-play">
             <object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="100%" height="100%">
               <param name='mrl' value=`${videoItem.outUrl}` />
@@ -744,6 +744,15 @@
        <!-- <div class="video-event">
           <app-timer-shaft-crosswise></app-timer-shaft-crosswise>
         </div>-->
+      </div>
+      <div class="vide-list col-lg-3 col-md-3">
+        <div class="row">
+          <div class="list-group ">
+            <button *ngFor="let item of videoShopList;let i = index"  type="button" class="list-group-item" (click)="videoShopListClick(item.outUrl)">{{item.cameraName + (i+1) }}号摄像头</button>
+          </div>
+        </div>
+      </div>
+      <div class="vide-list col-lg-9 col-md-9" id="shopWindowShop">
       </div>
     </div>
     <!--<div class="bg-excel" *ngIf="incomeExcelShow">
@@ -790,7 +799,7 @@
 </div>
 <!--服务区公共视频监控弹窗-->
 <div class="bg-box" *ngIf="videoPublicShow" >
-  <div class="alert-window" style="height:70vh; margin-top: -35vh;">
+  <div class="alert-window" style="height:70vh; margin-top: -35vh;width:60vw; margin-left:-30vw">
     <div class="alert-window-header">
       <div class="row">
         <div class="col-lg-12 col-md-12">

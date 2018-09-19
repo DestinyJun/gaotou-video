@@ -80,6 +80,7 @@ export class ServiceDataComponent implements OnInit {
 
   // 服务区商家视频弹窗
   public videoAlertShow = false;
+  public videoShopList = [];
   public videoAlertTitle: string;
   public videoBottomShopUrl: string;
   // 服务区商家信息弹窗
@@ -878,19 +879,24 @@ export class ServiceDataComponent implements OnInit {
     document.body.className = '';
     this.videoAlertShow = false;
   }
+
+  // 商家视频弹窗
   public openMerchantVideo(e, url): void {
     this.videoBottomShopUrl = '';
-    console.log(url);
-    const that = this;
     document.body.className = 'ui-overflow-hidden';
     this.videoAlertShow = true;
     this.videoAlertTitle = e;
-    for (let i = 0; i < url.length; i++) {
+    console.log(url);
+    if (!url.length) {
+      setTimeout(() => {
+        document.getElementById('shopWindowAlert').innerHTML = `<h1 class="text-center">此处暂无摄像头</h1>`;
+      }, 100);
+    } else {
+      this.videoShopList = url;
       this.videoBottomShopUrl =  this.videoBottomShopUrl +  `
-         <div class="col-ld-6 col-md-6">
-          <div class="video-play" style="height: 32vh">
+        <div class="video-play" style="height: 66vh">
            <object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="100%" height="96%">
-              <param name='mrl' value='${url[i].outUrl}' />
+              <param name='mrl' value='${url[0].outUrl}' />
               <param name='volume' value='50' />
               <param name='autoplay' value='true' />
               <param name='loop' value='false' />
@@ -898,18 +904,37 @@ export class ServiceDataComponent implements OnInit {
               <param name='controls' value='true' />
             </object>
 </div>
+      `;
+      setTimeout(() => {
+        if (!url.length) {
+          document.getElementById('shopWindowShop').innerHTML = `<h1 class="text-center">此商店暂无摄像头</h1>`;
+          return;
+        }
+        document.getElementById('shopWindowShop').innerHTML = this.videoBottomShopUrl;
+      }, 100);
+    }
+  }
+  public videoShopListClick(e): void{
+    this.videoBottomShopUrl = '';
+    if (e === null || e === '' || e === undefined) {
+      document.getElementById('shopWindowShop').innerHTML = `<h1 class="text-center">暂时没安装摄像头</h1>`;
+    } else {
+      this.videoBottomShopUrl =  this.videoBottomShopUrl +  `
+        <div class="video-play" style="height: 66vh">
+           <object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="100%" height="96%">
+              <param name='mrl' value='${e}' />
+              <param name='volume' value='50' />
+              <param name='autoplay' value='true' />
+              <param name='loop' value='false' />
+              <param name='fullscreen' value='true' />
+              <param name='controls' value='true' />
+            </object>
 </div>
       `;
-    }
-    setTimeout(() => {
-       if (!url.length) {
-         console.log(111);
-         document.getElementById('shopWindowShop').innerHTML = `<h1 class="text-center">此商店暂无摄像头</h1>`;
-         return;
-       }
       document.getElementById('shopWindowShop').innerHTML = this.videoBottomShopUrl;
-    }, 100);
+    }
   }
+
   public closeServiceShop(): void {
     document.body.className = '';
     this.serviceShopShow = false;
@@ -919,10 +944,11 @@ export class ServiceDataComponent implements OnInit {
     this.serviceShopShow = true;
     document.body.className = 'ui-overflow-hidden';
   }
-  // 中部服务区视频监控
+  // 服务区公共视频监控
   public openPublicVideo(e) {
     console.log(e);
-    console.log(e.outUrl);
+    this.videoShopList = e;
+    console.log(this.videoShopList);
     let videoUrlHtml = '';
     document.body.className = 'ui-overflow-hidden';
     this.videoPublicShow = true;
