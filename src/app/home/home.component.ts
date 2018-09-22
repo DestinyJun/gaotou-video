@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   // 搜索
   public searchForm: FormGroup;
   public selectForm: FormGroup;
+  // 弹窗
+  public display = false;
 
   constructor(
     private eventsService: EventsService,
@@ -167,5 +169,10 @@ export class HomeComponent implements OnInit {
                <span>${times}</span>`;
        dateTim = year + '-' + months + '-' + days;
      }*/
+  }
+
+  // 点击弹窗
+  public showDialog() {
+    this.display = true;
   }
 }

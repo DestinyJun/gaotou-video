@@ -9,8 +9,7 @@ import {AppComponent} from './app.component';
 import {LocalStorageService} from './common/services/local-storage.service';
 import {LoginService} from './common/services/login.service';
 import {LoginComponent} from './login/login.component';
-import {WenjunAlertModule} from './common/wenjun';
-// import { ModalModule } from 'ngx-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -22,8 +21,7 @@ import {WenjunAlertModule} from './common/wenjun';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    // WenjunAlertModule,
-    // ModalModule.forRoot()
+    BrowserAnimationsModule
   ],
   providers: [
     LoginService,

@@ -7,15 +7,16 @@
           <div class="header-title-h4">
             <span>贵州高投服务管理有限公司交通大数据</span>
           </div>
-          <div class="header-box">
+          <div class="header-box" >
             <span class="header-box-box1"></span>
             <span class="header-box-box2"></span>
           </div>
+          <div style="display: inline-block" (click)="showDialog()">
             <span class="header-per-title">今日客流量：</span>
             <span class="header-person" *ngFor="let item of persons" [ngStyle]="{'background':item.colors}">
-            {{item.number}}
-          </span>
+            {{item.number}}</span>
             <span class="header-per-unit">人 / 次</span>
+          </div>
         </div>
         <div class="header-manner pull-right">
           <div class="header-clock pull-left">
@@ -76,4 +77,3 @@
   <app-footer></app-footer>
 </div>
 <!--信息提醒弹窗-->
-<app-message-window></app-message-window>

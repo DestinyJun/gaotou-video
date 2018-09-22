@@ -157,5 +157,16 @@
     display: none;
   }
 }
-
+/*弹窗改造*/
+body .ui-dialog .ui-dialog-titlebar {
+  border: 1px solid #0071bc;
+  background-color: #0071bc;
+  color: #ffffff;
+  padding: 0.571em 1.143em;
+  font-weight: 700;
+  border-bottom: 0 none;
+}
+.ui-dialog .ui-dialog-titlebar {
+  padding: 0.5em 0.75em;
+}
 
