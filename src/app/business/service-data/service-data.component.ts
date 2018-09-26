@@ -8,8 +8,8 @@ import {DiagramService} from '../../common/services/diagram.service';
 import {ActivatedRoute} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {EventInfoUpType, EventListInfo} from '../../common/model/service-data.model';
-import {SerareaService} from '../../common/services/serarea.service';
+import {EventListInfo} from '../../common/model/service-data.model';
+import {ServiceDataService} from '../../common/services/service-data.service';
 declare let BMap;
 declare let BMapLib;
 declare let BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW;
@@ -148,7 +148,7 @@ export class ServiceDataComponent implements OnInit {
     private diagrams: DiagramService,
     private routerInfo: ActivatedRoute,
     private dataService: DataService,
-    private serareaService: SerareaService
+    private serareaService: ServiceDataService
   ) {}
 
   ngOnInit() {

@@ -4,7 +4,7 @@ import {SharedModule} from '../../common/shared.module';
 import { ServiceDataComponent } from './service-data.component';
 import {ServiceDataRoutingModule} from './service-data.routing.module';
 import { ServiceDataService } from '../../common/services/service-data.service';
-import { SerareaService } from '../../common/services/serarea.service';
+import { FinanceDataService } from '../../common/services/finance-data.service';
 
 @NgModule({
   imports: [
@@ -13,6 +13,6 @@ import { SerareaService } from '../../common/services/serarea.service';
     SharedModule,
   ],
   declarations: [ServiceDataComponent],
-  providers: [ServiceDataService, SerareaService]
+  providers: [ServiceDataService, FinanceDataService]
 })
 export class ServiceDataModule { }

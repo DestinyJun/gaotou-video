@@ -6,6 +6,7 @@ import {FinanceDataRoutingModule} from './finance-data.routing.module';
 import { FinanceDataComponent } from './finance-data.component';
 import {FormsModule} from '@angular/forms';
 import {WenjunAlertModule} from '../../common/wenjun';
+import { FinanceDataService } from '../../common/services/finance-data.service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import {WenjunAlertModule} from '../../common/wenjun';
     WenjunAlertModule
   ],
   declarations: [FinanceDataComponent],
-  entryComponents: []
+  entryComponents: [],
+  providers: [FinanceDataService]
 })
 export class FinanceDataModule { }

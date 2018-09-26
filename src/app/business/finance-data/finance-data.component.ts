@@ -12,6 +12,7 @@ import {DiagramService} from '../../common/services/diagram.service';
 import {Router} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
 import {ConfigModule, WenjunAlertService} from '../../common/wenjun';
+import {FinanceDataService} from '../../common/services/finance-data.service';
 
 declare let BMap;
 
@@ -157,7 +158,8 @@ export class FinanceDataComponent implements OnInit {
     private diagrams: DiagramService,
     private dataService: DataService,
     private router: Router,
-    private wenJunAlertService: WenjunAlertService
+    private wenJunAlertService: WenjunAlertService,
+    private financeDataService: FinanceDataService,
   ) {}
 
   ngOnInit() {
@@ -1410,16 +1412,42 @@ export class FinanceDataComponent implements OnInit {
       }*/
 
     // 编写自定义函数,创建标注
-    const pointsMarket = [
+   /* const pointsMarket = [
       [106.626806, 26.683542, '贵阳服务区', 80],
       [104.842269, 26.625681, '遵义服务区', 150],
       [105.293002, 27.301609, '六盘水服务区', 300],
       [106.93956, 27.760846, '毕节服务区', 781],
       [106.994752, 26.0953, '安顺服务区', 198],
       [106.706049, 26.901505, '贵州久长高速服务区', 230],
-    ];
-
-    function addMarker(point, name, num) {
+    ];*/
+    const pointsMarket = [];
+    this.financeDataService.getServiceNamePoint().subscribe(
+      (val) => {
+        val.data.map((val1, index1) => {
+          let a = [];
+          // console.log(val1.name);
+          // pointsMarket.push([])
+          val1.attributeValueList.map((val2, index2) => {
+            if (val2.attributeDesc === '经度') {
+              a.push(val2.attributeValue);
+            } else if (val2.attributeDesc === '纬度')
+              a.push(val2.attributeValue);
+          });
+          if (a) {
+            a.push(val1.name);
+          }
+          pointsMarket.push(a);
+        });
+        if (pointsMarket) {
+          // console.log(pointsMarket);
+          for (let i = 0; i < pointsMarket.length; i++) {
+            const points = [pointsMarket[i][0], pointsMarket[i][1]];
+            // addMarker(points, pointsMarket[i][2], pointsMarket[i][3]);
+            addMarker(points, pointsMarket[i][2]);
+          }
+        }
+      });
+   /* function addMarker(point, name, num) {
       const myIcon = new BMap.Icon('http://lbsyun.baidu.com/jsdemo/img/fox.gif', new BMap.Size(200, 130));
       const points = new BMap.Point(point[0], point[1]);
       const marker = new BMap.Marker(points);
@@ -1443,13 +1471,43 @@ export class FinanceDataComponent implements OnInit {
           }
         that.router.navigate(['/home/serzone', {name: name, point: point}]);
       });
+    }*/
+    function addMarker(point, name) {
+      // const myIcon = new BMap.Icon('http://lbsyun.baidu.com/jsdemo/img/fox.gif', new BMap.Size(200, 130));
+      const myIcon = new BMap.Icon('http://api.map.baidu.com/img/markers.png', new BMap.Size(23, 25), {
+        offset: new BMap.Size(10, 25),
+      });
+      const points = new BMap.Point(point[0], point[1]);
+      const marker = new BMap.Marker(points);
+      map.addOverlay(marker);
+
+      // 跳动的动画
+      // marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+
+      // market事件
+      marker.addEventListener('mouseover', function () {
+        // 信息窗口
+        // const sContent = `<div><h5>${name}</h5><p>驻车量：${num}辆</p></div>`;
+        const sContent = `<div><h5>${name}</h5></div>`;
+        const infoWindow = new BMap.InfoWindow(sContent, {enableCloseOnClick: true});
+        this.openInfoWindow(infoWindow);
+      });
+      marker.addEventListener('click', function (e) {
+        if (name === '贵州久长高速服务区') {
+          that.router.navigate(['/home/serzone', {name: name, point: point}]);
+        } else {
+          window.alert('此服务区暂无数据');
+        }
+        that.router.navigate(['/home/serzone', {name: name, point: point}]);
+      });
     }
 
     // 添加5标注
-    for (let i = 0; i < pointsMarket.length; i++) {
+    /*for (let i = 0; i < pointsMarket.length; i++) {
       const points = [pointsMarket[i][0], pointsMarket[i][1]];
-      addMarker(points, pointsMarket[i][2], pointsMarket[i][3]);
-    }
+      // addMarker(points, pointsMarket[i][2], pointsMarket[i][3]);
+      addMarker(points, pointsMarket[i][2]);
+    }*/
 
     // 绘制边线轮廓rankingClick
     const citys = [
