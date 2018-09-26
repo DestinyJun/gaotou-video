@@ -41,9 +41,9 @@ export class DataService {
     {dynamic: '办公用品申请', dispose: '未处理', color: '#1ED1D8'}
   ];
   public serviceBasicInformation1 = [
-    {name: '始建时间', desc: '2018月7月18日'},
+    {name: '始建时间', desc: '2018-7-18'},
     {name: '占地面积', desc: '154554㎡'},
-    {name: '运营时间', desc: '2017年10月10号'},
+    {name: '运营时间', desc: '2017-10-10'},
     {name: '保洁人员', desc: '21名'},
     {name: '保安人员', desc: '15名'},
     {name: '大车车位', desc: '524个'},

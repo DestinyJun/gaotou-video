@@ -665,7 +665,7 @@ export class ServiceDataComponent implements OnInit {
         this.optionsCarModel = {
           title: [
             {
-              text: this.serviceZoneTitle + value.title,
+              // text: this.serviceZoneTitle + value.title,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -1346,7 +1346,7 @@ export class ServiceDataComponent implements OnInit {
         this.optionsIncomeModel = {
           title: [
             {
-              text: this.serviceZoneTitle + value.title,
+              // text: this.serviceZoneTitle + value.title,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -1372,7 +1372,7 @@ export class ServiceDataComponent implements OnInit {
                 emphasis: {
                   show: true,
                   textStyle: {
-                    fontSize: 12
+                    fontSize: '0.3rem'
                   }
                 }
               },
