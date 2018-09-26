@@ -41,7 +41,6 @@ export class ServiceDataComponent implements OnInit {
   public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
   public business = ['住宿', '汽修', '商超', '小吃', '西式快餐', '中式快餐'];
   public btnClass = ['btn-danger', 'btn-info', 'btn-default', 'btn-primary', 'btn-warning', 'btn-success', 'btn-danger', 'btn-info', 'btn-default', 'btn-primary', 'btn-warning', 'btn-success'];
-
   /***********************左边************************/
     //  高速服液态数据3d统计
   public options3d = {};
