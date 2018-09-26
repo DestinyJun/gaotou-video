@@ -1,13 +1,13 @@
 .footer {
-  height: 3vh;
-  /*width: calc(100% - 30px);*/
+  height: 4vh;
   width: 100%;
   position: fixed;
   left: 0;
   bottom: 0;
-  line-height: 3vh;
-  background: #C4272C;
-  /*margin: 0 15px;*/
+  line-height: 4vh;
+  background: rgba(0,0,0,0.3);
+  font-size: 0.3rem;
+  box-shadow:0 0 15px 5px rgba(200,200,200,0.2) inset;
 }
 footer span{
 
