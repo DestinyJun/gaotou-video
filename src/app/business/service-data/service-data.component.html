@@ -9,7 +9,13 @@
     <!--左边-->
     <div class="col-lg-3 col-md-3">
       <!--3D业态图-->
-      <div class="accumulation3d" echarts [options]="options3d" (chartClick)="barClick($event)"></div>
+      <div class="box3d">
+        <p class="text-center">{{serviceZoneTitle}}业态数据3D统计</p>
+        <div class="accumulation3d" echarts [options]="options3d" (chartClick)="barClick($event)">
+
+      </div>
+
+      </div>
       <!--移动端车流量-->
       <div class="income mobile">
         <p class="text-center">{{serviceZoneTitle}}今日实时收入</p>
@@ -105,28 +111,30 @@
         <!--未处理-->
         <div class="col-lg-6 col-md-6 event-untreated-table">
           <div class="table-title text-center">
-            <span>服务区未处理事件</span>
+            <span>未处理事件</span>
             <!--<span class="pull-right" style="cursor: pointer;color:#86FDFE;position: absolute;right: 5px;" (click)="openEventAlert()">查看更多...</span>-->
           </div>
           <div class="table-responsive">
-            <table class="table" cellspacing="5px">
-              <thead class="table-header">
-              <tr>
-                <td>时间</td>
-                <td>事件类型</td>
-                <td>事件描述</td>
-                <td>状态</td>
-              </tr>
-              </thead>
-              <tbody class="table-body">
+            <div class="tableboder">
+              <table class="table" cellspacing="5px">
+                <thead class="table-header">
+                <tr>
+                  <td>时间</td>
+                  <td>事件类型</td>
+                  <td>事件描述</td>
+                  <td>状态</td>
+                </tr>
+                </thead>
+                <tbody class="table-body">
                 <tr class="table-tr" *ngFor="let item of eventListInfos" (click)="openEventAlert(item)">
                   <td>{{item?.time}}</td>
                   <td>{{item?.type}}</td>
                   <td>{{item?.description}}</td>
                   <td style="color:#CF5B56">{{item?.state}}</td>
                 </tr>
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <!--事件上报-->
@@ -139,14 +147,14 @@
               <span *ngFor="let item of eventInfoUpTypes" (click)="eventInfoUpClick(item)">{{item}}</span>
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="margin-top: 2vh">
             <div class="event-toilet" (click)="openServersToiletAlert('服务区卫生间使用率')">
               <div style="padding-left: 1.2vw">
                 <span>卫生间使用率</span>
               </div>
               <div class="table-responsive text-center">
-                <span class="btn btn-danger wash">男洗手间：45%</span>
-                <span class="btn btn-info wash">女洗手间：50%</span>
+                <span class="btn  button-left">男洗手间：45%</span>
+                <span class="btn button-right">女洗手间：50%</span>
               </div>
             </div>
             <div class="event-carport" (click)="openServersToiletAlert('服务区停车位监控')">
@@ -154,8 +162,8 @@
                 <span style="padding-left: 1.2vw">停车位监控</span>
               </div>
               <div class="text-center">
-                <span class="btn btn-warning">大车剩余车位：256个</span>
-                <span class="btn btn-primary">小车剩余车位：318个</span>
+                <span class="btn button-left">大车剩余车位：256个</span>
+                <span class="btn button-right">小车剩余车位：318个</span>
               </div>
             </div>
           </div>

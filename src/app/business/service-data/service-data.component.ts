@@ -209,7 +209,7 @@ export class ServiceDataComponent implements OnInit {
         this.options3d = {
           title: [
             {
-              text: this.serviceZoneTitle + this.options3dArray.data3dTitle,
+              // text: this.serviceZoneTitle + this.options3dArray.data3dTitle,
               left: 'center',
               textStyle: {
                 color: '#fff',

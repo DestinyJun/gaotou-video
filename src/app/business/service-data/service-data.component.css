@@ -31,9 +31,17 @@
 }
 /******************************左边*******************************/
 /*3D柱状图*/
+.main-content .box3d {
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+}
+.main-content .box3d p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
 .main-content .accumulation3d{
   height: 35vh;
-  box-shadow:0 0 15px 5px rgba(200,200,200,0.2) inset;
+
   margin-bottom: 2vh;
   margin-right: -8px;
 }
@@ -185,107 +193,44 @@
 }
 /*事件监控列表*/
 .main-content .event-table{
-  padding-top: 1px;
-  min-height: 32vh;
-  border:1px solid #3B425C;
+  padding-top: 1vh;
+  min-height: 38vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   overflow: hidden;
   margin-left: -8px;
   margin-right: -8px;
-  font-size: 12px;
+  padding-bottom: 5vh;
+  font-size: 0.5rem;
 }
 .main-content .event-table .event-untreated-table{
    padding-right: 0;
-   padding-left: 0;
+   padding-left: 1.5vw;
 }
-.main-content  .event-table .event-processed-table{
-  /*padding-right: 0;
-  padding-left: 0;*/
-}
-
-.main-content  .event-table .event-else-table{
-  padding-right: 0;
-  padding-left: 0;
-}
-.main-content  .event-table .event-else-table .table-responsive{
-  padding-top: 15px;
-}
-.event-else-table .event-toilet{
-  height: 15.5vh;
-}
-.event-else-table .event-toilet span{
-  margin-bottom: 15px;
-}
-.event-else-table .event-carport{
-  height: 15.5vh;
-}
-.event-else-table .event-carport span{
-  margin-bottom: 15px;
-}
-.main-content .event-table tr{
-  cursor: pointer;
-
-}
-.main-content .event-table tr td{
-  border: none;
-}
-.main-content .event-table tr:hover{
-  cursor: pointer;
-}
-.main-content .table-title{
-  padding: 5px 0 10px 5px;
-  font-weight: bolder;
-  font-size: 0.7rem;
-  color: #4D96DF;
-}
-.main-content .event-table .event-type>span{
-  display: inline-block;
-  background: #03A9F7;
-  height: 10vh;
-  padding-top: 0.6vh;
-  width: 1.6vw;
-  margin-right: 1vw;
-  font-size: 0.2rem;
- }
-.main-content .event-table .event-type>span:hover {
-  background: #0157A0;
-  cursor: pointer;
-}
-.main-content .event-toilet {
-  margin-bottom: 5vh;
-}
-.main-content .event-toilet .wash{
-  width: 10.5vw;
-}
-.main-content .event-type {
-  margin-bottom: 5vh;
-}
-.main-content span {
-  display: inline-block;
-  height: 5vh;
-  font-size: 0.3rem;
-}
-/*.main-content .event-carport span {
-  display: inline-block;
-}*/
 .main-content .table-header{
   height: 5vh;
   /*border: 1px solid #0593B5;*/
   background: #27375B;
   color: white;
 }
+.main-content .table-responsive .tableboder {
+  border: 1px solid #1E2F39;
+  /*border: 1px solid red;*/
+}
 .main-content .table-body{
   margin-top: 5px;
 }
 .main-content .table-body .table-tr{
-  border-bottom: 1px solid #0593B5;
+  /*border-bottom: 1px solid #0593B5;*/
   position: relative;
   color: #3B70A8;
   border-collapse:separate;
   border-spacing:10px;
 }
-.table-body .table-tr:hover{
+.main-content .table-body .table-tr:hover{
   background:rgba(255,255,255,0.3);
+  /*background:white;*/
   cursor: pointer;
+  color: white;
 }
 .main-content .table-body .table-tr span{
   display: inline-block;
@@ -305,6 +250,87 @@
   background: red;
   display: inline-block;
 }
+.main-content  .event-table .event-processed-table{
+  /*padding-right: 0;
+  padding-left: 0;*/
+}
+
+.main-content  .event-table .event-else-table{
+  padding-right: 0;
+  padding-left: 0;
+}
+.main-content  .event-table .event-else-table .table-responsive{
+  padding-top: 15px;
+}
+.event-else-table .event-carport{
+  height: 15.5vh;
+}
+.event-else-table .event-carport span{
+  margin-bottom: 15px;
+}
+.main-content .event-table tr{
+  cursor: pointer;
+}
+.main-content .event-table tr td{
+  border: none;
+}
+.main-content .table-title{
+  padding: 5px 0 10px 5px;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #4D96DF;
+}
+.main-content .event-type {
+  margin-bottom: 5vh;
+}
+.main-content .event-type>span {
+  display: inline-block;
+  width: 20px;
+  height: 50px;
+  word-wrap: break-word;
+  letter-spacing: 5px;
+  /*text-align: center;*/
+  background: #03A9F7;
+  padding-top: 2px;
+  padding-left: 5px;
+  margin-right: 1vw;
+  font-size: 0.1rem;
+
+}
+.main-content .event-table .event-type>span:hover {
+  background: #0157A0;
+  cursor: pointer;
+}
+.main-content .event-processed-table .button-left{
+  width: 10vw;
+  height: 3.8vh;
+  line-height: 3.8vh;
+  background: #03A9F7;
+  padding: 0;
+  margin: 1.5vh 0 4vh 0;
+  font-size: 0.1rem;
+}
+.main-content .event-processed-table .button-right {
+  width: 10vw;
+  height: 3.8vh;
+  line-height: 3.8vh;
+  background: #468ED6;
+  padding: 0;
+  margin: 1.5vh 0 4vh 0;
+  font-size: 0.2rem;
+}
+.main-content .event-else-table .event-toilet{
+  height: 15.5vh;
+}
+.main-content .event-else-table .event-toilet span{
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+/*.main-content .event-carport span {
+  display: inline-block;
+}*/
+
 
 /******************************右边*******************************/
 /*横向排名柱状图*/
@@ -701,6 +727,11 @@
 }
 
 /*bootstrap改造*/
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0;
+}
 .bottom-pagination {
   position: absolute;
   width: 100%;
