@@ -13,50 +13,24 @@ import {Router} from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // 时间
-  public dataTime = new Date();
-  public navShow = false;
-  // 客流量
-  public personNum = 1832;
-  public persons = [];
   // 搜索
   public searchForm: FormGroup;
   public selectForm: FormGroup;
-  // 弹窗
-  public display = false;
 
   constructor(
     private eventsService: EventsService,
-    private tools: ToolsService,
     private fb: FormBuilder,
     private route: Router
   ) {
   }
 
   ngOnInit() {
-    this.amount();
     this.buildForm();
-    this.personNum.toString().split('').map((value, index) => {
-      this.persons.push({number: value, colors: `linear-gradient(${this.tools.randomRgbColor(0)[0]},${this.tools.randomRgbColor(0)[0]})`});
-    });
-    setInterval(() => {
-      this.dataTime = new Date();
-    });
   }
 
-  // 客流量实时监控
-  public amount(): void {
-    setInterval(() => {
-      const b = [];
-      this.personNum += Math.round(Math.random() * 10);
-      this.personNum.toString().split('').map((value, index) => {
-        b.push({number: value, colors: `linear-gradient(${this.tools.randomRgbColor(0)[0]},${this.tools.randomRgbColor(0)[0]})`});
-        this.persons = b;
-      });
-    }, 3000);
-  }
 
-  // 创建表单
+
+  // 搜索的创建表单
   public buildForm(): void {
     this.searchForm = this.fb.group({
       searchText: ['', [Validators.required]]
@@ -169,10 +143,5 @@ export class HomeComponent implements OnInit {
                <span>${times}</span>`;
        dateTim = year + '-' + months + '-' + days;
      }*/
-  }
-
-  // 点击弹窗
-  public showDialog() {
-    this.display = true;
   }
 }

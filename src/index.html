@@ -19,7 +19,6 @@
           var clientWidth = docEl.clientWidth;
           if (!clientWidth) return;
           docEl.style.fontSize = 16 * (clientWidth / 1920) + 'px';
-          // console.log(20 * (clientWidth / 1080))
         };
       if (!doc.addEventListener) return;
       win.addEventListener(resizeEvt, recalc, false);

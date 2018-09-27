@@ -40,7 +40,7 @@
               <span>0</span>
               <span>0</span>
               <span style="margin-right: 10px" *ngFor="let i of vehicleAmount">{{i}}</span>
-              <small style="font-size: 14px;color: white;">辆</small>
+              <small style="font-size: 1.125rem;color: white;">辆</small>
             </p>
           </div>
         </div>
@@ -52,60 +52,60 @@
     <!--中部-->
     <div class="col-lg-6 col-md-6">
       <!--摄像头加业态数据-->
-       <!--<div class="servicesMap">
+       <div class="servicesMap">
          <div class="servicesMap-top">
           <div class="servicesMap-top-box text-center" *ngFor="let item of incomeBottomData">
             <div class="shop-info" (click)="openServiceShop(item.storeName)">
-              <p style="color: #3BF49F;" [title]="item.name">{{item.storeName}}</p>
-              <p style="color: #00CFB1;" [title]="item.num">1000元</p>
+              <p [title]="item.name">{{item.storeName}}</p>
+              <p [title]="item.num">1000元</p>
             </div>
-            <p>
+            <!--<p>
               <button class="btn btn-danger" (click)="openMerchantVideo(item.storeName,item.cameraList)">监控</button>
-            </p>
+            </p>-->
           </div>
          </div>
          <div class="servicesMap-center">
-           <div class="video-top" >
+          <!-- <div class="video-top" >
              <div *ngFor="let item of publicBottomVideoList;let i = index" style="margin-right: 10px">
                <button class="btn" [ngClass]="btnClass[i]" (click)="openPublicVideo(item)">{{item.cameraName}}</button>
              </div>
-           </div>
+           </div>-->
            <div class="servicesMap-center-left">
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+            <!-- <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>-->
              <span style="font-size: 16px">遵义方向<——贵阳</span>
+             <!--<i class="fa fa-long-arrow-left" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>-->
            </div>
            <div class="servicesMap-center-right">
+             <!--<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>-->
              <span style="font-size: 16px">贵阳——>遵义方向</span>
-             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+             <!--<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>-->
            </div>
-           <div class="video-bottom">
+          <!-- <div class="video-bottom">
              <div *ngFor="let item of publicTopVideoList;let i = index" style="margin-left: 10px">
                <button class="btn" [ngClass]="btnClass[i]" (click)="openPublicVideo(item)">{{item.cameraName}}</button>
              </div>
-           </div>
+           </div>-->
          </div>
          <div class="servicesMap-bottom">
            <div class="servicesMap-bottom-box text-center" *ngFor="let item of incomeTopData">
              <div class="shop-info" (click)="openServiceShop(item.storeName)">
-               <p style="color: #3BF49F;" [title]="item.name">{{item.storeName}}</p>
-               <p style="color: #00CFB1;" [title]="item.num">1000元</p>
+               <p [title]="item.name">{{item.storeName}}</p>
+               <p [title]="item.num">1000元</p>
              </div>
-             <p>
+            <!-- <p>
                <button class="btn btn-danger" (click)="openMerchantVideo(item.storeName,item.cameraList)">监控</button>
-             </p>
+             </p>-->
            </div>
          </div>
-       </div>-->
+       </div>
       <!--事件监控-->
       <div class="event-table">
         <!--未处理-->
@@ -130,7 +130,7 @@
                   <td>{{item?.time}}</td>
                   <td>{{item?.type}}</td>
                   <td>{{item?.description}}</td>
-                  <td style="color:#CF5B56">{{item?.state}}</td>
+                  <td style="color:#CF5B56; font-size: 1rem">{{item?.state}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -174,9 +174,9 @@
     <div class="col-lg-3 col-md-3">
       <!--服务区基本信息-->
       <div class="crosswise">
-         <h5 class="text-center">
+         <p class="text-center crosswise-title">
            {{serviceZoneTitle}}基本信息
-         </h5>
+         </p>
          <div class="row">
            <div class="col-lg-6 col-md-6 services-Info">
              <p *ngFor="let item of serviceBasicInformation1">
@@ -195,7 +195,7 @@
            <div class="col-lg-12 col-md-12">
              <div class="crosswise-footer">
                <p class="text-center">
-                 <button class="btn" (click)="crosswiseClick()" style="margin-right: 15px">信息修改</button>
+                 <button class="btn" (click)="crosswiseClick()" style="margin-right: 15px" value="">信息修改</button>
                  <button class="btn" (click)="openServicesPlan()">服务区平面图</button>
                </p>
              </div>
@@ -213,13 +213,13 @@
         <div class="income">
           <p class="text-center">{{serviceZoneTitle}}今日实时收入</p>
           <div class="income-amount">
-            <h3 class="text-center">
+            <div class="text-center">
               <span>0</span>
               <span>0</span>
               <span>0</span>
-              <span style="margin-right: 10px" *ngFor="let i of incomeAmount">{{i}}</span>
-              <small style="font-size: 14px;color: white;">元</small>
-            </h3>
+              <span style="margin-right: 5px" *ngFor="let i of incomeAmount">{{i}}</span>
+              <small style="font-size: 1.125rem;color: white;">元</small>
+            </div>
           </div>
         </div>
         <!--收入类型占比-->

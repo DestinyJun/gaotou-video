@@ -34,10 +34,11 @@
 .main-content .box3d {
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
 }
-.main-content .box3d p {
+.main-content .box3d>p {
   margin: 0;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.25rem;
+  color: #4D93DE;
 }
 .main-content .accumulation3d{
   height: 35vh;
@@ -47,14 +48,11 @@
 }
 
 .main-content .vehicle-total {
-  box-shadow:0 0 15px 5px rgba(200,200,200,0.2) inset;
-  height: 46.5vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+  height: 43.2vh;
   /*color: #4D94DA;*/
 }
-.main-content .vehicle-total .vehicle>p {
-  color: #4D94DA;
-  font-weight: bold;
-}
+
 /*实时车辆数据*/
 .main-content .vehicle-total .vehicle{
   height: 12.5vh;
@@ -64,12 +62,17 @@
   margin-right: -8px;
   /*box-shadow:0px 3px 3px #c8c8c8 inset;*/
 }
+.main-content .vehicle-total .vehicle>p {
+  color: #4D94DA;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
 .main-content .vehicle>span{
 
 }
 .main-content .vehicle-amount>p>span{
   font-weight: 600;
-  font-size: 0.7rem;
+  font-size: 1.1rem;
   display: inline-block;
   width: 1.5vw;
   height: 4.5vh;
@@ -96,8 +99,8 @@
   display: none;
 }
 .main-content .vehicle-total .accumulation-title {
-  font-size: 0.5rem;
-  margin-top: 5vh;
+  font-size: 1.125rem;
+  margin-top: 3vh;
   margin-bottom: 2vh;
 }
 /*车型分布*/
@@ -112,12 +115,12 @@
 /*中部服务区地图*/
 .main-content .servicesMap{
   height: 51vh;
-  border:1px solid #3B425C;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
   margin-left: -8px;
   margin-right: -8px;
   color: white;
-  font-size: 2rem;
+  /*font-size: 0.75rem;*/
 }
 
 .main-content .servicesMap .servicesMap-top{
@@ -128,13 +131,16 @@
 }
 .main-content .servicesMap .servicesMap-top .servicesMap-top-box{
   height: 10vh;
-  min-width: 3vw;
+  min-width: 9.6vw;
   border:1px solid #3B425C;
   line-height: 2vh;
-  font-size: 1.6rem;
+  font-size: 0.875rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.main-content .servicesMap .servicesMap-top .servicesMap-top-box:hover {
+  background: #6C2D36;
 }
 .main-content .servicesMap .servicesMap-top .servicesMap-top-box .shop-info:hover{
   cursor: pointer;
@@ -183,13 +189,16 @@
 }
 .main-content .servicesMap .servicesMap-bottom .servicesMap-bottom-box{
   height: 10vh;
-  min-width: 3vw;
-  border:1px solid #3B425C;
+  min-width: 9.6vw;
+  /*border:1px solid #3B425C;*/
   line-height: 2vh;
-  font-size: 1.6rem;
+  font-size: 0.875rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.main-content .servicesMap .servicesMap-bottom .servicesMap-bottom-box:hover {
+  background: #6A2B34;
 }
 /*事件监控列表*/
 .main-content .event-table{
@@ -200,7 +209,7 @@
   margin-left: -8px;
   margin-right: -8px;
   padding-bottom: 5vh;
-  font-size: 0.5rem;
+  font-size: 1rem;
 }
 .main-content .event-table .event-untreated-table{
    padding-right: 0;
@@ -277,11 +286,12 @@
 .main-content .table-title{
   padding: 5px 0 10px 5px;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   color: #4D96DF;
 }
 .main-content .event-type {
   margin-bottom: 5vh;
+  font-size: 0.875rem;
 }
 .main-content .event-type>span {
   display: inline-block;
@@ -294,7 +304,6 @@
   padding-top: 2px;
   padding-left: 5px;
   margin-right: 1vw;
-  font-size: 0.1rem;
 
 }
 .main-content .event-table .event-type>span:hover {
@@ -308,7 +317,7 @@
   background: #03A9F7;
   padding: 0;
   margin: 1.5vh 0 4vh 0;
-  font-size: 0.1rem;
+  font-size: 0.875rem;
 }
 .main-content .event-processed-table .button-right {
   width: 10vw;
@@ -317,10 +326,11 @@
   background: #468ED6;
   padding: 0;
   margin: 1.5vh 0 4vh 0;
-  font-size: 0.2rem;
+  font-size: 0.875rem;
 }
 .main-content .event-else-table .event-toilet{
   height: 15.5vh;
+  font-size: 0.875rem;
 }
 .main-content .event-else-table .event-toilet span{
   display: inline-block;
@@ -334,25 +344,8 @@
 
 /******************************右边*******************************/
 /*横向排名柱状图*/
-.main-content .crosswise{
-  height: 37vh;
-  box-shadow:0 0 10px 3px rgba(200,200,200,0.2) inset;
-  margin-bottom: 1.5vh;
-  margin-left: -8px;
-  position: relative;
-  padding: 0 10px;
-  overflow: hidden;
-}
-.main-content .crosswise .crosswise-footer button{
-  /* position: absolute;
-   top: 36px;
-   left: 30%;
-   margin-left: -23px;*/
-  font-size: 0.1rem;
-  height: 5vh;
-  background: #2EA8B3;
 
-}
+
 /*.main-content .crosswise .crosswise-btn .btn{
   margin-right: 30px;
   !*background: linear-gradient(red,blue);*!
@@ -361,20 +354,43 @@
 .main-content .crosswise .crosswise-bar{
   height: 46vh;
 }
-
-/*服务区基本信息*/
-.main-content .crosswise .services-Info p{
+.main-content .crosswise{
+  height: 37vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+  margin-bottom: 1.2vh;
+  /*margin-left: -8px;*/
+  position: relative;
+  padding: 0 10px;
   overflow: hidden;
-  margin-bottom: 2vh;
 }
+.main-content .crosswise .crosswise-title {
+  font-size: 1.25rem;
+  color: #5790D1;
+  font-weight: bold;
+}
+/*服务区基本信息*/
 .main-content .crosswise .services-Info{
   padding-top: 1vh;
   padding-right: 0;
 }
+.main-content .crosswise .crosswise-footer button{
+  /* position: absolute;
+   top: 36px;
+   left: 30%;
+   margin-left: -23px;*/
+  font-size: 0.75rem;
+  margin: 0;
+  /*height: 2vh;*/
+  background: #2EA8B3;
+}
+/*.main-content .crosswise .services-Info p{
+  !*overflow: hidden;*!
+  margin-bottom: 1vh;
+}*/
 .main-content .crosswise .crosswise-footer{}
 .main-content .crosswise-bottom {
-  box-shadow:0 0 10px 3px rgba(200,200,200,0.2) inset;
-  height: 45vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+  height: 45.7vh;
 }
 /*实时收入数据监控*/
 .main-content .income{
@@ -387,29 +403,28 @@
 .main-content .income>p {
   font-weight: bold;
   color: #5095DE;
+  font-size: 1.25rem;
 }
-.main-content .income>span{
-  font-size: 1.5rem;
-}
-.main-content .income .income-amount>h3>span{
+.main-content .income .income-amount>div>span{
   display: inline-block;
-  font-size: 0.7rem;
+  font-size: 1.1rem;
+  font-weight: bold;
   width: 1.5vw;
   height: 4.5vh;
   line-height: 4.5vh;
   text-align: center;
   background: #5095E0;
 }
-.main-content .income .income-amount>p{
+/*.main-content .income .income-amount>p{
   margin-top: 1vh;
-  font-size: 1.5rem;
-}
+  font-size: 1.125rem;
+}*/
 .main-content .income .income-amount>div{
   overflow: hidden;
   padding-right: 5px;
 }
 .main-content .crosswise-bottom>p {
-  font-size: 0.5rem;
+  font-size: 1.125rem;
   margin-top: 2vh;
 }
 
@@ -715,7 +730,7 @@
 /*字体颜色*/
 .text-c1{
   color: #4887CA;
-  font-size: 0.5rem;
+  font-size: 0.875rem;
 }
 .text-c2{
   color: #FF37AC;
