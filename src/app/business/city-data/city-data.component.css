@@ -80,13 +80,13 @@
 
 
 /****************************中部****************************/
-
-/*离散地图分布图*/
-.main .map {
-  margin-left: -8px;
-  margin-right: -8px;
+.center .map {
+  height: 50vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2);
+  margin-bottom: 1vh;
 }
-.main .map .tab-map{
+/*地图区域选择*/
+.center .map-tab{
   height: 5vh;
   border:1px solid #3B425C;
   line-height: 5vh;
@@ -94,22 +94,21 @@
   font-weight: bolder;
   position: relative;
 }
-/*地图部分的位置演示*/
-.main .tab-map .location{
+.center .map-tab .location{
   display: inline-block;
 }
-.main .tab-map .location:hover{
+.center .map-tab .location:hover{
   cursor: pointer;
 }
-.main .tab-map .select{
+.center .map-tab .select{
   display: inline-block;
   margin-left: 15px;
   color: white;
 }
-.main .tab-map .select:hover{
+.center .map-tab .select:hover{
   cursor: pointer;
 }
-.main .select-list-province{
+.center .select-list-province{
   background: rgba(18,51,76,0.8);
   padding-left: 0;
   /*padding-right: 40px;*/
@@ -119,8 +118,7 @@
   left: 0;
   z-index: 1;
 }
-
-.main .select-list-city{
+.center .select-list-city{
   background: rgba(18,51,76,0.8);
   padding-left: 0;
   border-left: 1px solid rgba(135,255,255,0.6);
@@ -131,24 +129,23 @@
   left: 121px;
   z-index: 1;
 }
-.main .select-list-province>li,.main .select-list-city>li{
+.center .select-list-province>li,.center.select-list-city>li{
   list-style: none;
   padding: 0 40px;
   text-align: center;
 }
-.main .select-list-province>li:hover,.main .select-list-city>li:hover{
+.center .select-list-province>li:hover,.center.select-list-city>li:hover{
   cursor: pointer;
   background: rgba(244,50,173,0.5);
 }
 
-.main .top-map{
-  border:1px solid #3B425C;
-  margin-bottom: 1vh;
-  height: 51vh;
+/*地图区域选择*/
+.center .map-bmap{
+  height: 50vh;
 }
 
 /*事件监控列表*/
-.main .event-table{
+.center.event-table{
   padding-top: 1px;
   min-height: 32vh;
   border:1px solid #3B425C;
@@ -157,44 +154,44 @@
   margin-right: -8px;
   font-size: 12px;
 }
-.main .event-table .event-table-events{
+.center.event-table .event-table-events{
   padding-right: 0;
   padding-left: 0;
 }
-.main .event-table .event-table-office{
+.center.event-table .event-table-office{
   /* padding-right: 0;
    padding-left: 0;*/
 }
-.main .event-table .event-table-person{
+.center.event-table .event-table-person{
   padding-right: 0;
   padding-left: 0;
 }
-.main .event-table tr{
+.center.event-table tr{
   cursor: pointer;
 
 }
-.main .event-table tr td{
+.center.event-table tr td{
   border: none;
 }
-.main .event-table tr:hover{
+.center.event-table tr:hover{
   cursor: pointer;
 }
-.main .table-title{
+.center.table-title{
   padding: 5px 0 10px 5px;
   font-weight: bolder;
   font-size: 14px;
 }
-.main .table-header{
+.center.table-header{
   height: 5vh;
   /*border: 1px solid #0593B5;*/
   background: rgba(7,149,188,0.2);
   color: #00ECF1;
 }
 
-.main .table-header .hot{
+.center.table-header .hot{
   position: relative;
 }
-.main .table-header .hot span::before{
+.center.table-header .hot span::before{
   content: '';
   position: absolute;
   top: 12px;
@@ -206,29 +203,29 @@
   display: inline-block;
 }
 
-.main .table-body{
+.center.table-body{
   margin-top: 5px;
 }
-.main .table-body .table-tr{
+.center.table-body .table-tr{
   border-bottom: 1px solid #0593B5;
   position: relative;
   color: #87FFFF;
   border-collapse:separate;
   border-spacing:10px;
 }
-.main .table-body .table-tr:hover{
+.center.table-body .table-tr:hover{
   background:rgba(255,255,255,0.3);
 }
-.main .table-body .table-tr span{
+.center.table-body .table-tr span{
   display: inline-block;
   width: 15px;
   height: 15px;
   border-radius: 100%;
 }
-.main .table-body .table-tr>.hot{
+.center.table-body .table-tr>.hot{
   position: relative;
 }
-.main .table-body .table-tr>.hot>span{
+.center.table-body .table-tr>.hot>span{
   position: absolute;
   display: inline-block;
   color: white;
@@ -241,7 +238,7 @@
   background: red;
   line-height: 20px;
 }
-.main .table-body .table-tr>.hot>button{
+.center.table-body .table-tr>.hot>button{
   position: absolute;
   top: 7px;
   right: 5px;
@@ -265,52 +262,70 @@
 .right .crosswise-btn{
   height: 4vh;
 }
-.right .crosswise-btn:hover{
-  color: white;
+.right .crosswise-btn>span{
+  display: inline-block;
+  height: 3vh;
+  padding: 0.2vh 0.5vw;
+  font-size: 0.7rem;
+  line-height: 3vh;
+  margin-right: 0.5vw;
+  border-radius: 3px;
 }
-.right .crosswise-btn .btn{
-  margin-right: 30px;
-  /*background: linear-gradient(red,blue);*/
-  box-shadow:2px 3px 10px #01D1DB ;
+.right .crosswise-btn>span:hover{
+  cursor: pointer;
 }
-
 .right .crosswise-bar{
   height: 42vh;
 }
-
+/*实时首收入统计*/
 .right .income{
   height: 12.5vh;
-  border:1px solid #3B425C;
-  padding-left: 5px;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
-  margin-left: -8px;
 }
-.right .income>p{
-  padding-top: 1vh;
-  font-size: 1.5rem;
-  font-weight: bold;
+.right .income-title{
+  height: 4vh;
+  line-height: 4vh;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #5595D5;
 }
-.right .income .income-amount>h3>span{
+.right .income-amount>p>span{
   display: inline-block;
-  width: 30px;
-  height: 40px;
-  line-height: 40px;
+  width: 1.6vw;
+  height: 5vh;
+  line-height: 5vh;
+  font-size: 1.125rem;
   text-align: center;
-  background: #01D1DB;
+  margin-right: 0.3vw;
+  background: #5095E0;
+  /*background: -moz-linear-gradient(top, #01071D 0%, #0A4D84 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#01071D), color-stop(100%,#0A4D84));
+  background: -webkit-linear-gradient(top, #01071D 50%,#0A4D84 100%);
+  background: -o-linear-gradient(top, #01071D 0%,#0A4D84 100%);
+  background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
+  background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);*/
 }
-.right .income .income-amount>p{
-  margin-top: 1vh;
-  font-size: 1.5rem;
+.right .income-amount>p>small{
+  font-size: 1rem;
+  color: white;
 }
-
 /*服务器收入实时统计*/
-.main .today-income {
+.right .income-pie{
+  height: 20.5vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
-  height: 24.5vh;
-  border:1px solid #3B425C;
-  margin-left: -8px;
 }
-
+.right .income-pie-title{
+  height: 4vh;
+  line-height: 4vh;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #5595D5;
+}
+.right .income-pie-chart{
+  height: 16.5vh;
+}
 
 /****************************弹窗部分****************************/
 /*3D柱状图弹窗*/

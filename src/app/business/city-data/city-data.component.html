@@ -10,7 +10,6 @@
         </div>
         <div class="accumulation-3Dbar" echarts [options]="options3d" (chartClick)="barClick($event)"></div>
       </div>
-
       <!--日车流量实时统计-->
       <div class="vehicle">
         <p class="vehicle-title text-center">{{this.dataToggle}}今日车辆流动数量</p>
@@ -56,7 +55,7 @@
     <div class="center col-lg-6 col-md-6">
       <!--百度地图-->
       <div class="map">
-        <!--<div class="tab-map">
+        <!--<div class="map-tab">
           <div class="location" (click)="provinceClick()">
               <span>
                <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -81,11 +80,11 @@
             </ul>
           </div>
         </div>-->
-        <div class="top-map" id="center_map"></div>
+        <div class="map-bmap" id="center_map"></div>
         <!--<div class="top-map" id="center_map" echarts [options]="optionsMap" (chartClick)="mapClick($event)"></div>-->
       </div>
       <!--事件监控-->
-      <div class="event-table">
+      <div class="event">
         <div class="col-lg-3 col-md-3 event-table-events">
           <div class="table-title text-center">
             <span>{{this.dataToggle}}服务区事件监控</span>
@@ -169,32 +168,31 @@
           <p>{{this.dataToggle}}业态数据前十排名</p>
         </div>
         <div class="crosswise-btn text-center" (click)="clickBtn($event)">
-          <button  class="btn " [ngStyle]="{'background': barStatus1?'#FF2600': '','color': '#000', 'font-weight': '600'}">业态收入/万元</button>
-          <button  class="btn" [ngStyle]="{'background': barStatus2?'#FFC000': '','color': '#000', 'font-weight': '600'}">车流量/辆</button>
-          <button  class="btn" [ngStyle]="{'background': barStatus3?'#00AD4E': '','color': '#000', 'font-weight': '600'}">客流量/人次</button>
+          <span [ngStyle]="{'background': barStatus1?'#1F0BC4': '#27375B'}">业态收入/万元</span>
+          <span [ngStyle]="{'background': barStatus2?'#1F0BC4': '#3B78B1'}">车流量/辆</span>
+          <span [ngStyle]="{'background': barStatus3?'#1F0BC4': '#04A6BB'}">客流量/人次</span>
         </div>
         <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartClick)="rankingClick($event)"></div>
       </div>
       <!--市级实时收入-->
       <div class="income">
-        <p class="text-center">{{this.dataToggle}}高速服务区实时收入</p>
+        <div class="income-title text-center">
+          <p>{{this.dataToggle}}高速服务区实时收入</p>
+        </div>
         <div class="income-amount">
-          <h3 class="text-center">
-            <span>0</span>
-            <span>0</span>
-            <span>0</span>
-            <span style="margin-right: 10px" *ngFor="let i of incomeAmount">{{i}}</span>
-            <small style="font-size: 14px;color: white;">元</small>
-          </h3>
-          <!--  <p class="text-center">
-              <span style="margin-right: 10px">前日时间同比</span>
-              <i class="fa fa-long-arrow-up" style="color: #03D095"></i>
-              <span class="">15%</span>
-            </p>-->
+          <p class="text-center">
+            <span *ngFor="let i of incomeAmount">{{i}}</span>
+            <small>元</small>
+          </p>
         </div>
       </div>
       <!--收入占比-->
-      <div class="today-income" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
+      <div class="income-pie">
+        <div class="income-pie-title text-center">
+          <p>{{this.dataToggle}}高速服务区实时收入</p>
+        </div>
+        <div class="income-pie-chart" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
+      </div>
     </div>
   </div>
   <!--***********************弹窗部分*************************-->
