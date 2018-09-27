@@ -2,8 +2,8 @@
   <app-header></app-header>
   <!--左侧导航-->
   <app-nav></app-nav>
-  <!--主内容-->
-  <div class="main">
+  <!--手机导航-->
+  <div class="mobile-nav">
     <div class="row search-nav">
       <div class="col-xs-12 service-search" >
         <form [formGroup]="searchForm" class="form-horizontal" (submit)="searchArea()" novalidate>
@@ -43,9 +43,11 @@
           </div>
         </form>
       </div>
+    </div>
   </div>
-    <router-outlet></router-outlet>
-  </div>
+  <!--主内容-->
+  <router-outlet></router-outlet>
+  <!--底部-->
   <app-footer></app-footer>
 </div>
 <!--信息提醒弹窗-->

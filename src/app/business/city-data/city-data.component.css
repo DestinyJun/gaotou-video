@@ -7,70 +7,86 @@
 }
 /****************************左边****************************/
 /*3D柱状图*/
-.main-top .accumulation3d{
+.left .accumulation{
   height: 50vh;
-  border:1px solid #3B425C;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
-  margin-right: -8px;
+}
+.left .accumulation-title{
+  height: 4vh;
+  font-size: 1.25rem;
+  color: #5595D5;
+  font-weight: 500;
+}
+.left .accumulation-3Dbar{
+  height: 43vh;
 }
 
 /*日车流量实时统计*/
-.main-top .number{
-  margin-bottom: 1vh;
-  height: 32vh;
-  margin-left: -8px;
-  margin-right: -8px;
-  overflow: hidden;
-}
-.main-top .vehicle{
+.left .vehicle{
   height: 12.5vh;
-  border:1px solid #3B425C;
-  padding-left: 5px;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
-  margin-right: -8px;
 }
-.main-top .vehicle>p{
-  padding-top: 1vh;
-  font-size: 1.5rem;
-  font-weight: bold;
+.left .vehicle-title{
+  height: 4vh;
+  line-height: 4vh;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #5595D5;
 }
-.main-top .vehicle-amount>h3>span{
+.left .vehicle-amount>p>span{
   display: inline-block;
-  width: 30px;
-  height: 40px;
-  line-height: 40px;
+  width: 1.6vw;
+  height: 5vh;
+  line-height: 5vh;
+  font-size: 1.125rem;
   text-align: center;
+  margin-right: 0.3vw;
+  background: #5095E0;
   /*background: -moz-linear-gradient(top, #01071D 0%, #0A4D84 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#01071D), color-stop(100%,#0A4D84));
   background: -webkit-linear-gradient(top, #01071D 50%,#0A4D84 100%);
   background: -o-linear-gradient(top, #01071D 0%,#0A4D84 100%);
   background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
   background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);*/
-  background: orangered;
 }
-.main-top .vehicle .vehicle-amount>p{
-  margin-top: 1vh;
-  font-size: 1.5rem;
-}
-.main-top .income.mobile{
-  display: none;
+.left .vehicle-amount>p>small{
+  font-size: 1rem;
+  color: white;
 }
 
 /*车型日分布占比*/
-.main-top .accumulation{
-  height: 24.5vh;
-  border:1px solid #3B425C;
-  margin-right: -8px;
+.left .vehicle-pie{
+  height: 20.5vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+  margin-bottom: 1vh;
 }
+.left .vehicle-pie-title{
+  height: 4vh;
+  line-height: 4vh;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #5595D5;
+}
+.left .vehicle-pie-chart{
+  height: 16.5vh;
+}
+
+/*移动端收入样式*/
+.left .income.mobile{
+  display: none;
+}
+
 
 /****************************中部****************************/
 
 /*离散地图分布图*/
-.main-top .map {
+.main .map {
   margin-left: -8px;
   margin-right: -8px;
 }
-.main-top .map .tab-map{
+.main .map .tab-map{
   height: 5vh;
   border:1px solid #3B425C;
   line-height: 5vh;
@@ -79,21 +95,21 @@
   position: relative;
 }
 /*地图部分的位置演示*/
-.main-top .tab-map .location{
+.main .tab-map .location{
   display: inline-block;
 }
-.main-top .tab-map .location:hover{
+.main .tab-map .location:hover{
   cursor: pointer;
 }
-.main-top .tab-map .select{
+.main .tab-map .select{
   display: inline-block;
   margin-left: 15px;
   color: white;
 }
-.main-top .tab-map .select:hover{
+.main .tab-map .select:hover{
   cursor: pointer;
 }
-.main-top .select-list-province{
+.main .select-list-province{
   background: rgba(18,51,76,0.8);
   padding-left: 0;
   /*padding-right: 40px;*/
@@ -104,7 +120,7 @@
   z-index: 1;
 }
 
-.main-top .select-list-city{
+.main .select-list-city{
   background: rgba(18,51,76,0.8);
   padding-left: 0;
   border-left: 1px solid rgba(135,255,255,0.6);
@@ -115,24 +131,24 @@
   left: 121px;
   z-index: 1;
 }
-.main-top .select-list-province>li,.main-top .select-list-city>li{
+.main .select-list-province>li,.main .select-list-city>li{
   list-style: none;
   padding: 0 40px;
   text-align: center;
 }
-.main-top .select-list-province>li:hover,.main-top .select-list-city>li:hover{
+.main .select-list-province>li:hover,.main .select-list-city>li:hover{
   cursor: pointer;
   background: rgba(244,50,173,0.5);
 }
 
-.main-top .top-map{
+.main .top-map{
   border:1px solid #3B425C;
   margin-bottom: 1vh;
   height: 51vh;
 }
 
 /*事件监控列表*/
-.main-top .event-table{
+.main .event-table{
   padding-top: 1px;
   min-height: 32vh;
   border:1px solid #3B425C;
@@ -141,44 +157,44 @@
   margin-right: -8px;
   font-size: 12px;
 }
-.main-top .event-table .event-table-events{
+.main .event-table .event-table-events{
   padding-right: 0;
   padding-left: 0;
 }
-.main-top .event-table .event-table-office{
+.main .event-table .event-table-office{
   /* padding-right: 0;
    padding-left: 0;*/
 }
-.main-top .event-table .event-table-person{
+.main .event-table .event-table-person{
   padding-right: 0;
   padding-left: 0;
 }
-.main-top .event-table tr{
+.main .event-table tr{
   cursor: pointer;
 
 }
-.main-top .event-table tr td{
+.main .event-table tr td{
   border: none;
 }
-.main-top .event-table tr:hover{
+.main .event-table tr:hover{
   cursor: pointer;
 }
-.main-top .table-title{
+.main .table-title{
   padding: 5px 0 10px 5px;
   font-weight: bolder;
   font-size: 14px;
 }
-.main-top .table-header{
+.main .table-header{
   height: 5vh;
   /*border: 1px solid #0593B5;*/
   background: rgba(7,149,188,0.2);
   color: #00ECF1;
 }
 
-.main-top .table-header .hot{
+.main .table-header .hot{
   position: relative;
 }
-.main-top .table-header .hot span::before{
+.main .table-header .hot span::before{
   content: '';
   position: absolute;
   top: 12px;
@@ -190,29 +206,29 @@
   display: inline-block;
 }
 
-.main-top .table-body{
+.main .table-body{
   margin-top: 5px;
 }
-.main-top .table-body .table-tr{
+.main .table-body .table-tr{
   border-bottom: 1px solid #0593B5;
   position: relative;
   color: #87FFFF;
   border-collapse:separate;
   border-spacing:10px;
 }
-.main-top .table-body .table-tr:hover{
+.main .table-body .table-tr:hover{
   background:rgba(255,255,255,0.3);
 }
-.main-top .table-body .table-tr span{
+.main .table-body .table-tr span{
   display: inline-block;
   width: 15px;
   height: 15px;
   border-radius: 100%;
 }
-.main-top .table-body .table-tr>.hot{
+.main .table-body .table-tr>.hot{
   position: relative;
 }
-.main-top .table-body .table-tr>.hot>span{
+.main .table-body .table-tr>.hot>span{
   position: absolute;
   display: inline-block;
   color: white;
@@ -225,54 +241,56 @@
   background: red;
   line-height: 20px;
 }
-.main-top .table-body .table-tr>.hot>button{
+.main .table-body .table-tr>.hot>button{
   position: absolute;
   top: 7px;
   right: 5px;
 }
 
 /****************************右边****************************/
-/*业态前十排名柱状图*/
-.main-top .crosswise{
+/*市级数据服务区业态前十排名柱状图*/
+.right .crosswise{
   height: 50vh;
-  border:1px solid #3B425C;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
-  margin-left: -8px;
   position: relative;
 }
-.main-top .crosswise .crosswise-btn{
-  /* position: absolute;
-   top: 36px;
-   left: 30%;
-   margin-left: -23px;*/
-  height: 5vh;
-
+.right .crosswise-title{
+  height: 4vh;
+  line-height: 4vh;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #5595D5;
 }
-.main-top .crosswise .crosswise-btn:hover{
+.right .crosswise-btn{
+  height: 4vh;
+}
+.right .crosswise-btn:hover{
   color: white;
 }
-.main-top .crosswise .crosswise-btn .btn{
+.right .crosswise-btn .btn{
   margin-right: 30px;
   /*background: linear-gradient(red,blue);*/
   box-shadow:2px 3px 10px #01D1DB ;
 }
-.main-top .crosswise .crosswise-bar{
-  height: 53vh;
+
+.right .crosswise-bar{
+  height: 42vh;
 }
 
-.main-top .income{
+.right .income{
   height: 12.5vh;
   border:1px solid #3B425C;
   padding-left: 5px;
   margin-bottom: 1vh;
   margin-left: -8px;
 }
-.main-top .income>p{
+.right .income>p{
   padding-top: 1vh;
   font-size: 1.5rem;
   font-weight: bold;
 }
-.main-top .income .income-amount>h3>span{
+.right .income .income-amount>h3>span{
   display: inline-block;
   width: 30px;
   height: 40px;
@@ -280,12 +298,13 @@
   text-align: center;
   background: #01D1DB;
 }
-.main-top .income .income-amount>p{
+.right .income .income-amount>p{
   margin-top: 1vh;
   font-size: 1.5rem;
 }
+
 /*服务器收入实时统计*/
-.main-top .today-income {
+.main .today-income {
   margin-bottom: 1vh;
   height: 24.5vh;
   border:1px solid #3B425C;
@@ -510,7 +529,10 @@
 .content-table-income:hover{
   cursor: pointer;
 }
-/*bootstrap改造*/
+/**********************bootstrap覆盖***********************/
+p {
+  margin: 0;
+}
 .bottom-pagination {
   position: absolute;
   width: 100%;
@@ -534,61 +556,62 @@
 .pagination > li > a > input{
   width: 5vw;
 }
+/***********************媒体查询***********************/
 @media (max-width: 993px) {
-  .main-top .income.mobile{
+  .main .income.mobile{
     display: block;
   }
-  .main-top .income{
+  .main .income{
     display: none;
     margin-top: 1vh;
     min-height: 16vh;
   }
-  .main-top .event-table{
+  .main .event-table{
 
   }
-  .main-top .event-table .event-table-events{
+  .main .event-table .event-table-events{
     padding-right: 0;
     padding-left: 0;
   }
-  .main-top .event-table .event-table-office{
+  .main .event-table .event-table-office{
     padding-right: 0;
     padding-left: 0;
   }
-  .main-top .event-table .event-table-person{
+  .main .event-table .event-table-person{
     padding-right: 0;
     padding-left: 0;
     margin-bottom: 7.5vh;
   }
-  .main-top .accumulation3d,.main-top .accumulation{
+  .main .accumulation3d,.main .accumulation{
     display: none;
   }
-  .main-top .crosswise,.main-top .today-income{
+  .main .crosswise,.main .today-income{
     display: none;
   }
-  .main-top .vehicle,.main-top .accumulation{
+  .main .vehicle,.main .accumulation{
     margin-left: -15px;
     margin-right: -15px;
   }
-  .main-top .event-table{
+  .main .event-table{
     min-height: 32vh;
     margin-left: -15px;
     margin-right: -15px;
   }
-  .main-top .map{
+  .main .map{
     display: none;
     /*  margin-top: 1vh;
       margin-left: -15px;
       margin-right: -15px;*/
   }
-  .main-top .income,.main-top .today-income{
+  .main .income,.main .today-income{
     margin-left: -15px;
     margin-right: -15px;
   }
-  .main-top .today-income{
+  .main .today-income{
     margin-bottom: 7vh;
     min-height: 28vh;
   }
-  .main-top .vehicle{
+  .main .vehicle{
     min-height: 16vh;;
   }
 }
