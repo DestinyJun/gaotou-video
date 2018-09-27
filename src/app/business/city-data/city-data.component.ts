@@ -204,7 +204,7 @@ export class CityDataComponent implements OnInit {
         const hours = this.options3dArray.hours;
         const days = this.options3dArray.days;
         this.options3d = {
-          title: [
+          /*title: [
             {
               text: this.dataToggle + this.options3dArray.data3dTitle,
               left: 'center',
@@ -213,7 +213,7 @@ export class CityDataComponent implements OnInit {
                 fontSize: 14
               }
             },
-          ],
+          ],*/
           tooltip: {
             show: true,
             trigger: 'item',
@@ -598,7 +598,7 @@ export class CityDataComponent implements OnInit {
     this.diagrams.getCarTypes().subscribe(
       (value) => {
         this.optionsCarModel = {
-          title: [
+          /*title: [
             {
               text: this.dataToggle + value.title,
               left: 'center',
@@ -607,7 +607,7 @@ export class CityDataComponent implements OnInit {
                 fontSize: 14
               }
             },
-          ],
+          ],*/
           tooltip: {
             trigger: 'item',
             formatter: '{b} : {d}%'
@@ -1642,7 +1642,7 @@ export class CityDataComponent implements OnInit {
       );
     });
     this.crosswiseBar = {
-      title: [
+     /* title: [
         {
           text: `${this.dataToggle}业态数据前十排名`,
           left: 'center',
@@ -1651,26 +1651,26 @@ export class CityDataComponent implements OnInit {
             fontSize: 14
           }
         },
-      ],
+      ],*/
       tooltip : {
         trigger: 'axis',
         axisPointer : {            // 坐标轴指示器，坐标轴触发有效
           type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
         }
       },
-      legend: {
+      /*legend: {
         data: ['业态收入（元）', '车流量（辆）', '客流量（人次）'],
         left: 'center',
         top: '6%',
         textStyle: {
           color: 'white'
         }
-      },
+      },*/
       grid: {
-        top: '18%',
+        top: '5%',
         left: '1%',
         right: '5%',
-        bottom: '16%',
+        bottom: '5%',
         containLabel: true
       },
       xAxis: {
@@ -1690,7 +1690,7 @@ export class CityDataComponent implements OnInit {
       },
       yAxis: {
         type: 'category',
-        name: '万元/辆/人次',
+        // name: '万元/辆/人次',
         inverse: false,
         splitLine: {show: false},
         data: IncomeValue[0].serviceZone,
@@ -1874,7 +1874,7 @@ export class CityDataComponent implements OnInit {
 
   // 流量收入实时监控
   public amount(): void {
-    let a = 1000;
+    let a = 100000;
     let b = 2000;
     setInterval(() => {
       a += Math.round(Math.random() * 100);
