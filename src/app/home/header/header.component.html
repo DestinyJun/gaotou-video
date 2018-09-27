@@ -8,8 +8,17 @@
       <span>贵州久长高速服务区</span>
     </div>
     <div class="header-admin">
-      <div class="header-admin-time"></div>
-      <div class="header-admin-flow"></div>
+      <img src="assets/images/timg.jpg" alt="" class="header-admin-img img-circle">
+      <div class="header-admin-time text-center">
+        <span>北京时间 <span style="margin-left: 10px">{{dataTime | date:'yyyy-MM-dd HH:mm:ss'}}</span></span>
+      </div>
+      <div class="header-admin-flow text-center">
+        <span>今日客流量：</span>
+        <div class="text-center">
+          <span *ngFor="let item of persons">{{item.number}}</span>
+        </div>
+        <span>人/次</span>
+      </div>
     </div>
   </div>
 </div>

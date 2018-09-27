@@ -9,7 +9,7 @@ export class HeaderComponent implements OnInit {
   // 时间
   public dataTime = new Date();
   // 客流量
-  public personNum = 1832;
+  public personNum = 60000;
   public persons = [];
   constructor(
     private tools: ToolsService,

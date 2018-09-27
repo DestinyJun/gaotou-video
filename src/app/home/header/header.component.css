@@ -7,13 +7,15 @@
   display: inline-block;
   vertical-align:text-top;
 }
+
 .header-logo{
   width: 26.3vw;
   height: 8vh;
+  margin-top: 1vh;
   margin-left: 1vw;
   line-height: 8vh;
   padding-left: 1vw;
-  font-size: 0.5rem;
+  font-size: 1.2rem;
   font-weight: bolder;
   letter-spacing: 0.2vw;
   background-repeat: no-repeat;
@@ -21,27 +23,62 @@
   background-size: 100% 100%;
   background-image: url(/assets/images/logobg.png);
 }
+.header-logo>span:nth-child(2) {
+  color: #5096DF;
+}
+
 .header-title{
   width: 47.4vw;
   height: 8vh;
+  margin-top: 1vh;
+  line-height: 8vh;
 }
 .header-title span{
-  font-weight: 600;
-  font-size: 0.7rem;
+  font-weight: 500;
+  font-size: 1.5rem;
   letter-spacing: 0.15vw;
 }
+
 .header-admin{
-  width: 21vw;
+  position: relative;
+  width: 23vw;
   height: 10vh;
+}
+.header-admin-img {
+  width: 2.3vw;
+  height: 2.3vw;
+  position: absolute;
+  right: 3.5vw;
+  top: 1.2vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2);
 }
 .header-admin-time{
   width: 21vw;
   height: 5vh;
+  font-size: 1rem;
+  line-height: 3.5vh;
   background-repeat: no-repeat;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
   background-image: url(/assets/images/adminbg.png);
 }
-.header-logo>span:nth-child(2) {
-  color: #5096DF;
+.header-admin-flow>div,span{
+  vertical-align:middle;
 }
+.header-admin-flow>div{
+  min-width: 5vw;
+  height: 4vh;
+  line-height: 4vh;
+  font-size: 1rem;
+  display: inline-block;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+}
+.header-admin-flow>span:nth-child(1),.header-admin-flow>span:nth-child(3) {
+  font-size: 0.9rem;
+}
+.header-admin-flow>div>span{
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.1vw;
+}
+
