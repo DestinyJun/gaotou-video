@@ -114,7 +114,7 @@ export class FinanceDataComponent implements OnInit {
   public barStatus1 = true;
   public barStatus2 = false;
   public barStatus3 = false;
-  public dataStatus = '业态收入';
+  public dataStatus = '业态收入/万元';
 
   // 全国当日收入类型占比分析
   public optionsIncomeModel = {};
@@ -204,7 +204,7 @@ export class FinanceDataComponent implements OnInit {
         const hours = this.options3dArray.hours;
         const days = this.options3dArray.days;
         this.options3d = {
-          title: [
+       /*   title: [
             {
               text: this.dataToggle + this.options3dArray.data3dTitle,
               left: 'center',
@@ -213,7 +213,7 @@ export class FinanceDataComponent implements OnInit {
                 fontSize: 14
               }
             },
-          ],
+          ],*/
           tooltip: {
             show: true,
             trigger: 'item',
@@ -603,7 +603,7 @@ export class FinanceDataComponent implements OnInit {
     this.diagrams.getCarTypes().subscribe(
       (value) => {
         this.optionsCarModel = {
-          title: [
+       /*   title: [
             {
               text: this.dataToggle + value.title,
               left: 'center',
@@ -612,7 +612,7 @@ export class FinanceDataComponent implements OnInit {
                 fontSize: 14
               }
             },
-          ],
+          ],*/
           tooltip: {
             trigger: 'item',
             formatter: '{b} : {d}%'
@@ -1706,35 +1706,35 @@ export class FinanceDataComponent implements OnInit {
       );
     });
     this.crosswiseBar = {
-      title: [
-        {
-          text: `${this.dataToggle}业态数据前十排名`,
-          left: 'center',
-          textStyle: {
-            color: '#fff',
-            fontSize: 14
-          }
-        },
-      ],
+      /* title: [
+         {
+           text: `${this.dataToggle}业态数据前十排名`,
+           left: 'center',
+           textStyle: {
+             color: '#fff',
+             fontSize: 14
+           }
+         },
+       ],*/
       tooltip : {
         trigger: 'axis',
         axisPointer : {            // 坐标轴指示器，坐标轴触发有效
           type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
         }
       },
-      legend: {
+      /*legend: {
         data: ['业态收入（元）', '车流量（辆）', '客流量（人次）'],
         left: 'center',
         top: '6%',
         textStyle: {
           color: 'white'
         }
-      },
+      },*/
       grid: {
-        top: '18%',
+        top: '5%',
         left: '1%',
         right: '5%',
-        bottom: '16%',
+        bottom: '5%',
         containLabel: true
       },
       xAxis: {
@@ -1754,7 +1754,7 @@ export class FinanceDataComponent implements OnInit {
       },
       yAxis: {
         type: 'category',
-        name: '万元/辆/人次',
+        // name: '万元/辆/人次',
         inverse: false,
         splitLine: {show: false},
         data: IncomeValue[0].serviceZone,
@@ -1912,20 +1912,21 @@ export class FinanceDataComponent implements OnInit {
   }
   // 业态经营数据前十排名相关操作
   public clickBtn(e): void {
-    if (e.srcElement.innerText === '业态收入') {
-      this.dataStatus = '业态收入';
+    console.log(e.srcElement.innerText);
+    if (e.srcElement.innerText === '业态收入/万元') {
+      this.dataStatus = '业态收入/万元';
       this.barStatus1 = true;
       this.barStatus2 = false;
       this.barStatus3 = false;
       this.backCrosswiseBar(this.dataStatus);
-    } else if (e.srcElement.innerText === '车流量') {
-      this.dataStatus = '车流量';
+    } else if (e.srcElement.innerText === '车流量/辆') {
+      this.dataStatus = '车流量/辆';
       this.barStatus1 = false;
       this.barStatus2 = true;
       this.barStatus3 = false;
       this.backCrosswiseBar(this.dataStatus);
-    } else if (e.srcElement.innerText === '客流量') {
-      this.dataStatus = '客流量';
+    } else {
+      this.dataStatus = '客流量/人次';
       this.barStatus1 = false;
       this.barStatus2 = false;
       this.barStatus3 = true;
@@ -1954,7 +1955,7 @@ export class FinanceDataComponent implements OnInit {
     this.diagrams.getIncomeTypes().subscribe(
       (value) => {
         this.optionsIncomeModel = {
-          title: [
+       /*   title: [
             {
               text: this.dataToggle + value.title,
               left: 'center',
@@ -1963,7 +1964,7 @@ export class FinanceDataComponent implements OnInit {
                 fontSize: 14
               }
             },
-          ],
+          ],*/
           tooltip: {
             trigger: 'item',
             formatter: '{b} : {c} ({d}%)'

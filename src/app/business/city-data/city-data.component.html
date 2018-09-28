@@ -5,25 +5,14 @@
     <div class="left col-lg-3 col-md-3">
       <!--3d柱状图-->
       <div class="accumulation">
-        <div class="accumulation-title text-center">
-          <span>{{this.dataToggle}}高速服务区业态数据3D统计图</span>
+        <div class="accumulation-title title text-center">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <P>{{this.dataToggle}}高速服务区业态数据3D统计图</P>
         </div>
         <div class="accumulation-3Dbar" echarts [options]="options3d" (chartClick)="barClick($event)"></div>
-      </div>
-      <!--日车流量实时统计-->
-      <div class="vehicle">
-        <p class="vehicle-title text-center">{{this.dataToggle}}今日车辆流动数量</p>
-        <div class="vehicle-amount">
-          <p class="text-center">
-            <span *ngFor="let i of vehicleAmount">{{i}}</span>
-            <small>辆</small>
-          </p>
-          <!--<p class="text-center">
-            <span style="margin-right: 10px">前日时间同比</span>
-            <i class="fa fa-long-arrow-up"></i>
-            <span class="">3.2%</span>
-          </p>-->
-        </div>
       </div>
       <!--移动端手机-->
       <div class="income mobile">
@@ -43,12 +32,31 @@
             </p>-->
         </div>
       </div>
-      <!--车型日分布占比-->
-      <div class="vehicle-pie">
-        <div class="vehicle-pie-title">
-          <p class="vehicle-title text-center">{{this.dataToggle}}当日车型分布类型占比</p>
+      <!--车辆统计-->
+      <div class="vehicle">
+        <!--日车流量实时统计-->
+        <div class="vehicle-amount">
+          <div class="vehicle-amount-title title text-center">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <p>{{this.dataToggle}}今日车辆流动数量</p>
+          </div>
+          <div class="vehicle-amount-number">
+            <p class="text-center">
+              <span *ngFor="let i of vehicleAmount">{{i}}</span>
+              <small>辆</small>
+            </p>
+          </div>
         </div>
-        <div class="vehicle-pie-chart" echarts [options]="optionsCarModel" (chartClick)="parkClick($event)"></div>
+        <!--车型日分布占比-->
+        <div class="vehicle-pie">
+          <div class="vehicle-pie-title title text-center">
+            <p>{{this.dataToggle}}当日车型分布类型占比</p>
+          </div>
+          <div class="vehicle-pie-chart" echarts [options]="optionsCarModel" (chartClick)="parkClick($event)"></div>
+        </div>
       </div>
     </div>
     <!--中间-->
@@ -84,27 +92,25 @@
         <!--<div class="top-map" id="center_map" echarts [options]="optionsMap" (chartClick)="mapClick($event)"></div>-->
       </div>
       <!--事件监控-->
-      <div class="event">
-        <div class="col-lg-3 col-md-3 event-table-events">
-          <div class="table-title text-center">
-            <span>{{this.dataToggle}}服务区事件监控</span>
+      <div class="event-table">
+        <div class="col-lg-3 col-md-3 event-table-service">
+          <div class="event-table-service-title title text-center">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <p>服务区事件监控</p>
           </div>
           <div class="table-responsive">
             <table class="table" cellspacing="5px">
               <thead class="table-header">
-              <tr>
+                <tr>
                 <td>类型</td>
                 <td class="hot">状态</td>
               </tr>
               </thead>
               <tbody class="table-body">
-              <!--  <tr class="table-tr" style="color: #BB32F4" >
-                  &lt;!&ndash;<td><span style="background: #BB32F4;"></span></td>&ndash;&gt;
-                  <td>工程类</td>
-                  <td class="hot">未处理<span>22</span></td>
-                </tr>-->
-              <tr class="table-tr" *ngFor="let item  of eventTypes" [ngStyle]="{'color': item.color}" (click)="tableEventClick(item.name)">
-                <!--<td><span style="background: #F432AD;"></span></td>-->
+                <tr *ngFor="let item  of eventTypes" (click)="tableEventClick(item.name)">
                 <td>{{item.name}}</td>
                 <td class="hot">未处理<span [ngStyle]="{'background': item.number === 0?'#3AD900':''}">{{item.number}}</span></td>
               </tr >
@@ -113,20 +119,24 @@
           </div>
         </div>
         <div class="col-lg-6 col-md-6 event-table-office">
-          <div class="table-title text-center">
-            <span>{{this.dataToggle}}服务区办公信息</span>
+          <div class="event-table-office-title title text-center">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <p>服务区办公信息</p>
           </div>
           <div class="table-responsive">
             <table class="table" cellspacing="5px">
               <thead class="table-header">
-              <tr>
+                <tr>
                 <td>时间</td>
                 <td>问题描述</td>
                 <td>处理反馈</td>
               </tr>
               </thead>
               <tbody class="table-body">
-              <tr class="table-tr" *ngFor="let item of officeTypes" style="color: #01D1DB" (click)="tableOfficeClick()">
+                <tr class="table-tr" *ngFor="let item of officeTypes" (click)="tableOfficeClick()">
                 <td>{{item.time}}</td>
                 <td>{{item.proDesc}}</td>
                 <td class="hot">
@@ -138,19 +148,23 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-3 event-table-person">
-          <div class="table-title text-center">
-            <span>{{this.dataToggle}}服务区处理信息</span>
+          <div class="event-table-person-title title text-center">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <p>服务区处理信息</p>
           </div>
           <div class="table-responsive">
             <table class="table" cellspacing="5px">
               <thead class="table-header">
-              <tr>
-                <td class="hot">动态</td>
-                <td>状态</td>
-              </tr>
+                <tr>
+                  <td class="hot">动态</td>
+                  <td>状态</td>
+                </tr>
               </thead>
               <tbody class="table-body">
-              <tr class="table-tr" *ngFor="let item  of personOfficeTypes" [ngStyle]="{'color': item.color}" (click)="tablePersonClick()">
+                <tr class="table-tr" *ngFor="let item  of personOfficeTypes" (click)="tablePersonClick()">
                 <td class="hot">{{item.dynamic}}</td>
                 <td>{{item.dispose}}</td>
               </tr>
@@ -164,7 +178,11 @@
     <div class="right col-lg-3 col-md-3">
       <!--市级数据服务区业态前十排名柱状图-->
       <div class="crosswise">
-        <div class="crosswise-title text-center">
+        <div class="crosswise-title title text-center">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
           <p>{{this.dataToggle}}业态数据前十排名</p>
         </div>
         <div class="crosswise-btn text-center" (click)="clickBtn($event)">
@@ -174,24 +192,31 @@
         </div>
         <div class="crosswise-bar" echarts [options]="crosswiseBar" (chartClick)="rankingClick($event)"></div>
       </div>
-      <!--市级实时收入-->
+      <!--收入统计-->
       <div class="income">
-        <div class="income-title text-center">
-          <p>{{this.dataToggle}}高速服务区实时收入</p>
-        </div>
+        <!--实时收入-->
         <div class="income-amount">
-          <p class="text-center">
-            <span *ngFor="let i of incomeAmount">{{i}}</span>
-            <small>元</small>
-          </p>
+          <div class="income-amount-title title text-center">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <p>{{this.dataToggle}}高速服务区实时收入</p>
+          </div>
+          <div class="income-amount-number">
+            <p class="text-center">
+              <span *ngFor="let i of incomeAmount">{{i}}</span>
+              <small>元</small>
+            </p>
+          </div>
         </div>
-      </div>
-      <!--收入占比-->
-      <div class="income-pie">
-        <div class="income-pie-title text-center">
-          <p>{{this.dataToggle}}高速服务区实时收入</p>
+        <!--收入占比-->
+        <div class="income-pie">
+          <div class="income-pie-title title text-center">
+            <p>{{this.dataToggle}}高速服务区实时收入</p>
+          </div>
+          <div class="income-pie-chart" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
         </div>
-        <div class="income-pie-chart" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
       </div>
     </div>
   </div>

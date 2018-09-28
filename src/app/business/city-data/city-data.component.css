@@ -5,37 +5,74 @@
 .main{
   position: relative;
 }
+.title{
+  height: 5vh;
+  line-height: 5vh;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #5595D5;
+  border-top: 1px solid #5595D5;
+  border-bottom: 1px solid #5595D5;
+  margin: 0 2vw;
+  position: relative;
+}
+.title>span{
+  position: absolute;
+  border-style: solid;
+}
+.title>span:nth-child(1){
+  border-width: 0.2vw 0.7vw 0.2vw 0.2vw;
+  left: -0.6vw;
+  top: -0.5vh;
+  border-color: transparent #5595D5 transparent transparent ;
+}
+.title>span:nth-child(2){
+  border-width: 0.2vw 0.7vw 0.2vw 0.2vw;
+  left: -0.6vw;
+  top: 4.4vh;
+  border-color: transparent #5595D5 transparent transparent ;
+}
+.title>span:nth-child(3){
+  border-width: 0.2vw 0.2vw 0.2vw  0.7vw;
+  left: 18.9vw;
+  top: -0.5vh;
+  border-color: transparent transparent transparent #5595D5;
+}
+.title>span:nth-child(4){
+  left: 18.9vw;
+  top: 4.4vh;
+  border-width: 0.2vw 0.2vw 0.2vw  0.7vw;
+  border-color: transparent transparent transparent #5595D5;
+}
 /****************************左边****************************/
 /*3D柱状图*/
 .left .accumulation{
+  padding-top: 2vh;
   height: 50vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
 }
-.left .accumulation-title{
-  height: 4vh;
-  font-size: 1.25rem;
-  color: #5595D5;
-  font-weight: 500;
-}
+.left .accumulation-title{}
 .left .accumulation-3Dbar{
   height: 43vh;
 }
 
-/*日车流量实时统计*/
+/*车辆统计*/
 .left .vehicle{
-  height: 12.5vh;
+  height: 34vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
+  padding-top: 2vh;
 }
-.left .vehicle-title{
-  height: 4vh;
-  line-height: 4vh;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #5595D5;
+/*日车流量实时统计*/
+.left .vehicle-amount{
+  height: 12.5vh;
 }
-.left .vehicle-amount>p>span{
+.left .vehicle-amount-title{}
+.left .vehicle-amount-number{
+  padding-top: 1vh;
+}
+.left .vehicle-amount-number>p>span{
   display: inline-block;
   width: 1.6vw;
   height: 5vh;
@@ -51,33 +88,28 @@
   background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
   background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);*/
 }
-.left .vehicle-amount>p>small{
+.left .vehicle-amount-number>p>small{
   font-size: 1rem;
   color: white;
 }
-
 /*车型日分布占比*/
 .left .vehicle-pie{
   height: 20.5vh;
-  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
-  margin-bottom: 1vh;
 }
 .left .vehicle-pie-title{
-  height: 4vh;
-  line-height: 4vh;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #5595D5;
+  color: white;
+}
+.left .vehicle-pie-title.title{
+  border: none;
 }
 .left .vehicle-pie-chart{
-  height: 16.5vh;
+  height: 14.5vh;
 }
 
 /*移动端收入样式*/
 .left .income.mobile{
   display: none;
 }
-
 
 /****************************中部****************************/
 .center .map {
@@ -144,88 +176,105 @@
   height: 50vh;
 }
 
-/*事件监控列表*/
-.center.event-table{
-  padding-top: 1px;
-  min-height: 32vh;
-  border:1px solid #3B425C;
+/*事件列表*/
+.center .event-table{
+  height: 34vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+  margin-bottom: 1vh;
   overflow: hidden;
-  margin-left: -8px;
-  margin-right: -8px;
-  font-size: 12px;
+  padding: 2vh 0.5vw;
 }
-.center.event-table .event-table-events{
+/*服务区事件监控*/
+.center .event-table-service{
   padding-right: 0;
   padding-left: 0;
 }
-.center.event-table .event-table-office{
+.center .event-table-service-title{
+  margin-bottom: 1vh;
+}
+.center .event-table-service-title.title>span:nth-child(3){
+  left: 7.5vw;
+  top: -0.5vh;
+}
+.center .event-table-service-title.title>span:nth-child(4){
+  left: 7.5vw;
+  top: 4.4vh;
+}
+/*办公事件监控*/
+.center  .event-table-office{
   /* padding-right: 0;
    padding-left: 0;*/
 }
-.center.event-table .event-table-person{
+.center .event-table-office-title{
+  margin-bottom: 1vh;
+}
+.center .event-table-office-title.title>span:nth-child(3){
+  left: 17.5vw;
+  top: -0.5vh;
+}
+.center .event-table-office-title.title>span:nth-child(4){
+  left: 17.5vw;
+  top: 4.4vh;
+}
+/*个人信息处理*/
+.center .event-table-person{
   padding-right: 0;
   padding-left: 0;
 }
-.center.event-table tr{
-  cursor: pointer;
-
+.center .event-table-person-title{
+  margin-bottom: 1vh;
 }
-.center.event-table tr td{
+.center .event-table-person-title.title>span:nth-child(3){
+  left: 7.5vw;
+  top: -0.5vh;
+}
+.center .event-table-person-title.title>span:nth-child(4){
+  left: 7.5vw;
+  top: 4.4vh;
+}
+/*表格公共样式*/
+.center .event-table tr td{
   border: none;
+  /*white-space: nowrap;*/
+  /*overflow: hidden;
+  text-overflow: ellipsis;*/
+
 }
-.center.event-table tr:hover{
+.center .event-table tr:hover{
   cursor: pointer;
 }
-.center.table-title{
-  padding: 5px 0 10px 5px;
-  font-weight: bolder;
-  font-size: 14px;
+.center .event-table .table-header{
+  height: 3vh;
+  background: rgba(39,55,91,0.9);
+  color: white;
 }
-.center.table-header{
-  height: 5vh;
-  /*border: 1px solid #0593B5;*/
-  background: rgba(7,149,188,0.2);
-  color: #00ECF1;
-}
-
-.center.table-header .hot{
-  position: relative;
-}
-.center.table-header .hot span::before{
-  content: '';
-  position: absolute;
-  top: 12px;
-  left: 35px;
-  width: 10px;
-  height: 10px;
-  border-radius: 100%;
-  background: red;
-  display: inline-block;
-}
-
-.center.table-body{
+.center .event-table .table-body{
   margin-top: 5px;
+  background: rgba(32,36,45,0.9);
 }
-.center.table-body .table-tr{
-  border-bottom: 1px solid #0593B5;
+.center .event-table .table-body tr{
+  /*border-bottom: 1px solid #0593B5;*/
   position: relative;
-  color: #87FFFF;
+  color: #457FBB;
   border-collapse:separate;
   border-spacing:10px;
+  font-size: 0.5rem;
 }
-.center.table-body .table-tr:hover{
+.center .event-table .table-body tr:hover{
   background:rgba(255,255,255,0.3);
+  color: white;
 }
-.center.table-body .table-tr span{
+
+.center .event-table .table-body tr span{
   display: inline-block;
   width: 15px;
   height: 15px;
   border-radius: 100%;
 }
-.center.table-body .table-tr>.hot{
+.center .event-table .table-body tr>.hot{
   position: relative;
 }
-.center.table-body .table-tr>.hot>span{
+.center .event-table .table-body tr>.hot>span{
   position: absolute;
   display: inline-block;
   color: white;
@@ -238,28 +287,19 @@
   background: red;
   line-height: 20px;
 }
-.center.table-body .table-tr>.hot>button{
-  position: absolute;
-  top: 7px;
-  right: 5px;
-}
 
 /****************************右边****************************/
 /*市级数据服务区业态前十排名柱状图*/
 .right .crosswise{
+  padding-top: 2vh;
   height: 50vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
   position: relative;
 }
-.right .crosswise-title{
-  height: 4vh;
-  line-height: 4vh;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #5595D5;
-}
+.right .crosswise-title{}
 .right .crosswise-btn{
+  margin-top: 1vh;
   height: 4vh;
 }
 .right .crosswise-btn>span{
@@ -275,22 +315,25 @@
   cursor: pointer;
 }
 .right .crosswise-bar{
-  height: 42vh;
+  height: 39vh;
 }
-/*实时首收入统计*/
+
+/*收入统计*/
 .right .income{
-  height: 12.5vh;
+  padding-top: 2vh;
+  height: 34vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
 }
-.right .income-title{
-  height: 4vh;
-  line-height: 4vh;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #5595D5;
+/*实时首收入统计*/
+.right .income-amount{
+  height: 12.5vh;
 }
-.right .income-amount>p>span{
+.right .income-amount-title{}
+.income-amount-number{
+  padding-top: 1vh;
+}
+.right .income-amount-number>p>span{
   display: inline-block;
   width: 1.6vw;
   height: 5vh;
@@ -306,25 +349,22 @@
   background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
   background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);*/
 }
-.right .income-amount>p>small{
+.right .income-amount-number>p>small{
   font-size: 1rem;
   color: white;
 }
 /*服务器收入实时统计*/
 .right .income-pie{
   height: 20.5vh;
-  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
-  margin-bottom: 1vh;
 }
 .right .income-pie-title{
-  height: 4vh;
-  line-height: 4vh;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #5595D5;
+  color: white;
+}
+.right .income-pie-title.title{
+  border: none;
 }
 .right .income-pie-chart{
-  height: 16.5vh;
+  height: 14.5vh;
 }
 
 /****************************弹窗部分****************************/
