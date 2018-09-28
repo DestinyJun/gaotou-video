@@ -1,36 +1,78 @@
+/**
+ * Created by wangwenjun on 2018/2/22.
+ * project name ...
+ */
 .main{
   position: relative;
 }
+.title{
+  height: 5vh;
+  line-height: 5vh;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #5595D5;
+  border-top: 1px solid #5595D5;
+  border-bottom: 1px solid #5595D5;
+  margin: 0 2vw;
+  position: relative;
+}
+.title>span{
+  position: absolute;
+  border-style: solid;
+}
+.title>span:nth-child(1){
+  border-width: 0.2vw 0.7vw 0.2vw 0.2vw;
+  left: -0.6vw;
+  top: -0.5vh;
+  border-color: transparent #5595D5 transparent transparent ;
+}
+.title>span:nth-child(2){
+  border-width: 0.2vw 0.7vw 0.2vw 0.2vw;
+  left: -0.6vw;
+  top: 4.4vh;
+  border-color: transparent #5595D5 transparent transparent ;
+}
+.title>span:nth-child(3){
+  border-width: 0.2vw 0.2vw 0.2vw  0.7vw;
+  left: 18.9vw;
+  top: -0.5vh;
+  border-color: transparent transparent transparent #5595D5;
+}
+.title>span:nth-child(4){
+  left: 18.9vw;
+  top: 4.4vh;
+  border-width: 0.2vw 0.2vw 0.2vw  0.7vw;
+  border-color: transparent transparent transparent #5595D5;
+}
 /******************************左边*******************************/
 /*3D柱状图*/
-.left .accumulation {
+.left .accumulation{
+  padding-top: 2vh;
   height: 50vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
 }
-.left .accumulation-title {
-  height: 4vh;
-  font-size: 1.25rem;
-  color: #4D93DE;
-  font-weight: 500;
-}
+.left .accumulation-title{}
 .left .accumulation-3Dbar{
   height: 43vh;
 }
-/*日车流量实时统计*/
+
+/*车辆统计*/
 .left .vehicle{
-  height: 12.5vh;
+  height: 34vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
+  padding-top: 2vh;
 }
-.left .vehicle-title{
-  height: 4vh;
-  line-height: 4vh;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #5595D5;
+/*日车流量实时统计*/
+.left .vehicle-amount{
+  height: 12.5vh;
 }
-.left .vehicle-amount>p>span{
+.left .vehicle-amount-title{}
+.left .vehicle-amount-number{
+  padding-top: 1vh;
+}
+.left .vehicle-amount-number>p>span{
   display: inline-block;
   width: 1.6vw;
   height: 5vh;
@@ -46,51 +88,46 @@
   background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
   background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);*/
 }
-.left .vehicle-amount>p>small{
+.left .vehicle-amount-number>p>small{
   font-size: 1rem;
   color: white;
 }
 /*车型日分布占比*/
 .left .vehicle-pie{
   height: 20.5vh;
-  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
-  margin-bottom: 1vh;
 }
 .left .vehicle-pie-title{
-  height: 4vh;
-  line-height: 4vh;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #5595D5;
+  color: white;
+}
+.left .vehicle-pie-title.title{
+  border: none;
 }
 .left .vehicle-pie-chart{
-  height: 16.5vh;
+  height: 14.5vh;
 }
+
 /*移动端收入样式*/
 .left .income.mobile{
   display: none;
 }
 
 /******************************中间*******************************/
-/*中部服务区地图*/
 .center .servicesMap{
   height: 50vh;
-  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+  box-shadow: 0 0 10px 2px rgba(170,170,170,0.2) inset;
   margin-bottom: 1vh;
-  margin-left: -8px;
-  margin-right: -8px;
   color: white;
-  /*font-size: 0.75rem;*/
 }
-.center .servicesMap .servicesMap-top{
-  height: 10vh;
-  /*padding: 1vh 0;*/
+/*上部分*/
+.center .servicesMap-top{
+  height: 18vh;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
-.center .servicesMap .servicesMap-top .servicesMap-top-box{
-  min-width: 9.6vw;
+.center .servicesMap-top .shop-info{
+  width: 30vw;
+  height: 6vh;
+  background: rgba(56,109,166,0.1);
   line-height: 2vh;
   border-right: 1px solid #1E2F39 ;
   border-bottom: 1px solid #1E2F39 ;
@@ -99,66 +136,46 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.center .servicesMap .servicesMap-top .servicesMap-top-box:last-child{
+.center .servicesMap-top .shop-info:last-child{
   border-right: none;
 }
-.center .servicesMap .servicesMap-top .servicesMap-top-box:hover {
-  background: #6C2D36;
+.center .servicesMap-top .shop-info:hover {
+  background: rgba(152,77,80,0.5);
   cursor: pointer;
 }
-
-.center .servicesMap .servicesMap-center{
-  height: 30vh;
+/*中部分*/
+.center .servicesMap-center{
+  height: 6vh;
 }
-.center .servicesMap-center .video-top{
-  padding-top: 5px;
-  height: 11.5vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+/*视频部分*/
+.center .servicesMap-video{
+  height: 4vh;
+  background: rosybrown;
 }
-.center .servicesMap-center .video-bottom{
-  padding-top: 5px;
-  height: 11.5vh;
-  display: flex;
-  flex-wrap: wrap-reverse;
-  justify-content: flex-end;
-}
-.center .servicesMap-center .servicesMap-center-left{
-  height: 3vh;
-  border: 1px solid #FBC527;
+/*下部分*/
+.center .servicesMap-bottom{
+  height: 18vh;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: #59443D;
+  align-items: flex-end;
 }
-.center .servicesMap-center .servicesMap-center-right{
-  height: 3vh;
-  border: 1px solid #FBC527;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #59443D;
-}
-
-.center .servicesMap .servicesMap-bottom{
-  height: 10vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.center .servicesMap .servicesMap-bottom .servicesMap-bottom-box{
-  height: 10vh;
-  min-width: 9.6vw;
-  /*border:1px solid #3B425C;*/
+.center .servicesMap-bottom .shop-info{
+  width: 30vw;
+  height: 6vh;
+  background: rgba(56,109,166,0.1);
   line-height: 2vh;
+  border-right: 1px solid #1E2F39 ;
+  border-bottom: 1px solid #1E2F39 ;
   font-size: 0.875rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.center .servicesMap .servicesMap-bottom .servicesMap-bottom-box:hover {
-  background: #6A2B34;
+.center .servicesMap-bottom .shop-info:last-child{
+  border-right: none;
+}
+.center .servicesMap-bottom .shop-info:hover {
+  background: rgba(152,77,80,0.5);
   cursor: pointer;
 }
 /*事件监控列表*/
@@ -167,8 +184,6 @@
   height: 34vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   overflow: hidden;
-  margin-left: -8px;
-  margin-right: -8px;
   padding-bottom: 5vh;
   font-size: 1rem;
 }
@@ -294,22 +309,15 @@
   border: none;
 }
 
-
-
 /******************************右边*******************************/
 /*服务区基本信息*/
 .right .information {
+  padding-top: 2vh;
   height: 50vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
 }
-.right .information-title {
-  height: 4vh;
-  line-height: 4vh;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #5790D1;
-}
+.right .information-title{}
 .right .information-info>div{
   padding-top: 1vh;
   padding-right: 0;
@@ -323,20 +331,23 @@
   font-size: 1rem;
   border-radius: 3px;
 }
-/*服务区实时收入*/
+
+/*收入统计*/
 .right .income{
-  height: 12.5vh;
+  padding-top: 2vh;
+  height: 34vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
 }
-.right .income-title{
-  height: 4vh;
-  line-height: 4vh;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #5595D5;
+/*实时首收入统计*/
+.right .income-amount{
+  height: 12.5vh;
 }
-.right .income-amount>p>span{
+.right .income-amount-title{}
+.right .income-amount-number{
+  padding-top: 1vh;
+}
+.right .income-amount-number>p>span{
   display: inline-block;
   width: 1.6vw;
   height: 5vh;
@@ -352,27 +363,23 @@
   background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
   background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);*/
 }
-.right .income-amount>p>small{
+.right .income-amount-number>p>small{
   font-size: 1rem;
   color: white;
 }
-/*服务器收入实时统计占比*/
+/*服务器收入实时统计*/
 .right .income-pie{
   height: 20.5vh;
-  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
-  margin-bottom: 1vh;
 }
 .right .income-pie-title{
-  height: 4vh;
-  line-height: 4vh;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #5595D5;
+  color: white;
+}
+.right .income-pie-title.title{
+  border: none;
 }
 .right .income-pie-chart{
-  height: 16.5vh;
+  height: 14.5vh;
 }
-
 
 /****************************弹窗部分****************************/
 /*3D柱状图弹窗*/

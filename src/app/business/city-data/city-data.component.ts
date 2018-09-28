@@ -355,7 +355,6 @@ export class CityDataComponent implements OnInit {
     this.dataService.getrandomPie(9, 1000, 200).map((val, index) => {
       this.arryPie.push({value: val, name: this.citys[index]});
     });
-
     function types(value): string {
       let typeValue = '';
       switch (value) {
@@ -1624,6 +1623,7 @@ export class CityDataComponent implements OnInit {
   public backCrosswiseBar(title) {
     const IncomeValue = this.dataService.getIncome(9, 1000, 200, title);
     const barData = [];
+    console.log(IncomeValue);
     IncomeValue.map((val, index) => {
       barData.push(
         {

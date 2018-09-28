@@ -318,7 +318,7 @@ export class ServiceDataComponent implements OnInit {
               itemStyle: {
                 opacity: 0.9,
                 color: function (params) {
-                  return ['#C27CD2', '#BDD139', '#78E77D', '#09D4D6', 'green'][params.value[1]];
+                  return ['#9B90D5', '#46E7E2', '#78F991', '#0B38D8', '#027405'][params.value[1]];
                 },
               },
               emphasis: {
@@ -512,6 +512,7 @@ export class ServiceDataComponent implements OnInit {
       };
       serieData.push(serie);
     }
+    console.log(serieData);
     const colors = ['#BE86C6', '#A7B937', '#73DD79', '#09CDCF', '#007C00'];
     this.options3dLine = {
       title: {
@@ -695,7 +696,7 @@ export class ServiceDataComponent implements OnInit {
                   }
                 }
               },
-              color: ['#FBB034', '#E30B40', '#3291DD', '#8B489E'],
+              color: ['#00CAE2', '#2307EF', '#4791D8'],
               data: value.data,
               itemStyle: {
                 emphasis: {
@@ -1383,7 +1384,7 @@ export class ServiceDataComponent implements OnInit {
                   }
                 }
               },
-              color: ['#72C096', '#FEC93F', '#2796C4', '#22C3F9', '#B171BF', '#FF8C9D'],
+              color: ['#01CBE3', '#2A58DF', '#1B94E3', '#3B4F74', '#D33939', '#2407EF'],
               data: value.data,
               itemStyle: {
                 emphasis: {
