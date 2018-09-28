@@ -1,15 +1,15 @@
-<!--主内容-->
-  <!--<div class="main-header">-->
-    <!--<span>{{serviceZoneTitle}}</span>-->
-    <!--<div class="pull-right text-center" (click)="goBack()">-->
-      <!--<i class="fa fa-window-close " aria-hidden="true"></i>-->
-    <!--</div>-->
-  <!--</div>-->
-  <div class="main-content">
+<div class="main">
+  <!--服务区大数据可视化-->
+  <div class="row">
     <!--左边-->
-    <div class="col-lg-3 col-md-3">
+    <div class="left col-lg-3 col-md-3">
       <!--3D业态图-->
-      <div class="accumulation3d" echarts [options]="options3d" (chartClick)="barClick($event)"></div>
+      <div class="accumulation">
+        <div class="accumulation-title text-center">
+          <p class="text-center">{{serviceZoneTitle}}业态数据3D统计</p>
+        </div>
+        <div class="accumulation-3Dbar" echarts [options]="options3d" (chartClick)="barClick($event)"></div>
+      </div>
       <!--移动端车流量-->
       <div class="income mobile">
         <p class="text-center">{{serviceZoneTitle}}今日实时收入</p>
@@ -23,110 +23,112 @@
           </h3>
         </div>
       </div>
-      <!--车流量和类型占比-->
-      <div class="vehicle-total">
-        <!--今日车流量-->
-        <div class="vehicle">
-          <p class="text-center">{{serviceZoneTitle}}今日车流量</p>
-          <div class="vehicle-amount">
-            <p class="text-center">
-              <span>0</span>
-              <span>0</span>
-              <span>0</span>
-              <span style="margin-right: 10px" *ngFor="let i of vehicleAmount">{{i}}</span>
-              <small style="font-size: 14px;color: white;">辆</small>
-            </p>
-          </div>
+      <!--车流量实时统计-->
+      <div class="vehicle">
+        <div class="vehicle-title text-center">
+          <p>{{serviceZoneTitle}}今日车流量</p>
         </div>
-        <!--车辆类型占比-->
-        <div class="text-center accumulation-title">{{serviceZoneTitle}}当日车型日分布类型占比分析</div>
-        <div class="accumulation" echarts [options]="optionsCarModel" (chartClick)="parkClick($event)"></div>
+        <div class="vehicle-amount">
+          <p class="text-center">
+            <span *ngFor="let i of vehicleAmount">{{i}}</span>
+            <small>辆</small>
+          </p>
+        </div>
+      </div>
+      <!--车辆类型占比-->
+      <div class="vehicle-pie">
+        <div class="vehicle-pie-title text-center ">
+          <p>{{serviceZoneTitle}}当日车型日分布类型占比分析</p>
+        </div>
+        <div class="vehicle-pie-chart" echarts [options]="optionsCarModel" (chartClick)="parkClick($event)"></div>
       </div>
     </div>
     <!--中部-->
-    <div class="col-lg-6 col-md-6">
+    <div class="center col-lg-6 col-md-6">
       <!--摄像头加业态数据-->
-       <!--<div class="servicesMap">
-         <div class="servicesMap-top">
+      <div class="servicesMap">
+        <div class="servicesMap-top">
           <div class="servicesMap-top-box text-center" *ngFor="let item of incomeBottomData">
             <div class="shop-info" (click)="openServiceShop(item.storeName)">
-              <p style="color: #3BF49F;" [title]="item.name">{{item.storeName}}</p>
-              <p style="color: #00CFB1;" [title]="item.num">1000元</p>
+              <p [title]="item.name">{{item.storeName}}</p>
+              <p [title]="item.num">1000元</p>
             </div>
-            <p>
+            <!--<p>
               <button class="btn btn-danger" (click)="openMerchantVideo(item.storeName,item.cameraList)">监控</button>
-            </p>
+            </p>-->
           </div>
-         </div>
-         <div class="servicesMap-center">
-           <div class="video-top" >
+        </div>
+        <div class="servicesMap-center">
+          <!-- <div class="video-top" >
              <div *ngFor="let item of publicBottomVideoList;let i = index" style="margin-right: 10px">
                <button class="btn" [ngClass]="btnClass[i]" (click)="openPublicVideo(item)">{{item.cameraName}}</button>
              </div>
-           </div>
-           <div class="servicesMap-center-left">
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <span style="font-size: 16px">遵义方向<——贵阳</span>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-           </div>
-           <div class="servicesMap-center-right">
-             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-             <span style="font-size: 16px">贵阳——>遵义方向</span>
-             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-             <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-           </div>
-           <div class="video-bottom">
+           </div>-->
+          <div class="servicesMap-center-left">
+            <!-- <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>-->
+            <span style="font-size: 16px">遵义方向<——贵阳</span>
+            <!--<i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>-->
+          </div>
+          <div class="servicesMap-center-right">
+            <!--<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>-->
+            <span style="font-size: 16px">贵阳——>遵义方向</span>
+            <!--<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>-->
+          </div>
+          <!-- <div class="video-bottom">
              <div *ngFor="let item of publicTopVideoList;let i = index" style="margin-left: 10px">
                <button class="btn" [ngClass]="btnClass[i]" (click)="openPublicVideo(item)">{{item.cameraName}}</button>
              </div>
-           </div>
-         </div>
-         <div class="servicesMap-bottom">
-           <div class="servicesMap-bottom-box text-center" *ngFor="let item of incomeTopData">
-             <div class="shop-info" (click)="openServiceShop(item.storeName)">
-               <p style="color: #3BF49F;" [title]="item.name">{{item.storeName}}</p>
-               <p style="color: #00CFB1;" [title]="item.num">1000元</p>
-             </div>
-             <p>
+           </div>-->
+        </div>
+        <div class="servicesMap-bottom">
+          <div class="servicesMap-bottom-box text-center" *ngFor="let item of incomeTopData">
+            <div class="shop-info" (click)="openServiceShop(item.storeName)">
+              <p [title]="item.name">{{item.storeName}}</p>
+              <p [title]="item.num">1000元</p>
+            </div>
+            <!-- <p>
                <button class="btn btn-danger" (click)="openMerchantVideo(item.storeName,item.cameraList)">监控</button>
-             </p>
-           </div>
-         </div>
-       </div>-->
+             </p>-->
+          </div>
+        </div>
+      </div>
       <!--事件监控-->
       <div class="event-table">
         <!--未处理-->
         <div class="col-lg-6 col-md-6 event-untreated-table">
           <div class="table-title text-center">
-            <span>服务区未处理事件</span>
+            <span>未处理事件</span>
             <!--<span class="pull-right" style="cursor: pointer;color:#86FDFE;position: absolute;right: 5px;" (click)="openEventAlert()">查看更多...</span>-->
           </div>
           <div class="table-responsive">
-            <table class="table" cellspacing="5px">
-              <thead class="table-header">
-              <tr>
-                <td>时间</td>
-                <td>事件类型</td>
-                <td>事件描述</td>
-                <td>状态</td>
-              </tr>
-              </thead>
-              <tbody class="table-body">
+            <div class="tableboder">
+              <table class="table" cellspacing="5px">
+                <thead class="table-header">
+                <tr>
+                  <td>时间</td>
+                  <td>事件类型</td>
+                  <td>事件描述</td>
+                  <td>状态</td>
+                </tr>
+                </thead>
+                <tbody class="table-body">
                 <tr class="table-tr" *ngFor="let item of eventListInfos" (click)="openEventAlert(item)">
                   <td>{{item?.time}}</td>
                   <td>{{item?.type}}</td>
                   <td>{{item?.description}}</td>
-                  <td style="color:#CF5B56">{{item?.state}}</td>
+                  <td style="color:#CF5B56; font-size: 1rem">{{item?.state}}</td>
                 </tr>
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <!--事件上报-->
@@ -139,14 +141,14 @@
               <span *ngFor="let item of eventInfoUpTypes" (click)="eventInfoUpClick(item)">{{item}}</span>
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="margin-top: 1vh">
             <div class="event-toilet" (click)="openServersToiletAlert('服务区卫生间使用率')">
               <div style="padding-left: 1.2vw">
                 <span>卫生间使用率</span>
               </div>
               <div class="table-responsive text-center">
-                <span class="btn btn-danger wash">男洗手间：45%</span>
-                <span class="btn btn-info wash">女洗手间：50%</span>
+                <span class="btn  button-left">男洗手间：45%</span>
+                <span class="btn button-right">女洗手间：50%</span>
               </div>
             </div>
             <div class="event-carport" (click)="openServersToiletAlert('服务区停车位监控')">
@@ -154,8 +156,8 @@
                 <span style="padding-left: 1.2vw">停车位监控</span>
               </div>
               <div class="text-center">
-                <span class="btn btn-warning">大车剩余车位：256个</span>
-                <span class="btn btn-primary">小车剩余车位：318个</span>
+                <span class="btn button-left">大车剩余车位：256个</span>
+                <span class="btn button-right">小车剩余车位：318个</span>
               </div>
             </div>
           </div>
@@ -163,65 +165,53 @@
       </div>
     </div>
     <!--右边-->
-    <div class="col-lg-3 col-md-3">
+    <div class="right col-lg-3 col-md-3">
       <!--服务区基本信息-->
-      <div class="crosswise">
-         <h5 class="text-center">
-           {{serviceZoneTitle}}基本信息
-         </h5>
-         <div class="row">
-           <div class="col-lg-6 col-md-6 services-Info">
-             <p *ngFor="let item of serviceBasicInformation1">
-               <span class="pull-left text-c1">{{item.name}}：</span>
-               <span class="pull-right text-c3">{{item.desc}}</span>
-             </p>
-           </div>
-           <div class="col-lg-6 col-md-6 services-Info" >
-             <p *ngFor="let item of serviceBasicInformation2" [title]="'点击'+item.name+'查看更多'" [ngClass]="'hovers'" (click)="openServiceBasicAlert(item.name)">
-               <span class="pull-left text-c1">{{item.name}}：</span>
-               <span class="pull-right text-c3">{{item.desc}}</span>
-             </p>
-           </div>
-         </div>
-         <div class="row">
-           <div class="col-lg-12 col-md-12">
-             <div class="crosswise-footer">
-               <p class="text-center">
-                 <button class="btn" (click)="crosswiseClick()" style="margin-right: 15px">信息修改</button>
-                 <button class="btn" (click)="openServicesPlan()">服务区平面图</button>
-               </p>
-             </div>
-           </div>
-         </div>
-         <!--<div class="crosswise-btn text-center" (click)="clickBtn($event)">-->
-           <!--<button  class="btn " [ngClass]="{'btn-danger': barStatus1}"  >业态收入</button>-->
-           <!--<button  class="btn" [ngClass]="{'btn-success': barStatus2}">车流量</button>-->
-           <!--<button  class="btn" [ngClass]="{'btn-info': barStatus3}">客流量</button>-->
-         <!--</div>-->
-         <!--<div class="crosswise-bar" echarts [options]="crosswiseBar" (chartInit)="crosswiseBarInit($event)" (chartClick)="rankingClick($event)"></div>-->
-       </div>
-      <div class="crosswise-bottom" >
-        <!--服务器实时收入-->
-        <div class="income">
-          <p class="text-center">{{serviceZoneTitle}}今日实时收入</p>
-          <div class="income-amount">
-            <h3 class="text-center">
-              <span>0</span>
-              <span>0</span>
-              <span>0</span>
-              <span style="margin-right: 10px" *ngFor="let i of incomeAmount">{{i}}</span>
-              <small style="font-size: 14px;color: white;">元</small>
-            </h3>
+      <div class="information">
+        <div class="information-title text-center">
+          <p>{{serviceZoneTitle}}基本信息</p>
+        </div>
+        <div class="information-info row" >
+          <div class="col-lg-6 col-md-6">
+            <p *ngFor="let item of serviceBasicInformation1">
+              <span class="pull-left text-c1">{{item.name}}：</span>
+              <span class="pull-right text-c3">{{item.desc}}</span>
+            </p>
+          </div>
+          <div class="col-lg-6 col-md-6" >
+            <p *ngFor="let item of serviceBasicInformation2" [title]="'点击'+item.name+'查看更多'" [ngClass]="'hovers'" (click)="openServiceBasicAlert(item.name)">
+              <span class="pull-left text-c1">{{item.name}}：</span>
+              <span class="pull-right text-c3">{{item.desc}}</span>
+            </p>
           </div>
         </div>
-        <!--收入类型占比-->
-        <p class="text-center">{{serviceZoneTitle}}当日收入类型占比分析</p>
-        <div class="today-income" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
+        <div class="information-btn text-center">
+          <span (click)="crosswiseClick()" style="margin-right: 2vw;">信息修改</span>
+          <span (click)="openServicesPlan()">服务区平面图</span>
+        </div>
       </div>
-
-
+      <!--服务区实时收入-->
+      <div class="income">
+        <div class="income-title text-center">
+          <p>{{serviceZoneTitle}}高速服务区实时收入</p>
+        </div>
+        <div class="income-amount">
+          <p class="text-center">
+            <span *ngFor="let i of incomeAmount">{{i}}</span>
+            <small>元</small>
+          </p>
+        </div>
+      </div>
+      <!--服务区实时收入占比统计-->
+      <div class="income-pie">
+        <div class="income-pie-title text-center">
+          <p>{{serviceZoneTitle}}当日收入类型占比分析</p>
+        </div>
+        <div class="income-pie-chart" echarts [options]="optionsIncomeModel" (chartClick)="incomeClick($event)"></div>
+      </div>
     </div>
   </div>
+</div>
 <!--*************************弹窗部分**************************-->
 <!--3D柱状图弹窗-->
 <div class="bg-box" *ngIf="alertBarShow">

@@ -208,7 +208,7 @@ export class ServiceDataComponent implements OnInit {
         this.options3d = {
           title: [
             {
-              text: this.serviceZoneTitle + this.options3dArray.data3dTitle,
+              // text: this.serviceZoneTitle + this.options3dArray.data3dTitle,
               left: 'center',
               textStyle: {
                 color: '#fff',
@@ -663,7 +663,7 @@ export class ServiceDataComponent implements OnInit {
     this.diagrams.getCarTypes().subscribe(
       (value) => {
         this.optionsCarModel = {
-          title: [
+         /* title: [
             {
               // text: this.serviceZoneTitle + value.title,
               left: 'center',
@@ -672,7 +672,7 @@ export class ServiceDataComponent implements OnInit {
                 fontSize: 14
               }
             },
-          ],
+          ],*/
           tooltip: {
             trigger: 'item',
             formatter: '{b} : {d}%'
@@ -1344,7 +1344,7 @@ export class ServiceDataComponent implements OnInit {
     this.diagrams.getIncomeTypes().subscribe(
       (value) => {
         this.optionsIncomeModel = {
-          title: [
+          /*title: [
             {
               // text: this.serviceZoneTitle + value.title,
               left: 'center',
@@ -1353,7 +1353,14 @@ export class ServiceDataComponent implements OnInit {
                 fontSize: 14
               }
             },
-          ],
+          ],*/
+          grid: {
+            top: '5%',
+            left: '1%',
+            right: '20%',
+            bottom: '5%',
+            containLabel: true
+          },
           tooltip: {
             trigger: 'item',
             formatter: '{b} : {c} ({d}%)'
