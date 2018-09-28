@@ -236,61 +236,62 @@ export class DataService {
       arry2.push((Math.round(Math.random() * sum)) + min);
       arry3.push((Math.round(Math.random() * sum)) + min);
     }
-    if (title === '业态收入') {
+    if (title === '业态收入/万元') {
       console.log(title);
       arry1 = this.bubbleSortBig(arry1);
       console.log(arry1);
       for (let i = 0; i <= 2; i++) {
         if (i === 0) {
-          obj.push(new ObjArray('业态收入（元）', '#FF2600',  arry1, arry1.map((value, index) => {
+          obj.push(new ObjArray('业态收入（元）', '#2307EF',  arry1, arry1.map((value, index) => {
             return this.citys[(Math.round(Math.random() * 9))];
           })));
         } else if (i === 1) {
-          obj.push(new ObjArray('车流量（辆）', '#FFC000',  arry2, arry2.map((value, index) => {
+          obj.push(new ObjArray('车流量（辆）', '#458FD6',  arry2, arry2.map((value, index) => {
             return this.citys[(Math.round(Math.random() * 9))];
           })));
         } else if (i === 2) {
-          obj.push(new ObjArray('客流量（人次）', '#00AD4E',  arry3, arry3.map((value, index) => {
-            return this.citys[(Math.round(Math.random() * 9))];
-          })));
-        }
-      }
-    } else if (title === '车流量') {
-      arry2 = this.bubbleSortBig(arry2);
-      for (let i = 0; i <= 2; i++) {
-        if (i === 0) {
-          obj.push(new ObjArray('车流量（辆）', '#FFC000',  arry2, arry1.map((value, index) => {
-            return this.citys[(Math.round(Math.random() * 9))];
-          })));
-        } else if (i === 1) {
-          obj.push(new ObjArray('业态收入（元）', '#FF2600',  arry1, arry2.map((value, index) => {
-            return this.citys[(Math.round(Math.random() * 9))];
-          })));
-        } else if (i === 2) {
-          obj.push(new ObjArray('客流量（人次）', '#00AD4E',  arry3, arry3.map((value, index) => {
-            return this.citys[(Math.round(Math.random() * 9))];
-          })));
-        }
-      }
-    } else if (title === '客流量') {
-      arry3 = this.bubbleSortBig(arry3);
-      for (let i = 0; i <= 2; i++) {
-        if (i === 0) {
-          obj.push(new ObjArray('客流量（人次）', '#00AD4E', arry3, arry1.map((value, index) => {
-            return this.citys[(Math.round(Math.random() * 9))];
-          })));
-        } else if (i === 1) {
-          obj.push(new ObjArray('业态收入（元）', '#FF2600', arry1, arry2.map((value, index) => {
-            return this.citys[(Math.round(Math.random() * 9))];
-          })));
-        } else if (i === 2) {
-          obj.push(new ObjArray('车流量（辆）', '#FFC000 ', arry3, arry3.map((value, index) => {
+          obj.push(new ObjArray('客流量（人次）', '#00CAE2',  arry3, arry3.map((value, index) => {
             return this.citys[(Math.round(Math.random() * 9))];
           })));
         }
       }
     }
-    console.log(obj);
+    else if (title === '车流量/辆') {
+      arry2 = this.bubbleSortBig(arry2);
+      for (let i = 0; i <= 2; i++) {
+        if (i === 0) {
+          obj.push(new ObjArray('车流量（辆）', '#2307EF',  arry2, arry1.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        } else if (i === 1) {
+          obj.push(new ObjArray('业态收入（元）', '#458FD6',  arry1, arry2.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        } else if (i === 2) {
+          obj.push(new ObjArray('客流量（人次）', '#00CAE2',  arry3, arry3.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        }
+      }
+    }
+    else if (title === '客流量/人次') {
+      arry3 = this.bubbleSortBig(arry3);
+      for (let i = 0; i <= 2; i++) {
+        if (i === 0) {
+          obj.push(new ObjArray('客流量（人次）', '#2307EF', arry3, arry1.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        } else if (i === 1) {
+          obj.push(new ObjArray('业态收入（元）', '#458FD6', arry1, arry2.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        } else if (i === 2) {
+          obj.push(new ObjArray('车流量（辆）', '#00CAE2 ', arry3, arry3.map((value, index) => {
+            return this.citys[(Math.round(Math.random() * 9))];
+          })));
+        }
+      }
+    }
     return obj;
   }
 
