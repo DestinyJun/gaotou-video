@@ -1,83 +1,43 @@
 .main{
-  position: absolute;
-  width: 100%;
-  min-height: 93vh;
-  background: #151A30;
-}
-/*******************************头部*******************************/
-.main-header{
-  height: 5vh;
-  line-height: 5vh;
-  background: rgba(240,43,43,0.8);
-}
-.main-header span{
-  font-size: 1.8rem;
-  margin-left: 10px;
-}
-.main-header .pull-right{
-  height: 5vh;
-  width: 5vh;
-  cursor: pointer;
-}
-.main-header .pull-right:hover{
-   background: red;
-}
-
-.main-content{
-  /*height: 86vh;*/
-  overflow: auto;
-  margin-left: -15px;
-  margin-right: -15px;
+  position: relative;
 }
 /******************************左边*******************************/
 /*3D柱状图*/
-.main-content .box3d {
+.left .accumulation {
+  height: 50vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+  margin-bottom: 1vh;
 }
-.main-content .box3d>p {
-  margin: 0;
-  font-weight: bold;
+.left .accumulation-title {
+  height: 4vh;
   font-size: 1.25rem;
   color: #4D93DE;
+  font-weight: 500;
 }
-.main-content .accumulation3d{
-  height: 35vh;
-
-  margin-bottom: 2vh;
-  margin-right: -8px;
+.left .accumulation-3Dbar{
+  height: 43vh;
 }
-
-.main-content .vehicle-total {
-  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
-  height: 43.2vh;
-  /*color: #4D94DA;*/
-}
-
-/*实时车辆数据*/
-.main-content .vehicle-total .vehicle{
+/*日车流量实时统计*/
+.left .vehicle{
   height: 12.5vh;
-  /*border:1px solid #3B425C;*/
-  padding-left: 5px;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
-  margin-right: -8px;
-  /*box-shadow:0px 3px 3px #c8c8c8 inset;*/
 }
-.main-content .vehicle-total .vehicle>p {
-  color: #4D94DA;
-  font-weight: bold;
+.left .vehicle-title{
+  height: 4vh;
+  line-height: 4vh;
   font-size: 1.25rem;
+  font-weight: 500;
+  color: #5595D5;
 }
-.main-content .vehicle>span{
-
-}
-.main-content .vehicle-amount>p>span{
-  font-weight: 600;
-  font-size: 1.1rem;
+.left .vehicle-amount>p>span{
   display: inline-block;
-  width: 1.5vw;
-  height: 4.5vh;
-  line-height: 4.5vh;
+  width: 1.6vw;
+  height: 5vh;
+  line-height: 5vh;
+  font-size: 1.125rem;
   text-align: center;
+  margin-right: 0.3vw;
   background: #5095E0;
   /*background: -moz-linear-gradient(top, #01071D 0%, #0A4D84 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#01071D), color-stop(100%,#0A4D84));
@@ -85,36 +45,36 @@
   background: -o-linear-gradient(top, #01071D 0%,#0A4D84 100%);
   background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
   background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);*/
-
 }
-.main-content .vehicle .vehicle-amount>p{
-  margin-top: 1vh;
-  font-size: 1.5rem;
+.left .vehicle-amount>p>small{
+  font-size: 1rem;
+  color: white;
 }
-.main-content .vehicle .vehicle-amount>div{
-  overflow: hidden;
-  padding-right: 5px;
+/*车型日分布占比*/
+.left .vehicle-pie{
+  height: 20.5vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+  margin-bottom: 1vh;
 }
-.main-content .income.mobile{
+.left .vehicle-pie-title{
+  height: 4vh;
+  line-height: 4vh;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #5595D5;
+}
+.left .vehicle-pie-chart{
+  height: 16.5vh;
+}
+/*移动端收入样式*/
+.left .income.mobile{
   display: none;
-}
-.main-content .vehicle-total .accumulation-title {
-  font-size: 1.125rem;
-  margin-top: 3vh;
-  margin-bottom: 2vh;
-}
-/*车型分布*/
-.main-content .accumulation{
-  height: 24.5vh;
-  /*border:1px solid #3B425C;*/
-  /*margin-top: 10vh;*/
-  margin-right: -8px;
 }
 
 /******************************中间*******************************/
 /*中部服务区地图*/
-.main-content .servicesMap{
-  height: 51vh;
+.center .servicesMap{
+  height: 50vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
   margin-left: -8px;
@@ -122,48 +82,49 @@
   color: white;
   /*font-size: 0.75rem;*/
 }
-
-.main-content .servicesMap .servicesMap-top{
+.center .servicesMap .servicesMap-top{
   height: 10vh;
+  /*padding: 1vh 0;*/
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.main-content .servicesMap .servicesMap-top .servicesMap-top-box{
-  height: 10vh;
+.center .servicesMap .servicesMap-top .servicesMap-top-box{
   min-width: 9.6vw;
-  border:1px solid #3B425C;
   line-height: 2vh;
+  border-right: 1px solid #1E2F39 ;
+  border-bottom: 1px solid #1E2F39 ;
   font-size: 0.875rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.main-content .servicesMap .servicesMap-top .servicesMap-top-box:hover {
-  background: #6C2D36;
+.center .servicesMap .servicesMap-top .servicesMap-top-box:last-child{
+  border-right: none;
 }
-.main-content .servicesMap .servicesMap-top .servicesMap-top-box .shop-info:hover{
+.center .servicesMap .servicesMap-top .servicesMap-top-box:hover {
+  background: #6C2D36;
   cursor: pointer;
 }
 
-.main-content .servicesMap .servicesMap-center{
+.center .servicesMap .servicesMap-center{
   height: 30vh;
 }
-.main-content .servicesMap-center .video-top{
+.center .servicesMap-center .video-top{
   padding-top: 5px;
   height: 11.5vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.main-content .servicesMap-center .video-bottom{
+.center .servicesMap-center .video-bottom{
   padding-top: 5px;
   height: 11.5vh;
   display: flex;
   flex-wrap: wrap-reverse;
   justify-content: flex-end;
 }
-.main-content .servicesMap-center .servicesMap-center-left{
+.center .servicesMap-center .servicesMap-center-left{
   height: 3vh;
   border: 1px solid #FBC527;
   display: flex;
@@ -171,7 +132,7 @@
   align-items: center;
   background: #59443D;
 }
-.main-content .servicesMap-center .servicesMap-center-right{
+.center .servicesMap-center .servicesMap-center-right{
   height: 3vh;
   border: 1px solid #FBC527;
   display: flex;
@@ -180,14 +141,13 @@
   background: #59443D;
 }
 
-
-.main-content .servicesMap .servicesMap-bottom{
+.center .servicesMap .servicesMap-bottom{
   height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.main-content .servicesMap .servicesMap-bottom .servicesMap-bottom-box{
+.center .servicesMap .servicesMap-bottom .servicesMap-bottom-box{
   height: 10vh;
   min-width: 9.6vw;
   /*border:1px solid #3B425C;*/
@@ -197,13 +157,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.main-content .servicesMap .servicesMap-bottom .servicesMap-bottom-box:hover {
+.center .servicesMap .servicesMap-bottom .servicesMap-bottom-box:hover {
   background: #6A2B34;
+  cursor: pointer;
 }
 /*事件监控列表*/
-.main-content .event-table{
+.center .event-table{
   padding-top: 1vh;
-  min-height: 38vh;
+  height: 34vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   overflow: hidden;
   margin-left: -8px;
@@ -211,89 +172,52 @@
   padding-bottom: 5vh;
   font-size: 1rem;
 }
-.main-content .event-table .event-untreated-table{
+/*未处理事件*/
+.center .event-table .event-untreated-table{
    padding-right: 0;
    padding-left: 1.5vw;
 }
-.main-content .table-header{
-  height: 5vh;
+.center .table-title{
+  /*height: 4vh;*/
+  padding: 2vh 0 1.5vh 2vw;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #4D96DF;
+}
+.center .event-table .event-untreated-table .table-responsive .tableboder {
+  border: 1px solid #1E2F39;
+  /*border: 1px solid red;*/
+}
+.center .event-table .event-untreated-table .table-responsive .table-header {
+  height: 10vh;
   /*border: 1px solid #0593B5;*/
   background: #27375B;
   color: white;
 }
-.main-content .table-responsive .tableboder {
-  border: 1px solid #1E2F39;
-  /*border: 1px solid red;*/
-}
-.main-content .table-body{
+
+.center .event-table .event-untreated-table .table-body{
   margin-top: 5px;
 }
-.main-content .table-body .table-tr{
+.center .event-table .event-untreated-table .table-body .table-tr{
   /*border-bottom: 1px solid #0593B5;*/
   position: relative;
   color: #3B70A8;
   border-collapse:separate;
   border-spacing:10px;
 }
-.main-content .table-body .table-tr:hover{
+.center .event-table .event-untreated-table .table-body .table-tr:hover{
   background:rgba(255,255,255,0.3);
   /*background:white;*/
   cursor: pointer;
   color: white;
 }
-.main-content .table-body .table-tr span{
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  border-radius: 100%;
-}
-.main-content .table-body .table-tr>.hot{
-  position: relative;
-}
-.main-content .table-body .table-tr>.hot>span{
-  position: absolute;
-  top: 3px;
-  left: 24px;
-  width: 10px;
-  height: 10px;
-  background: red;
-  display: inline-block;
-}
-.main-content  .event-table .event-processed-table{
-  /*padding-right: 0;
-  padding-left: 0;*/
-}
 
-.main-content  .event-table .event-else-table{
-  padding-right: 0;
-  padding-left: 0;
-}
-.main-content  .event-table .event-else-table .table-responsive{
-  padding-top: 15px;
-}
-.event-else-table .event-carport{
-  height: 15.5vh;
-}
-.event-else-table .event-carport span{
-  margin-bottom: 15px;
-}
-.main-content .event-table tr{
-  cursor: pointer;
-}
-.main-content .event-table tr td{
-  border: none;
-}
-.main-content .table-title{
-  padding: 5px 0 10px 5px;
-  font-weight: bold;
-  font-size: 1.25rem;
-  color: #4D96DF;
-}
-.main-content .event-type {
-  margin-bottom: 5vh;
+/*事件上报*/
+.center .event-table .event-processed-table .event-type {
+  margin-bottom: 1vh;
   font-size: 0.875rem;
 }
-.main-content .event-type>span {
+.center .event-table .event-processed-table .event-type>span {
   display: inline-block;
   width: 20px;
   height: 50px;
@@ -306,11 +230,11 @@
   margin-right: 1vw;
 
 }
-.main-content .event-table .event-type>span:hover {
+.center .event-table .event-processed-table .event-type>span:hover {
   background: #0157A0;
   cursor: pointer;
 }
-.main-content .event-processed-table .button-left{
+.center .event-table .event-processed-table .button-left{
   width: 10vw;
   height: 3.8vh;
   line-height: 3.8vh;
@@ -319,7 +243,7 @@
   margin: 1.5vh 0 4vh 0;
   font-size: 0.875rem;
 }
-.main-content .event-processed-table .button-right {
+.center .event-table .event-processed-table .button-right {
   width: 10vw;
   height: 3.8vh;
   line-height: 3.8vh;
@@ -328,112 +252,125 @@
   margin: 1.5vh 0 4vh 0;
   font-size: 0.875rem;
 }
-.main-content .event-else-table .event-toilet{
+.event-else-table .event-toilet{
   height: 15.5vh;
   font-size: 0.875rem;
 }
-.main-content .event-else-table .event-toilet span{
+.event-else-table .event-toilet span{
   display: inline-block;
   margin-bottom: 15px;
 }
 
-/*.main-content .event-carport span {
+.table-body .table-tr>.hot{
+  position: relative;
+}
+.table-body .table-tr>.hot>span{
+  position: absolute;
+  top: 3px;
+  left: 24px;
+  width: 10px;
+  height: 10px;
+  background: red;
   display: inline-block;
-}*/
+}
+ .event-table .event-processed-table{
+  /*padding-right: 0;
+  padding-left: 0;*/
+}
+ .event-table .event-else-table{
+  padding-right: 0;
+  padding-left: 0;
+}
+ .event-table .event-else-table .table-responsive{
+  padding-top: 15px;
+}
+.event-else-table .event-carport{
+  height: 15.5vh;
+}
+.event-else-table .event-carport span{
+  margin-bottom: 15px;
+}
+.event-table tr td{
+  border: none;
+}
+
 
 
 /******************************右边*******************************/
-/*横向排名柱状图*/
-
-
-/*.main-content .crosswise .crosswise-btn .btn{
-  margin-right: 30px;
-  !*background: linear-gradient(red,blue);*!
-  box-shadow:2px 3px 10px #01D1DB ;
-}*/
-.main-content .crosswise .crosswise-bar{
-  height: 46vh;
-}
-.main-content .crosswise{
-  height: 37vh;
-  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
-  margin-bottom: 1.2vh;
-  /*margin-left: -8px;*/
-  position: relative;
-  padding: 0 10px;
-  overflow: hidden;
-}
-.main-content .crosswise .crosswise-title {
-  font-size: 1.25rem;
-  color: #5790D1;
-  font-weight: bold;
-}
 /*服务区基本信息*/
-.main-content .crosswise .services-Info{
+.right .information {
+  height: 50vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+  margin-bottom: 1vh;
+}
+.right .information-title {
+  height: 4vh;
+  line-height: 4vh;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #5790D1;
+}
+.right .information-info>div{
   padding-top: 1vh;
   padding-right: 0;
-}
-.main-content .crosswise .crosswise-footer button{
-  /* position: absolute;
-   top: 36px;
-   left: 30%;
-   margin-left: -23px;*/
-  font-size: 0.75rem;
-  margin: 0;
-  /*height: 2vh;*/
-  background: #2EA8B3;
-}
-/*.main-content .crosswise .services-Info p{
-  !*overflow: hidden;*!
-  margin-bottom: 1vh;
-}*/
-.main-content .crosswise .crosswise-footer{}
-.main-content .crosswise-bottom {
-  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
-  height: 45.7vh;
-}
-/*实时收入数据监控*/
-.main-content .income{
-  height: 12.5vh;
-  /*border:1px solid #3B425C;*/
-  padding-left: 5px;
-  margin-bottom: 1vh;
-  margin-left: -8px;
-}
-.main-content .income>p {
-  font-weight: bold;
-  color: #5095DE;
-  font-size: 1.25rem;
-}
-.main-content .income .income-amount>div>span{
-  display: inline-block;
-  font-size: 1.1rem;
-  font-weight: bold;
-  width: 1.5vw;
-  height: 4.5vh;
-  line-height: 4.5vh;
-  text-align: center;
-  background: #5095E0;
-}
-/*.main-content .income .income-amount>p{
-  margin-top: 1vh;
-  font-size: 1.125rem;
-}*/
-.main-content .income .income-amount>div{
+  font-size: 0.5rem;
   overflow: hidden;
-  padding-right: 5px;
 }
-.main-content .crosswise-bottom>p {
-  font-size: 1.125rem;
-  margin-top: 2vh;
+.right .information-btn>span{
+  height: 4vh;
+  padding: 1vh 1vw;
+  background: #2EA8B4;
+  font-size: 1rem;
+  border-radius: 3px;
 }
-
-/*收入类型占比统计*/
-.main-content .today-income {
+/*服务区实时收入*/
+.right .income{
+  height: 12.5vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
-  height: 24.5vh;
-  /*border:1px solid #3B425C;*/
-  margin-left: -8px;
+}
+.right .income-title{
+  height: 4vh;
+  line-height: 4vh;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #5595D5;
+}
+.right .income-amount>p>span{
+  display: inline-block;
+  width: 1.6vw;
+  height: 5vh;
+  line-height: 5vh;
+  font-size: 1.125rem;
+  text-align: center;
+  margin-right: 0.3vw;
+  background: #5095E0;
+  /*background: -moz-linear-gradient(top, #01071D 0%, #0A4D84 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#01071D), color-stop(100%,#0A4D84));
+  background: -webkit-linear-gradient(top, #01071D 50%,#0A4D84 100%);
+  background: -o-linear-gradient(top, #01071D 0%,#0A4D84 100%);
+  background: -ms-linear-gradient(top, #01071D 0%,#0A4D84 100%);
+  background: linear-gradient(to bottom, #01071D 0%,#0A4D84 100%);*/
+}
+.right .income-amount>p>small{
+  font-size: 1rem;
+  color: white;
+}
+/*服务器收入实时统计占比*/
+.right .income-pie{
+  height: 20.5vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+  margin-bottom: 1vh;
+}
+.right .income-pie-title{
+  height: 4vh;
+  line-height: 4vh;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #5595D5;
+}
+.right .income-pie-chart{
+  height: 16.5vh;
 }
 
 
@@ -737,7 +674,7 @@
 }
 .text-c3{
   color: white;
-  font-size: 0.5rem;
+  font-size: 1rem;
 
 }
 
@@ -746,6 +683,10 @@
   width: 100%;
   max-width: 100%;
   margin-bottom: 0;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  padding: 0.5vh 0.2vw;
+  font-size: 1rem;
 }
 .bottom-pagination {
   position: absolute;
@@ -997,41 +938,41 @@ button.list-group-item-danger.active:focus {
   .event-else-table{
     margin-bottom: 2.5vh;
   }
-  .main-content .income.mobile{
+  .income.mobile{
     display: block;
     min-height: 16vh;
     margin-left: -15px;
     margin-right: -15px;
   }
-  .main-content .income{
+  .income{
     display: none;
   }
   .main-header{
     margin-left: -15px;
     margin-right: -15px;
   }
-  .main-content .event-table .event-untreated-table{
+  .event-table .event-untreated-table{
     padding-right: 0;
     padding-left: 0;
   }
-  .main-content .event-table .event-processed-table{
+  .event-table .event-processed-table{
     padding-right: 0;
     padding-left: 0;
   }
-  .main-content .accumulation3d, .main-content .accumulation,.main-content .crosswise,.main-content .today-income{
+  .accumulation3d, .accumulation,.crosswise,.today-income{
     display: none;
   }
-  .main-content .vehicle{
+  .vehicle{
     min-height: 16vh;
     margin-left: -15px;
     margin-right: -15px;
   }
-  .main-content .event-table{
+  .event-table{
     margin-left: -15px;
     margin-right: -15px;
     margin-bottom: 1vh;
   }
-  .main-content .servicesMap{
+  .servicesMap{
     display: none;
   }
 }
