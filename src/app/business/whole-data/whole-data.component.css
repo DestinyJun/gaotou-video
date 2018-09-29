@@ -8,14 +8,14 @@
 /****************************主体左边****************************/
 /*3D柱状图*/
 .main .accumulation3d{
-  height: 44vh;
-  border:1px solid #3B425C;
+  height: 42vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
   margin-right: -8px;
 }
 .main .accumulation{
-  height: 44vh;
-  border:1px solid #3B425C;
+  height: 42vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-right: -8px;
 }
 /****************************主体中间***************************/
@@ -23,10 +23,10 @@
 .main .map {
   margin-left: -8px;
   margin-right: -8px;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2);
 }
 .main .map .tab-map{
   height: 5vh;
-  border:1px solid #3B425C;
   line-height: 5vh;
   padding-left: 5px;
   font-weight: bolder;
@@ -54,7 +54,6 @@
   color: #87FFFF;
   position: absolute;
   top: 45px;
-  left: 0px;
   z-index: 1;
 }
 
@@ -80,22 +79,22 @@
 }
 
 .main .top-map{
-  border:1px solid #3B425C;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   /*margin-bottom: 1vh;*/
-  height: 84vh;
+  height: 80vh;
 }
 
 /*横向柱状图 右部分*/
 .main .crosswise-bar{
-  height: 44vh;
-  border:1px solid #3B425C;
+  height: 42vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
   margin-left: -8px;
 }
 .main .today-income {
   /*margin-bottom: 1vh;*/
-  height: 44vh;
-  border:1px solid #3B425C;
+  height: 42vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-left: -8px;
 }
 
@@ -335,6 +334,9 @@ table tr td{
 
 .custombar1 .ui-scrollpanel-bar:hover {
   background-color: #135ba1;
+}
+p{
+  margin: 0;
 }
 /*bootstrap*/
 .form-horizontal{

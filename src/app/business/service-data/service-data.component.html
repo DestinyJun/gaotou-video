@@ -67,9 +67,21 @@
             <p [title]="item.num">1000元</p>
           </div>
         </div>
-        <div class="servicesMap-video"></div>
-        <div class="servicesMap-center"></div>
-        <div class="servicesMap-video"></div>
+        <div class="first servicesMap-video">
+          <span *ngFor="let item of ['视频1组','视频2组','视频3组','视频4组','视频5组']">
+            {{item}}
+          </span>
+        </div>
+        <div class="servicesMap-center text-center">
+          <span>遵义方向</span>
+          <img src="assets/images/jiantou.png" alt="" style="height: 3vh;width: auto">
+          <span>贵阳方向</span>
+        </div>
+        <div class="second servicesMap-video">
+           <span *ngFor="let item of ['视频1组','视频2组','视频3组','视频4组','视频5组']">
+            {{item}}
+          </span>
+        </div>
         <div class="servicesMap-bottom">
           <div class="shop-info text-center" *ngFor="let item of incomeTopData" (click)="openServiceShop(item.storeName)">
             <p [title]="item.name">
@@ -83,62 +95,53 @@
       <!--事件监控-->
       <div class="event-table">
         <!--未处理-->
-        <div class="col-lg-6 col-md-6 event-untreated-table">
-          <div class="table-title text-center">
-            <span>未处理事件</span>
-            <!--<span class="pull-right" style="cursor: pointer;color:#86FDFE;position: absolute;right: 5px;" (click)="openEventAlert()">查看更多...</span>-->
+        <div class="col-lg-6 col-md-6 event-table-untreated">
+          <div class="event-table-untreated-title title text-center">
+            <span></span><span></span><span></span><span></span>
+            <p>未处理事件</p>
           </div>
-          <div class="table-responsive">
-            <div class="tableboder">
-              <table class="table" cellspacing="5px">
-                <thead class="table-header">
-                <tr>
-                  <td>时间</td>
-                  <td>事件类型</td>
-                  <td>事件描述</td>
-                  <td>状态</td>
-                </tr>
-                </thead>
-                <tbody class="table-body">
-                <tr class="table-tr" *ngFor="let item of eventListInfos" (click)="openEventAlert(item)">
-                  <td>{{item?.time}}</td>
-                  <td>{{item?.type}}</td>
-                  <td>{{item?.description}}</td>
-                  <td style="color:#CF5B56; font-size: 1rem">{{item?.state}}</td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <table class="table" cellspacing="5px">
+            <thead class="table-header">
+              <tr>
+                <td>时间</td>
+                <td>事件类型</td>
+                <td>事件描述</td>
+                <td>状态</td>
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              <tr *ngFor="let item of eventListInfos" (click)="openEventAlert(item)">
+              <td>{{item?.time}}</td>
+              <td>{{item?.type}}</td>
+              <td>{{item?.description}}</td>
+              <td style="color:#CF5B56">{{item?.state}}</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
         <!--事件上报-->
-        <div class="col-lg-6 col-md-6 event-processed-table">
-          <div class="table-title text-center">
-            <span>事件上报</span>
+        <div class="col-lg-6 col-md-6 event-table-processed">
+          <div class="event-table-processed-title title text-center">
+            <span></span><span></span><span></span><span></span>
+            <p>事件上报</p>
           </div>
-          <div class="row">
-            <div class="table-responsive event-type text-center">
-              <span *ngFor="let item of eventInfoUpTypes" (click)="eventInfoUpClick(item)">{{item}}</span>
-            </div>
+          <div class="event-table-processed-type text-center">
+            <span *ngFor="let item of eventInfoUpTypes" (click)="eventInfoUpClick(item)">{{item}}</span>
           </div>
-          <div class="row" style="margin-top: 1vh">
-            <div class="event-toilet" (click)="openServersToiletAlert('服务区卫生间使用率')">
-              <div style="padding-left: 1.2vw">
-                <span>卫生间使用率</span>
-              </div>
-              <div class="table-responsive text-center">
-                <span class="btn  button-left">男洗手间：45%</span>
-                <span class="btn button-right">女洗手间：50%</span>
-              </div>
+          <div class="event-table-processed-btn">
+            <div class="btn-toilet" (click)="openServersToiletAlert('服务区卫生间使用率')">
+              <p>卫生间使用率</p>
+              <p class="text-center">
+                <span>男洗手间：45%</span>
+                <span>女洗手间：50%</span>
+              </p>
             </div>
-            <div class="event-carport" (click)="openServersToiletAlert('服务区停车位监控')">
-              <div>
-                <span style="padding-left: 1.2vw">停车位监控</span>
-              </div>
-              <div class="text-center">
-                <span class="btn button-left">大车剩余车位：256个</span>
-                <span class="btn button-right">小车剩余车位：318个</span>
-              </div>
+            <div class="btn-carport" (click)="openServersToiletAlert('服务区停车位监控')">
+              <p>停车位监控</p>
+              <p class="text-center">
+                <span>大车剩余车位：256个</span>
+                <span>小车剩余车位：318个</span>
+              </p>
             </div>
           </div>
         </div>
@@ -159,18 +162,18 @@
           <div class="col-lg-6 col-md-6">
             <p *ngFor="let item of serviceBasicInformation1">
               <span class="pull-left text-c1">{{item.name}}：</span>
-              <span class="pull-right text-c3">{{item.desc}}</span>
+              <span class="pull-right">{{item.desc}}</span>
             </p>
           </div>
           <div class="col-lg-6 col-md-6" >
             <p *ngFor="let item of serviceBasicInformation2" [title]="'点击'+item.name+'查看更多'" [ngClass]="'hovers'" (click)="openServiceBasicAlert(item.name)">
               <span class="pull-left text-c1">{{item.name}}：</span>
-              <span class="pull-right text-c3">{{item.desc}}</span>
+              <span class="pull-right">{{item.desc}}</span>
             </p>
           </div>
         </div>
         <div class="information-btn text-center">
-          <span (click)="crosswiseClick()" style="margin-right: 2vw;">信息修改</span>
+          <span (click)="crosswiseClick()">信息修改</span>
           <span (click)="openServicesPlan()">服务区平面图</span>
         </div>
       </div>

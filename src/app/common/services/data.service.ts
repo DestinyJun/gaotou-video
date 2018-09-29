@@ -46,7 +46,6 @@ export class DataService {
     {name: '运营时间', desc: '2017-10-10'},
     {name: '保洁人员', desc: '21名'},
     {name: '保安人员', desc: '15名'},
-    {name: '大车车位', desc: '524个'},
     {name: '小车车位', desc: '654个'},
     {name: '客车车位', desc: '654个'},
   ];
