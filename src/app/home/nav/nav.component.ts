@@ -8,16 +8,30 @@ import {Component, HostListener, OnInit} from '@angular/core';
 export class NavComponent implements OnInit {
   public navOpacity = '0.4';
   public navHeight = '50px';
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
+
   @HostListener('mouseenter') onMouserEnter() {
     this.navOpacity = '1';
     this.navHeight = 'auto';
   }
+
   @HostListener('mouseleave') onMouserLeave() {
     this.navOpacity = '0.4';
     this.navHeight = '50px';
+  }
+
+  @HostListener('mouseenter') onClick() {
+    if (this.navOpacity === '1') {
+      this.navOpacity = '0.4';
+      this.navHeight = '50px';
+    } else if (this.navOpacity === '0.4') {
+      this.navOpacity = '1';
+      this.navHeight = 'auto';
+    }
   }
 }

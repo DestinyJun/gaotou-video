@@ -62,35 +62,14 @@ body .ui-dialog .ui-dialog-titlebar {
   padding: 0.5em 0.75em;
 }
 
-@media (max-width: 993px) {
+@media (max-width: 992px) {
   .container-fluid{
-    /* padding-left: 0;
-     padding-right: 0;*/
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
   }
   .mobile-nav .service-search, .mobile-nav .service-select{
     display: block;
-  }
-  .header{
-    margin-left: -15px;
-    margin-right: -15px;
-  }
-  .header-title-h4{
-    font-size: 1.5rem;
-  }
-  .header-box{
-    left:5px;
-  }
-  .header-per-title{
-    display: none;
-  }
-  .header .header-person{
-    display: none;
-  }
-  .header-per-unit{
-    display: none;
-  }
-  .header-manner{
-    display: none;
   }
 }
 

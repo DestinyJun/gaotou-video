@@ -12,12 +12,12 @@
 footer span{
 
 }
-@media(max-width: 993px) {
+@media(max-width: 992px) {
   .footer span {
     font-size: 12px;
     display: block;
   }
   .footer {
-    height: 6vh;
+    height: 8vh;
   }
 }

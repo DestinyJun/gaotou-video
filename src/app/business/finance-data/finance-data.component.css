@@ -201,7 +201,7 @@
   top: 4.4vh;
 }
 /*办公事件监控*/
-.center  .event-table-office{
+.center .event-table-office{
   /* padding-right: 0;
    padding-left: 0;*/
 }
@@ -611,62 +611,74 @@
   width: 5vw;
 }
 
-@media (max-width: 993px) {
-  .main-top .income.mobile{
-    display: block;
+@media screen and (max-width: 992px) {
+  .main{
+    margin-bottom: 8vh;
   }
-  .main-top .income{
+  .title{
+    font-size: 16px;
+  }
+  .title>span{
     display: none;
-    margin-top: 1vh;
-    min-height: 16vh;
   }
-  .main-top .event-table{
 
-  }
-  .main-top .event-table .event-table-events{
-    padding-right: 0;
-    padding-left: 0;
-  }
-  .main-top .event-table .event-table-office{
-    padding-right: 0;
-    padding-left: 0;
-  }
-  .main-top .event-table .event-table-person{
-    padding-right: 0;
-    padding-left: 0;
-    margin-bottom: 7.5vh;
-  }
-  .main-top .accumulation3d,.main-top .accumulation{
+  .center .map{
     display: none;
   }
-  .main-top .crosswise,.main-top .today-income{
-    display: none;
+
+  .left .vehicle-amount-number>p>span{
+    width: 10vw;
+    font-size: 16px;
+    margin-right: 1vw;
   }
-  .main-top .vehicle,.main-top .accumulation{
-    margin-left: -15px;
-    margin-right: -15px;
+  .left .vehicle-amount-number>p>small{
+    font-size: 16px;
+    color: white;
   }
-  .main-top .event-table{
-    min-height: 32vh;
-    margin-left: -15px;
-    margin-right: -15px;
+
+  .center .event-table{
+    min-height: 120vh;
+    box-shadow: none;
+    overflow: visible;
   }
-  .main-top .map{
-    display: none;
-  /*  margin-top: 1vh;
-    margin-left: -15px;
-    margin-right: -15px;*/
+  .event-table-service,.event-table-office,.event-table-person{
+    padding-top: 1vh;
+    height: 37vh;
+    box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+    margin-bottom: 1vh;
   }
-  .main-top .income,.main-top .today-income{
-    margin-left: -15px;
-    margin-right: -15px;
+  .center .event-table .table-body tr{
+    font-size: 12px;
   }
-  .main-top .today-income{
-    margin-bottom: 7vh;
-    min-height: 28vh;
+
+  .right .crosswise-btn>span{
+    font-size: 16px;
   }
-  .main-top .vehicle{
-    min-height: 16vh;;
+  .right .income-amount-number>p>span{
+    width: 10vw;
+    font-size: 16px;
+    margin-right: 1vw;
+  }
+  .right .income-amount-number>p>small{
+    font-size: 16px;
+    color: white;
+  }
+
+  .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 3px;
+    padding-left: 3px;
   }
 }
+@media screen and (max-width: 767px) {
+  .table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: none;
+  }
+}
+
 

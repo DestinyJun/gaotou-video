@@ -348,6 +348,9 @@ p{
   color: white;
 }
 @media (max-width: 993px) {
+  .main{
+    margin-bottom: 2vh;
+  }
   .main .service-search{
     display: block;
   }

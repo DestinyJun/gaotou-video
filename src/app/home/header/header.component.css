@@ -3,10 +3,10 @@
   height: 10vh;
   overflow: hidden;
 }
-.header>.row>div{
+/*.header>.row>div{
   display: inline-block;
   vertical-align:text-top;
-}
+}*/
 
 .header-logo{
   width: 26.3vw;
@@ -15,6 +15,8 @@
   margin-left: 1vw;
   line-height: 8vh;
   padding-left: 1vw;
+  display: inline-block;
+  vertical-align:text-top;
   font-size: 1.375rem;
   font-weight: bolder;
   letter-spacing: 0.2vw;
@@ -32,6 +34,8 @@
   height: 8vh;
   margin-top: 1vh;
   line-height: 8vh;
+  display: inline-block;
+  vertical-align:text-top;
 }
 .header-title span{
   font-weight: 500;
@@ -43,6 +47,8 @@
   position: relative;
   width: 23vw;
   height: 10vh;
+  display: inline-block;
+  vertical-align:text-top;
 }
 .header-admin-img {
   width: 2.6vw;
@@ -83,3 +89,30 @@
   letter-spacing: 0.1vw;
 }
 
+/***********************适配手机及平板***********************/
+@media (max-width: 992px) {
+  .header-logo,.header-admin-flow,.header-admin-time{
+  display: none;
+}
+  .header{
+    height: 5vh;
+  }
+  .header-title{
+    height: 5vh;
+    line-height: 5vh;
+    margin-top: 0;
+  }
+  .header-title>span{
+    font-size: 15px;
+  }
+  .header-admin{
+    height: 5vh;
+    line-height: 5vh;
+    float: right;
+  }
+  .header-admin-img{
+    width: 4vh;
+    height: 4vh;
+    right: 6vw;
+  }
+}
