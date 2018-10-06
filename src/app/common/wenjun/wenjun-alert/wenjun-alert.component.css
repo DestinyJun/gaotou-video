@@ -1,27 +1,34 @@
-/*3D柱状图弹窗*/
+/*弹窗基本样式控制*/
 .bg-box{
   width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(149,161,154,0.6);
+  background: #091118;
+  background: rgba(9,17,24,0.5);
   z-index: 2;
 }
 .alert-window{
   position: absolute;
+  width: 80vw;
+  height:60vh;
   left: 50%;
+  margin-left: -40vw;
   top: 50%;
+  margin-top: -30vh;
+  background: rgba(39,52,64,0.8);
   z-index: 1;
 }
 .alert-window-header{
   height: 5vh;
   line-height: 5vh;
-  /*background: rgba(240,43,43,0.8);*/
+  background: #1a2128;
+  text-align: center;
 }
 .alert-window-header span{
   margin-left: 10px;
-  font-size: 1.8rem;
+  font-size: 1.625rem;
 }
 .alert-window-header .pull-right{
   height: 5vh;
@@ -29,9 +36,12 @@
   cursor: pointer;
   text-align: center;
 }
+.alert-window-header .pull-right:hover{
+  background: red;
+}
 .alert-window-content{
-  padding-top: 5px;
-  height: 55vh;
+  height: 75vh;
+  font-size: 1rem;
 }
 .alert-window-content-table{
   position: relative;
@@ -49,8 +59,19 @@
   line-height: 5vh;
   padding-right: 10px;
 }
-.alert-window-content-table .toggle-btn .toggle-btn-area>button{
+.alert-window-content-table .toggle-btn .toggle-btn-area>span{
   margin-left: 10px;
+  display: inline-block;
+  /*padding: 0.5vh 1vw;*/
+  height: 3vh;
+  line-height: 3vh;
+  padding: 0 1.5vw;
+  font-size: 0.875rem;
+  border-radius: 3px;
+  background: #1a2128;
+}
+.alert-window-content-table .toggle-btn .toggle-btn-area>span:hover{
+  cursor: pointer;
 }
 .alert-window-content-table .content-table{
   height: 50vh;

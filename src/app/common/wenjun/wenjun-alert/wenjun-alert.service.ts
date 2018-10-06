@@ -14,13 +14,11 @@ export class WenjunAlertService {
 
 
 export class ConfigModule {
-  constructor (
-    public alertTitle: string,
-    public titleColor: string,
-    public titleBgColor: string,
-    public closeHoverBgColor: string,
-    public background: string,
-    public width: number,
-    public height: number,
-  ) {}
+  alertTitle?: string;
+  titleColor?: string;
+  titleBgColor?: string;
+  closeHoverBgColor?: string;
+  background?: string;
+  width?: number;
+  height?: number;
 }

@@ -237,16 +237,14 @@
         <div class="col-ld-6 col-md-6">
           <div class="alert-3D-bar-pie" echarts [options]="options3dPie" (chartInit)="options3dPieInit($event)" (chartClick)="options3dPieClick($event)"></div>
         </div>
-        <div class="toggle-btn-area" style="">
-          <button class="btn btn-success" (click)="open3dBarExcel()">表格导出</button>
-        </div>
+        <span class="toggle-btn-area-table" (click)="open3dBarExcel()">表格导出</span>
       </div>
       <div class="bg-excel" *ngIf="bar3dExcelShow">
         <div class="alert-window-excel">
           <div class="alert-window-excel-header">
             <span>收入数据表格导出</span>
-            <div class="pull-right">
-              <i class="fa fa-window-close " aria-hidden="true" (click)="close3dBarExcel()"></i>
+            <div class="pull-right" (click)="close3dBarExcel()">
+              <i class="fa fa-window-close " aria-hidden="true"></i>
             </div>
           </div>
           <div class="alert-window-excel-content">
@@ -266,21 +264,10 @@
                 <option value="">客流量</option>
               </select>
             </div>
-            <!--<div class="alert-window-excel-content-list">
-              <label for="incomeArea">请选择片区：</label>
-              <select name="" id="incomeArea" (change)="bar3dAreaChange($event)">
-                <option value="">东部片区</option>
-                <option value="">西部片区</option>
-                <option value="">南部片区</option>
-                <option value="">北部</option>
-                <option value="">中部</option>
-              </select>
-            </div>-->
-
           </div>
           <div class="alert-window-excel-footer text-center">
-            <button class="btn btn-primary" (click)="bar3dExportClick()">确认导出</button>
-            <button class="btn btn-danger" (click)="closeincomeExcel()">取消导出</button>
+            <span (click)="bar3dExportClick()">确认导出</span>
+            <span (click)="closeincomeExcel()">取消导出</span>
           </div>
         </div>
       </div>
@@ -302,7 +289,7 @@
       <div class="alert-window-content">
         <div class="row">
           <div class="col-ld-6 col-md-6 echart-btn">
-            <button class="btn btn-danger" [ngStyle]="{'background':CarTypeisShow ? 'black': ''}" (click)="echartBtn($event)">{{selectDate}}</button>
+            <!--<button class="btn btn-danger" [ngStyle]="{'background':CarTypeisShow ? 'black': ''}" (click)="echartBtn($event)">{{selectDate}}</button>-->
             <div class="alert-3D-bar-bar" echarts [options]="optionsCarType" (chartInit)="optionsCarPieInit($event)" (chartClick)="optionsCarPieClick($event)"></div>
           </div>
           <div class="col-ld-6 col-md-6">
@@ -313,8 +300,7 @@
                 <button class="btn btn-primary" [ngStyle]="{'background':alertCarTitle === '客车'?'black': ''}">客车</button>
                 <button class="btn btn-danger" [ngStyle]="{'background':alertCarTitle === '货车'?'black': ''}">货车</button>
                 <div class="toggle-btn-area pull-right" style="">
-                  <button class="btn btn-warning">{{carAreaName}}</button>
-                  <button class="btn btn-success" (click)="openCarExcel()">表格导出</button>
+                  <span (click)="openCarExcel()">表格导出</span>
                 </div>
               </div>
               <div class="content-table">
@@ -357,8 +343,8 @@
         <div class="alert-window-excel">
           <div class="alert-window-excel-header">
             <span>车辆数据表格导出</span>
-            <div class="pull-right">
-              <i class="fa fa-window-close " aria-hidden="true" (click)="closeCarExcel()"></i>
+            <div class="pull-right" (click)="closeCarExcel()">
+              <i class="fa fa-window-close " aria-hidden="true"></i>
             </div>
           </div>
           <div class="alert-window-excel-content">
@@ -388,13 +374,114 @@
 
           </div>
           <div class="alert-window-excel-footer text-center">
-            <button class="btn btn-primary" (click)="carExportClick()">确认导出</button>
-            <button class="btn btn-danger" (click)="closeCarExcel()">取消导出</button>
+            <span (click)="carExportClick()">确认导出</span>
+            <span (click)="closeCarExcel()">取消导出</span>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!--事件监控弹窗-->
+  <app-wenjun-alert [config]="eventConfig">
+    <div class="col-lg-6 col-md-6">
+      <div>
+        <button class="btn btn-info">事件列表</button>
+        <button class="btn btn-danger pull-right">未处理</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table" cellspacing="5px">
+          <thead class="table-header">
+          <tr>
+            <td>时间</td>
+            <td>责任人</td>
+            <td>问题描述</td>
+            <td>处理反馈</td>
+          </tr>
+          </thead>
+          <tbody class="table-body">
+          <tr class="table-tr" style="color: #E55C28">
+            <td>2018-08-10 12:00</td>
+            <td>王小三</td>
+            <td>妹妹小吃店经营收入异常</td>
+            <td style="color: #D9534F">未处理</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <div>
+        <button class="btn btn-success">已处理</button>
+        <button class="btn btn-info pull-right">事件列表</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table" cellspacing="5px">
+          <thead class="table-header">
+          <tr>
+            <td>时间</td>
+            <td>责任人</td>
+            <td>问题描述</td>
+            <td>处理反馈</td>
+          </tr>
+          </thead>
+          <tbody class="table-body">
+          <tr class="table-tr" style="color: #00ECF1">
+            <td>2018-08-10 12:00</td>
+            <td>王筱思</td>
+            <td>武大郎炊饼店经营收入异常</td>
+            <td style="color: #5CB85C">已处理</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </app-wenjun-alert>
+  <!--办公信息处理-->
+  <div class="bg-box" *ngIf="alertOfficeShow">
+    <div class="alert-window">
+      <div class="alert-window-header">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <span>{{this.dataToggle}}服务区办公信息</span>
+            <div class="pull-right" (click)="closeOfficeShow()">
+              <i class="fa fa-window-close " aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert-window-content">
+        <div class="row">
+          <div class="col-ld-12 col-md-12">
+            <h1 class="text-center">待开发中......</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--个人信息办公处处理-->
+  <div class="bg-box" *ngIf="alertPersonShow">
+    <div class="alert-window">
+      <div class="alert-window-header">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <span>{{this.dataToggle}}服务区办公信息</span>
+            <div class="pull-right" (click)="closePersonShow()">
+              <i class="fa fa-window-close " aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert-window-content">
+        <div class="row">
+          <div class="col-ld-12 col-md-12">
+            <h1 class="text-center">待开发中......</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!--收入类型弹窗-->
   <div class="bg-box" *ngIf="alertIncomeShow">
     <div class="alert-window">
@@ -411,7 +498,7 @@
       <div class="alert-window-content">
         <div class="row">
           <div class="col-ld-6 col-md-6 echart-btn">
-            <button class="btn btn-danger" [ngStyle]="{'background':incomeTypeisShow ? 'black': ''}" (click)="echarIncomeBtn($event)">{{selectDate}}</button>
+            <!--<button class="btn btn-danger" [ngStyle]="{'background':incomeTypeisShow ? 'black': ''}" (click)="echarIncomeBtn($event)">{{selectDate}}</button>-->
             <div class="alert-3D-bar-bar" echarts [options]="optionsIncomeTypes" (chartInit)="optionsIncomePieInit($event)" (chartClick)="optionsIncomePieClick($event)"></div>
           </div>
           <div class="col-ld-6 col-md-6">
@@ -425,12 +512,12 @@
                 <button class="btn btn-warning" [ngStyle]="{'background':alertIncomeTitle === '住宿'?'black': ''}">住宿</button>
                 <button class="btn btn-primary" [ngStyle]="{'background':alertIncomeTitle === '汽修'?'black': ''}">汽修</button>
                 <div class="toggle-btn-area pull-right" style="">
-                  <button class="btn btn-success" (click)="openIncomeExcel()">表格导出</button>
+                  <span (click)="openCarExcel()">表格导出</span>
                 </div>
               </div>
-              <div class="pull-right" style="margin-right: 10px;margin-bottom: 5px">
+              <!--<div class="pull-right" style="margin-right: 10px;margin-bottom: 5px">
                 <button class="btn btn-danger">{{IncomeAreaName}}</button>
-              </div>
+              </div>-->
               <div class="content-table">
                 <table class="table table-bordered">
                   <thead>
@@ -500,105 +587,6 @@
           <div class="alert-window-excel-footer text-center">
             <button class="btn btn-primary" (click)="incomeExportClick()">确认导出</button>
             <button class="btn btn-danger" (click)="closeincomeExcel()">取消导出</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--事件监控弹窗-->
-  <app-wenjun-alert [config]="eventConfig">
-    <div class="col-lg-6 col-md-6">
-      <div>
-        <button class="btn btn-info">事件列表</button>
-        <button class="btn btn-danger pull-right">未处理</button>
-      </div>
-      <div class="table-responsive">
-        <table class="table" cellspacing="5px">
-          <thead class="table-header">
-          <tr>
-            <td>时间</td>
-            <td>责任人</td>
-            <td>问题描述</td>
-            <td>处理反馈</td>
-          </tr>
-          </thead>
-          <tbody class="table-body">
-          <tr class="table-tr" style="color: #E55C28">
-            <td>2018-08-10 12:00</td>
-            <td>王小三</td>
-            <td>妹妹小吃店经营收入异常</td>
-            <td style="color: #D9534F">未处理</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="col-lg-6 col-md-6">
-      <div>
-        <button class="btn btn-success">已处理</button>
-        <button class="btn btn-info pull-right">事件列表</button>
-      </div>
-      <div class="table-responsive">
-        <table class="table" cellspacing="5px">
-          <thead class="table-header">
-          <tr>
-            <td>时间</td>
-            <td>责任人</td>
-            <td>问题描述</td>
-            <td>处理反馈</td>
-          </tr>
-          </thead>
-          <tbody class="table-body">
-          <tr class="table-tr" style="color: #00ECF1">
-            <td>2018-08-10 12:00</td>
-            <td>王筱思</td>
-            <td>武大郎炊饼店经营收入异常</td>
-            <td style="color: #5CB85C">已处理</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </app-wenjun-alert>
-  <!--办公信息处理-->
-  <div class="bg-box" *ngIf="alertOfficeShow">
-    <div class="alert-window" [ngStyle] = "{'background': 'rgba(10,10,72,0.7)'}">
-      <div class="alert-window-header">
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <span>{{this.dataToggle}}服务区办公信息</span>
-            <div class="pull-right" (click)="closeOfficeShow()">
-              <i class="fa fa-window-close " aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="alert-window-content">
-        <div class="row">
-          <div class="col-ld-12 col-md-12">
-            <h1 class="text-center">待开发中......</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--个人信息办公处处理-->
-  <div class="bg-box" *ngIf="alertPersonShow">
-    <div class="alert-window" [ngStyle] = "{'background': 'rgba(10,10,72,0.7)'}">
-      <div class="alert-window-header">
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <span>{{this.dataToggle}}服务区办公信息</span>
-            <div class="pull-right" (click)="closePersonShow()">
-              <i class="fa fa-window-close " aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="alert-window-content">
-        <div class="row">
-          <div class="col-ld-12 col-md-12">
-            <h1 class="text-center">待开发中......</h1>
           </div>
         </div>
       </div>

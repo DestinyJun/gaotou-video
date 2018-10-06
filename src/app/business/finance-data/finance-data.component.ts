@@ -344,10 +344,10 @@ export class FinanceDataComponent implements OnInit {
     this.alertBarShow = true;
     const yType = ['经营收入', '客流量', '车流量', '用水量', '用电量'];
     this.colorList = [
-      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
-      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+      '#356981', '#356981', '#356981', '#356981', '#356981', '#356981',
+      '#356981', '#356981', '#356981', '#356981', '#356981 ', '#356981'
     ];
-    this.colorList[e.data.value[0]] = 'red';
+    this.colorList[e.data.value[0]] = '#D43839';
     const yAxis = e.data.value[1];
     this.alertBarTitle = yType[yAxis];
     const barData = this.dataService.get3dOption(12);
@@ -508,10 +508,10 @@ export class FinanceDataComponent implements OnInit {
   }
   public options3dBarClick(e) {
     this.colorList = [
-      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
-      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+      '#356981', '#356981', '#356981', '#356981', '#356981', '#356981',
+      '#356981', '#356981', '#356981', '#356981', '#356981 ', '#356981'
     ];
-    this.colorList[e.dataIndex] = 'red';
+    this.colorList[e.dataIndex] = '#D43839';
     this.options3dBarInstance.setOption(this.options3dBar);
     this.arryPie = [];
     this.dataService.getrandomPie(9, 1000, 200).map((val, index) => {
@@ -1656,10 +1656,6 @@ export class FinanceDataComponent implements OnInit {
     // 弹窗配置
     this.eventConfig = {
       alertTitle: name,
-      titleColor: '#FDF8F9',
-      titleBgColor: '#C42631',
-      closeHoverBgColor: '#FF0000',
-      background: 'rgba(19,24,76,0.8)',
       width: 80,
       height: 60,
     };

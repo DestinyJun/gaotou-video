@@ -53,8 +53,8 @@ export class CityDataComponent implements OnInit {
   public options3dPie = {};
   public options3dPieInstance: any;
   public colorList = [
-    '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
-    '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+    '#356981', '#356981', '#356981', '#356981', '#356981', '#356981',
+    '#356981', '#356981', '#356981', '#356981', '#356981 ', '#356981'
   ];
   public arryPie = [];
   public bar3dExcelShow = false;
@@ -343,10 +343,10 @@ export class CityDataComponent implements OnInit {
     this.alertBarShow = true;
     const yType = ['经营收入', '客流量', '车流量', '用水量', '用电量'];
     this.colorList = [
-      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
-      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+      '#356981', '#356981', '#356981', '#356981', '#356981', '#356981',
+      '#356981', '#356981', '#356981', '#356981', '#356981 ', '#356981'
     ];
-    this.colorList[e.data.value[0]] = 'red';
+    this.colorList[e.data.value[0]] = '#D43839';
     const yAxis = e.data.value[1];
     this.alertBarTitle = yType[yAxis];
     const barData = this.dataService.get3dOption(12);
@@ -481,7 +481,7 @@ export class CityDataComponent implements OnInit {
           data: this.arryPie,
           itemStyle: {
             color: function (params) {
-              return ['#CE2D79', '#BDD139', '#78E77D', '#09D4D6', '#3C75B9', '#6769B1', '#FF8C9D', '#2796C4', '#E57D0D'][params.dataIndex];
+              return ['#D43839', '#3B4F74', '#7BEBDF', '#01FFCC', '#09D5D6', '#3C75BA', '#2407EF', '#2796C4', '#676AB1'][params.dataIndex];
             },
             emphasis: {
               shadowBlur: 10,
@@ -506,10 +506,10 @@ export class CityDataComponent implements OnInit {
   }
   public options3dBarClick(e) {
     this.colorList = [
-      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
-      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+      '#356981', '#356981', '#356981', '#356981', '#356981', '#356981',
+      '#356981', '#356981', '#356981', '#356981', '#356981 ', '#356981'
     ];
-    this.colorList[e.dataIndex] = 'red';
+    this.colorList[e.dataIndex] = '#D43839';
     this.options3dBarInstance.setOption(this.options3dBar);
     this.arryPie = [];
     this.dataService.getrandomPie(9, 1000, 200).map((val, index) => {
@@ -1593,10 +1593,6 @@ export class CityDataComponent implements OnInit {
     // 弹窗配置
     this.eventConfig = {
       alertTitle: name,
-      titleColor: '#FDF8F9',
-      titleBgColor: '#C42631',
-      closeHoverBgColor: '#FF0000',
-      background: 'rgba(19,24,76,0.8)',
       width: 80,
       height: 60,
     };

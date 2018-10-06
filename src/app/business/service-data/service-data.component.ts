@@ -54,8 +54,8 @@ export class ServiceDataComponent implements OnInit {
   public options3dLine = {};
   public options3dPieInstance: any;
   public colorList = [
-    '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
-    '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+    '#356981', '#356981', '#356981', '#356981', '#356981', '#356981',
+    '#356981', '#356981', '#356981', '#356981', '#356981 ', '#356981'
   ];
   public arryPie = [];
   public bar3dExcelShow = false;
@@ -345,10 +345,10 @@ export class ServiceDataComponent implements OnInit {
     document.body.className = 'ui-overflow-hidden';
     const yType = ['经营收入', '客流量', '车流量', '用水量', '用电量'];
     this.colorList = [
-      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
-      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+      '#356981', '#356981', '#356981', '#356981', '#356981', '#356981',
+      '#356981', '#356981', '#356981', '#356981', '#356981 ', '#356981'
     ];
-    this.colorList[e.data.value[0]] = 'red';
+    this.colorList[e.data.value[0]] = '#D43839';
     const yAxis = e.data.value[1];
     this.alertBarTitle = yType[yAxis];
     const barData = this.dataService.get3dOption(12);
@@ -513,19 +513,24 @@ export class ServiceDataComponent implements OnInit {
       serieData.push(serie);
     }
     console.log(serieData);
-    const colors = ['#BE86C6', '#A7B937', '#73DD79', '#09CDCF', '#007C00'];
+    const colors = ['#7C7CD4', '#36B9AB', '#6ACD72', '#0A30BF', '#027204'];
     this.options3dLine = {
       title: {
         text: title,
         x: 'center',
         textStyle: {
           color: '#fff',
-          fontSize: 16
+          fontSize: 14
         }
           },
       legend: {
-        show: true, left: 'right', data: legendData, y: '5%',
-        itemWidth: 18, itemHeight: 12, textStyle: {color: '#fff', fontSize: 14},
+        show: true,
+        left: '10%',
+        data: legendData,
+        y: '10%',
+        itemWidth: 18,
+        itemHeight: 12,
+        textStyle: {color: '#fff', fontSize: 12},
       },
       color: colors,
       grid: {left: '2%', top: '12%', bottom: '5%', right: '5%', containLabel: true},
@@ -563,10 +568,10 @@ export class ServiceDataComponent implements OnInit {
   }
   public options3dBarClick(e) {
     this.colorList = [
-      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3',
-      '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3', '#29AAE3 ', '#29AAE3'
+      '#356981', '#356981', '#356981', '#356981', '#356981', '#356981',
+      '#356981', '#356981', '#356981', '#356981', '#356981 ', '#356981'
     ];
-    this.colorList[e.dataIndex] = 'red';
+    this.colorList[e.dataIndex] = '#D43839';
     this.options3dBarInstance.setOption(this.options3dBar);
    /* this.arryPie = [];
     this.dataService.getrandomPie(9, 900, 50).map((val, index) => {
@@ -1272,7 +1277,7 @@ export class ServiceDataComponent implements OnInit {
              'featureType': 'background',
              'elementType': 'all',
              'stylers': {
-               'color': '#2da0c6ff'
+               'color': '#273440'
              }
            }
          ]
