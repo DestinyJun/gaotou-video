@@ -40,7 +40,6 @@ export class ServiceDataComponent implements OnInit {
   public serviceZoneTitle: string;
   public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
   public business = ['住宿', '汽修', '商超', '小吃', '西式快餐', '中式快餐'];
-  public btnClass = ['btn-danger', 'btn-info', 'btn-default', 'btn-primary', 'btn-warning', 'btn-success', 'btn-danger', 'btn-info', 'btn-default', 'btn-primary', 'btn-warning', 'btn-success'];
   /***********************左边************************/
     //  高速服液态数据3d统计
   public options3d = {};
@@ -631,7 +630,8 @@ export class ServiceDataComponent implements OnInit {
     console.log(this.bar3dExportType.Bar3dArea);
   }
   public bar3dExportClick() {
-    if (!(this.bar3dExportType.Bar3dDate === '') || !(this.bar3dExportType.Bar3dNumType === '') || !(this.bar3dExportType.Bar3dArea === '')) {
+    if (!(this.bar3dExportType.Bar3dDate === '')
+      || !(this.bar3dExportType.Bar3dNumType === '') || !(this.bar3dExportType.Bar3dArea === '')) {
       this.bar3dExcelShow = false;
       console.log(this.bar3dExportType);
       // 导出表格数据初始化
@@ -865,7 +865,6 @@ export class ServiceDataComponent implements OnInit {
     this.serareaService.getServiceShopVDate().subscribe(
       (value) => {
         value.data.map((val, index) => {
-          console.log(val);
           if (val.flag === '3') {
             this.incomeBottomData = val.storeInfoList;
             this.publicBottomVideoList = val.cameraList;
@@ -874,8 +873,6 @@ export class ServiceDataComponent implements OnInit {
             this.publicTopVideoList = val.cameraList;
           }
         });
-        console.log(this.incomeBottomData);
-        console.log(this.incomeTopData);
       }
     );
   }
