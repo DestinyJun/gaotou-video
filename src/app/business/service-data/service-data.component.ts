@@ -89,8 +89,9 @@ export class ServiceDataComponent implements OnInit {
   // 公共视频弹窗
   public videoPublicShow = false;
   public publicVideoTitle: string;
-  public publicBottomVideoList = [];
-  public publicTopVideoList = [];
+  public publicVideoList = [];
+  public publicBottomVideoGroup = [];
+  public publicTopVideoGroup = [];
   // 事件弹窗
   public eventListInfos: EventListInfo[];
   public eventInfoUpTypes = ['经营类', '合同类', '工程类', '卫生类', '监控类', '系统类'];
@@ -864,13 +865,14 @@ export class ServiceDataComponent implements OnInit {
     // 店铺数据
     this.serareaService.getServiceShopVDate().subscribe(
       (value) => {
+        console.log(value);
         value.data.map((val, index) => {
           if (val.flag === '3') {
             this.incomeBottomData = val.storeInfoList;
-            this.publicBottomVideoList = val.cameraList;
+            this.publicBottomVideoGroup = val.cameraGroupList;
           } else if (val.flag === '2') {
             this.incomeTopData = val.storeInfoList;
-            this.publicTopVideoList = val.cameraList;
+            this.publicTopVideoGroup = val.cameraGroupList;
           }
         });
       }
@@ -948,9 +950,7 @@ export class ServiceDataComponent implements OnInit {
   }
   // 服务区公共视频监控
   public openPublicVideo(e) {
-    console.log(e);
     this.videoShopList = e;
-    console.log(this.videoShopList);
     let videoUrlHtml = '';
     document.body.className = 'ui-overflow-hidden';
     this.videoPublicShow = true;
@@ -967,7 +967,7 @@ export class ServiceDataComponent implements OnInit {
     `;
     setTimeout(() => {
       if (e.outUrl === '' || e.outUrl === null || e.outUrl === undefined) {
-        document.getElementById('publicVideo').innerHTML = `<h1 class="text-center">此商店暂无摄像头</h1>`;
+        document.getElementById('publicVideo').innerHTML = `<p class="text-center" style="font-size: 1rem">此商店暂无摄像头</p>`;
         return;
       }
       document.getElementById('publicVideo').innerHTML = videoUrlHtml;
@@ -976,6 +976,15 @@ export class ServiceDataComponent implements OnInit {
   public closePublicVideo() {
      document.body.className = '';
      this.videoPublicShow = false;
+  }
+  public publicTopVideoGroupClick(videoList): void {
+    console.log(videoList);
+    if (videoList.length === 0) {
+      this.publicVideoList = [];
+      this.publicVideoList.push({cameraName: '该处暂无摄像头'});
+    } else {
+      this.publicVideoList = videoList;
+    }
   }
   // 视频参数提交
   public onSubmit(): void {

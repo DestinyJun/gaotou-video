@@ -158,10 +158,11 @@
 }
 /*摄像头部分*/
 .center .servicesMap-video{
+  position: relative;
   height: 4vh;
   display: flex;
 }
-.center .servicesMap-video>span{
+.center .servicesMap-video span{
   display: inline-block;
   height: 4vh;
   line-height: 4vh;
@@ -180,10 +181,10 @@
   margin-right: 0;
   margin-left: 0.5vw;
 }
-.center .servicesMap-video>span:nth-child(odd){
+.center .servicesMap-video>.btn-group:nth-child(odd)>span{
   background: #376EA6;
 }
-.center .servicesMap-video>span:nth-child(even){
+.center .servicesMap-video>.btn-group:nth-child(even)>span{
   background: #868686;
 }
 
@@ -756,6 +757,21 @@
 }
 
 /*****************************bootstrap样式覆盖****************************/
+/*按钮时下拉菜单1*/
+.dropdown-menu {
+  background: rgba(39,52,64,0.8);
+}
+.dropdown-menu>li>a{
+  font-size: 0.875rem;
+  color: white;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: white;
+  text-decoration: none;
+  background-color: rgba(134,134,134,0.8);
+}
+
 p{
   margin: 0;
 }
@@ -831,6 +847,10 @@ p{
 }
 
 /*********************bootstrap样式扩展************************/
+
+
+
+
 a.list-group-item,
 button.list-group-item {
   color: white;
