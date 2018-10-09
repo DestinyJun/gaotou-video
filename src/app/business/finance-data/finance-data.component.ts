@@ -702,9 +702,14 @@ export class FinanceDataComponent implements OnInit {
     this.optionsCarPieInstance = ec;
   }
   public optionsCarPieClick(e) {
-    this.CarTypeisShow = false;
-    this.carAreaName = e.name;
-    this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
+  /*  this.CarTypeisShow = false;
+    this.carAreaName = e.name;*/
+    if (e.name === '贵阳市') {
+      this.router.navigate(['/home/city', {name: e.name}]);
+    } else {
+      window.alert (`很抱歉，${e.name}暂无数据`);
+    }
+    // this.carTableData = this.dataService.getJsonObj(8, 1000, 100, this.alertCarTitle);
   }
   public carBtnClick(e): void {
     if (e.srcElement.innerText === '小车') {
@@ -2050,9 +2055,14 @@ export class FinanceDataComponent implements OnInit {
     this.optionsCarPieInstance = ec;
   }
   public optionsIncomePieClick(e) {
-    this.IncomeAreaName = e.name;
+    if (e.name === '贵阳市') {
+      this.router.navigate(['/home/city', {name: e.name}]);
+    } else {
+      window.alert (`很抱歉，${e.name}暂无数据`);
+    }
+    /*this.IncomeAreaName = e.name;
     this.incomeTypeisShow = false;
-    this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);
+    this.IncomeTableData = this.dataService.getIncomeObj(8, 1000, 100, this.alertIncomeTitle);*/
   }
   public IncomeBtnClick(e): void {
     if (e.srcElement.innerText === '收入总数') {

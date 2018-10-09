@@ -171,7 +171,7 @@
   border-radius: 3px;
   font-size: 1rem;
 }
-.center .servicesMap-video>span:hover{
+.center .servicesMap-video span:hover{
   cursor: pointer;
 }
 .center .second.servicesMap-video{
@@ -614,6 +614,27 @@
   line-height: 4vh;
   font-size: 1rem;
 }
+.shop-msg-content>p{
+  margin-bottom: 2vh;
+}
+.shop-video-content{
+  height: 60vh;
+}
+.shop-video-list{
+  height: 4vh;
+  line-height: 4vh;
+  font-size: 1rem;
+}
+.shop-video-list>span:nth-child(1){
+  font-weight: bold;
+}
+.shop-video-list>span:nth-child(1) ~ span{
+  display: inline-block;
+  padding: 0.3vh 1vw;
+  background: #1A2128;
+  margin-right: 0.5vw;
+  cursor: pointer;
+}
 .shop-echart-content{
 
 }
@@ -770,6 +791,7 @@
 /*按钮时下拉菜单1*/
 .dropdown-menu {
   background: rgba(39,52,64,0.8);
+  min-width: 50px;
 }
 .dropdown-menu>li>a{
   font-size: 0.875rem;

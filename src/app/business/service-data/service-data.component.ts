@@ -201,7 +201,7 @@ export class ServiceDataComponent implements OnInit {
     this.upData();
 
     // 函数测试
-    this.openServiceShop({name: 1});
+    // this.openServiceShop({name: 1});
   }
   /************************左边***************************/
   // 3D柱状图图表配置
@@ -888,40 +888,6 @@ export class ServiceDataComponent implements OnInit {
     document.body.className = '';
     this.videoAlertShow = false;
   }
-  // 商家视频弹窗
-  public openMerchantVideo(e, url): void {
-    this.videoBottomShopUrl = '';
-    document.body.className = 'ui-overflow-hidden';
-    this.videoAlertShow = true;
-    this.videoAlertTitle = e;
-    console.log(url);
-    if (!url.length) {
-      setTimeout(() => {
-        document.getElementById('shopWindowAlert').innerHTML = `<h1 class="text-center">此处暂无摄像头</h1>`;
-      }, 100);
-    } else {
-      this.videoShopList = url;
-      this.videoBottomShopUrl =  this.videoBottomShopUrl +  `
-        <div class="video-play" style="height: 66vh">
-           <object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="100%" height="96%">
-              <param name='mrl' value='${url[0].outUrl}' />
-              <param name='volume' value='50' />
-              <param name='autoplay' value='true' />
-              <param name='loop' value='false' />
-              <param name='fullscreen' value='true' />
-              <param name='controls' value='true' />
-            </object>
-</div>
-      `;
-      setTimeout(() => {
-        if (!url.length) {
-          document.getElementById('shopWindowShop').innerHTML = `<h1 class="text-center">此商店暂无摄像头</h1>`;
-          return;
-        }
-        document.getElementById('shopWindowShop').innerHTML = this.videoBottomShopUrl;
-      }, 100);
-    }
-  }
   public videoShopListClick(e): void{
     this.videoBottomShopUrl = '';
     if (e === null || e === '' || e === undefined) {
@@ -946,12 +912,33 @@ export class ServiceDataComponent implements OnInit {
     document.body.className = '';
     this.serviceShopShow = false;
   }
-  // 商家信息弹窗
+  // 商家信息/视频弹窗
   public openServiceShop(item): void {
-    console.log(item);
+    this.videoShopList = [];
     this.serviceShopTitle = item.storeName;
     this.serviceShopShow = true;
     document.body.className = 'ui-overflow-hidden';
+    // 视频监控
+    if (!item.cameraList.length) {
+      setTimeout(() => {
+        document.getElementById('shopVideo').innerHTML = `<p class="text-center" style="font-size: 1rem">此处暂无摄像头</p>`;
+      }, 100);
+    } else {
+      this.videoShopList = item.cameraList;
+      this.videoBottomShopUrl = `
+       <object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="100%" height="100%">
+              <param name='mrl' value='${this.videoShopList[0].outUrl}' />
+              <param name='volume' value='50' />
+              <param name='autoplay' value='true' />
+              <param name='loop' value='false' />
+              <param name='fullscreen' value='true' />
+              <param name='controls' value='true' />
+            </object>
+      `;
+      setTimeout(() => {
+        document.getElementById('shopVideo').innerHTML = this.videoBottomShopUrl;
+      }, 100);
+    }
     // 折线图
     const xAxisData = ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'];
     const legendData = ['经营收入', '客流量', '用水量', '用电量'];
@@ -1023,7 +1010,7 @@ export class ServiceDataComponent implements OnInit {
     const areaData = function () {
       const a = [];
       areaMouth.map(() => {
-        a.push(Math.random() * 2000);
+        a.push((Math.random() * 10 + 1).toFixed(2) * 2000);
       });
       return a;
     };
@@ -1056,10 +1043,52 @@ export class ServiceDataComponent implements OnInit {
       series: [{
         data: areaData(),
         type: 'line',
-        areaStyle: {}
+        // smooth: 0.3, // 线条的平滑程度
+        symbol: 'none', // 折线上的标记点
+        itemStyle: {// 折线拐点标志的样式。
+          color: 'transparent'
+        },
+        areaStyle: { // 区域填充样式
+          color: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              {
+              offset: 0, color: '#1876be' // 0% 处的颜色
+              },
+              {
+                offset: 0.3, color: '#1876be' // 0% 处的颜色
+              },
+              {
+                offset: 0.6, color: '#1876be' // 0% 处的颜色
+              },
+              {
+              offset: 1, color: 'transparent' // 100% 处的颜色
+            }],
+            globalCoord: false // 缺省为 false
+          }
+        },
       }]
     };
 
+  }
+  public openMerchantVideo(item): void {
+    this.videoBottomShopUrl = `
+        <object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="100%" height="96%">
+              <param name='mrl' value='${item.outUrl}' />
+              <param name='volume' value='50' />
+              <param name='autoplay' value='true' />
+              <param name='loop' value='false' />
+              <param name='fullscreen' value='true' />
+              <param name='controls' value='true' />
+            </object>
+      `;
+    setTimeout(() => {
+      document.getElementById('shopVideo').innerHTML = this.videoBottomShopUrl;
+    }, 100);
   }
   // 服务区公共视频监控
   public openPublicVideo(e) {
