@@ -607,6 +607,16 @@
   border: 1px solid rgba(235,244,254, 0.5);
 }
 
+/*服务区店铺信息弹窗*/
+.shop-msg-title,.shop-video-title,.shop-echart-title{
+  height: 4vh;
+  margin-top: 1vh;
+  line-height: 4vh;
+  font-size: 1rem;
+}
+.shop-echart-content{
+
+}
 
 /*服务区视频弹窗*/
 .alert-window .video-time{

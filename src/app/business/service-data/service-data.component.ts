@@ -44,6 +44,7 @@ export class ServiceDataComponent implements OnInit {
     //  高速服液态数据3d统计
   public options3d = {};
   public options3dArray: any;
+
   // 3D柱状图弹窗
   public alertBarShow = false;
   public alertBarTitle: string;
@@ -118,6 +119,8 @@ export class ServiceDataComponent implements OnInit {
   public serviceBasicAlertTitle: string;
   public serviceBasicInformation1: any;
   public serviceBasicInformation2: any;
+  public shopEchartLine = {};
+  public shopEchartArea = {};
 
   // 服务区基本信息之园区平面图
   public servicesPlan = false;
@@ -196,6 +199,9 @@ export class ServiceDataComponent implements OnInit {
 
     // 数据更行
     this.upData();
+
+    // 函数测试
+    this.openServiceShop({name: 1});
   }
   /************************左边***************************/
   // 3D柱状图图表配置
@@ -512,7 +518,6 @@ export class ServiceDataComponent implements OnInit {
       };
       serieData.push(serie);
     }
-    console.log(serieData);
     const colors = ['#7C7CD4', '#36B9AB', '#6ACD72', '#0A30BF', '#027204'];
     this.options3dLine = {
       title: {
@@ -883,7 +888,6 @@ export class ServiceDataComponent implements OnInit {
     document.body.className = '';
     this.videoAlertShow = false;
   }
-
   // 商家视频弹窗
   public openMerchantVideo(e, url): void {
     this.videoBottomShopUrl = '';
@@ -938,15 +942,124 @@ export class ServiceDataComponent implements OnInit {
       document.getElementById('shopWindowShop').innerHTML = this.videoBottomShopUrl;
     }
   }
-
   public closeServiceShop(): void {
     document.body.className = '';
     this.serviceShopShow = false;
   }
-  public openServiceShop(e): void {
-    this.serviceShopTitle = e;
+  // 商家信息弹窗
+  public openServiceShop(item): void {
+    console.log(item);
+    this.serviceShopTitle = item.storeName;
     this.serviceShopShow = true;
     document.body.className = 'ui-overflow-hidden';
+    // 折线图
+    const xAxisData = ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'];
+    const legendData = ['经营收入', '客流量', '用水量', '用电量'];
+    const title = '服务区业态数据变化';
+    const serieData = [];
+    const metaDate = [
+      [120, 140, 100, 120, 300, 230, 130, 170, 140, 120, 300, 230],
+      [200, 120, 300, 200, 170, 300, 200, 180, 200, 190, 300, 200],
+      [100, 200, 140, 300, 200, 180, 100, 300, 230, 130, 100, 300],
+      [152, 418, 89, 156, 200, 180, 100, 300, 230, 130, 145, 300],
+      [56, 223, 140, 300, 200, 180, 283, 300, 230, 148, 100, 300]
+
+
+    ];
+    for (let v = 0; v < legendData.length; v++) {
+      const serie = {
+        name: legendData[v],
+        type: 'line',
+        symbol: 'circle',
+        symbolSize: 10,
+        data: metaDate[v]
+      };
+      serieData.push(serie);
+    }
+    const colors = ['#7C7CD4', '#36B9AB', '#6ACD72', '#0A30BF', '#027204'];
+    this.shopEchartLine = {
+      title: {
+        text: title,
+        x: 'center',
+        textStyle: {
+          color: '#fff',
+          fontSize: 14
+        }
+      },
+      legend: {
+        show: true,
+        left: '10%',
+        data: legendData,
+        y: '10%',
+        itemWidth: 18,
+        itemHeight: 12,
+        textStyle: {color: '#fff', fontSize: 12},
+      },
+      color: colors,
+      grid: {left: '2%', top: '12%', bottom: '5%', right: '5%', containLabel: true},
+      tooltip: {trigger: 'axis', axisPointer: {type: 'shadow'}},
+      xAxis: [
+        {
+          type: 'category',
+          axisLine: {show: true, lineStyle: {color: '#6173A3'}},
+          axisLabel: {interval: 'auto', textStyle: {color: '#fff', fontSize: 14}},
+          axisTick: {show: false},
+          data: xAxisData,
+        },
+      ],
+      yAxis: [
+        {
+          axisTick: {show: false},
+          splitLine: {show: false},
+          axisLabel: {textStyle: {color: '#9ea7c4', fontSize: 14}},
+          axisLine: {show: true, lineStyle: {color: '#6173A3'}},
+        },
+      ],
+      series: serieData
+    };
+
+    // 面积图
+    const areaMouth = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+    const areaData = function () {
+      const a = [];
+      areaMouth.map(() => {
+        a.push(Math.random() * 2000);
+      });
+      return a;
+    };
+    this.shopEchartArea = {
+      title: {
+        text: title,
+        x: 'center',
+        textStyle: {
+          color: '#fff',
+          fontSize: 14
+        }
+      },
+      grid: {left: 0, top: '12%', bottom: '5%', right: '5%', containLabel: true},
+      tooltip: {trigger: 'axis', axisPointer: {type: 'shadow'}},
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        axisLine: {show: true, lineStyle: {color: '#6173A3'}},
+        axisLabel: {interval: 'auto', textStyle: {color: '#fff', fontSize: 14}},
+        axisTick: {show: false},
+        data: areaMouth
+      },
+      yAxis: {
+        type: 'value',
+        axisTick: {show: false},
+        splitLine: {show: false},
+        axisLabel: {textStyle: {color: '#9ea7c4', fontSize: 14}},
+        axisLine: {show: true, lineStyle: {color: '#6173A3'}},
+      },
+      series: [{
+        data: areaData(),
+        type: 'line',
+        areaStyle: {}
+      }]
+    };
+
   }
   // 服务区公共视频监控
   public openPublicVideo(e) {
