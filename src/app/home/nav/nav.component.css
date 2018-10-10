@@ -2,8 +2,8 @@
 .nav{
   margin-top: 1vh;
   position: fixed;
-  left: 0;
-  top: 20%;
+  right: 0;
+  top: 40%;
   border:1px solid #3B425C;
   width: 50px;
   overflow: hidden;

@@ -4,9 +4,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(149,161,154,0);
+  background: #091118;
+  background: rgba(9,17,24,0.5);
   z-index: 2;
-  color: white;
 }
 .alert-window{
   position: absolute;
@@ -16,17 +16,18 @@
   margin-left: -25vw;
   top: 50%;
   margin-top: -25vh;
-  background: rgba(10,10,72,0.9);
+  background: rgba(39,52,64,0.8);
   z-index: 1;
 }
 .alert-window-header{
   height: 5vh;
   line-height: 5vh;
-  background: rgba(240,43,43,0.8);
+  background: #1a2128;
+  text-align: center;
 }
 .alert-window-header span{
   margin-left: 10px;
-  font-size: 1.8rem;
+  font-size: 1.625rem;
 }
 .alert-window-header .pull-right{
   height: 5vh;

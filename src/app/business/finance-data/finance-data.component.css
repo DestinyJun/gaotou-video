@@ -6,8 +6,8 @@
   position: relative;
 }
 .title{
-  height: 5vh;
-  line-height: 5vh;
+  height: 3vh;
+  line-height: 3vh;
   font-size: 1rem;
   font-weight: 500;
   color: #5595D5;
@@ -29,7 +29,7 @@
 .title>span:nth-child(2){
   border-width: 0.2vw 0.7vw 0.2vw 0.2vw;
   left: -0.6vw;
-  top: 4.4vh;
+  top: 2.4vh;
   border-color: transparent #5595D5 transparent transparent ;
 }
 .title>span:nth-child(3){
@@ -40,7 +40,7 @@
 }
 .title>span:nth-child(4){
   left: 18.9vw;
-  top: 4.4vh;
+  top: 2.4vh;
   border-width: 0.2vw 0.2vw 0.2vw  0.7vw;
   border-color: transparent transparent transparent #5595D5;
 }
@@ -54,7 +54,7 @@
 }
 .left .accumulation-title{}
 .left .accumulation-3Dbar{
-  height: 43vh;
+  height: 45vh;
 }
 
 /*车辆统计*/
@@ -66,7 +66,7 @@
 }
 /*日车流量实时统计*/
 .left .vehicle-amount{
-  height: 12.5vh;
+  height: 10vh;
 }
 .left .vehicle-amount-title{}
 .left .vehicle-amount-number{
@@ -103,7 +103,7 @@
   border: none;
 }
 .left .vehicle-pie-chart{
-  height: 14.5vh;
+  height: 19vh;
 }
 
 /*移动端收入样式*/
@@ -198,7 +198,7 @@
 }
 .center .event-table-service-title.title>span:nth-child(4){
   left: 7.5vw;
-  top: 4.4vh;
+  top: 2.4vh;
 }
 /*办公事件监控*/
 .center .event-table-office{
@@ -214,7 +214,7 @@
 }
 .center .event-table-office-title.title>span:nth-child(4){
   left: 17.5vw;
-  top: 4.4vh;
+  top: 2.4vh;
 }
 /*个人信息处理*/
 .center .event-table-person{
@@ -230,7 +230,7 @@
 }
 .center .event-table-person-title.title>span:nth-child(4){
   left: 7.5vw;
-  top: 4.4vh;
+  top: 2.4vh;
 }
 /*表格公共样式*/
 .center .event-table tr td{
@@ -315,7 +315,7 @@
   cursor: pointer;
 }
 .right .crosswise-bar{
-  height: 39vh;
+  height: 40vh;
 }
 
 /*收入统计*/
@@ -327,7 +327,7 @@
 }
 /*实时首收入统计*/
 .right .income-amount{
-  height: 12.5vh;
+  height: 10vh;
 }
 .right .income-amount-title{}
 .income-amount-number{
@@ -355,7 +355,7 @@
 }
 /*服务器收入实时统计*/
 .right .income-pie{
-  height: 20.5vh;
+  height: 22vh;
 }
 .right .income-pie-title{
   color: white;
@@ -364,7 +364,7 @@
   border: none;
 }
 .right .income-pie-chart{
-  height: 14.5vh;
+  height: 19vh;
 }
 
 /****************************弹窗部分****************************/

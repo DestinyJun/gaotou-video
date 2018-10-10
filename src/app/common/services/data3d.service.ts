@@ -20,7 +20,7 @@ export class Data3dService {
     const types = [0, 1, 2, 3, 4];
     months.map((val, index) => {
       for (let i = 0; i < types.length; i++) {
-        dataArray.push([val, types[i], Math.round(Math.random() * 100)]);
+        dataArray.push([val, types[i], Math.round(Math.random() * 100), Math.round(Math.random() * 10000)]);
       }
     });
     /*for (let i = 0; i < 200; i++) {

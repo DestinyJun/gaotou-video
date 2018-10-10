@@ -38,6 +38,9 @@ interface Bar3dExportType {
   styleUrls: ['./finance-data.component.css']
 })
 export class FinanceDataComponent implements OnInit {
+  // 路由定位
+  public provinceTitle: string;
+
   /****************************左边***************************/
     // 3D柱状图配置
   public options3d = {};
@@ -223,7 +226,7 @@ export class FinanceDataComponent implements OnInit {
             },
             formatter: function (params) {
               let res = `<p>${hours[params.value[0]]}:</p>`;
-              res += `<p style='margin-left:3px'>${days[params.value[1]]}:${params.value[2]}%</p>`;
+              res += `<p style='margin-left:3px'>${days[params.value[1]]}:${params.value[3]}</p>`;
               return res;
             }
           },
@@ -300,8 +303,7 @@ export class FinanceDataComponent implements OnInit {
               // data: this.data3dS.data3dFac(), // 这种方式点击函数打不开
               /*data的两种的请求方式*/
               data: this.data3dS.data3dFac().map(function (item) {
-                const a = {value: [item[0], item[1], item[2]]};
-                return a;
+                return {value: [item[0], item[1], item[2], item[3]]};
               }),
               // 柱状图阴影
               shading: 'lambert',

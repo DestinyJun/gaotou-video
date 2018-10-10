@@ -11,7 +11,7 @@ import {EventsService} from '../../common/services/events.service';
 import {Data3dService} from '../../common/services/data3d.service';
 import {CentermapService} from '../../common/services/centermap.service';
 import {DiagramService} from '../../common/services/diagram.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 declare let BMap;
 declare let BMapLib;
 
@@ -84,7 +84,7 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
     private data3dS: Data3dService,
     private centerMapS: CentermapService,
     private diagrams: DiagramService,
-    public router: Router
+    private router: Router,
   ) {
   }
 
@@ -754,9 +754,8 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
       const pt = e.point;
       geoc.getLocation(pt, function (rs) {
         const addComp = rs.addressComponents;
-        // alert(addComp.province);
         if (addComp.province === '贵州省') {
-          that.router.navigate(['/home/finance']);
+          that.router.navigate(['/home/finance', {name: addComp.province}]);
         } else {
           window.alert(addComp.province + '暂无数据，敬请期待');
         }

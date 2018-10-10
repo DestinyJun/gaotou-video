@@ -3,25 +3,24 @@
  * project name ...
  */
 
-/***********************************主体中部*****************************/
+/***********************************视频窗口*****************************/
 .main-center .center-video{
-  border:1px solid #3B425C;
-  height: 92vh;
+  height: 85vh;
 }
 .main-center .center-bottom-left{
-  border:1px solid #3B425C;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2);
   font-weight: normal;
 }
 .main-center .center-bottom-left-title{
+  background: #384460;
   height: 5vh;
-  border-bottom: 1px solid #3B425C;
   position: relative;
-  font-size: 1.6rem;
-  padding: 0 1.6rem;
+  font-size: 1.2rem;
+  padding: 0 1vw;
 }
 .main-center .center-bottom-left-video{
   background: #000;
-  height: 40.5vh;
+  height: 37.5vh;
 }
 .main-center .center-bottom-left-title>.pull-right{
   color: #87FFFF;
@@ -34,6 +33,10 @@
   font-size: 0.8em;
 }
 
+.main-right .control{
+  height: 85vh;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
+}
 
 /***********************************ng2改造*****************************/
 tree-internal .tree .node-value {
