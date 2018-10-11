@@ -47,14 +47,14 @@
 /****************************左边****************************/
 /*3D柱状图*/
 .left .accumulation{
-  padding-top: 2vh;
+  padding-top: 1vh;
   height: 50vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
 }
 .left .accumulation-title{}
 .left .accumulation-3Dbar{
-  height: 45vh;
+  height: 46vh;
 }
 
 /*车辆统计*/
@@ -62,7 +62,7 @@
   height: 34vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
-  padding-top: 2vh;
+  padding-top: 1vh;
 }
 /*日车流量实时统计*/
 .left .vehicle-amount{
@@ -94,7 +94,7 @@
 }
 /*车型日分布占比*/
 .left .vehicle-pie{
-  height: 22vh;
+  height: 23vh;
 }
 .left .vehicle-pie-title{
   color: white;
@@ -103,7 +103,7 @@
   border: none;
 }
 .left .vehicle-pie-chart{
-  height: 19vh;
+  height: 20vh;
 }
 
 /*移动端收入样式*/
@@ -182,7 +182,7 @@
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
   overflow: hidden;
-  padding: 2vh 0.5vw;
+  padding: 1vh 0.5vw;
 }
 /*服务区事件监控*/
 .center .event-table-service{
@@ -291,7 +291,7 @@
 /****************************右边****************************/
 /*市级数据服务区业态前十排名柱状图*/
 .right .crosswise{
-  padding-top: 2vh;
+  padding-top: 1vh;
   height: 50vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
@@ -315,12 +315,12 @@
   cursor: pointer;
 }
 .right .crosswise-bar{
-  height: 40vh;
+  height: 41vh;
 }
 
 /*收入统计*/
 .right .income{
-  padding-top: 2vh;
+  padding-top: 1vh;
   height: 34vh;
   box-shadow: 0 0 10px 2px rgba(255,255,255,0.2) inset;
   margin-bottom: 1vh;
@@ -355,7 +355,7 @@
 }
 /*服务器收入实时统计*/
 .right .income-pie{
-  height: 22vh;
+  height: 23vh;
 }
 .right .income-pie-title{
   color: white;
@@ -364,7 +364,7 @@
   border: none;
 }
 .right .income-pie-chart{
-  height: 19vh;
+  height: 20vh;
 }
 
 /****************************弹窗部分****************************/

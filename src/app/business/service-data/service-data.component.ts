@@ -93,6 +93,8 @@ export class ServiceDataComponent implements OnInit {
   public publicVideoList = [];
   public publicBottomVideoGroup = [];
   public publicTopVideoGroup = [];
+  public videoTopOpen = [];
+  public videoBottomOpen = [];
   // 事件弹窗
   public eventListInfos: EventListInfo[];
   public eventInfoUpTypes = ['经营类', '合同类', '工程类', '卫生类', '监控类', '系统类'];
@@ -1128,14 +1130,37 @@ export class ServiceDataComponent implements OnInit {
      document.body.className = '';
      this.videoPublicShow = false;
   }
-  public publicTopVideoGroupClick(videoList): void {
-    console.log(videoList);
+  public publicTopVideoGroupOver(videoList, i): void {
+    videoList.map(() => {
+      this.videoTopOpen.push(false);
+    });
+    this.videoTopOpen[i] = true;
+    console.log(this.videoTopOpen);
     if (videoList.length === 0) {
       this.publicVideoList = [];
       this.publicVideoList.push({cameraName: '该处暂无摄像头'});
     } else {
       this.publicVideoList = videoList;
     }
+  }
+  public publicTopVideoGroupLeave(i): void {
+    this.videoTopOpen[i] = false;
+  }
+  public publicTopBottomGroupOver(videoList, i): void {
+    videoList.map(() => {
+      this.videoBottomOpen.push(false);
+    });
+    this.videoBottomOpen[i] = true;
+    console.log(this.videoBottomOpen);
+    if (videoList.length === 0) {
+      this.publicVideoList = [];
+      this.publicVideoList.push({cameraName: '该处暂无摄像头'});
+    } else {
+      this.publicVideoList = videoList;
+    }
+  }
+  public publicTopBottomGroupLeave(i): void {
+    this.videoBottomOpen[i] = false;
   }
   // 视频参数提交
   public onSubmit(): void {

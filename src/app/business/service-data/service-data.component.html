@@ -68,8 +68,8 @@
           </div>
         </div>
         <div class="first servicesMap-video">
-          <div class="btn-group" *ngFor="let item of publicTopVideoGroup" >
-            <span data-toggle="dropdown" (click)="publicTopVideoGroupClick(item.cameras)">{{item.groupName}}</span>
+          <div class="btn-group" *ngFor="let item of publicTopVideoGroup;let i = index" [ngClass]="{'open':videoTopOpen[i]}" (mouseover)="publicTopVideoGroupOver(item.cameras,i)" (mouseout)="publicTopVideoGroupLeave(i)">
+            <span data-toggle="dropdown">{{item.groupName}}</span>
             <ul class="dropdown-menu">
               <li  *ngFor="let item of publicVideoList" (click)="openPublicVideo(item)">
                 <a href="javascript:">
@@ -86,8 +86,8 @@
           <span>贵阳方向</span>
         </div>
         <div class="second servicesMap-video">
-          <div class="btn-group" *ngFor="let item of publicBottomVideoGroup" >
-            <span data-toggle="dropdown" (click)="publicTopVideoGroupClick(item.cameras)">{{item.groupName}}</span>
+          <div class="btn-group" *ngFor="let item of publicBottomVideoGroup;let i = index" [ngClass]="{'open':videoBottomOpen[i]}" (mouseover)="publicTopBottomGroupOver(item.cameras,i)" (mouseout)="publicTopBottomGroupLeave(i)">
+            <span data-toggle="dropdown">{{item.groupName}}</span>
             <ul class="dropdown-menu">
               <li  *ngFor="let item of publicVideoList" (click)="openPublicVideo(item)">
                 <a href="javascript:">
