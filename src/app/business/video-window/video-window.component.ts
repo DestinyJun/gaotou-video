@@ -8,6 +8,9 @@ import {LocalStorageService} from '../../common/services/local-storage.service';
   styleUrls: ['./video-window.component.css']
 })
 export class VideoWindowComponent implements OnInit {
+  // 实时客流量
+  public personNum = 2000;
+  public persons = [];
   public videoUrl1: string;
   public videoUrl2: string;
   public videoUrl3: string;
@@ -25,6 +28,8 @@ export class VideoWindowComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // 发射实时客流
+    this.localService.persons.next(this.persons);
     // 发射业太数据名称
     this.localService.eventBus.next('全国高速视频监控大数据');
     this.videoLocation1 = '';

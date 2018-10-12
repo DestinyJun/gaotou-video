@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.amount();
+    // this.amount();
     this.personNum.toString().split('').map((value, index) => {
       this.persons.push({number: value, colors: `linear-gradient(${this.tools.randomRgbColor(0)[0]},${this.tools.randomRgbColor(0)[0]})`});
     });
@@ -32,7 +32,6 @@ export class HeaderComponent implements OnInit {
     // 路由接受参数
     this.routerInfo.params.subscribe(
       (params) => {
-        console.log(params);
         // this.headerTitle = params.name;
         // console.log(this.headerTitle);
         // this.serviceZonePoint = params.point.split(',');
@@ -40,10 +39,14 @@ export class HeaderComponent implements OnInit {
       }
     );
     // this.getUrl();
-    // 订阅事件
+
+    // 订阅title以及车流事件
     this.localService.eventBus.subscribe((value) => {
       this.headerTitle = value;
-      console.log(this.headerTitle);
+    });
+    this.localService.persons.subscribe((value) => {
+      console.log(value);
+      this.persons = value;
     });
   }
   // 客流量实时监控
@@ -57,7 +60,7 @@ export class HeaderComponent implements OnInit {
       });
     }, 3000);
   }
-  // 获取URL
+  // 获取URL，风格URL
   public getUrl(): void {
     const url = window.location.href;
     const urlString = url.split('#')[1].split('/')[2];

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LocalStorageService} from '../../common/services/local-storage.service';
 
 @Component({
   selector: 'app-personal',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./personal.component.css']
 })
 export class PersonalComponent implements OnInit {
+  // 实时客流量
+  public personNum = 2000;
+  public persons = [];
   // btn状态值判断
   public btnProfileTxt = true;
   public btnPasswordTxt = true;
@@ -17,9 +21,13 @@ export class PersonalComponent implements OnInit {
     address: '贵州省贵阳市云岩区黔灵山路',
     remark: '这个孩子非常努力',
   };
-  constructor() { }
+  constructor(
+    private localService: LocalStorageService
+  ) { }
 
   ngOnInit() {
+    // 发射实时客流
+    this.localService.persons.next(this.persons);
   }
   public updataProfile() {
     this.btnProfileTxt = !this.btnProfileTxt;

@@ -8,13 +8,14 @@
       <span>{{headerTitle}}</span>
     </div>
     <div class="header-admin">
-      <img src="assets/images/timg.jpg" alt="" class="header-admin-img img-circle">
+      <img src="assets/images/timg.jpg" alt="" class="header-admin-img img-circle" [routerLink]="['/home/personal']">
       <div class="header-admin-time text-center">
         <span>北京时间 <span style="margin-left: 0.2vw">{{dataTime | date:'yyyy-MM-dd HH:mm:ss'}}</span></span>
       </div>
       <div class="header-admin-flow text-center">
         <span>今日客流量：</span>
         <div class="text-center">
+          <span style="font-size: 0.875rem">{{persons.length === 0? '全国客流当前暂无数据': ''}}</span>
           <span *ngFor="let item of persons">{{item.number}}</span>
         </div>
         <span>人/次</span>

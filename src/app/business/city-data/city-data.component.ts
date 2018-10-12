@@ -1,6 +1,6 @@
 import {
   Component,
-  ComponentFactoryResolver,
+  ComponentFactoryResolver, OnDestroy,
   OnInit,
 } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
@@ -40,8 +40,13 @@ interface Bar3dExportType {
   templateUrl: './city-data.component.html',
   styleUrls: ['./city-data.component.css']
 })
-export class CityDataComponent implements OnInit {
-
+export class CityDataComponent implements OnInit, OnDestroy {
+  /***********************基础信息************************/
+  // 组件销毁后清除时钟任务
+  public clearTime: any;
+    // 实时客流量
+  public personNum = 10000;
+  public persons = [];
   /****************************左边***************************/
     // 3D柱状图配置
   public options3d = {};
@@ -197,6 +202,11 @@ export class CityDataComponent implements OnInit {
         this.cityShow = false;
       }
     });
+  }
+  ngOnDestroy(): void {
+    if (this.clearTime) {
+      clearInterval(this.clearTime);
+    }
   }
 
   /**********************************左边*****************************/
@@ -1878,9 +1888,17 @@ export class CityDataComponent implements OnInit {
 
   // 流量收入实时监控
   public amount(): void {
+    this.localService.persons.next(this.personNum.toString().split(''));
     let a = 100000;
     let b = 200000;
-    setInterval(() => {
+    this.clearTime = setInterval(() => {
+      const c = [];
+      this.personNum += Math.round(Math.random() * 10);
+      this.personNum.toString().split('').map((value, index) => {
+        c.push({number: value});
+        this.persons = c;
+      });
+      this.localService.persons.next(this.persons);
       a += Math.round(Math.random() * 100);
       b += Math.round(Math.random() * 100);
       this.vehicleAmount = a.toString().split('');

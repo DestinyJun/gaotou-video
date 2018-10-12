@@ -1,8 +1,10 @@
 /*个人信息*/
 .content{
   width: 80vw;
-  min-height: 90vh;
+  min-height: 85vh;
   margin: 0 auto;
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.2);
+  padding: 0 0.5vw;
 }
 .content-header{
   padding: 10px;

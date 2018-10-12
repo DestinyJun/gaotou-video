@@ -22,6 +22,9 @@ declare let BMapLib;
   styleUrls: ['./whole-data.component.css']
 })
 export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, AfterViewInit {
+  // 实时客流量
+  public personNum = 2000;
+  public persons = [];
   // 全国、省级数据切换
   public dataToggle = '全国';
   // 弹出框的标题及显影控制
@@ -94,6 +97,8 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
   }
 
   ngOnInit() {
+    // 发射实时客流
+    this.localService.persons.next(this.persons);
     // 发射业太数据名称
     this.localService.eventBus.next(this.dataToggle + '高速业态大数据');
     this.amount();

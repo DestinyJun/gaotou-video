@@ -1,6 +1,6 @@
 import {
   AfterViewChecked,
-  Component, ElementRef,
+  Component, ElementRef, OnDestroy,
   OnInit,
 } from '@angular/core';
 import {Data3dService} from '../../common/services/data3d.service';
@@ -35,8 +35,13 @@ interface Bar3dExportType {
   templateUrl: './service-data.component.html',
   styleUrls: ['./service-data.component.css']
 })
-export class ServiceDataComponent implements OnInit {
+export class ServiceDataComponent implements OnInit, OnDestroy {
   /***********************基础信息************************/
+    // 组件销毁后清除时钟任务
+  public clearTime: any;
+  // 实时客流量
+  public personNum = 2000;
+  public persons = [];
   // 服务区名称
   public serviceZoneTitle: string;
   public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
@@ -208,6 +213,11 @@ export class ServiceDataComponent implements OnInit {
 
     // 函数测试
     // this.openServiceShop({name: 1});
+  }
+  ngOnDestroy(): void {
+    if (this.clearTime) {
+      clearInterval(this.clearTime);
+    }
   }
   /************************左边***************************/
   // 3D柱状图图表配置
@@ -672,15 +682,22 @@ export class ServiceDataComponent implements OnInit {
 
   // 流量收入实时监控
   public amount(): void {
+    this.localService.persons.next(this.personNum.toString().split(''));
     let a = 500;
     let b = 10000;
-    setInterval(() => {
+    this.clearTime = setInterval(() => {
+      const c = [];
+      this.personNum += Math.round(Math.random() * 10);
+      this.personNum.toString().split('').map((value, index) => {
+        c.push({number: value});
+        this.persons = c;
+      });
+      this.localService.persons.next(this.persons);
       a += Math.round(Math.random() * 100);
       b += Math.round(Math.random() * 100);
       this.vehicleAmount = a.toString().split('');
       this.incomeAmount = b.toString().split('');
     }, 3000);
-
   }
 
   // 车辆类型占比图表配置

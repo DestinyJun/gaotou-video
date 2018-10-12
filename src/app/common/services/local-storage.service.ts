@@ -5,6 +5,7 @@ import {Subject} from 'rxjs/Subject';
 export class LocalStorageService {
   // 顶一个可订阅的项目
   public eventBus: Subject<string> = new Subject<string>();
+  public persons: Subject<any> = new Subject<any>();
   public sessionStorage: any;
   constructor() {
     if (!sessionStorage) {
