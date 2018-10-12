@@ -1485,7 +1485,7 @@ export class FinanceDataComponent implements OnInit {
     }*/
     function addMarker(point, name) {
       // const myIcon = new BMap.Icon('http://lbsyun.baidu.com/jsdemo/img/fox.gif', new BMap.Size(200, 130));
-      const myIcon = new BMap.Icon('/assets/images/s1.png', new BMap.Size(11, 17), {
+      const myIcon = new BMap.Icon('assets/images/s1.png', new BMap.Size(11, 17), {
         offset: new BMap.Size(0, 17),
       });
       const points = new BMap.Point(point[0], point[1]);
