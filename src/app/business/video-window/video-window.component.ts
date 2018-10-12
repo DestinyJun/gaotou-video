@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NodeEvent, NodeMenuItemAction, TreeModel} from 'ng2-tree';
 import {VideoWindowService} from '../../common/services/video-window.service';
+import {LocalStorageService} from '../../common/services/local-storage.service';
 @Component({
   selector: 'app-video-window',
   templateUrl: './video-window.component.html',
@@ -19,10 +20,13 @@ export class VideoWindowComponent implements OnInit {
   public tree: TreeModel;
   public tree1: TreeModel;
   constructor(
-    private videoWindowService: VideoWindowService
+    private videoWindowService: VideoWindowService,
+    private localService: LocalStorageService
   ) { }
 
   ngOnInit() {
+    // 发射业太数据名称
+    this.localService.eventBus.next('全国高速视频监控大数据');
     this.videoLocation1 = '';
     this.videoLocation2 = '';
     this.videoLocation3 = '';

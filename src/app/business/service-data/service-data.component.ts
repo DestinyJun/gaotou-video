@@ -10,6 +10,7 @@ import {DataService} from '../../common/services/data.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EventListInfo} from '../../common/model/service-data.model';
 import {ServiceDataService} from '../../common/services/service-data.service';
+import {LocalStorageService} from '../../common/services/local-storage.service';
 declare let BMap;
 declare let BMapLib;
 declare let BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW;
@@ -152,11 +153,11 @@ export class ServiceDataComponent implements OnInit {
     private diagrams: DiagramService,
     private routerInfo: ActivatedRoute,
     private dataService: DataService,
-    private serareaService: ServiceDataService
+    private serareaService: ServiceDataService,
+  private localService: LocalStorageService
   ) {}
 
   ngOnInit() {
-    console.log(this.routerInfo);
     // 导出表格数据初始化
     this.bar3dExportType = {
       Bar3dNumType: '',
@@ -191,6 +192,7 @@ export class ServiceDataComponent implements OnInit {
       (params) => {
         console.log(params);
         this.serviceZoneTitle = params.name;
+        this.localService.eventBus.next(this.serviceZoneTitle + '业态大数据');
         // this.serviceZonePoint = params.point.split(',');
         // console.log(this.serviceZonePoint);
       }

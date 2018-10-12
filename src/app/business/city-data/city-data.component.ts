@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
 import {DataService} from '../../common/services/data.service';
 import {ConfigModule, WenjunAlertService} from '../../common/wenjun';
 import {CityDataService} from '../../common/services/city-data.service';
+import {LocalStorageService} from '../../common/services/local-storage.service';
 
 declare let BMap;
 declare let BMapLib;
@@ -163,9 +164,12 @@ export class CityDataComponent implements OnInit {
     public router: Router,
     private wenJunAlertService: WenjunAlertService,
     private cityDataService: CityDataService,
+    private localService: LocalStorageService
   ) {}
 
   ngOnInit() {
+    // 发射也太数据名称
+    this.localService.eventBus.next('贵阳市高速业态大数据');
     // 导出表格数据初始化
     this.bar3dExportType = {
       Bar3dNumType: '',
@@ -1427,7 +1431,7 @@ export class CityDataComponent implements OnInit {
           pointsMarket.push(a);
         });
         if (pointsMarket) {
-          // console.log(pointsMarket);
+          console.log(pointsMarket);
           for (let i = 0; i < pointsMarket.length; i++) {
             const points = [pointsMarket[i][0], pointsMarket[i][1]];
             // addMarker(points, pointsMarket[i][2], pointsMarket[i][3]);
@@ -1437,9 +1441,12 @@ export class CityDataComponent implements OnInit {
       });
 
     function addMarker(point, name) {
-      const myIcon = new BMap.Icon('http://lbsyun.baidu.com/jsdemo/img/fox.gif', new BMap.Size(200, 130));
+      // const myIcon = new BMap.Icon('http://lbsyun.baidu.com/jsdemo/img/fox.gif', new BMap.Size(200, 130));
+      const myIcon = new BMap.Icon('/assets/images/s1.png', new BMap.Size(11, 17), {
+        offset: new BMap.Size(0, 17),
+      });
       const points = new BMap.Point(point[0], point[1]);
-      const marker = new BMap.Marker(points);
+      const marker = new BMap.Marker(points, {icon: myIcon});
       map.addOverlay(marker);
 
       // 跳动的动画

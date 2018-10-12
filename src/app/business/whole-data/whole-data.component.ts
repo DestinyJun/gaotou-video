@@ -12,6 +12,7 @@ import {Data3dService} from '../../common/services/data3d.service';
 import {CentermapService} from '../../common/services/centermap.service';
 import {DiagramService} from '../../common/services/diagram.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {LocalStorageService} from '../../common/services/local-storage.service';
 declare let BMap;
 declare let BMapLib;
 
@@ -85,6 +86,7 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
     private centerMapS: CentermapService,
     private diagrams: DiagramService,
     private router: Router,
+    private localService: LocalStorageService
   ) {
   }
 
@@ -92,6 +94,8 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
   }
 
   ngOnInit() {
+    // 发射业太数据名称
+    this.localService.eventBus.next(this.dataToggle + '高速业态大数据');
     this.amount();
     this.updataEcharts();
     // 全屏点击事件
