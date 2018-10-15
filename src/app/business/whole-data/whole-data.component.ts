@@ -100,7 +100,7 @@ export class WholeDataComponent implements OnInit, OnChanges, AfterContentInit, 
     // 发射实时客流
     this.localService.persons.next(this.persons);
     // 发射业太数据名称
-    this.localService.eventBus.next(this.dataToggle + '高速业态大数据');
+    this.localService.eventBus.next({title: this.dataToggle + '高速业态大数据',  flagState: 'whole', flagName: this.dataToggle});
     this.amount();
     this.updataEcharts();
     // 全屏点击事件

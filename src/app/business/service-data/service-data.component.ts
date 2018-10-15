@@ -195,9 +195,8 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
     // 路由接受参数
     this.routerInfo.params.subscribe(
       (params) => {
-        console.log(params);
         this.serviceZoneTitle = params.name;
-        this.localService.eventBus.next(this.serviceZoneTitle + '业态大数据');
+        this.localService.eventBus.next({title: this.serviceZoneTitle + '业态大数据', flagState: 'serzone', flagName: this.serviceZoneTitle});
         // this.serviceZonePoint = params.point.split(',');
         // console.log(this.serviceZonePoint);
       }

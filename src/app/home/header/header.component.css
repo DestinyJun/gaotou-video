@@ -3,10 +3,6 @@
   height: 10vh;
   overflow: hidden;
 }
-/*.header>.row>div{
-  display: inline-block;
-  vertical-align:text-top;
-}*/
 
 .header-logo{
   width: 26.3vw;
@@ -88,6 +84,151 @@
   font-weight: 500;
   letter-spacing: 0.1vw;
 }
+
+/****************************弹窗部分****************************/
+/*弹窗基本样式控制*/
+.bg-box{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #091118;
+  background: rgba(9,17,24,0.5);
+  z-index: 2;
+}
+.alert-window{
+  position: absolute;
+  width: 80vw;
+  height:60vh;
+  left: 50%;
+  margin-left: -40vw;
+  top: 50%;
+  margin-top: -30vh;
+  background: rgba(39,52,64,0.8);
+  z-index: 1;
+}
+.alert-window-header{
+  height: 5vh;
+  line-height: 5vh;
+  background: #1a2128;
+  text-align: center;
+}
+.alert-window-header span{
+  margin-left: 10px;
+  font-size: 1.625rem;
+}
+.alert-window-header .pull-right{
+  height: 5vh;
+  width: 5vh;
+  cursor: pointer;
+  text-align: center;
+}
+.alert-window-header .pull-right:hover{
+  background: red;
+}
+.alert-window-content{
+  height: 75vh;
+  font-size: 1rem;
+}
+.alert-window-content-table{
+  position: relative;
+  height: 55vh;
+}
+.alert-window-content-table .toggle-btn{
+  height: 5vh;
+  line-height: 5vh;
+}
+.alert-window-content-table .toggle-btn>button{
+  margin-right: 10px;
+}
+.alert-window-content-table .toggle-btn .toggle-btn-area{
+  height: 5vh;
+  line-height: 5vh;
+  padding-right: 10px;
+}
+.alert-window-content-table .toggle-btn .toggle-btn-area>span{
+  margin-left: 10px;
+  display: inline-block;
+  /*padding: 0.5vh 1vw;*/
+  height: 3vh;
+  line-height: 3vh;
+  padding: 0 1.5vw;
+  font-size: 0.875rem;
+  border-radius: 3px;
+  background: #1a2128;
+}
+.alert-window-content-table .toggle-btn .toggle-btn-area>span:hover{
+  cursor: pointer;
+}
+.alert-window-content-table .content-table{
+  height: 50vh;
+}
+
+/*服务区客流弹窗*/
+.vehicle-amount{
+  padding-top: 1vh;
+}
+.vehicle-amount>p>b{
+  font-size: 1.1rem;
+}
+.vehicle-amount>p>span{
+  display: inline-block;
+  width: 1.6vw;
+  height: 5vh;
+  line-height: 5vh;
+  font-size: 1.125rem;
+  text-align: center;
+  margin-right: 0.3vw;
+  background: #5095E0;
+}
+.vehicle-amount-number>p>small{
+  font-size: 1rem;
+  color: white;
+}
+
+.vehicle-distribute{
+  padding-top: 2vh;
+  display: flex;
+  justify-content: space-around;
+}
+.vehicle-distribute .person-list{
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.vehicle-distribute .person-list>p:first-child{
+  display: inline-block;
+  height: 5vh;
+  width: 5vh;
+  border-radius: 50%;
+  background: white;
+  color: #000;
+  line-height: 5vh;
+  font-size: 1.5rem;
+}
+.vehicle-distribute .person-list>p:last-child{
+  color: #4E96E0;
+  font-size: 1.2rem;
+}
+
+/*省市级客流弹窗*/
+.services-plan{
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 75vh;
+  /*background-image: url(http://120.78.138.104/images/gaotou/%E6%9C%8D%E5%8A%A1%E5%8C%BA%E9%B8%9F%E7%9E%B0%E5%9B%BE.jpg);*/
+  -webkit-background-size: 100%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+}
+.citys{
+  padding-left: 3vw;
+}
+
 
 /***********************适配手机及平板***********************/
 @media (max-width: 992px) {

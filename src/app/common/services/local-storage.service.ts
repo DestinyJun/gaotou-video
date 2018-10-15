@@ -4,7 +4,7 @@ import {Subject} from 'rxjs/Subject';
 @Injectable()
 export class LocalStorageService {
   // 顶一个可订阅的项目
-  public eventBus: Subject<string> = new Subject<string>();
+  public eventBus: Subject<any> = new Subject<any>();
   public persons: Subject<any> = new Subject<any>();
   public sessionStorage: any;
   constructor() {

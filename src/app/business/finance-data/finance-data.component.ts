@@ -172,7 +172,7 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // 发射也太数据名称
-    this.localService.eventBus.next('贵州省高速业态大数据');
+    this.localService.eventBus.next({title: '贵州省高速业态大数据',  flagState: 'finance', flagName: this.dataToggle});
     // 导出表格数据初始化
     this.bar3dExportType = {
       Bar3dNumType: '',

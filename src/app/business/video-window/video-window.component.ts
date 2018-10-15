@@ -32,6 +32,7 @@ export class VideoWindowComponent implements OnInit {
     this.localService.persons.next(this.persons);
     // 发射业太数据名称
     this.localService.eventBus.next('全国高速视频监控大数据');
+    this.localService.eventBus.next({title: '全国高速视频监控大数据',  flagState: 'window', flagName: '全国'});
     this.videoLocation1 = '';
     this.videoLocation2 = '';
     this.videoLocation3 = '';
