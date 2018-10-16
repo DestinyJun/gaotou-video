@@ -1452,8 +1452,8 @@ export class CityDataComponent implements OnInit, OnDestroy {
 
     function addMarker(point, name) {
       // const myIcon = new BMap.Icon('http://lbsyun.baidu.com/jsdemo/img/fox.gif', new BMap.Size(200, 130));
-      const myIcon = new BMap.Icon('assets/images/s1.png', new BMap.Size(11, 17), {
-        offset: new BMap.Size(0, 17),
+      const myIcon = new BMap.Icon('assets/images/s1.png', new BMap.Size(10, 10), {
+        offset: new BMap.Size(0, 10),
       });
       const points = new BMap.Point(point[0], point[1]);
       const marker = new BMap.Marker(points, {icon: myIcon});
@@ -1470,12 +1470,11 @@ export class CityDataComponent implements OnInit, OnDestroy {
         this.openInfoWindow(infoWindow);
       });
       marker.addEventListener('click', function () {
-        /*  if (name === '贵州久长高速服务区') {
+          if (name === '久长服务区') {
             that.router.navigate(['/home/serzone', {name: name, point: point}]);
           } else {
             window.alert('此服务区暂无数据');
-          }*/
-        that.router.navigate(['/home/serzone', {name: name, point: point}]);
+          }
       });
     }
 

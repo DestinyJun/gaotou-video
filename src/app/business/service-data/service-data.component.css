@@ -264,6 +264,10 @@
   text-align: center;
   margin-right: 1vw;
 }
+.center .event-table-processed-type>span:first-child {
+  float: left;
+  margin-left: 2vw;
+}
 .center .event-table-processed-type>span:hover {
   background: #0157A0;
   cursor: pointer;

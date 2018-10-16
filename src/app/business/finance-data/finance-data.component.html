@@ -239,6 +239,7 @@
         </div>
         <span class="toggle-btn-area-table" (click)="open3dBarExcel()">表格导出</span>
       </div>
+      <!--表格导出-->
       <div class="bg-excel" *ngIf="bar3dExcelShow">
         <div class="alert-window-excel">
           <div class="alert-window-excel-header">
@@ -250,7 +251,7 @@
           <div class="alert-window-excel-content">
             <div class="alert-window-excel-content-list">
               <label for="incomeDates">请选择时间：</label>
-              <input type="date" id="incomeDates" (change)="bar3dDateChange($event)">
+              <p-calendar [locale]="esDate" [(ngModel)]="value" view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2017:2030"></p-calendar>
             </div>
             <div class="alert-window-excel-content-list">
               <label for="incomeTypes">请选择类型：</label>
@@ -274,11 +275,10 @@
                 <option value="">中部</option>
               </select>
             </div>-->
-
           </div>
           <div class="alert-window-excel-footer text-center">
             <span (click)="bar3dExportClick()">确认导出</span>
-            <span (click)="closeincomeExcel()">取消导出</span>
+            <span (click)="close3dBarExcel()">取消导出</span>
           </div>
         </div>
       </div>
@@ -393,7 +393,6 @@
       </div>
     </div>
   </div>
-
   <!--事件监控弹窗-->
   <app-wenjun-alert [config]="eventConfig">
     <div class="col-lg-6 col-md-6">

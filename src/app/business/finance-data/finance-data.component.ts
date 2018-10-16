@@ -138,7 +138,13 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
 
   /**********************基础数据部分**********************/
   public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
-
+  // 时间初始化
+  public rangeDates: Date[];
+  public minDate: Date;
+  public maxDate: Date;
+  public esDate: any;
+  public invalidDates: Array<Date>;
+  public value: Date; // 时间选择器
   /**********************暂时不知道的分布**********************/
     // 当日服务区停车量排名
   public optionsRetention = {};
@@ -171,6 +177,17 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    // 时间初始化
+    this.esDate = {
+      firstDayOfWeek: 0,
+      dayNames: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+      dayNamesShort: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+      dayNamesMin: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+      monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      monthNamesShort: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      today: 'Today',
+      clear: 'Clear'
+    };
     // 发射也太数据名称
     this.localService.eventBus.next({title: '贵州省高速业态大数据',  flagState: 'finance', flagName: this.dataToggle});
     // 导出表格数据初始化
@@ -1493,8 +1510,8 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
     }*/
     function addMarker(point, name) {
       // const myIcon = new BMap.Icon('http://lbsyun.baidu.com/jsdemo/img/fox.gif', new BMap.Size(200, 130));
-      const myIcon = new BMap.Icon('assets/images/s1.png', new BMap.Size(11, 17), {
-        offset: new BMap.Size(0, 17),
+      const myIcon = new BMap.Icon('assets/images/s1.png', new BMap.Size(10, 10), {
+        offset: new BMap.Size(0, 10),
       });
       const points = new BMap.Point(point[0], point[1]);
       const marker = new BMap.Marker(points, {icon: myIcon});
@@ -1512,12 +1529,12 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
         this.openInfoWindow(infoWindow);
       });
       marker.addEventListener('click', function (e) {
-        if (name === '贵州久长高速服务区') {
+        if (name === '久长服务区') {
           that.router.navigate(['/home/serzone', {name: name, point: point}]);
         } else {
           window.alert('此服务区暂无数据');
         }
-        that.router.navigate(['/home/serzone', {name: name, point: point}]);
+        // that.router.navigate(['/home/serzone', {name: name, point: point}]);
       });
     }
 
@@ -1574,7 +1591,7 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
             strokeWeight: 1,
             strokeColor: colors,
             fillColor: colors,
-            fillOpacity: 0.5
+            fillOpacity: 0.1
           }); // 建立多边形覆盖物
           map.addOverlay(ply);  // 添加覆盖物
           // map.setViewport(ply.getPath());    // 调整视野
