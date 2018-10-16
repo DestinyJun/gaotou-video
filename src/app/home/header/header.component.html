@@ -44,7 +44,6 @@
           <div class="vehicle-amount">
             <p class="text-center">
               <b>总人数：</b>
-              <span style="font-size: 0.875rem">{{persons.length === 0? '全国客流当前暂无数据': ''}}</span>
               <span *ngFor="let item of persons">{{item.number}}</span>
             </p>
           </div>
