@@ -145,6 +145,7 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
   public esDate: any;
   public invalidDates: Array<Date>;
   public value: Date; // 时间选择器
+  public date6: Date;
   /**********************暂时不知道的分布**********************/
     // 当日服务区停车量排名
   public optionsRetention = {};
@@ -185,8 +186,8 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
       dayNamesMin: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
       monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
       monthNamesShort: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-      today: 'Today',
-      clear: 'Clear'
+      today: '今天',
+      clear: '清除'
     };
     // 发射也太数据名称
     this.localService.eventBus.next({title: '贵州省高速业态大数据',  flagState: 'finance', flagName: this.dataToggle});

@@ -248,6 +248,14 @@
 }
 
 /*事件上报*/
+.event-table .event-table-untreated-title>span:nth-child(3),.event-table .event-table-processed-title>span:nth-child(3){
+  left:unset;
+  right: -8px;
+}
+.event-table .event-table-untreated-title>span:nth-child(4),.event-table .event-table-processed-title>span:nth-child(4){
+  left:unset;
+  right: -8px;
+}
 .center .event-table-processed-title{
   margin-bottom: 1vh;
 }
@@ -265,8 +273,8 @@
   margin-right: 1vw;
 }
 .center .event-table-processed-type>span:first-child {
-  float: left;
-  margin-left: 2vw;
+  float: right;
+  /*margin-left: 2vw;*/
 }
 .center .event-table-processed-type>span:hover {
   background: #0157A0;
@@ -296,7 +304,6 @@
 .center .event-table-processed-btn span:nth-child(2){
   background: #4590D4;
 }
-
 
 .event-table tr td{
   border: none;

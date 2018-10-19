@@ -82,7 +82,7 @@
         </div>
         <div class="servicesMap-center text-center">
           <span>遵义方向</span>
-          <img src="assets/images/jiantou.png" alt="" style="height: 3vh;width: auto;transform: rotate(0deg)">
+          <img src="assets/images/jiantou.png" alt="" style="height: 3vh;width: auto;transform: scaleX(-1);">
           <span>贵阳方向</span>
         </div>
         <div class="second servicesMap-video">
@@ -263,11 +263,11 @@
         <div class="alert-window-excel-content">
           <div class="alert-window-excel-content-list">
             <label for="incomeDates">请选择时间：</label>
-            <input type="date" id="incomeDates" (change)="bar3dDateChange($event)">
+            <p-calendar placeholder="请选择时间......" [locale]="esDate" [(ngModel)]="date6" view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2017:2030"></p-calendar>
           </div>
           <div class="alert-window-excel-content-list">
-            <label for="incomeTypes">请选择类型：</label>
-            <select name="" id="incomeTypes" (change)="bar3dTypeChange($event)">
+            <label for="incomeTypesSelect">请选择类型：</label>
+            <select name="" id="incomeTypesSelect" (change)="bar3dTypeChange($event)">
               <option value="">点击选择...</option>
               <option value="">所有类型</option>
               <option value="">经营收入</option>
@@ -291,7 +291,7 @@
         </div>
         <div class="alert-window-excel-footer text-center">
           <span (click)="bar3dExportClick()">确认导出</span>
-          <span (click)="closeincomeExcel()">取消导出</span>
+          <span (click)="close3dBarExcel()">取消导出</span>
         </div>
       </div>
     </div>

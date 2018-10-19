@@ -140,7 +140,14 @@ export class CityDataComponent implements OnInit, OnDestroy {
 
   /**********************基础数据部分**********************/
   public citys = ['久长服务区', '石阡服务区', '虹桥服务区', '玉屏服务区', '荔波服务区', '六枝服务区', '盘县服务区', '红果服务区', '老马服务区', '乌江服务区'];
-
+  // 时间初始化
+  public rangeDates: Date[];
+  public minDate: Date;
+  public maxDate: Date;
+  public esDate: any;
+  public invalidDates: Array<Date>;
+  public value: Date; // 时间选择器
+  public date6: Date;
   /**********************暂时不知道的分布**********************/
     // 当日服务区停车量排名
   public optionsRetention = {};
@@ -173,6 +180,17 @@ export class CityDataComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    // 时间初始化
+    this.esDate = {
+      firstDayOfWeek: 0,
+      dayNames: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+      dayNamesShort: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+      dayNamesMin: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+      monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      monthNamesShort: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      today: '今天',
+      clear: '清除'
+    };
     // 发射也太数据名称
     this.localService.eventBus.next({title: '贵阳市高速业态大数据',  flagState: 'city', flagName: this.dataToggle});
     // 导出表格数据初始化

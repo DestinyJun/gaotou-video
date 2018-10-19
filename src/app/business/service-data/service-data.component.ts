@@ -150,6 +150,14 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
   public arryIncomePie = [];
   public incomeExcelShow = false;
   public incomeExportType: IncomeExportType;
+  // 时间初始化
+  public rangeDates: Date[];
+  public minDate: Date;
+  public maxDate: Date;
+  public esDate: any;
+  public invalidDates: Array<Date>;
+  public value: Date; // 时间选择器
+  public date6: Date;
 
   constructor(
     private el: ElementRef,
@@ -163,6 +171,17 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    // 时间初始化
+    this.esDate = {
+      firstDayOfWeek: 0,
+      dayNames: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+      dayNamesShort: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+      dayNamesMin: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+      monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      monthNamesShort: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      today: '今天',
+      clear: '清除'
+    };
     // 导出表格数据初始化
     this.bar3dExportType = {
       Bar3dNumType: '',
@@ -514,22 +533,22 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
     const legendData = ['经营收入', '客流量', '车流量', '用水量', '用电量'];
     const title = '服务区业态数据变化';
     const serieData = [];
-   /* const metaDate = [
+    const metaDate = [
       [120, 140, 100, 120, 300, 230, 130, 170, 140, 120, 300, 230],
       [200, 120, 300, 200, 170, 300, 200, 180, 200, 190, 300, 200],
       [100, 200, 140, 300, 200, 180, 100, 300, 230, 130, 100, 300],
       [152, 418, 89, 156, 200, 180, 100, 300, 230, 130, 145, 300],
       [56, 223, 140, 300, 200, 180, 283, 300, 230, 148, 100, 300]
-    ];*/
-    const metaDate = [];
+    ];
+   /* const metaDate = [];
     legendData.map((val, index) => {
       let b = [];
       xAxisData.map((val1, index1) => {
         b.push(Math.random() * 100000);
       });
       metaDate.push(b);
-    });
-    console.log(metaDate);
+    });*/
+
     for (let v = 0; v < legendData.length; v++) {
       const serie = {
         name: legendData[v],
