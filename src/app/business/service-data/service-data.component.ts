@@ -694,6 +694,10 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
   public open3dBarExcel() {
     this.bar3dExcelShow = true;
   }
+  // 选择时间
+  public selsectDateClick(param): void {
+    console.log(param.onFocus);
+  }
   public close3dBarExcel() {
     this.bar3dExcelShow = false;
   }

@@ -606,6 +606,7 @@
   right: 4vw;
 }
 .toggle-btn-area-table:hover,.toggle-btn-area-date:hover{
+  position: relative;
   cursor: pointer;
 }
 .alert-3D-bar-bar{

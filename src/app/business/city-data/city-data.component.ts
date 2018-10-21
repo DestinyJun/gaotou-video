@@ -1483,7 +1483,7 @@ export class CityDataComponent implements OnInit, OnDestroy {
       // market事件
       marker.addEventListener('mouseover', function () {
         // 信息窗口
-        const sContent = `<div><h5>${name}</h5></div>`;
+        const sContent = `<div style="background: red;"><h5>${name}</h5></div>`;
         const infoWindow = new BMap.InfoWindow(sContent, {enableCloseOnClick: true});
         this.openInfoWindow(infoWindow);
       });
