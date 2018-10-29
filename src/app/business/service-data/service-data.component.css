@@ -275,6 +275,7 @@
 }
 .center .event-table-processed-type>span:first-child {
   float: right;
+  margin-right: 5vw;
   /*margin-left: 2vw;*/
 }
 .center .event-table-processed-type>span:hover {
