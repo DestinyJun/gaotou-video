@@ -95,8 +95,11 @@
       </div>
       <!--人数分布-->
       <div class="row">
-        <div class="col-ld-12 col-md-12 text-center">
+        <div class="col-ld-6 col-md-6 text-center">
           <div *ngIf="!(persons.length === 0)" class="services-plan" echarts [options]="cityOptions"></div>
+        </div>
+        <div class="col-ld-6 col-md-6 text-center">
+          <div *ngIf="!(persons.length === 0)" class="services-plan" echarts [options]="cityParentOptions"></div>
         </div>
       </div>
     </div>
