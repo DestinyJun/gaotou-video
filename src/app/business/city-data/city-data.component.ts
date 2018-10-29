@@ -50,6 +50,7 @@ export class CityDataComponent implements OnInit, OnDestroy {
   /****************************左边***************************/
     // 3D柱状图配置
   public options3d = {};
+  public options3dCopy = {};
   public options3dArray: any;
   // 3D柱状图弹窗
   public alertBarShow = false;
@@ -272,7 +273,7 @@ export class CityDataComponent implements OnInit, OnDestroy {
             data: this.options3dArray.hours,
             splitLine: {show: false},
             nameTextStyle: {
-              color: 'white'
+              color: 'transparent'
             },
             axisLine: {
               lineStyle: {
@@ -286,7 +287,7 @@ export class CityDataComponent implements OnInit, OnDestroy {
             name: '类型',
             splitLine: {show: false},
             nameTextStyle: {
-              color: 'white'
+              color: 'transparent'
             },
             axisLine: {
               lineStyle: {
@@ -299,10 +300,7 @@ export class CityDataComponent implements OnInit, OnDestroy {
             name: '%',
             splitLine: {show: false},
             nameTextStyle: {
-              top: '3%',
-              left: '5%',
-              show: false,
-              color: 'white'
+              color: 'transparent'
             },
             axisLine: {
               lineStyle: {
@@ -328,7 +326,8 @@ export class CityDataComponent implements OnInit, OnDestroy {
           series: [
             {
               type: 'bar3D',
-              barWidth: 30, // 柱图宽度
+              barGap: '50%',
+              // barWidth: 30, // 柱图宽度
               data: this.data3dS.data3dFac().map(function (item) {
                 return {
                   value: [item[0], item[1], item[2]]
@@ -349,6 +348,145 @@ export class CityDataComponent implements OnInit, OnDestroy {
                 opacity: 0.9,
                 color: function (params) {
                   return ['#9B90D5', '#46E7E2', '#78F991', '#0B38D8', '#027405'][params.value[1]];
+                },
+              },
+              emphasis: {
+                label: {
+                  textStyle: {
+                    fontSize: 20,
+                    color: '#900'
+                  }
+                },
+                itemStyle: {
+                  color: '#900'
+                }
+              }
+            }
+          ]
+        };
+      }
+    );
+    this.data3dS.get3dDataCopy().subscribe(
+      (value) => {
+        this.options3dArray = value;
+        const hours = this.options3dArray.hours;
+        const days = this.options3dArray.days;
+        this.options3dCopy = {
+          /*title: [
+            {
+              text: this.dataToggle + this.options3dArray.data3dTitle,
+              left: 'center',
+              textStyle: {
+                color: '#fff',
+                fontSize: 14
+              }
+            },
+          ],*/
+          tooltip: {
+            show: true,
+            trigger: 'item',
+            axisPointer: {
+              type: 'cross',
+              axis: 'auto',
+            },
+            formatter: function (params) {
+              let res = `<p>${hours[params.value[0]]}:</p>`;
+              res += `<p style='margin-left:3px'>${days[params.value[1]]}:${params.value[2]}%</p>`;
+              return res;
+            }
+          },
+          /*visualMap: {
+            max: 100,
+            show: false,
+            inRange: {
+              color: this.options3dArray.colorData
+            }
+          },*/
+          xAxis3D: {
+            type: 'category',
+            name: '月份',
+            data: this.options3dArray.hours,
+            splitLine: {show: false},
+            nameTextStyle: {
+              color: 'transparent',
+              fontSize: 12
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+            minInterval: 5,
+          },
+          yAxis3D: {
+            type: 'category',
+            data: this.options3dArray.days,
+            name: '类型',
+            splitLine: {show: false},
+            nameTextStyle: {
+              color: 'transparent',
+              fontSize: 12
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+          },
+          zAxis3D: {
+            type: 'value',
+            name: '%',
+            splitLine: {show: false},
+            nameTextStyle: {
+              color: 'transparent'
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+          },
+          grid3D: {
+            boxWidth: 200,
+            boxDepth: 80,
+            light: {
+              main: {
+                intensity: 1.2
+              },
+              ambient: {
+                intensity: 0.3
+              }
+            },
+            viewControl: {
+              distance: 350,
+            }
+          },
+          series: [
+            {
+              type: 'bar3D',
+              barGap: '50%',
+              barCategoryGap: '50%',
+              // barWidth: 60, // 柱图宽度
+              data: this.data3dS.data3dFacCopy().map(function (item) {
+                return {
+                  value: [item[0], item[1], item[2]]
+                };
+              }),
+              // 柱状图阴影
+              shading: 'lambert',
+              label: {
+                // 柱状图的数值是否显示
+                show: false,
+                textStyle: {
+                  fontSize: 16,
+                  borderWidth: 1
+                }
+              },
+              // 柱状图主子的样式
+              itemStyle: {
+                opacity: 0.9,
+                color: function (params) {
+                  return ['#D06052', '#E29F39', '#9B90D5', '#46E7E2', '#78F991' ][params.value[1]];
                 },
               },
               emphasis: {
