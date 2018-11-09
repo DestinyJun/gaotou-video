@@ -14,25 +14,8 @@ import {DataService} from '../../common/services/data.service';
 import {ConfigModule, WenjunAlertService} from '../../common/wenjun';
 import {FinanceDataService} from '../../common/services/finance-data.service';
 import {LocalStorageService} from '../../common/services/local-storage.service';
-
+import {Bar3dExportType, CarExportType, IncomeExportType} from '../../common/model/shared.model';
 declare let BMap;
-
-interface CarExportType {
-  carNumType: string;
-  carArea: string;
-  carDate: string;
-}
-interface IncomeExportType {
-  incomeNumType: string;
-  incomeArea: string;
-  incomeDate: string;
-}
-interface Bar3dExportType {
-  Bar3dNumType: string;
-  Bar3dArea: string;
-  Bar3dDate: string;
-}
-
 @Component({
   selector: 'app-finance-data',
   templateUrl: './finance-data.component.html',
@@ -48,6 +31,7 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
   /****************************左边***************************/
     // 3D柱状图配置
   public options3d = {};
+  public options3dCopy = {};
   public options3dArray: any;
   // 3D柱状图弹窗
   public alertBarShow = false;
@@ -62,7 +46,7 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
   ];
   public arryPie = [];
   public bar3dExcelShow = false;
-  public bar3dExportType: Bar3dExportType;
+  public bar3dExportType: Bar3dExportType = new Bar3dExportType;
 
   // 车流量实时数值
   public vehicleAmount = [];
@@ -79,7 +63,7 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
   public carAreaName = '贵州省';
   public optionsCarPieInstance: any;
   public carExcelShow = false;
-  public carExportType: CarExportType;
+  public carExportType: CarExportType = new CarExportType();
   public CarTypeisShow = false;
 
   /*****************************中部**************************/
@@ -92,12 +76,6 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
   public provinceShow = false;
   public cityShow = false;
   public flag: string;
-
-  // 弹出框的标题及显影控制
-  public alertMapBoxShow = true;
-  public alertMapTitle: string;
-  public alertDateBoxShow = true;
-  public alertDateTitle: string;
 
   // 全国高速服务区分布图
   public optionsMap = {};
@@ -133,32 +111,15 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
   public IncomeTableData: any;
   public arryIncomePie = [];
   public incomeExcelShow = false;
-  public incomeExportType: IncomeExportType;
+  public incomeExportType: IncomeExportType = new IncomeExportType();
   public incomeTypeisShow = true;
 
   /**********************基础数据部分**********************/
   public citys = ['贵阳市', '遵义市', '六盘水市', '安顺市', '毕节市', '铜仁市', '黔东南苗族侗族自治州', '黔南布依族苗族自治州', '黔西南布依族苗族自治州'];
   // 时间初始化
-  public rangeDates: Date[];
-  public minDate: Date;
-  public maxDate: Date;
   public esDate: any;
-  public invalidDates: Array<Date>;
   public value: Date; // 时间选择器
   public date6: Date;
-  /**********************暂时不知道的分布**********************/
-    // 当日服务区停车量排名
-  public optionsRetention = {};
-  // 服务区当日收入排名
-  public optionsIncome = {};
-  // 服务区地图分布
-  public mapName = 'china';
-  public mapCenter = [101.74, 36.56];
-  public mapZoom = 0.8;
-  public mapLeft = '';
-  public mapRight = '';
-  // 图表加载状态状态:
-  public echartsIntance: any;
   // 车月度所有服务区车辆流量柱状图统计
   public optionsCar = {};
 
@@ -178,6 +139,11 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.financeDataService.searchTopBar().subscribe(
+      (val) => {
+        console.log(val);
+      }
+    );
     // 时间初始化
     this.esDate = {
       firstDayOfWeek: 0,
@@ -192,21 +158,6 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
     // 发射也太数据名称
     this.localService.eventBus.next({title: '贵州省高速业态大数据',  flagState: 'finance', flagName: this.dataToggle});
     // 导出表格数据初始化
-    this.bar3dExportType = {
-      Bar3dNumType: '',
-      Bar3dArea: '',
-      Bar3dDate: ''
-    };
-    this.carExportType = {
-      carNumType: '',
-      carArea: '',
-      carDate: ''
-    };
-    this.incomeExportType = {
-      incomeNumType: '',
-      incomeArea: '',
-      incomeDate: ''
-    };
     this.amount();
     // 图表更行
     this.updataEcharts();
@@ -361,6 +312,145 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
                 },
                 itemStyle: {
                   color: '#FF2600'
+                }
+              }
+            }
+          ]
+        };
+      }
+    );
+    this.data3dS.get3dDataCopy().subscribe(
+      (value) => {
+        this.options3dArray = value;
+        const hours = this.options3dArray.hours;
+        const days = this.options3dArray.days;
+        this.options3dCopy = {
+          /*title: [
+            {
+              text: this.dataToggle + this.options3dArray.data3dTitle,
+              left: 'center',
+              textStyle: {
+                color: '#fff',
+                fontSize: 14
+              }
+            },
+          ],*/
+          tooltip: {
+            show: true,
+            trigger: 'item',
+            axisPointer: {
+              type: 'cross',
+              axis: 'auto',
+            },
+            formatter: function (params) {
+              let res = `<p>${hours[params.value[0]]}:</p>`;
+              res += `<p style='margin-left:3px'>${days[params.value[1]]}:${params.value[2]}%</p>`;
+              return res;
+            }
+          },
+          /*visualMap: {
+            max: 100,
+            show: false,
+            inRange: {
+              color: this.options3dArray.colorData
+            }
+          },*/
+          xAxis3D: {
+            type: 'category',
+            name: '月份',
+            data: this.options3dArray.hours,
+            splitLine: {show: false},
+            nameTextStyle: {
+              color: 'transparent',
+              fontSize: 12
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+            minInterval: 5,
+          },
+          yAxis3D: {
+            type: 'category',
+            data: this.options3dArray.days,
+            name: '类型',
+            splitLine: {show: false},
+            nameTextStyle: {
+              color: 'transparent',
+              fontSize: 12
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+          },
+          zAxis3D: {
+            type: 'value',
+            name: '%',
+            splitLine: {show: false},
+            nameTextStyle: {
+              color: 'transparent'
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+          },
+          grid3D: {
+            boxWidth: 200,
+            boxDepth: 80,
+            light: {
+              main: {
+                intensity: 1.2
+              },
+              ambient: {
+                intensity: 0.3
+              }
+            },
+            viewControl: {
+              distance: 350,
+            }
+          },
+          series: [
+            {
+              type: 'bar3D',
+              barGap: '50%',
+              barCategoryGap: '50%',
+              // barWidth: 60, // 柱图宽度
+              data: this.data3dS.data3dFacCopy().map(function (item) {
+                return {
+                  value: [item[0], item[1], item[2]]
+                };
+              }),
+              // 柱状图阴影
+              shading: 'lambert',
+              label: {
+                // 柱状图的数值是否显示
+                show: false,
+                textStyle: {
+                  fontSize: 16,
+                  borderWidth: 1
+                }
+              },
+              // 柱状图主子的样式
+              itemStyle: {
+                opacity: 0.9,
+                color: function (params) {
+                  return ['#D06052', '#E29F39', '#9B90D5', '#46E7E2', '#78F991' ][params.value[1]];
+                },
+              },
+              emphasis: {
+                label: {
+                  textStyle: {
+                    fontSize: 20,
+                    color: '#900'
+                  }
+                },
+                itemStyle: {
+                  color: '#900'
                 }
               }
             }

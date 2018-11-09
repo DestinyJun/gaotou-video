@@ -3,34 +3,25 @@ import {environment} from '../environments/environment';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {ConfigModule} from './common/wenjun';
 import {WenjunAlertService} from './common/wenjun';
+import {GlobalService} from './common/services/global.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'app';
-  // public config: ConfigModule;
-  // public show = false;
   constructor(
-    // private modalService: BsModalService,
-    // private wenJunAlertService: WenjunAlertService
+    private globalService: GlobalService
   ) {
     console.log('当前产品状态是：' + environment.weixin);
   }
   ngOnInit(): void {
-   /* this.config = {
-      alertTitle: '王小二',
-      titleColor: 'red',
-      titleBgColor: 'orange',
-      background: 'blue',
-      width: 80,
-      height: 60,
-    };*/
-  }
-  public btnClick() {
-    /*this.show = true;
-    this.wenJunAlertService.openAlertShow();*/
+    this.globalService.searchList({page: 1, nums: 1000}).subscribe(
+      (val) => {
+        console.log(val);
+      }
+    );
   }
 }

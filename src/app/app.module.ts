@@ -10,6 +10,7 @@ import {LocalStorageService} from './common/services/local-storage.service';
 import {LoginService} from './common/services/login.service';
 import {LoginComponent} from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {GlobalService} from './common/services/global.service';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     LoginService,
     LocalStorageService,
     LoginGuard,
+    GlobalService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
   bootstrap: [AppComponent]

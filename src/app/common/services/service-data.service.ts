@@ -9,6 +9,6 @@ export class ServiceDataService {
     private http: HttpClient
   ) { }
   public getServiceShopVDate(): Observable<any> {
-    return this.http.get('http://120.78.137.182:8808/highway-management/common/config/getStoreAndCamera/1');
+    return this.http.get('http://120.78.137.182:8888/highway-management/common/config/getStoreAndCamera/1');
   }
 }
