@@ -11,9 +11,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EventListInfo} from '../../common/model/service-data.model';
 import {ServiceDataService} from '../../common/services/service-data.service';
 import {LocalStorageService} from '../../common/services/local-storage.service';
+import {NgxEchartsService} from 'ngx-echarts';
 declare let BMap;
 declare let BMapLib;
-declare let BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW;
+declare let BMAP_ANCHOR_BOTTOM_LEFT;
 
 interface CarExportType {
   carNumType: string;
@@ -49,6 +50,7 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
   /***********************左边************************/
     //  高速服液态数据3d统计
   public options3d = {};
+  public options3dCopy = {};
   public options3dArray: any;
 
   // 3D柱状图弹窗
@@ -91,6 +93,7 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
   // 服务区商家信息弹窗
   public serviceShopShow = false;
   public serviceShopTitle: string;
+  public shopExcelShow = false;
   // 服务区信息修改
   public selectFormModule: FormGroup;
   // 公共视频弹窗
@@ -167,7 +170,8 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
     private routerInfo: ActivatedRoute,
     private dataService: DataService,
     private serareaService: ServiceDataService,
-  private localService: LocalStorageService
+    private localService: LocalStorageService,
+    private es: NgxEchartsService,
   ) {}
 
   ngOnInit() {
@@ -229,6 +233,9 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
     // 数据更行
     this.upData();
 
+    // 服务区平面图
+    // this.echartsBMap();
+
     // 函数测试
     // this.openServiceShop({name: 1});
   }
@@ -282,7 +289,7 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
             data: this.options3dArray.hours,
             splitLine: {show: false},
             nameTextStyle: {
-              color: 'white'
+              color: 'transparent'
             },
             axisLine: {
               lineStyle: {
@@ -296,7 +303,7 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
             name: '类型',
             splitLine: {show: false},
             nameTextStyle: {
-              color: 'white'
+              color: 'transparent'
             },
             axisLine: {
               lineStyle: {
@@ -312,7 +319,7 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
               top: '3%',
               left: '5%',
               show: false,
-              color: 'white'
+              color: 'transparent'
             },
             axisLine: {
               lineStyle: {
@@ -332,7 +339,7 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
               }
             },
             viewControl: {
-              distance: 350,
+              distance: 270,
             }
           },
           series: [
@@ -359,6 +366,145 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
                 opacity: 0.9,
                 color: function (params) {
                   return ['#9B90D5', '#46E7E2', '#78F991', '#0B38D8', '#027405'][params.value[1]];
+                },
+              },
+              emphasis: {
+                label: {
+                  textStyle: {
+                    fontSize: 20,
+                    color: '#900'
+                  }
+                },
+                itemStyle: {
+                  color: '#900'
+                }
+              }
+            }
+          ]
+        };
+      }
+    );
+    this.data3dS.get3dDataCopy().subscribe(
+      (value) => {
+        this.options3dArray = value;
+        const hours = this.options3dArray.hours;
+        const days = this.options3dArray.days;
+        this.options3dCopy = {
+          /*title: [
+            {
+              text: this.dataToggle + this.options3dArray.data3dTitle,
+              left: 'center',
+              textStyle: {
+                color: '#fff',
+                fontSize: 14
+              }
+            },
+          ],*/
+          tooltip: {
+            show: true,
+            trigger: 'item',
+            axisPointer: {
+              type: 'cross',
+              axis: 'auto',
+            },
+            formatter: function (params) {
+              let res = `<p>${hours[params.value[0]]}:</p>`;
+              res += `<p style='margin-left:3px'>${days[params.value[1]]}:${params.value[2]}%</p>`;
+              return res;
+            }
+          },
+          /*visualMap: {
+            max: 100,
+            show: false,
+            inRange: {
+              color: this.options3dArray.colorData
+            }
+          },*/
+          xAxis3D: {
+            type: 'category',
+            name: '月份',
+            data: this.options3dArray.hours,
+            splitLine: {show: false},
+            nameTextStyle: {
+              color: 'transparent',
+              fontSize: 12
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+            minInterval: 5,
+          },
+          yAxis3D: {
+            type: 'category',
+            data: this.options3dArray.days,
+            name: '类型',
+            splitLine: {show: false},
+            nameTextStyle: {
+              color: 'transparent',
+              fontSize: 12
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+          },
+          zAxis3D: {
+            type: 'value',
+            name: '%',
+            splitLine: {show: false},
+            nameTextStyle: {
+              color: 'transparent'
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+          },
+          grid3D: {
+            boxWidth: 200,
+            boxDepth: 80,
+            light: {
+              main: {
+                intensity: 1.2
+              },
+              ambient: {
+                intensity: 0.3
+              }
+            },
+            viewControl: {
+              distance: 270,
+            }
+          },
+          series: [
+            {
+              type: 'bar3D',
+              barGap: '50%',
+              barCategoryGap: '50%',
+              // barWidth: 60, // 柱图宽度
+              data: this.data3dS.data3dFacCopy().map(function (item) {
+                return {
+                  value: [item[0], item[1], item[2]]
+                };
+              }),
+              // 柱状图阴影
+              shading: 'lambert',
+              label: {
+                // 柱状图的数值是否显示
+                show: false,
+                textStyle: {
+                  fontSize: 16,
+                  borderWidth: 1
+                }
+              },
+              // 柱状图主子的样式
+              itemStyle: {
+                opacity: 0.9,
+                color: function (params) {
+                  return ['#D06052', '#E29F39', '#9B90D5', '#46E7E2', '#78F991' ][params.value[1]];
                 },
               },
               emphasis: {
@@ -1252,6 +1398,323 @@ export class ServiceDataComponent implements OnInit, OnDestroy {
   }
 
   /************************右边***************************/
+  // 初始化百度地图
+  public echartsBMap(): void {
+    const myChart = this.es.init(document.getElementById('servicesPlan'));
+    const myChartOption =  {
+      bmap: {
+        center: [106.70604, 26.901521],
+        zoom: 20,
+        roam: true,
+        mapStyle: {
+          'styleJson': [
+            {
+              'featureType': 'land',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#212121'
+              }
+            },
+            {
+              'featureType': 'building',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#2b2b2b'
+              }
+            },
+            {
+              'featureType': 'highway',
+              'elementType': 'all',
+              'stylers': {
+                'lightness': -42,
+                'saturation': -91
+              }
+            },
+            {
+              'featureType': 'arterial',
+              'elementType': 'geometry',
+              'stylers': {
+                'lightness': -77,
+                'saturation': -94
+              }
+            },
+            {
+              'featureType': 'green',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#1b1b1b'
+              }
+            },
+            {
+              'featureType': 'water',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#181818'
+              }
+            },
+            {
+              'featureType': 'subway',
+              'elementType': 'geometry.stroke',
+              'stylers': {
+                'color': '#181818'
+              }
+            },
+            {
+              'featureType': 'railway',
+              'elementType': 'geometry',
+              'stylers': {
+                'lightness': -52
+              }
+            },
+            {
+              'featureType': 'all',
+              'elementType': 'labels.text.stroke',
+              'stylers': {
+                'color': '#313131'
+              }
+            },
+            {
+              'featureType': 'all',
+              'elementType': 'labels.text.fill',
+              'stylers': {
+                'color': '#8b8787'
+              }
+            },
+            {
+              'featureType': 'manmade',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#1b1b1b'
+              }
+            },
+            {
+              'featureType': 'local',
+              'elementType': 'geometry',
+              'stylers': {
+                'lightness': -75,
+                'saturation': -91
+              }
+            },
+            {
+              'featureType': 'subway',
+              'elementType': 'geometry',
+              'stylers': {
+                'lightness': -65
+              }
+            },
+            {
+              'featureType': 'railway',
+              'elementType': 'all',
+              'stylers': {
+                'lightness': -40
+              }
+            },
+            {
+              'featureType': 'boundary',
+              'elementType': 'geometry',
+              'stylers': {
+                'color': '#8b8787',
+                'weight': '1',
+                'lightness': -29
+              }
+            }
+          ]
+        },
+      },
+    };
+    myChart.setOption(myChartOption);
+    const bmap = myChart.getModel().getComponent('bmap').getBMap();
+    // 添加切换地图、卫星、三维切换控件
+     bmap.addControl(new BMap.MapTypeControl({
+       // 靠左上角位置
+       anchor: BMAP_ANCHOR_BOTTOM_LEFT,
+     }));
+    // 添加定位控件
+    // bmap.addControl(new BMap.GeolocationControl());
+    // 设置地图最小缩放级别
+    bmap.setMinZoom(15);
+    // 设置地图最大缩放级别
+    bmap.setMaxZoom(19);
+    bmap.setMapType('BMAP_SATELLITE_MAP');
+    window.addEventListener('resize', function() {
+      myChart.resize();
+    });
+    /* this.options = {
+       backgroundColor: '#404a59',
+       title: {
+         text: '井盖异常位置图',
+         left: 'center',
+         textStyle: {
+           color: '#fff'
+         }
+       },
+       tooltip: {
+         trigger: 'item'
+       },
+       bmap: {
+         show: false,
+         center: [106.631929, 26.687097],
+         zoom: 18,
+         label: {
+           show: false,
+         },
+         roam: 'move',
+         scaleLimit: {
+           min: 15,
+           max: 19
+         },
+         mapStyle: {
+           'styleJson': [
+             {
+               'featureType': 'water',
+               'elementType': 'all',
+               'stylers': {
+                 'color': '#031628'
+               }
+             },
+             {
+               'featureType': 'land',
+               'elementType': 'geometry',
+               'stylers': {
+                 'color': '#000102'
+               }
+             },
+             {
+               'featureType': 'highway',
+               'elementType': 'all',
+               'stylers': {
+                 'visibility': 'off'
+               }
+             },
+             {
+               'featureType': 'arterial',
+               'elementType': 'geometry.fill',
+               'stylers': {
+                 'color': '#000000'
+               }
+             },
+             {
+               'featureType': 'arterial',
+               'elementType': 'geometry.stroke',
+               'stylers': {
+                 'color': '#0b3d51'
+               }
+             },
+             {
+               'featureType': 'local',
+               'elementType': 'geometry',
+               'stylers': {
+                 'color': '#000000'
+               }
+             },
+             {
+               'featureType': 'railway',
+               'elementType': 'geometry.fill',
+               'stylers': {
+                 'color': '#000000'
+               }
+             },
+             {
+               'featureType': 'railway',
+               'elementType': 'geometry.stroke',
+               'stylers': {
+                 'color': '#08304b'
+               }
+             },
+             {
+               'featureType': 'subway',
+               'elementType': 'geometry',
+               'stylers': {
+                 'lightness': -70
+               }
+             },
+             {
+               'featureType': 'building',
+               'elementType': 'geometry.fill',
+               'stylers': {
+                 'color': '#000000'
+               }
+             },
+             {
+               'featureType': 'all',
+               'elementType': 'labels.text.fill',
+               'stylers': {
+                 'color': '#857f7f'
+               }
+             },
+             {
+               'featureType': 'all',
+               'elementType': 'labels.text.stroke',
+               'stylers': {
+                 'color': '#000000'
+               }
+             },
+             {
+               'featureType': 'building',
+               'elementType': 'geometry',
+               'stylers': {
+                 'color': '#022338'
+               }
+             },
+             {
+               'featureType': 'green',
+               'elementType': 'geometry',
+               'stylers': {
+                 'color': '#062032'
+               }
+             },
+             {
+               'featureType': 'boundary',
+               'elementType': 'all',
+               'stylers': {
+                 'color': '#465b6c'
+               }
+             },
+             {
+               'featureType': 'manmade',
+               'elementType': 'all',
+               'stylers': {
+                 'color': '#022338'
+               }
+             },
+             {
+               'featureType': 'label',
+               'elementType': 'all',
+               'stylers': {
+                 'visibility': 'off'
+               }
+             }
+           ]
+         }
+       },
+      series: [
+         {
+           type: 'effectScatter',
+           coordinateSystem: 'bmap',
+           data: pointData,
+           symbolSize: 15,
+           legendHoverLink: 'true',
+           label: {
+             normal: {
+               formatter: '{b}',
+               position: 'right',
+               show: false
+             },
+             emphasis: {
+               show: true
+             }
+           },
+           itemStyle: {
+             normal: {
+               color: function (params) {
+                 return that.color[Number(params.value[2])];
+               }
+             }
+           }
+         }
+       ]
+     };*/
+  }
   // 业态经营数据前十排名
   public backCrosswiseBar() {
     /*const value = this.dataService.getIncomerStore(this.dataStatus);

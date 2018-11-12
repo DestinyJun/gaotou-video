@@ -54,7 +54,7 @@
 }
 .left .accumulation-title{}
 .left .accumulation-3Dbar{
-  height: 46vh;
+  height: 23vh;
 }
 
 /*车辆统计*/
@@ -175,7 +175,7 @@
   cursor: pointer;
 }
 .center .second.servicesMap-video{
-  justify-content: flex-end;
+  /*justify-content: flex-end;*/
 }
 .center .second.servicesMap-video>span{
   margin-right: 0;
@@ -472,8 +472,6 @@
   font-size: 0.875rem;
   border-radius: 3px;
   background: #1a2128;
-}
-.alert-window-content-table .toggle-btn .toggle-btn-area>span:hover{
   cursor: pointer;
 }
 .alert-window-content-table .content-table{

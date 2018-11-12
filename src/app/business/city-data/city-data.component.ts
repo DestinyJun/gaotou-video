@@ -320,7 +320,7 @@ export class CityDataComponent implements OnInit, OnDestroy {
               }
             },
             viewControl: {
-              distance: 350,
+              distance: 270,
             }
           },
           series: [
@@ -458,7 +458,7 @@ export class CityDataComponent implements OnInit, OnDestroy {
               }
             },
             viewControl: {
-              distance: 350,
+              distance: 270,
             }
           },
           series: [

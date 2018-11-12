@@ -13,6 +13,7 @@
           <p>{{serviceZoneTitle}}业态数据3D统计</p>
         </div>
         <div class="accumulation-3Dbar" echarts [options]="options3d" (chartClick)="barClick($event)"></div>
+        <div class="accumulation-3Dbar" echarts [options]="options3dCopy" (chartClick)="barClick($event)"></div>
       </div>
       <!--移动端车流量-->
       <div class="income mobile">
@@ -381,16 +382,6 @@
               <option value="">货车</option>
             </select>
           </div>
-         <!-- <div class="alert-window-excel-content-list">
-            <label for="carArea">请选择片区：</label>
-            <select name="" id="carArea" (change)="carAreaChange($event)">
-              <option value="">东部片区</option>
-              <option value="">西部片区</option>
-              <option value="">南部片区</option>
-              <option value="">北部</option>
-              <option value="">中部</option>
-            </select>
-          </div>-->
         </div>
         <div class="alert-window-excel-footer text-center">
           <span (click)="carExportClick()">确认导出</span>
@@ -475,6 +466,49 @@
             <div echarts [options]="shopEchartLine" style="height: 34vh"></div>
             <div echarts [options]="shopEchartArea" style="height: 34vh"></div>
           </div>
+        </div>
+        <div style="
+        position: absolute;top:6.5vh;right: 2vw;
+        margin-left: 10px;
+  display: inline-block;
+ cursor: pointer;
+  height: 3vh;
+  line-height: 3vh;
+  padding: 0 1.5vw;
+  font-size: 0.875rem;
+  border-radius: 3px;
+  background: #1a2128;
+">
+          <span (click)="serviceShopShow=true">表格导出</span>
+        </div>
+      </div>
+    </div>
+    <div class="bg-excel" *ngIf="true">
+      <div class="alert-window-excel">
+        <div class="alert-window-excel-header">
+          <span>车辆数据表格导出</span>
+          <div class="pull-right" (click)="shopExcelShow = false">
+            <i class="fa fa-window-close " aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="alert-window-excel-content">
+          <div class="alert-window-excel-content-list">
+            <label for="vehicleDates">请选择时间：</label>
+            <p-calendar id="vehicleDates" placeholder="请点击选择时间......" [locale]="esDate" [(ngModel)]="date6" [monthNavigator]="true" [yearNavigator]="true" yearRange="2017:2030"></p-calendar>
+          </div>
+          <div class="alert-window-excel-content-list">
+            <label for="carTypes">请选择类型：</label>
+            <select name="" id="carTypes" (change)="carTypeChange($event)">
+              <option value="">总数</option>
+              <option value="">小车</option>
+              <option value="">客车</option>
+              <option value="">货车</option>
+            </select>
+          </div>
+        </div>
+        <div class="alert-window-excel-footer text-center">
+          <span (click)="carExportClick()">确认导出</span>
+          <span (click)="closeCarExcel()">取消导出</span>
         </div>
       </div>
     </div>
@@ -1029,7 +1063,7 @@
   </div>
 </div>
 <!--服务区平面图弹窗-->
-<div class="bg-box" *ngIf="servicesPlan" >
+<div class="bg-box" [hidden]="!servicesPlan" >
   <div class="alert-window" style="height:80vh; margin-top: -40vh;">
     <div class="alert-window-header">
       <div class="row">
@@ -1044,23 +1078,8 @@
     <div class="alert-window-content">
       <div class="row">
         <div class="col-ld-12 col-md-12 text-center">
-          <!-- <div class="services-plan" [ngStyle]="">
-             <div class="services-plan-left pull-left">
-               <div class="service-date-info-top">
-                 <h5 class="text-center">服务区收入</h5>
-               </div>
-               <div class="service-date-info-top"></div>
-               <div class="service-date-info-top"></div>
-             </div>
-             <div class="services-plan-right pull-right">
-               <div class="service-date-info-bottom">
-                 <h5 class="text-center">服务区车流</h5>
-               </div>
-               <div class="service-date-info-bottom"></div>
-               <div class="service-date-info-bottom"></div>
-             </div>
-           </div>-->
-          <div class="services-plan" echarts [options]="servicesMap"></div>
+          <div class="services-plan" id="servicesPlan" echarts [options]="servicesMap"></div>
+          <!--<div class="services-plan" id="servicesPlan"></div>-->
         </div>
       </div>
     </div>

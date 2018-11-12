@@ -224,7 +224,7 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
             data: this.options3dArray.hours,
             splitLine: {show: false},
             nameTextStyle: {
-              color: 'white'
+              color: 'transparent'
             },
             axisLine: {
               lineStyle: {
@@ -238,7 +238,7 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
             name: '类型',
             splitLine: {show: false},
             nameTextStyle: {
-              color: 'white'
+              color: 'transparent'
             },
             axisLine: {
               lineStyle: {
@@ -254,7 +254,7 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
               top: '3%',
               left: '5%',
               show: false,
-              color: 'white'
+              color: 'transparent'
             },
             axisLine: {
               lineStyle: {
@@ -274,7 +274,7 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
               }
             },
             viewControl: {
-              distance: 350,
+              distance: 270,
             }
           },
           series: [
@@ -411,7 +411,7 @@ export class FinanceDataComponent implements OnInit, OnDestroy {
               }
             },
             viewControl: {
-              distance: 350,
+              distance: 270,
             }
           },
           series: [

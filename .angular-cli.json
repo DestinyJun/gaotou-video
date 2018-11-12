@@ -32,10 +32,11 @@
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
         "../node_modules/qrcodejs/qrcode.min.js",
         "../node_modules/echarts/dist/echarts.min.js",
+        "../node_modules/echarts/dist/extension/bmap.min.js",
         "../node_modules/echarts-gl/dist/echarts-gl.min.js",
         "../node_modules/echarts/map/js/china.js",
-        "../node_modules/echarts/map/js/province/guizhou.js",
-        "../node_modules/echarts/dist/extension/bmap.min.js"
+        "../node_modules/echarts/map/js/province/guizhou.js"
+
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
