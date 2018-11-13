@@ -149,19 +149,29 @@
             <span *ngFor="let item of eventInfoUpTypes" (click)="eventInfoUpClick(item)">{{item}}</span>
           </div>
           <div class="event-table-processed-btn">
-            <div class="btn-toilet" (click)="openServersToiletAlert('服务区卫生间使用率')">
-              <p>卫生间使用率</p>
-              <p class="text-center">
-                <span>男洗手间：45%</span>
-                <span>女洗手间：50%</span>
-              </p>
+            <div class="col-lg-6 col-md-6">
+              <div class="btn-toilet" (click)="openServersToiletAlert('服务区卫生间使用率')">
+                <p>上行卫生间使用率</p>
+                <p class=""><span>男洗手间：45%</span></p>
+                <p><span>女洗手间：50%</span></p>
+              </div>
+              <div class="btn-carport" (click)="openServersToiletAlert('服务区停车位监控')">
+                <p>上行停车位数据监控</p>
+                <p class=""><span>大车剩余车位：256个</span></p>
+                <p><span>小车剩余车位：318个</span></p>
+              </div>
             </div>
-            <div class="btn-carport" (click)="openServersToiletAlert('服务区停车位监控')">
-              <p>停车位监控</p>
-              <p class="text-center">
-                <span>大车剩余车位：256个</span>
-                <span>小车剩余车位：318个</span>
-              </p>
+            <div class="col-lg-6 col-md-6">
+              <div class="btn-toilet" (click)="openServersToiletAlert('服务区卫生间使用率')">
+                <p>上行卫生间使用率</p>
+                <p class=""><span>男洗手间：45%</span></p>
+                <p><span>女洗手间：50%</span></p>
+              </div>
+              <div class="btn-carport" (click)="openServersToiletAlert('服务区停车位监控')">
+                <p>上行停车位数据监控</p>
+                <p class=""><span>大车剩余车位：256个</span></p>
+                <p><span>小车剩余车位：318个</span></p>
+              </div>
             </div>
           </div>
         </div>
@@ -461,34 +471,21 @@
         <div class="col-ld-4 col-md-4">
           <div class="shop-echart-title">
             <span>店家业态数据统计</span>
+            <span class="table-export" (click)="serviceShopShowExport=true">表格导出</span>
           </div>
           <div class="shop-echart-content">
             <div echarts [options]="shopEchartLine" style="height: 34vh"></div>
             <div echarts [options]="shopEchartArea" style="height: 34vh"></div>
           </div>
         </div>
-        <div style="
-        position: absolute;top:6.5vh;right: 2vw;
-        margin-left: 10px;
-  display: inline-block;
- cursor: pointer;
-  height: 3vh;
-  line-height: 3vh;
-  padding: 0 1.5vw;
-  font-size: 0.875rem;
-  border-radius: 3px;
-  background: #1a2128;
-">
-          <span (click)="serviceShopShow=true">表格导出</span>
-        </div>
       </div>
     </div>
-    <div class="bg-excel" *ngIf="true">
+    <div class="bg-excel" *ngIf="serviceShopShowExport">
       <div class="alert-window-excel">
         <div class="alert-window-excel-header">
-          <span>车辆数据表格导出</span>
-          <div class="pull-right" (click)="shopExcelShow = false">
-            <i class="fa fa-window-close " aria-hidden="true"></i>
+          <span>收入数据表格导出</span>
+          <div class="pull-right">
+            <i class="fa fa-window-close " aria-hidden="true" (click)="serviceShopShowExport=false"></i>
           </div>
         </div>
         <div class="alert-window-excel-content">
@@ -507,10 +504,11 @@
           </div>
         </div>
         <div class="alert-window-excel-footer text-center">
-          <span (click)="carExportClick()">确认导出</span>
-          <span (click)="closeCarExcel()">取消导出</span>
+          <button class="btn btn-primary" (click)="incomeExportClick()">确认导出</button>
+          <button class="btn btn-danger" (click)="closeincomeExcel()">取消导出</button>
         </div>
       </div>
+      <iframe src="" frameborder="0" style="position: absolute;top: 0;left: 0; height: 100vh;width:100vw;z-index: -1"></iframe>
     </div>
   </div>
 </div>

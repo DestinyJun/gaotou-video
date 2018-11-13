@@ -162,6 +162,9 @@
   height: 4vh;
   display: flex;
 }
+.center .first{
+  justify-content: flex-end;
+}
 .center .servicesMap-video span{
   display: inline-block;
   height: 4vh;
@@ -288,11 +291,12 @@
 }
 .center .event-table-processed-btn span{
   display: inline-block;
-  width: 9.5vw;
-  padding: 0.5vh 0;
+  /*width: 9.5vw;*/
+  padding: 0.1vh 0.5vw;
   font-size: 0.8rem;
   border-radius: 3px;
   margin-right: 1vw;
+  cursor: pointer;
 }
 .center .event-table-processed-btn p:nth-child(1){
   margin-bottom: 0.5vh;
@@ -304,6 +308,12 @@
   background: #03A9F7;
 }
 .center .event-table-processed-btn span:nth-child(2){
+  background: #4590D4;
+}
+.center .event-table-processed-btn .btn-toilet >p:nth-child(3)>span{
+  background: #4590D4;
+}
+.center .event-table-processed-btn .btn-carport >p:nth-child(3)>span{
   background: #4590D4;
 }
 
@@ -342,6 +352,7 @@
   padding: 0.5vh 0;
   background: #30A7AD;
   border-radius: 3px;
+  cursor: pointer;
 }
 .right .information-btn span:nth-child(1){
   margin-right: 1vw;
@@ -486,6 +497,7 @@
   top: 0;
   left: 0;
   background: rgba(0,0,0,0.6);
+  z-index: 9999;
 }
 .alert-window-excel{
   position: absolute;
@@ -629,6 +641,17 @@
   margin-top: 1vh;
   line-height: 4vh;
   font-size: 1rem;
+}
+.shop-echart-title>.table-export{
+  display: inline-block;
+  padding: 0 1vw;
+  font-size: 0.875rem;
+  position: absolute;
+  border-radius: 3px;
+  background: #1a2128;
+  right: 2vw;
+  line-height: 3vh;
+  cursor: pointer;
 }
 .shop-msg-content>p{
   margin-bottom: 2vh;

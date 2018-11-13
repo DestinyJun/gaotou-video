@@ -1,22 +1,22 @@
 <div class="row">
   <div class="nav" [ngStyle]="{opacity: navOpacity, height: navHeight}">
     <ul class="list-group">
-      <li class="list-group-item" (click)="wholeClick()">
+      <li class="list-group-item" [routerLink]="['./whole']">
         <i class="fa fa-area-chart" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="全国业态大数据"></i>
       </li>
-      <li class="list-group-item" (click)="financeClick()">
+      <li class="list-group-item" [routerLink]="['./finance']">
         <i class="fa fa-bar-chart" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="省级业态大数据"></i>
       </li>
-      <li class="list-group-item" (click)="cityClick()">
+      <li class="list-group-item" [routerLink]="['./city']">
         <i class="fa fa-line-chart" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="市级业态大数据"></i>
       </li>
-      <li class="list-group-item" (click)="serzoneClick()">
+      <li class="list-group-item" [routerLink]="['./serzone', {name: '久长服务区', point: [116.39737, 39.935076]}]">
         <i class="fa fa-pie-chart" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="服务区业态大数据"></i>
       </li>
-    <!--  <li class="list-group-item" [routerLink]="['./videom']">
-        <i class="fa fa-server " aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频管理"></i>
-      </li>-->
-      <li class="list-group-item" (click)="videowClick()">
+      <!--  <li class="list-group-item" [routerLink]="['./videom']">
+          <i class="fa fa-server " aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频管理"></i>
+        </li>-->
+      <li class="list-group-item" [routerLink]="['./videow']">
         <i class="fa fa-video-camera" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="视频监控"></i>
       </li>
     </ul>
